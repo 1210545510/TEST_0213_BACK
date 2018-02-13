@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+	<bean name="task" class="com.aml.common.ext.ExtTaskParser"/>
+	<bean class="org.snaker.engine.access.dialect.SQLServerDialect"/>
+	<bean class="org.snaker.engine.impl.LogInterceptor"/>
+	<bean class="org.snaker.engine.spring.SpelExpression"/>
+	<bean class="org.snaker.engine.impl.SurrogateInterceptor"/>
+	<bean class="org.snaker.engine.impl.GeneralAccessStrategy"/>
+	<!-- <bean class="com.snakerflow.framework.flow.CustomAccessStrategy"/> -->
+	<bean class="org.snaker.engine.impl.SchedulerInterceptor"/>
+	<bean class="org.snaker.engine.scheduling.quartz.QuartzScheduler"/>
+	<bean class="com.aml.common.service.SnakerReminder"/>
+</config>

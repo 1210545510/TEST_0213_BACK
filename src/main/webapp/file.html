@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>文件上传DEMO</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+<body>
+	<form method="post" action="/qiniu/upload" enctype="multipart/form-data">
+		<input type="hidden" name="userId" value="1">
+		<input type="hidden" name="token" value="vendor:e04093895b37c35a0d305b3b57cf062b">
+		<input type="file" name="files" />
+		<input type="submit" value="上传" />
+	</form>
+</body>
+</html>
