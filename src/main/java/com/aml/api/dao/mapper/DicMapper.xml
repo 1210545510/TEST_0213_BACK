@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.DicMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Dic">
+    <id column="dic_id" jdbcType="BIGINT" property="dicId" />
+    <result column="dic_code" jdbcType="VARCHAR" property="dicCode" />
+    <result column="dic_name" jdbcType="VARCHAR" property="dicName" />
+    <result column="dic_value" jdbcType="VARCHAR" property="dicValue" />
+    <result column="sort_index" jdbcType="TINYINT" property="sortIndex" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    
+    <collection property="dicSubs" ofType="com.aml.api.pojo.DicSub">
+		<id column="s_dic_sid" jdbcType="INTEGER" property="dicSid" />
+    	<result column="s_dic_id" jdbcType="INTEGER" property="dicId" />
+	    <result column="s_dic_code" jdbcType="VARCHAR" property="dicCode" />
+	    <result column="s_dic_key" jdbcType="VARCHAR" property="dicKey" />
+	    <result column="s_dic_value" jdbcType="VARCHAR" property="dicValue" />
+	    <result column="s_sort_index" jdbcType="INTEGER" property="sortIndex" />
+	    <result column="s_remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="s_id_deleted" jdbcType="INTEGER" property="idDeleted" />
+	    <result column="s_create_user" jdbcType="VARCHAR" property="createUser" />
+	    <result column="s_create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="s_update_user" jdbcType="VARCHAR" property="updateUser" />
+	    <result column="s_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</collection>
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    dic_id, dic_code, dic_name, dic_value, sort_index, remark, create_user, create_time, 
+    update_user, update_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from common_dic
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_dic
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Dic">
+    insert into common_dic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dicCode != null">
+        dic_code,
+      </if>
+      <if test="dicName != null">
+        dic_name,
+      </if>
+      <if test="dicValue != null">
+        dic_value,
+      </if>
+      <if test="sortIndex != null">
+        sort_index,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dicCode != null">
+        #{dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null">
+        #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null">
+        #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Dic">
+    update common_dic
+    <set>
+      <if test="dicCode != null">
+        dic_code = #{dicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null">
+        dic_name = #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicValue != null">
+        dic_value = #{dicValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sortIndex != null">
+        sort_index = #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Dic">
+    update common_dic
+    set dic_code = #{dicCode,jdbcType=VARCHAR},
+      dic_name = #{dicName,jdbcType=VARCHAR},
+      dic_value = #{dicValue,jdbcType=VARCHAR},
+      sort_index = #{sortIndex,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where dic_id = #{dicId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryDicts" resultMap="BaseResultMap">
+		SELECT
+			d.dic_id,
+			d.dic_code,
+			d.dic_name,
+			d.remark,
+			d.sort_index
+		FROM
+			common_dic d
+		<where>
+			<if test="dicName != null and dicName != ''">
+				AND d.dic_name LIKE '${dicName}'
+			</if>
+				AND d.is_deleted = 0
+		</where>
+		ORDER BY d.dic_id ASC
+	</select>
+	
+	  <select id="findDicById" resultMap="BaseResultMap">
+		SELECT
+			d.dic_id,
+			d.dic_code,
+			d.dic_name,
+			d.remark,
+			d.sort_index,
+			ds.dic_sid AS s_dic_sid,
+			ds.dic_id AS s_dic_id,
+			ds.dic_key AS s_dic_key,
+			ds.dic_value AS s_dic_value,
+			ds.sort_index AS s_sort_index
+		FROM
+			common_dic d LEFT JOIN
+			common_dic_sub ds ON d.dic_id = ds.dic_id AND ds.is_deleted = 0
+		WHERE 1 =1
+		 	AND d.is_deleted = 0
+			AND d.dic_id = #{dicId}
+		ORDER BY ds.sort_index ASC
+	</select>
+	
+	<update id="update">
+		UPDATE common_dic
+		<set>
+			<if test="dicCode != null and dicCode != ''">
+				dic_code = #{dicCode},
+			</if>
+			<if test="dicName != null and dicName != ''">
+				dic_name = #{dicName},
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark},
+			</if>
+			update_user = #{userId},
+			update_time = getdate()
+		</set>
+		where dic_id = #{dicId}
+	</update>
+	
+	<update id="delete" >
+		UPDATE common_dic
+	  SET 
+	    is_deleted = 1
+	  WHERE dic_id = #{dicId}
+	</update>
+  
+  	<insert id="insert" keyProperty="dicId" useGeneratedKeys="true">
+		INSERT INTO common_dic (
+		  dic_code,
+		  dic_name,
+		  dic_value,
+		  sort_index,
+		  remark,
+		  create_user
+		) 
+		VALUES
+		  (
+		     #{dicCode},
+		     #{dicName},
+		     #{dicValue},
+		     #{sortIndex},
+		     #{remark},
+		     #{userId}
+		  ) 
+	</insert>
+  
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.TemplateRulesMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.TemplateRules">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tride" jdbcType="VARCHAR" property="tride" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="sp_name" jdbcType="VARCHAR" property="spName" />
+    <result column="susp_type_schedule" jdbcType="VARCHAR" property="suspTypeSchedule" />
+    <result column="pre_post_edd" jdbcType="VARCHAR" property="prePostEdd" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [tride], [type], [sp_name], [susp_type_schedule], [pre_post_edd], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [template_rules]
+    where [id] = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [template_rules]
+    where [id] = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.TemplateRules" keyProperty="id" useGeneratedKeys="true" >
+    insert into [template_rules] ([tride], [type], [sp_name], 
+      [susp_type_schedule], [pre_post_edd], [is_deleted]
+      )
+    values (#{tride,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{spName,jdbcType=VARCHAR}, 
+      #{suspTypeSchedule,jdbcType=VARCHAR}, #{prePostEdd,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.TemplateRules" keyProperty="id" useGeneratedKeys="true" >
+    insert into [template_rules]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tride != null">
+        [tride],
+      </if>
+      <if test="type != null">
+        [type],
+      </if>
+      <if test="spName != null">
+        [sp_name],
+      </if>
+      <if test="suspTypeSchedule != null">
+        [susp_type_schedule],
+      </if>
+      <if test="prePostEdd != null">
+        [pre_post_edd],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tride != null">
+        #{tride,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="spName != null">
+        #{spName,jdbcType=VARCHAR},
+      </if>
+      <if test="suspTypeSchedule != null">
+        #{suspTypeSchedule,jdbcType=VARCHAR},
+      </if>
+      <if test="prePostEdd != null">
+        #{prePostEdd,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.TemplateRules">
+    update [template_rules]
+    <set>
+      <if test="tride != null">
+        [tride] = #{tride,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        [type] = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="spName != null">
+        [sp_name] = #{spName,jdbcType=VARCHAR},
+      </if>
+      <if test="suspTypeSchedule != null">
+        [susp_type_schedule] = #{suspTypeSchedule,jdbcType=VARCHAR},
+      </if>
+      <if test="prePostEdd != null">
+        [pre_post_edd] = #{prePostEdd,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.TemplateRules">
+    update [template_rules]
+    set [tride] = #{tride,jdbcType=VARCHAR},
+      [type] = #{type,jdbcType=VARCHAR},
+      [sp_name] = #{spName,jdbcType=VARCHAR},
+      [susp_type_schedule] = #{suspTypeSchedule,jdbcType=VARCHAR},
+      [pre_post_edd] = #{prePostEdd,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- Query all records, list Pagination -->
+  <select id="getTemplateRulesList" parameterType="com.aml.api.dto.TemplateRulesDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [template_rules]
+    where [is_deleted] = 0
+    order by [id] ASC
+  </select>
+  <!-- export -->
+  <select id="downTemplateRulesExcel" parameterType="com.aml.api.dto.TemplateRulesDto" resultType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from [template_rules]
+    where [is_deleted] = 0
+    	<if test="param != null">
+        	and [id] in (#{param})
+      	</if>
+    order by [id] ASC
+  </select>
+</mapper>

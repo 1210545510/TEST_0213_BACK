@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.CustAddrMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.CustAddr">
+    <id column="CUST_INTRL_ID" jdbcType="VARCHAR" property="custIntrlId" />
+    <id column="ADDR_SEQ_NB" jdbcType="VARCHAR" property="addrSeqNb" />
+    <result column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="CUST_ADDR_SEQ_ID" jdbcType="DECIMAL" property="custAddrSeqId" />
+    <result column="ADDR_USAGE_CD" jdbcType="VARCHAR" property="addrUsageCd" />
+    <result column="ADDR_CITY_NM" jdbcType="VARCHAR" property="addrCityNm" />
+    <result column="ADDR_STATE_CD" jdbcType="VARCHAR" property="addrStateCd" />
+    <result column="ADDR_POSTL_CD" jdbcType="VARCHAR" property="addrPostlCd" />
+    <result column="ADDR_CNTRY_CD" jdbcType="VARCHAR" property="addrCntryCd" />
+    <result column="ADDR_STRT_LINE1_TX" jdbcType="VARCHAR" property="addrStrtLine1Tx" />
+    <result column="ADDR_STRT_LINE2_TX" jdbcType="VARCHAR" property="addrStrtLine2Tx" />
+    <result column="ADDR_STRT_LINE3_TX" jdbcType="VARCHAR" property="addrStrtLine3Tx" />
+    <result column="ADDR_STRT_LINE4_TX" jdbcType="VARCHAR" property="addrStrtLine4Tx" />
+    <result column="ADDR_STRT_LINE5_TX" jdbcType="VARCHAR" property="addrStrtLine5Tx" />
+    <result column="ADDR_STRT_LINE6_TX" jdbcType="VARCHAR" property="addrStrtLine6Tx" />
+    <result column="ADDR_RGN_NM" jdbcType="VARCHAR" property="addrRgnNm" />
+    <result column="SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="MAIL_HNDLNG_INSTR" jdbcType="VARCHAR" property="mailHndlngInstr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [CUST_INTRL_ID], [ADDR_SEQ_NB], [DATA_DUMP_DT], [CUST_ADDR_SEQ_ID], [ADDR_USAGE_CD], 
+    [ADDR_CITY_NM], [ADDR_STATE_CD], [ADDR_POSTL_CD], [ADDR_CNTRY_CD], [ADDR_STRT_LINE1_TX], 
+    [ADDR_STRT_LINE2_TX], [ADDR_STRT_LINE3_TX], [ADDR_STRT_LINE4_TX], [ADDR_STRT_LINE5_TX], 
+    [ADDR_STRT_LINE6_TX], [ADDR_RGN_NM], [SRC_SYS_CD], [PRCSNG_BATCH_NM], [MAIL_HNDLNG_INSTR]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.aml.api.pojo.CustAddr" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[CUST_ADDR]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [ADDR_SEQ_NB] = #{addrSeqNb,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aml.api.pojo.CustAddr">
+    delete from [mantas].[CUST_ADDR]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [ADDR_SEQ_NB] = #{addrSeqNb,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.CustAddr">
+    insert into [mantas].[CUST_ADDR] ([CUST_INTRL_ID], [ADDR_SEQ_NB], [DATA_DUMP_DT], 
+      [CUST_ADDR_SEQ_ID], [ADDR_USAGE_CD], [ADDR_CITY_NM], 
+      [ADDR_STATE_CD], [ADDR_POSTL_CD], [ADDR_CNTRY_CD], 
+      [ADDR_STRT_LINE1_TX], [ADDR_STRT_LINE2_TX], [ADDR_STRT_LINE3_TX], 
+      [ADDR_STRT_LINE4_TX], [ADDR_STRT_LINE5_TX], [ADDR_STRT_LINE6_TX], 
+      [ADDR_RGN_NM], [SRC_SYS_CD], [PRCSNG_BATCH_NM], 
+      [MAIL_HNDLNG_INSTR])
+    values (#{custIntrlId,jdbcType=VARCHAR}, #{addrSeqNb,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, 
+      #{custAddrSeqId,jdbcType=DECIMAL}, #{addrUsageCd,jdbcType=VARCHAR}, #{addrCityNm,jdbcType=VARCHAR}, 
+      #{addrStateCd,jdbcType=VARCHAR}, #{addrPostlCd,jdbcType=VARCHAR}, #{addrCntryCd,jdbcType=VARCHAR}, 
+      #{addrStrtLine1Tx,jdbcType=VARCHAR}, #{addrStrtLine2Tx,jdbcType=VARCHAR}, #{addrStrtLine3Tx,jdbcType=VARCHAR}, 
+      #{addrStrtLine4Tx,jdbcType=VARCHAR}, #{addrStrtLine5Tx,jdbcType=VARCHAR}, #{addrStrtLine6Tx,jdbcType=VARCHAR}, 
+      #{addrRgnNm,jdbcType=VARCHAR}, #{srcSysCd,jdbcType=VARCHAR}, #{prcsngBatchNm,jdbcType=VARCHAR}, 
+      #{mailHndlngInstr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.CustAddr">
+    insert into [mantas].[CUST_ADDR]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        [CUST_INTRL_ID],
+      </if>
+      <if test="addrSeqNb != null">
+        [ADDR_SEQ_NB],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="custAddrSeqId != null">
+        [CUST_ADDR_SEQ_ID],
+      </if>
+      <if test="addrUsageCd != null">
+        [ADDR_USAGE_CD],
+      </if>
+      <if test="addrCityNm != null">
+        [ADDR_CITY_NM],
+      </if>
+      <if test="addrStateCd != null">
+        [ADDR_STATE_CD],
+      </if>
+      <if test="addrPostlCd != null">
+        [ADDR_POSTL_CD],
+      </if>
+      <if test="addrCntryCd != null">
+        [ADDR_CNTRY_CD],
+      </if>
+      <if test="addrStrtLine1Tx != null">
+        [ADDR_STRT_LINE1_TX],
+      </if>
+      <if test="addrStrtLine2Tx != null">
+        [ADDR_STRT_LINE2_TX],
+      </if>
+      <if test="addrStrtLine3Tx != null">
+        [ADDR_STRT_LINE3_TX],
+      </if>
+      <if test="addrStrtLine4Tx != null">
+        [ADDR_STRT_LINE4_TX],
+      </if>
+      <if test="addrStrtLine5Tx != null">
+        [ADDR_STRT_LINE5_TX],
+      </if>
+      <if test="addrStrtLine6Tx != null">
+        [ADDR_STRT_LINE6_TX],
+      </if>
+      <if test="addrRgnNm != null">
+        [ADDR_RGN_NM],
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="mailHndlngInstr != null">
+        [MAIL_HNDLNG_INSTR],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        #{custIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="addrSeqNb != null">
+        #{addrSeqNb,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custAddrSeqId != null">
+        #{custAddrSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="addrUsageCd != null">
+        #{addrUsageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCityNm != null">
+        #{addrCityNm,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStateCd != null">
+        #{addrStateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrPostlCd != null">
+        #{addrPostlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCntryCd != null">
+        #{addrCntryCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine1Tx != null">
+        #{addrStrtLine1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine2Tx != null">
+        #{addrStrtLine2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine3Tx != null">
+        #{addrStrtLine3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine4Tx != null">
+        #{addrStrtLine4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine5Tx != null">
+        #{addrStrtLine5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine6Tx != null">
+        #{addrStrtLine6Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRgnNm != null">
+        #{addrRgnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHndlngInstr != null">
+        #{mailHndlngInstr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.CustAddr">
+    update [mantas].[CUST_ADDR]
+    <set>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custAddrSeqId != null">
+        [CUST_ADDR_SEQ_ID] = #{custAddrSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="addrUsageCd != null">
+        [ADDR_USAGE_CD] = #{addrUsageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCityNm != null">
+        [ADDR_CITY_NM] = #{addrCityNm,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStateCd != null">
+        [ADDR_STATE_CD] = #{addrStateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrPostlCd != null">
+        [ADDR_POSTL_CD] = #{addrPostlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCntryCd != null">
+        [ADDR_CNTRY_CD] = #{addrCntryCd,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine1Tx != null">
+        [ADDR_STRT_LINE1_TX] = #{addrStrtLine1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine2Tx != null">
+        [ADDR_STRT_LINE2_TX] = #{addrStrtLine2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine3Tx != null">
+        [ADDR_STRT_LINE3_TX] = #{addrStrtLine3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine4Tx != null">
+        [ADDR_STRT_LINE4_TX] = #{addrStrtLine4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine5Tx != null">
+        [ADDR_STRT_LINE5_TX] = #{addrStrtLine5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStrtLine6Tx != null">
+        [ADDR_STRT_LINE6_TX] = #{addrStrtLine6Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRgnNm != null">
+        [ADDR_RGN_NM] = #{addrRgnNm,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="mailHndlngInstr != null">
+        [MAIL_HNDLNG_INSTR] = #{mailHndlngInstr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [ADDR_SEQ_NB] = #{addrSeqNb,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.CustAddr">
+    update [mantas].[CUST_ADDR]
+    set [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      [CUST_ADDR_SEQ_ID] = #{custAddrSeqId,jdbcType=DECIMAL},
+      [ADDR_USAGE_CD] = #{addrUsageCd,jdbcType=VARCHAR},
+      [ADDR_CITY_NM] = #{addrCityNm,jdbcType=VARCHAR},
+      [ADDR_STATE_CD] = #{addrStateCd,jdbcType=VARCHAR},
+      [ADDR_POSTL_CD] = #{addrPostlCd,jdbcType=VARCHAR},
+      [ADDR_CNTRY_CD] = #{addrCntryCd,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE1_TX] = #{addrStrtLine1Tx,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE2_TX] = #{addrStrtLine2Tx,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE3_TX] = #{addrStrtLine3Tx,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE4_TX] = #{addrStrtLine4Tx,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE5_TX] = #{addrStrtLine5Tx,jdbcType=VARCHAR},
+      [ADDR_STRT_LINE6_TX] = #{addrStrtLine6Tx,jdbcType=VARCHAR},
+      [ADDR_RGN_NM] = #{addrRgnNm,jdbcType=VARCHAR},
+      [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [MAIL_HNDLNG_INSTR] = #{mailHndlngInstr,jdbcType=VARCHAR}
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [ADDR_SEQ_NB] = #{addrSeqNb,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.TaskScoreMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.TaskScore">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="organized_written" jdbcType="VARCHAR" property="organizedWritten" />
+    <result column="accurately_appropriately" jdbcType="VARCHAR" property="accuratelyAppropriately" />
+    <result column="grammar_spelling" jdbcType="VARCHAR" property="grammarSpelling" />
+    <result column="other_issues" jdbcType="VARCHAR" property="otherIssues" />
+    <result column="grade" jdbcType="TINYINT" property="grade" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.TaskScore">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into wf_task_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="organizedWritten != null">
+        organized_written,
+      </if>
+      <if test="accuratelyAppropriately != null">
+        accurately_appropriately,
+      </if>
+      <if test="grammarSpelling != null">
+        grammar_spelling,
+      </if>
+      <if test="otherIssues != null">
+        other_issues,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizedWritten != null">
+        #{organizedWritten,jdbcType=VARCHAR},
+      </if>
+      <if test="accuratelyAppropriately != null">
+        #{accuratelyAppropriately,jdbcType=VARCHAR},
+      </if>
+      <if test="grammarSpelling != null">
+        #{grammarSpelling,jdbcType=VARCHAR},
+      </if>
+      <if test="otherIssues != null">
+        #{otherIssues,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=TINYINT},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO wf_task_score (
+		  task_id,
+		  order_id,
+		  organized_written,
+		  accurately_appropriately,
+		  grammar_spelling,
+		  other_issues,
+		  grade,
+		  create_user
+		) 
+		VALUES
+		  (
+		     #{taskId},
+		     #{orderId},
+		     #{organizedWritten},
+		     #{accuratelyAppropriately},
+		     #{grammarSpelling},
+		     #{otherIssues},
+		     #{grade},
+		     #{userName}
+		  ) 
+	</insert>
+	
+	<update id="update">
+		UPDATE wf_task_score
+		<set>
+			<if test="organizedWritten != null and organizedWritten != ''">
+				organized_written = #{organizedWritten},
+			</if>
+			<if test="accuratelyAppropriately != null and accuratelyAppropriately != ''">
+				accurately_appropriately = #{accuratelyAppropriately},
+			</if>
+			<if test="grammarSpelling != null and grammarSpelling != ''">
+				grammar_spelling = #{grammarSpelling},
+			</if>
+			<if test="otherIssues != null and otherIssues != ''">
+				other_issues = #{otherIssues},
+			</if>
+			<if test="grade != null and grade != ''">
+				grade = #{grade},
+			</if>
+			update_user = #{userName},
+			update_time = getdate()
+		</set>
+		where id = #{id}
+	</update>
+	
+	<select id="findScoreByTaskId" resultMap="BaseResultMap">
+		SELECT
+			a.id,
+			a.task_id,
+		  	a.order_id,
+		  	a.organized_written,
+		  	a.accurately_appropriately,
+		 	a.grammar_spelling,
+		 	a.other_issues,
+		 	a.grade
+		FROM
+			wf_task_score a
+		WHERe a.is_deleted = 0
+		AND a.task_id = #{taskId}
+	</select>
+	
+</mapper>

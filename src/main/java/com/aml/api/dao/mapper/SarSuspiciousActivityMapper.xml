@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarSuspiciousActivityMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarSuspiciousActivity">
+    <id column="sus_id" jdbcType="BIGINT" property="susId" />
+    <result column="rid" jdbcType="BIGINT" property="rid" />
+    <result column="involve_amount" jdbcType="DECIMAL" property="involveAmount" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="cumulative_amount" jdbcType="DECIMAL" property="cumulativeAmount" />
+    <result column="structuring_type" jdbcType="CHAR" property="structuringType" />
+    <result column="structuring_value" jdbcType="VARCHAR" property="structuringValue" />
+    <result column="terrorist_financing_type" jdbcType="CHAR" property="terroristFinancingType" />
+    <result column="terrorist_financing_value" jdbcType="VARCHAR" property="terroristFinancingValue" />
+    <result column="franud_type" jdbcType="CHAR" property="franudType" />
+    <result column="franud_value" jdbcType="VARCHAR" property="franudValue" />
+    <result column="casinos_type" jdbcType="CHAR" property="casinosType" />
+    <result column="casinos_value" jdbcType="VARCHAR" property="casinosValue" />
+    <result column="money_laundering_type" jdbcType="CHAR" property="moneyLaunderingType" />
+    <result column="money_laundering_value" jdbcType="VARCHAR" property="moneyLaunderingValue" />
+    <result column="identification_type" jdbcType="CHAR" property="identificationType" />
+    <result column="identification_value" jdbcType="VARCHAR" property="identificationValue" />
+    <result column="other_suspicious_type" jdbcType="CHAR" property="otherSuspiciousType" />
+    <result column="other_suspicious_value" jdbcType="VARCHAR" property="otherSuspiciousValue" />
+    <result column="insurance_type" jdbcType="CHAR" property="insuranceType" />
+    <result column="insurance_value" jdbcType="VARCHAR" property="insuranceValue" />
+    <result column="securities_option_type" jdbcType="CHAR" property="securitiesOptionType" />
+    <result column="securities_option_value" jdbcType="VARCHAR" property="securitiesOptionValue" />
+    <result column="mortgage_frand_type" jdbcType="CHAR" property="mortgageFrandType" />
+    <result column="mortgage_frand_value" jdbcType="VARCHAR" property="mortgageFrandValue" />
+    <result column="product_type" jdbcType="CHAR" property="productType" />
+    <result column="product_value" jdbcType="VARCHAR" property="productValue" />
+    <result column="instrument_type" jdbcType="CHAR" property="instrumentType" />
+    <result column="instrument_value" jdbcType="VARCHAR" property="instrumentValue" />
+    <result column="commodity_type" jdbcType="VARCHAR" property="commodityType" />
+    <result column="product_description" jdbcType="VARCHAR" property="productDescription" />
+    <result column="trade_market" jdbcType="VARCHAR" property="tradeMarket" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="cusip_number" jdbcType="VARCHAR" property="cusipNumber" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [sus_id], [rid], [involve_amount], [start_date], [end_date], [cumulative_amount], 
+    [structuring_type], [structuring_value], [terrorist_financing_type], [terrorist_financing_value], 
+    [franud_type], [franud_value], [casinos_type], [casinos_value], [money_laundering_type], 
+    [money_laundering_value], [identification_type], [identification_value], [other_suspicious_type], 
+    [other_suspicious_value], [insurance_type], [insurance_value], [securities_option_type], 
+    [securities_option_value], [mortgage_frand_type], [mortgage_frand_value], [product_type], 
+    [product_value], [instrument_type], [instrument_value], [commodity_type], [product_description], 
+    [trade_market], [ip_address], [cusip_number], [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_suspicious_activity]
+    where [sus_id] = #{susId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_suspicious_activity]
+    where [sus_id] = #{susId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarSuspiciousActivity">
+    <selectKey keyProperty="susId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_suspicious_activity] ([rid], [involve_amount], [start_date], 
+      [end_date], [cumulative_amount], [structuring_type], 
+      [structuring_value], [terrorist_financing_type], 
+      [terrorist_financing_value], [franud_type], [franud_value], 
+      [casinos_type], [casinos_value], [money_laundering_type], 
+      [money_laundering_value], [identification_type], 
+      [identification_value], [other_suspicious_type], 
+      [other_suspicious_value], [insurance_type], [insurance_value], 
+      [securities_option_type], [securities_option_value], 
+      [mortgage_frand_type], [mortgage_frand_value], [product_type], 
+      [product_value], [instrument_type], [instrument_value], 
+      [commodity_type], [product_description], [trade_market], 
+      [ip_address], [cusip_number], [create_time], 
+      [update_time], [is_deleted])
+    values (#{rid,jdbcType=BIGINT}, #{involveAmount,jdbcType=DECIMAL}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{cumulativeAmount,jdbcType=DECIMAL}, #{structuringType,jdbcType=CHAR}, 
+      #{structuringValue,jdbcType=VARCHAR}, #{terroristFinancingType,jdbcType=CHAR}, 
+      #{terroristFinancingValue,jdbcType=VARCHAR}, #{franudType,jdbcType=CHAR}, #{franudValue,jdbcType=VARCHAR}, 
+      #{casinosType,jdbcType=CHAR}, #{casinosValue,jdbcType=VARCHAR}, #{moneyLaunderingType,jdbcType=CHAR}, 
+      #{moneyLaunderingValue,jdbcType=VARCHAR}, #{identificationType,jdbcType=CHAR}, 
+      #{identificationValue,jdbcType=VARCHAR}, #{otherSuspiciousType,jdbcType=CHAR}, 
+      #{otherSuspiciousValue,jdbcType=VARCHAR}, #{insuranceType,jdbcType=CHAR}, #{insuranceValue,jdbcType=VARCHAR}, 
+      #{securitiesOptionType,jdbcType=CHAR}, #{securitiesOptionValue,jdbcType=VARCHAR}, 
+      #{mortgageFrandType,jdbcType=CHAR}, #{mortgageFrandValue,jdbcType=VARCHAR}, #{productType,jdbcType=CHAR}, 
+      #{productValue,jdbcType=VARCHAR}, #{instrumentType,jdbcType=CHAR}, #{instrumentValue,jdbcType=VARCHAR}, 
+      #{commodityType,jdbcType=VARCHAR}, #{productDescription,jdbcType=VARCHAR}, #{tradeMarket,jdbcType=VARCHAR}, 
+      #{ipAddress,jdbcType=VARCHAR}, #{cusipNumber,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarSuspiciousActivity">
+    <selectKey keyProperty="susId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_suspicious_activity]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="involveAmount != null">
+        [involve_amount],
+      </if>
+      <if test="startDate != null">
+        [start_date],
+      </if>
+      <if test="endDate != null">
+        [end_date],
+      </if>
+      <if test="cumulativeAmount != null">
+        [cumulative_amount],
+      </if>
+      <if test="structuringType != null">
+        [structuring_type],
+      </if>
+      <if test="structuringValue != null">
+        [structuring_value],
+      </if>
+      <if test="terroristFinancingType != null">
+        [terrorist_financing_type],
+      </if>
+      <if test="terroristFinancingValue != null">
+        [terrorist_financing_value],
+      </if>
+      <if test="franudType != null">
+        [franud_type],
+      </if>
+      <if test="franudValue != null">
+        [franud_value],
+      </if>
+      <if test="casinosType != null">
+        [casinos_type],
+      </if>
+      <if test="casinosValue != null">
+        [casinos_value],
+      </if>
+      <if test="moneyLaunderingType != null">
+        [money_laundering_type],
+      </if>
+      <if test="moneyLaunderingValue != null">
+        [money_laundering_value],
+      </if>
+      <if test="identificationType != null">
+        [identification_type],
+      </if>
+      <if test="identificationValue != null">
+        [identification_value],
+      </if>
+      <if test="otherSuspiciousType != null">
+        [other_suspicious_type],
+      </if>
+      <if test="otherSuspiciousValue != null">
+        [other_suspicious_value],
+      </if>
+      <if test="insuranceType != null">
+        [insurance_type],
+      </if>
+      <if test="insuranceValue != null">
+        [insurance_value],
+      </if>
+      <if test="securitiesOptionType != null">
+        [securities_option_type],
+      </if>
+      <if test="securitiesOptionValue != null">
+        [securities_option_value],
+      </if>
+      <if test="mortgageFrandType != null">
+        [mortgage_frand_type],
+      </if>
+      <if test="mortgageFrandValue != null">
+        [mortgage_frand_value],
+      </if>
+      <if test="productType != null">
+        [product_type],
+      </if>
+      <if test="productValue != null">
+        [product_value],
+      </if>
+      <if test="instrumentType != null">
+        [instrument_type],
+      </if>
+      <if test="instrumentValue != null">
+        [instrument_value],
+      </if>
+      <if test="commodityType != null">
+        [commodity_type],
+      </if>
+      <if test="productDescription != null">
+        [product_description],
+      </if>
+      <if test="tradeMarket != null">
+        [trade_market],
+      </if>
+      <if test="ipAddress != null">
+        [ip_address],
+      </if>
+      <if test="cusipNumber != null">
+        [cusip_number],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="involveAmount != null">
+        #{involveAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cumulativeAmount != null">
+        #{cumulativeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="structuringType != null">
+        #{structuringType,jdbcType=CHAR},
+      </if>
+      <if test="structuringValue != null">
+        #{structuringValue,jdbcType=VARCHAR},
+      </if>
+      <if test="terroristFinancingType != null">
+        #{terroristFinancingType,jdbcType=CHAR},
+      </if>
+      <if test="terroristFinancingValue != null">
+        #{terroristFinancingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="franudType != null">
+        #{franudType,jdbcType=CHAR},
+      </if>
+      <if test="franudValue != null">
+        #{franudValue,jdbcType=VARCHAR},
+      </if>
+      <if test="casinosType != null">
+        #{casinosType,jdbcType=CHAR},
+      </if>
+      <if test="casinosValue != null">
+        #{casinosValue,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyLaunderingType != null">
+        #{moneyLaunderingType,jdbcType=CHAR},
+      </if>
+      <if test="moneyLaunderingValue != null">
+        #{moneyLaunderingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null">
+        #{identificationType,jdbcType=CHAR},
+      </if>
+      <if test="identificationValue != null">
+        #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSuspiciousType != null">
+        #{otherSuspiciousType,jdbcType=CHAR},
+      </if>
+      <if test="otherSuspiciousValue != null">
+        #{otherSuspiciousValue,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        #{insuranceType,jdbcType=CHAR},
+      </if>
+      <if test="insuranceValue != null">
+        #{insuranceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesOptionType != null">
+        #{securitiesOptionType,jdbcType=CHAR},
+      </if>
+      <if test="securitiesOptionValue != null">
+        #{securitiesOptionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFrandType != null">
+        #{mortgageFrandType,jdbcType=CHAR},
+      </if>
+      <if test="mortgageFrandValue != null">
+        #{mortgageFrandValue,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=CHAR},
+      </if>
+      <if test="productValue != null">
+        #{productValue,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentType != null">
+        #{instrumentType,jdbcType=CHAR},
+      </if>
+      <if test="instrumentValue != null">
+        #{instrumentValue,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null">
+        #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMarket != null">
+        #{tradeMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusipNumber != null">
+        #{cusipNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarSuspiciousActivity">
+    update [sar_suspicious_activity]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="involveAmount != null">
+        [involve_amount] = #{involveAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        [start_date] = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        [end_date] = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cumulativeAmount != null">
+        [cumulative_amount] = #{cumulativeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="structuringType != null">
+        [structuring_type] = #{structuringType,jdbcType=CHAR},
+      </if>
+      <if test="structuringValue != null">
+        [structuring_value] = #{structuringValue,jdbcType=VARCHAR},
+      </if>
+      <if test="terroristFinancingType != null">
+        [terrorist_financing_type] = #{terroristFinancingType,jdbcType=CHAR},
+      </if>
+      <if test="terroristFinancingValue != null">
+        [terrorist_financing_value] = #{terroristFinancingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="franudType != null">
+        [franud_type] = #{franudType,jdbcType=CHAR},
+      </if>
+      <if test="franudValue != null">
+        [franud_value] = #{franudValue,jdbcType=VARCHAR},
+      </if>
+      <if test="casinosType != null">
+        [casinos_type] = #{casinosType,jdbcType=CHAR},
+      </if>
+      <if test="casinosValue != null">
+        [casinos_value] = #{casinosValue,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyLaunderingType != null">
+        [money_laundering_type] = #{moneyLaunderingType,jdbcType=CHAR},
+      </if>
+      <if test="moneyLaunderingValue != null">
+        [money_laundering_value] = #{moneyLaunderingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null">
+        [identification_type] = #{identificationType,jdbcType=CHAR},
+      </if>
+      <if test="identificationValue != null">
+        [identification_value] = #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSuspiciousType != null">
+        [other_suspicious_type] = #{otherSuspiciousType,jdbcType=CHAR},
+      </if>
+      <if test="otherSuspiciousValue != null">
+        [other_suspicious_value] = #{otherSuspiciousValue,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        [insurance_type] = #{insuranceType,jdbcType=CHAR},
+      </if>
+      <if test="insuranceValue != null">
+        [insurance_value] = #{insuranceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesOptionType != null">
+        [securities_option_type] = #{securitiesOptionType,jdbcType=CHAR},
+      </if>
+      <if test="securitiesOptionValue != null">
+        [securities_option_value] = #{securitiesOptionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFrandType != null">
+        [mortgage_frand_type] = #{mortgageFrandType,jdbcType=CHAR},
+      </if>
+      <if test="mortgageFrandValue != null">
+        [mortgage_frand_value] = #{mortgageFrandValue,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        [product_type] = #{productType,jdbcType=CHAR},
+      </if>
+      <if test="productValue != null">
+        [product_value] = #{productValue,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentType != null">
+        [instrument_type] = #{instrumentType,jdbcType=CHAR},
+      </if>
+      <if test="instrumentValue != null">
+        [instrument_value] = #{instrumentValue,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        [commodity_type] = #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null">
+        [product_description] = #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMarket != null">
+        [trade_market] = #{tradeMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        [ip_address] = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusipNumber != null">
+        [cusip_number] = #{cusipNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [sus_id] = #{susId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarSuspiciousActivity">
+    update [sar_suspicious_activity]
+    set [rid] = #{rid,jdbcType=BIGINT},
+      [involve_amount] = #{involveAmount,jdbcType=DECIMAL},
+      [start_date] = #{startDate,jdbcType=TIMESTAMP},
+      [end_date] = #{endDate,jdbcType=TIMESTAMP},
+      [cumulative_amount] = #{cumulativeAmount,jdbcType=DECIMAL},
+      [structuring_type] = #{structuringType,jdbcType=CHAR},
+      [structuring_value] = #{structuringValue,jdbcType=VARCHAR},
+      [terrorist_financing_type] = #{terroristFinancingType,jdbcType=CHAR},
+      [terrorist_financing_value] = #{terroristFinancingValue,jdbcType=VARCHAR},
+      [franud_type] = #{franudType,jdbcType=CHAR},
+      [franud_value] = #{franudValue,jdbcType=VARCHAR},
+      [casinos_type] = #{casinosType,jdbcType=CHAR},
+      [casinos_value] = #{casinosValue,jdbcType=VARCHAR},
+      [money_laundering_type] = #{moneyLaunderingType,jdbcType=CHAR},
+      [money_laundering_value] = #{moneyLaunderingValue,jdbcType=VARCHAR},
+      [identification_type] = #{identificationType,jdbcType=CHAR},
+      [identification_value] = #{identificationValue,jdbcType=VARCHAR},
+      [other_suspicious_type] = #{otherSuspiciousType,jdbcType=CHAR},
+      [other_suspicious_value] = #{otherSuspiciousValue,jdbcType=VARCHAR},
+      [insurance_type] = #{insuranceType,jdbcType=CHAR},
+      [insurance_value] = #{insuranceValue,jdbcType=VARCHAR},
+      [securities_option_type] = #{securitiesOptionType,jdbcType=CHAR},
+      [securities_option_value] = #{securitiesOptionValue,jdbcType=VARCHAR},
+      [mortgage_frand_type] = #{mortgageFrandType,jdbcType=CHAR},
+      [mortgage_frand_value] = #{mortgageFrandValue,jdbcType=VARCHAR},
+      [product_type] = #{productType,jdbcType=CHAR},
+      [product_value] = #{productValue,jdbcType=VARCHAR},
+      [instrument_type] = #{instrumentType,jdbcType=CHAR},
+      [instrument_value] = #{instrumentValue,jdbcType=VARCHAR},
+      [commodity_type] = #{commodityType,jdbcType=VARCHAR},
+      [product_description] = #{productDescription,jdbcType=VARCHAR},
+      [trade_market] = #{tradeMarket,jdbcType=VARCHAR},
+      [ip_address] = #{ipAddress,jdbcType=VARCHAR},
+      [cusip_number] = #{cusipNumber,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [sus_id] = #{susId,jdbcType=BIGINT}
+  </update>
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarSuspiciousActivityDto" keyProperty="susId" useGeneratedKeys="true" >
+    insert into [sar_suspicious_activity]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="involveAmount != null">
+        [involve_amount],
+      </if>
+      <if test="startDate != null">
+        [start_date],
+      </if>
+      <if test="endDate != null">
+        [end_date],
+      </if>
+      <if test="cumulativeAmount != null">
+        [cumulative_amount],
+      </if>
+      <if test="structuringType != null">
+        [structuring_type],
+      </if>
+      <if test="structuringValue != null">
+        [structuring_value],
+      </if>
+      <if test="terroristFinancingType != null">
+        [terrorist_financing_type],
+      </if>
+      <if test="terroristFinancingValue != null">
+        [terrorist_financing_value],
+      </if>
+      <if test="franudType != null">
+        [franud_type],
+      </if>
+      <if test="franudValue != null">
+        [franud_value],
+      </if>
+      <if test="casinosType != null">
+        [casinos_type],
+      </if>
+      <if test="casinosValue != null">
+        [casinos_value],
+      </if>
+      <if test="moneyLaunderingType != null">
+        [money_laundering_type],
+      </if>
+      <if test="moneyLaunderingValue != null">
+        [money_laundering_value],
+      </if>
+      <if test="identificationType != null">
+        [identification_type],
+      </if>
+      <if test="identificationValue != null">
+        [identification_value],
+      </if>
+      <if test="otherSuspiciousType != null">
+        [other_suspicious_type],
+      </if>
+      <if test="otherSuspiciousValue != null">
+        [other_suspicious_value],
+      </if>
+      <if test="insuranceType != null">
+        [insurance_type],
+      </if>
+      <if test="insuranceValue != null">
+        [insurance_value],
+      </if>
+      <if test="securitiesOptionType != null">
+        [securities_option_type],
+      </if>
+      <if test="securitiesOptionValue != null">
+        [securities_option_value],
+      </if>
+      <if test="mortgageFrandType != null">
+        [mortgage_frand_type],
+      </if>
+      <if test="mortgageFrandValue != null">
+        [mortgage_frand_value],
+      </if>
+      <if test="productType != null">
+        [product_type],
+      </if>
+      <if test="productValue != null">
+        [product_value],
+      </if>
+      <if test="instrumentType != null">
+        [instrument_type],
+      </if>
+      <if test="instrumentValue != null">
+        [instrument_value],
+      </if>
+      <if test="commodityType != null">
+        [commodity_type],
+      </if>
+      <if test="productDescription != null">
+        [product_description],
+      </if>
+      <if test="tradeMarket != null">
+        [trade_market],
+      </if>
+      <if test="ipAddress != null">
+        [ip_address],
+      </if>
+      <if test="cusipNumber != null">
+        [cusip_number],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="involveAmount != null">
+        #{involveAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cumulativeAmount != null">
+        #{cumulativeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="structuringType != null">
+        #{structuringType,jdbcType=CHAR},
+      </if>
+      <if test="structuringValue != null">
+        #{structuringValue,jdbcType=VARCHAR},
+      </if>
+      <if test="terroristFinancingType != null">
+        #{terroristFinancingType,jdbcType=CHAR},
+      </if>
+      <if test="terroristFinancingValue != null">
+        #{terroristFinancingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="franudType != null">
+        #{franudType,jdbcType=CHAR},
+      </if>
+      <if test="franudValue != null">
+        #{franudValue,jdbcType=VARCHAR},
+      </if>
+      <if test="casinosType != null">
+        #{casinosType,jdbcType=CHAR},
+      </if>
+      <if test="casinosValue != null">
+        #{casinosValue,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyLaunderingType != null">
+        #{moneyLaunderingType,jdbcType=CHAR},
+      </if>
+      <if test="moneyLaunderingValue != null">
+        #{moneyLaunderingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null">
+        #{identificationType,jdbcType=CHAR},
+      </if>
+      <if test="identificationValue != null">
+        #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSuspiciousType != null">
+        #{otherSuspiciousType,jdbcType=CHAR},
+      </if>
+      <if test="otherSuspiciousValue != null">
+        #{otherSuspiciousValue,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        #{insuranceType,jdbcType=CHAR},
+      </if>
+      <if test="insuranceValue != null">
+        #{insuranceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesOptionType != null">
+        #{securitiesOptionType,jdbcType=CHAR},
+      </if>
+      <if test="securitiesOptionValue != null">
+        #{securitiesOptionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFrandType != null">
+        #{mortgageFrandType,jdbcType=CHAR},
+      </if>
+      <if test="mortgageFrandValue != null">
+        #{mortgageFrandValue,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=CHAR},
+      </if>
+      <if test="productValue != null">
+        #{productValue,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentType != null">
+        #{instrumentType,jdbcType=CHAR},
+      </if>
+      <if test="instrumentValue != null">
+        #{instrumentValue,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null">
+        #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMarket != null">
+        #{tradeMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusipNumber != null">
+        #{cusipNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarSuspiciousActivityDto">
+    update [sar_suspicious_activity]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="involveAmount != null">
+        [involve_amount] = #{involveAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null">
+        [start_date] = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        [end_date] = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cumulativeAmount != null">
+        [cumulative_amount] = #{cumulativeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="structuringType != null">
+        [structuring_type] = #{structuringType,jdbcType=CHAR},
+      </if>
+      <if test="structuringValue != null">
+        [structuring_value] = #{structuringValue,jdbcType=VARCHAR},
+      </if>
+      <if test="terroristFinancingType != null">
+        [terrorist_financing_type] = #{terroristFinancingType,jdbcType=CHAR},
+      </if>
+      <if test="terroristFinancingValue != null">
+        [terrorist_financing_value] = #{terroristFinancingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="franudType != null">
+        [franud_type] = #{franudType,jdbcType=CHAR},
+      </if>
+      <if test="franudValue != null">
+        [franud_value] = #{franudValue,jdbcType=VARCHAR},
+      </if>
+      <if test="casinosType != null">
+        [casinos_type] = #{casinosType,jdbcType=CHAR},
+      </if>
+      <if test="casinosValue != null">
+        [casinos_value] = #{casinosValue,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyLaunderingType != null">
+        [money_laundering_type] = #{moneyLaunderingType,jdbcType=CHAR},
+      </if>
+      <if test="moneyLaunderingValue != null">
+        [money_laundering_value] = #{moneyLaunderingValue,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null">
+        [identification_type] = #{identificationType,jdbcType=CHAR},
+      </if>
+      <if test="identificationValue != null">
+        [identification_value] = #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSuspiciousType != null">
+        [other_suspicious_type] = #{otherSuspiciousType,jdbcType=CHAR},
+      </if>
+      <if test="otherSuspiciousValue != null">
+        [other_suspicious_value] = #{otherSuspiciousValue,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null">
+        [insurance_type] = #{insuranceType,jdbcType=CHAR},
+      </if>
+      <if test="insuranceValue != null">
+        [insurance_value] = #{insuranceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesOptionType != null">
+        [securities_option_type] = #{securitiesOptionType,jdbcType=CHAR},
+      </if>
+      <if test="securitiesOptionValue != null">
+        [securities_option_value] = #{securitiesOptionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgageFrandType != null">
+        [mortgage_frand_type] = #{mortgageFrandType,jdbcType=CHAR},
+      </if>
+      <if test="mortgageFrandValue != null">
+        [mortgage_frand_value] = #{mortgageFrandValue,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        [product_type] = #{productType,jdbcType=CHAR},
+      </if>
+      <if test="productValue != null">
+        [product_value] = #{productValue,jdbcType=VARCHAR},
+      </if>
+      <if test="instrumentType != null">
+        [instrument_type] = #{instrumentType,jdbcType=CHAR},
+      </if>
+      <if test="instrumentValue != null">
+        [instrument_value] = #{instrumentValue,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityType != null">
+        [commodity_type] = #{commodityType,jdbcType=VARCHAR},
+      </if>
+      <if test="productDescription != null">
+        [product_description] = #{productDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMarket != null">
+        [trade_market] = #{tradeMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        [ip_address] = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusipNumber != null">
+        [cusip_number] = #{cusipNumber,jdbcType=VARCHAR},
+      </if>
+      	[update_time] = getdate(),
+    </set>
+    where [sus_id] = #{susId,jdbcType=BIGINT}
+  </update>
+  <!-- query -->  
+  <select id="selectByPrimaryKeyDto" resultMap="BaseResultMap">
+    select 
+	    [sus_id], [rid], [involve_amount], [start_date], [end_date], [cumulative_amount], 
+	    [structuring_type], [structuring_value], [terrorist_financing_type], [terrorist_financing_value], 
+	    [franud_type], [franud_value], [casinos_type], [casinos_value], [money_laundering_type], 
+	    [money_laundering_value], [identification_type], [identification_value], [other_suspicious_type], 
+	    [other_suspicious_value], [insurance_type], [insurance_value], [securities_option_type], 
+	    [securities_option_value], [mortgage_frand_type], [mortgage_frand_value], [product_type], 
+	    [product_value], [instrument_type], [instrument_value], [commodity_type], [product_description], 
+	    [trade_market], [ip_address], [cusip_number], [create_time]
+    from [sar_suspicious_activity]
+    where [is_deleted] = 0 
+     <if test="rid != null">
+       and [rid] = #{rid,jdbcType=BIGINT}
+     </if>
+<!--      <if test="susId != null"> -->
+<!--        and [sus_id] = #{susId,jdbcType=BIGINT} -->
+<!--      </if> -->
+  </select>
+  
+  <!-- getCount -->
+  <select id="getCount" parameterType="com.aml.api.dto.SarSuspiciousActivityDto" resultType="int">
+  	select 
+	    count(1)
+    from [sar_suspicious_activity]
+    where [is_deleted] = 0 
+       and [rid] = #{rid,jdbcType=BIGINT}
+  </select>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SystemParametersMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SystemParameters">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="account_bussiness_date" jdbcType="VARCHAR" property="accountBussinessDate" />
+    <result column="last_end_of_day" jdbcType="VARCHAR" property="lastEndOfDay" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="profile_review_frequary" jdbcType="VARCHAR" property="profileReviewFrequary" />
+    <result column="server" jdbcType="VARCHAR" property="server" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [code], [name], [account_bussiness_date], [last_end_of_day], [date], [profile_review_frequary], 
+    [server], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [system_parameters]
+    where [id] = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [system_parameters]
+    where [id] = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SystemParameters" keyProperty="id" useGeneratedKeys="true" >
+    insert into [system_parameters] ([code], [name], [account_bussiness_date], 
+      [last_end_of_day], [date], [profile_review_frequary], 
+      [server], [is_deleted])
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{accountBussinessDate,jdbcType=VARCHAR}, 
+      #{lastEndOfDay,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{profileReviewFrequary,jdbcType=VARCHAR}, 
+      #{server,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SystemParameters" keyProperty="id" useGeneratedKeys="true" >
+    insert into [system_parameters]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        [code],
+      </if>
+      <if test="name != null">
+        [name],
+      </if>
+      <if test="accountBussinessDate != null">
+        [account_bussiness_date],
+      </if>
+      <if test="lastEndOfDay != null">
+        [last_end_of_day],
+      </if>
+      <if test="date != null">
+        [date],
+      </if>
+      <if test="profileReviewFrequary != null">
+        [profile_review_frequary],
+      </if>
+      <if test="server != null">
+        [server],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBussinessDate != null">
+        #{accountBussinessDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndOfDay != null">
+        #{lastEndOfDay,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profileReviewFrequary != null">
+        #{profileReviewFrequary,jdbcType=VARCHAR},
+      </if>
+      <if test="server != null">
+        #{server,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SystemParameters">
+    update [system_parameters]
+    <set>
+      <if test="code != null">
+        [code] = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        [name] = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBussinessDate != null">
+        [account_bussiness_date] = #{accountBussinessDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndOfDay != null">
+        [last_end_of_day] = #{lastEndOfDay,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        [date] = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profileReviewFrequary != null">
+        [profile_review_frequary] = #{profileReviewFrequary,jdbcType=VARCHAR},
+      </if>
+      <if test="server != null">
+        [server] = #{server,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SystemParameters">
+    update [system_parameters]
+    set [code] = #{code,jdbcType=VARCHAR},
+      [name] = #{name,jdbcType=VARCHAR},
+      [account_bussiness_date] = #{accountBussinessDate,jdbcType=VARCHAR},
+      [last_end_of_day] = #{lastEndOfDay,jdbcType=VARCHAR},
+      [date] = #{date,jdbcType=TIMESTAMP},
+      [profile_review_frequary] = #{profileReviewFrequary,jdbcType=VARCHAR},
+      [server] = #{server,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- Query all records, list Pagination -->
+  <select id="getSystemParametersList" parameterType="com.aml.api.dto.SystemParametersDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [system_parameters]
+    where [is_deleted] = 0
+    order by [id] ASC
+  </select>
+  <!-- export -->
+  <select id="downSystemParametersExcel" resultType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from [system_parameters]
+    where [is_deleted] = 0
+    	<if test="param != null">
+        	and [id] in (#{param})
+      	</if>
+    order by [id] ASC
+  </select>
+  
+  <!-- 校验code是否存在 -->
+  <select id="getSystemParametersCountByCode" resultType="int">
+    select 
+    	count(0)
+    from [system_parameters]
+    where [is_deleted] = 0
+    	and [code] = #{code}
+  </select>
+</mapper>

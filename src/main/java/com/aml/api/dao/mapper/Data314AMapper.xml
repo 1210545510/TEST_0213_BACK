@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.Data314AMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Data314A">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tracking_num" jdbcType="INTEGER" property="trackingNum" />
+    <result column="subject_type" jdbcType="VARCHAR" property="subjectType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="number_type" jdbcType="CHAR" property="numberType" />
+    <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="street" jdbcType="CHAR" property="street" />
+    <result column="city" jdbcType="CHAR" property="city" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="zip" jdbcType="CHAR" property="zip" />
+    <result column="country" jdbcType="CHAR" property="country" />
+    <result column="alert_id" jdbcType="BIGINT" property="alertId" />
+    <result column="internal_bsa" jdbcType="VARCHAR" property="internalBsa" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [tracking_num], [subject_type], [name], [number], [number_type], [birthdate], 
+    [street], [city], [state], [zip], [country], [alert_id], [internal_bsa]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [data_314A]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [data_314A]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.Data314A" keyProperty="id" useGeneratedKeys="true">
+    insert into [data_314A] ([tracking_num], [subject_type], [name], 
+      [number], [number_type], [birthdate], 
+      [street], [city], [state], [zip], 
+      [country], [alert_id], [internal_bsa]
+      )
+    values (#{trackingNum,jdbcType=INTEGER}, #{subjectType,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{numberType,jdbcType=CHAR}, #{birthdate,jdbcType=TIMESTAMP}, 
+      #{street,jdbcType=CHAR}, #{city,jdbcType=CHAR}, #{state,jdbcType=CHAR}, #{zip,jdbcType=CHAR}, 
+      #{country,jdbcType=CHAR}, #{alertId,jdbcType=BIGINT}, #{internalBsa,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Data314A" keyProperty="id" useGeneratedKeys="true">
+    insert into [data_314A]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="trackingNum != null">
+        [tracking_num],
+      </if>
+      <if test="subjectType != null">
+        [subject_type],
+      </if>
+      <if test="name != null">
+        [name],
+      </if>
+      <if test="number != null">
+        [number],
+      </if>
+      <if test="numberType != null">
+        [number_type],
+      </if>
+      <if test="birthdate != null">
+        [birthdate],
+      </if>
+      <if test="street != null">
+        [street],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="zip != null">
+        [zip],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+      <if test="alertId != null">
+        [alert_id],
+      </if>
+      <if test="internalBsa != null">
+        [internal_bsa],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="trackingNum != null">
+        #{trackingNum,jdbcType=INTEGER},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="numberType != null">
+        #{numberType,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="street != null">
+        #{street,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="zip != null">
+        #{zip,jdbcType=CHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=CHAR},
+      </if>
+      <if test="alertId != null">
+        #{alertId,jdbcType=BIGINT},
+      </if>
+      <if test="internalBsa != null">
+        #{internalBsa,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Data314A">
+    update [data_314A]
+    <set>
+      <if test="trackingNum != null">
+        [tracking_num] = #{trackingNum,jdbcType=INTEGER},
+      </if>
+      <if test="subjectType != null">
+        [subject_type] = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        [name] = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        [number] = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="numberType != null">
+        [number_type] = #{numberType,jdbcType=CHAR},
+      </if>
+      <if test="birthdate != null">
+        [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="street != null">
+        [street] = #{street,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=CHAR},
+      </if>
+      <if test="zip != null">
+        [zip] = #{zip,jdbcType=CHAR},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=CHAR},
+      </if>
+      <if test="alertId != null">
+        [alert_id] = #{alertId,jdbcType=BIGINT},
+      </if>
+      <if test="internalBsa != null">
+        [internal_bsa] = #{internalBsa,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Data314A">
+    update [data_314A]
+    set [tracking_num] = #{trackingNum,jdbcType=INTEGER},
+      [subject_type] = #{subjectType,jdbcType=VARCHAR},
+      [name] = #{name,jdbcType=VARCHAR},
+      [number] = #{number,jdbcType=INTEGER},
+      [number_type] = #{numberType,jdbcType=CHAR},
+      [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      [street] = #{street,jdbcType=CHAR},
+      [city] = #{city,jdbcType=CHAR},
+      [state] = #{state,jdbcType=CHAR},
+      [zip] = #{zip,jdbcType=CHAR},
+      [country] = #{country,jdbcType=CHAR},
+      [alert_id] = #{alertId,jdbcType=BIGINT},
+      [internal_bsa] = #{internalBsa,jdbcType=VARCHAR}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getData314AList" resultMap="BaseResultMap">
+  	select [id], [tracking_num], [subject_type], [name], [number], [number_type], [birthdate], 
+    [street], [city], [state], [zip], [country], [alert_id], [internal_bsa]
+    from [data_314A]
+    where 1 = 1 
+      <if test="search != null">
+      	and (
+      		convert(varchar,tracking_num) = #{search}
+      		or name like CONCAT(CONCAT('%', #{search}), '%')
+      		or convert(varchar,number) = #{search}
+      		or street like CONCAT(CONCAT('%', #{search}), '%')
+      		or city like CONCAT(CONCAT('%', #{search}), '%')
+      		or state like CONCAT(CONCAT('%', #{search}), '%')
+      		or country like CONCAT(CONCAT('%', #{search}), '%')
+      	)
+      </if>
+      order by id ASC
+  </select>
+  <!-- Export -->
+  <select id="downData314AExcel" resultType="java.util.Map">
+  	select 
+	  	[id], 
+	  	[tracking_num], 
+	  	[subject_type], 
+	  	[name], 
+	  	[number], 
+	  	[number_type], 
+	  	[birthdate], 
+	    [street], 
+	    [city], 
+	    [state], 
+	    [zip], 
+	    [country], 
+	    [alert_id], 
+	    [internal_bsa]
+    from [data_314A]
+    where 1 = 1 
+      <if test="search != null">
+      	and (
+      		convert(varchar,tracking_num) = #{search}
+      		or name like CONCAT(CONCAT('%', #{search}), '%')
+      		or convert(varchar,number) = #{search}
+      		or street like CONCAT(CONCAT('%', #{search}), '%')
+      		or city like CONCAT(CONCAT('%', #{search}), '%')
+      		or state like CONCAT(CONCAT('%', #{search}), '%')
+      		or country like CONCAT(CONCAT('%', #{search}), '%')
+      	)
+      </if>
+      order by id ASC
+  </select>
+</mapper>

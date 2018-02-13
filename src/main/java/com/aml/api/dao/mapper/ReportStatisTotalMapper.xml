@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.ReportStatisTotalMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.ReportStatisTotal">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="statis_date" jdbcType="TIMESTAMP" property="statisDate" />
+    <result column="alert_count" jdbcType="INTEGER" property="alertCount" />
+    <result column="case_count" jdbcType="INTEGER" property="caseCount" />
+    <result column="sar_count" jdbcType="INTEGER" property="sarCount" />
+    <result column="sar_qa_case_count" jdbcType="INTEGER" property="sarQaCaseCount" />
+    <result column="sar_analyst_case_count" jdbcType="INTEGER" property="sarAnalystCaseCount" />
+    <result column="create_case_count" jdbcType="INTEGER" property="createCaseCount" />
+    <result column="one_sar_case_count" jdbcType="INTEGER" property="oneSarCaseCount" />
+    <result column="two_sar_case_count" jdbcType="INTEGER" property="twoSarCaseCount" />
+    <result column="three_sar_case_count" jdbcType="INTEGER" property="threeSarCaseCount" />
+    <result column="reversed_alert_waived_count" jdbcType="INTEGER" property="reversedAlertWaivedCount" />
+    <result column="case_sar_count" jdbcType="INTEGER" property="caseSarCount" />
+    <result column="case_reasonable_count" jdbcType="INTEGER" property="caseReasonableCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [statis_date], [alert_count], [case_count], [sar_count], [sar_qa_case_count], 
+    [sar_analyst_case_count], [create_case_count], [one_sar_case_count], [two_sar_case_count], 
+    [three_sar_case_count], [reversed_alert_waived_count], [case_sar_count], [case_reasonable_count], 
+    [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [report_statis_total]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [report_statis_total]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.ReportStatisTotal">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into [report_statis_total] ([statis_date], [alert_count], [case_count], 
+      [sar_count], [sar_qa_case_count], [sar_analyst_case_count], 
+      [create_case_count], [one_sar_case_count], [two_sar_case_count], 
+      [three_sar_case_count], [reversed_alert_waived_count], 
+      [case_sar_count], [case_reasonable_count], [create_time], 
+      [update_time], [is_deleted])
+    values (#{statisDate,jdbcType=TIMESTAMP}, #{alertCount,jdbcType=INTEGER}, #{caseCount,jdbcType=INTEGER}, 
+      #{sarCount,jdbcType=INTEGER}, #{sarQaCaseCount,jdbcType=INTEGER}, #{sarAnalystCaseCount,jdbcType=INTEGER}, 
+      #{createCaseCount,jdbcType=INTEGER}, #{oneSarCaseCount,jdbcType=INTEGER}, #{twoSarCaseCount,jdbcType=INTEGER}, 
+      #{threeSarCaseCount,jdbcType=INTEGER}, #{reversedAlertWaivedCount,jdbcType=INTEGER}, 
+      #{caseSarCount,jdbcType=INTEGER}, #{caseReasonableCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.ReportStatisTotal">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into [report_statis_total]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        [statis_date],
+      </if>
+      <if test="alertCount != null">
+        [alert_count],
+      </if>
+      <if test="caseCount != null">
+        [case_count],
+      </if>
+      <if test="sarCount != null">
+        [sar_count],
+      </if>
+      <if test="sarQaCaseCount != null">
+        [sar_qa_case_count],
+      </if>
+      <if test="sarAnalystCaseCount != null">
+        [sar_analyst_case_count],
+      </if>
+      <if test="createCaseCount != null">
+        [create_case_count],
+      </if>
+      <if test="oneSarCaseCount != null">
+        [one_sar_case_count],
+      </if>
+      <if test="twoSarCaseCount != null">
+        [two_sar_case_count],
+      </if>
+      <if test="threeSarCaseCount != null">
+        [three_sar_case_count],
+      </if>
+      <if test="reversedAlertWaivedCount != null">
+        [reversed_alert_waived_count],
+      </if>
+      <if test="caseSarCount != null">
+        [case_sar_count],
+      </if>
+      <if test="caseReasonableCount != null">
+        [case_reasonable_count],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alertCount != null">
+        #{alertCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseCount != null">
+        #{caseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarCount != null">
+        #{sarCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarQaCaseCount != null">
+        #{sarQaCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarAnalystCaseCount != null">
+        #{sarAnalystCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="createCaseCount != null">
+        #{createCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="oneSarCaseCount != null">
+        #{oneSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="twoSarCaseCount != null">
+        #{twoSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="threeSarCaseCount != null">
+        #{threeSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="reversedAlertWaivedCount != null">
+        #{reversedAlertWaivedCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseSarCount != null">
+        #{caseSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseReasonableCount != null">
+        #{caseReasonableCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.ReportStatisTotal">
+    update [report_statis_total]
+    <set>
+      <if test="statisDate != null">
+        [statis_date] = #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alertCount != null">
+        [alert_count] = #{alertCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseCount != null">
+        [case_count] = #{caseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarCount != null">
+        [sar_count] = #{sarCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarQaCaseCount != null">
+        [sar_qa_case_count] = #{sarQaCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarAnalystCaseCount != null">
+        [sar_analyst_case_count] = #{sarAnalystCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="createCaseCount != null">
+        [create_case_count] = #{createCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="oneSarCaseCount != null">
+        [one_sar_case_count] = #{oneSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="twoSarCaseCount != null">
+        [two_sar_case_count] = #{twoSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="threeSarCaseCount != null">
+        [three_sar_case_count] = #{threeSarCaseCount,jdbcType=INTEGER},
+      </if>
+      <if test="reversedAlertWaivedCount != null">
+        [reversed_alert_waived_count] = #{reversedAlertWaivedCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseSarCount != null">
+        [case_sar_count] = #{caseSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="caseReasonableCount != null">
+        [case_reasonable_count] = #{caseReasonableCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.ReportStatisTotal">
+    update [report_statis_total]
+    set [statis_date] = #{statisDate,jdbcType=TIMESTAMP},
+      [alert_count] = #{alertCount,jdbcType=INTEGER},
+      [case_count] = #{caseCount,jdbcType=INTEGER},
+      [sar_count] = #{sarCount,jdbcType=INTEGER},
+      [sar_qa_case_count] = #{sarQaCaseCount,jdbcType=INTEGER},
+      [sar_analyst_case_count] = #{sarAnalystCaseCount,jdbcType=INTEGER},
+      [create_case_count] = #{createCaseCount,jdbcType=INTEGER},
+      [one_sar_case_count] = #{oneSarCaseCount,jdbcType=INTEGER},
+      [two_sar_case_count] = #{twoSarCaseCount,jdbcType=INTEGER},
+      [three_sar_case_count] = #{threeSarCaseCount,jdbcType=INTEGER},
+      [reversed_alert_waived_count] = #{reversedAlertWaivedCount,jdbcType=INTEGER},
+      [case_sar_count] = #{caseSarCount,jdbcType=INTEGER},
+      [case_reasonable_count] = #{caseReasonableCount,jdbcType=INTEGER},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- Trend of alerts generated, cases created, and SARs filed -->
+  <select id="getTrend" resultType="map">
+  	SELECT
+  		<if test="str == 'alert' ">
+			SUM (r.alert_count) AS [value],
+		</if>
+		<if test="str == 'case' ">
+			SUM (r.case_count) AS [value],
+		</if>
+		<if test="str == 'sar' ">
+			SUM (r.sar_count) AS [value],
+		</if>
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,r.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,r.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,r.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_total r
+	WHERE
+		r.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date),
+			DATEPART(month,r.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,r.statis_date),
+		</if>
+		DATEPART(year,r.statis_date)
+	ORDER BY DATEPART(year,r.statis_date)
+  </select>
+  
+  <!-- Trend of alerts generated, cases created, and SARs filed -->
+  <select id="getTrendTotal" resultType="map">
+  	SELECT
+  		<if test="str == 'qa' ">
+			SUM (r.sar_qa_case_count) AS [value],
+		</if>
+		<if test="str == 'analysts' ">
+			SUM (r.sar_analyst_case_count) AS [value],
+		</if>
+		<if test="str == 'team' ">
+			SUM (r.create_case_count) AS [value],
+		</if>
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,r.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,r.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,r.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_total r
+	WHERE
+		r.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date),
+			DATEPART(month,r.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,r.statis_date),
+		</if>
+		DATEPART(year,r.statis_date)
+	ORDER BY DATEPART(year,r.statis_date)
+  </select>
+  
+  <!-- Total number trend 折线图 -->
+  <select id="getTotalNumberTrend" resultType="map">
+  	SELECT
+  		<if test="str == 'waived' ">
+			SUM (r.reversed_alert_waived_count) AS [value],
+		</if>
+		<if test="str == 'filed' ">
+			SUM (r.case_sar_count) AS [value],
+		</if>
+		<if test="str == 'reasonable' ">
+			SUM (r.case_reasonable_count) AS [value],
+		</if>
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,r.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,r.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,r.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,r.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_total r
+	WHERE
+		r.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), r.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,r.statis_date),
+			DATEPART(month,r.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,r.statis_date),
+		</if>
+		DATEPART(year,r.statis_date)
+	ORDER BY DATEPART(year,r.statis_date)
+  </select>
+  
+  <!-- Number of Alerts generated -->
+  <select id="queryAlertsGenerated" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.alert_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Number of Cases Created -->
+  <select id="queryCaseCreated" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.case_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  <!-- Number of SARs filed -->
+  <select id="querySarFiled" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.sar_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  <!-- Total number of referrals to the SAR Team -->
+  <select id="queryReferralsSar" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.create_case_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Total number of assigned cases pending SAR analysts’ investigation -->
+  <select id="queryAnalystsSar" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.sar_analyst_case_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  <!-- Total number of drafted cases pending SAR QA review -->
+  <select id="queryQaSar" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.sar_qa_case_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Total number of drafted cases pending SAR QA review -->
+  <select id="querySarFiledVersus" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.case_sar_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- number of cases waived(Reasonable) -->
+  <select id="queryCasesReasonable" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.case_reasonable_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Number of alerts waived Alert but rejected by alert QA -->
+  <select id="queryWaivedByQa" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.reversed_alert_waived_count) as [count]
+		FROM report_statis_total t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+</mapper>

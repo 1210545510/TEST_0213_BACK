@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarFinancialInstitutionBranchMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarFinancialInstitutionBranch">
+    <id column="financial_branch_id" jdbcType="BIGINT" property="financialBranchId" />
+    <result column="financial_id" jdbcType="BIGINT" property="financialId" />
+    <result column="transation_role" jdbcType="TINYINT" property="transationRole" />
+    <result column="branch_address" jdbcType="VARCHAR" property="branchAddress" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="rssd_number" jdbcType="INTEGER" property="rssdNumber" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="zip_code" jdbcType="INTEGER" property="zipCode" />
+    <result column="country" jdbcType="INTEGER" property="country" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [financial_branch_id], [financial_id], [transation_role], [branch_address], [city], 
+    [rssd_number], [state], [zip_code], [country], [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_financial_institution_branch]
+    where [financial_branch_id] = #{financialBranchId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_financial_institution_branch]
+    where [financial_branch_id] = #{financialBranchId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarFinancialInstitutionBranch">
+    <selectKey keyProperty="financialBranchId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_financial_institution_branch] ([financial_id], [transation_role], [branch_address], 
+      [city], [rssd_number], [state], 
+      [zip_code], [country], [create_time], 
+      [update_time], [is_deleted])
+    values (#{financialId,jdbcType=BIGINT}, #{transationRole,jdbcType=TINYINT}, #{branchAddress,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{rssdNumber,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{zipCode,jdbcType=INTEGER}, #{country,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarFinancialInstitutionBranch">
+    <selectKey keyProperty="financialBranchId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_financial_institution_branch]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financialId != null">
+        [financial_id],
+      </if>
+      <if test="transationRole != null">
+        [transation_role],
+      </if>
+      <if test="branchAddress != null">
+        [branch_address],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="rssdNumber != null">
+        [rssd_number],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="zipCode != null">
+        [zip_code],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financialId != null">
+        #{financialId,jdbcType=BIGINT},
+      </if>
+      <if test="transationRole != null">
+        #{transationRole,jdbcType=TINYINT},
+      </if>
+      <if test="branchAddress != null">
+        #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="rssdNumber != null">
+        #{rssdNumber,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarFinancialInstitutionBranch">
+    update [sar_financial_institution_branch]
+    <set>
+      <if test="financialId != null">
+        [financial_id] = #{financialId,jdbcType=BIGINT},
+      </if>
+      <if test="transationRole != null">
+        [transation_role] = #{transationRole,jdbcType=TINYINT},
+      </if>
+      <if test="branchAddress != null">
+        [branch_address] = #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="rssdNumber != null">
+        [rssd_number] = #{rssdNumber,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null">
+        [zip_code] = #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [financial_branch_id] = #{financialBranchId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarFinancialInstitutionBranch">
+    update [sar_financial_institution_branch]
+    set [financial_id] = #{financialId,jdbcType=BIGINT},
+      [transation_role] = #{transationRole,jdbcType=TINYINT},
+      [branch_address] = #{branchAddress,jdbcType=VARCHAR},
+      [city] = #{city,jdbcType=VARCHAR},
+      [rssd_number] = #{rssdNumber,jdbcType=INTEGER},
+      [state] = #{state,jdbcType=INTEGER},
+      [zip_code] = #{zipCode,jdbcType=INTEGER},
+      [country] = #{country,jdbcType=INTEGER},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [financial_branch_id] = #{financialBranchId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarFinancialInstitutionBranchDto" keyProperty="financialBranchId" useGeneratedKeys="true">
+    insert into [sar_financial_institution_branch]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="financialId != null">
+        [financial_id],
+      </if>
+      <if test="transationRole != null">
+        [transation_role],
+      </if>
+      <if test="branchAddress != null">
+        [branch_address],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="rssdNumber != null">
+        [rssd_number],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="zipCode != null">
+        [zip_code],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="financialId != null">
+        #{financialId,jdbcType=BIGINT},
+      </if>
+      <if test="transationRole != null">
+        #{transationRole,jdbcType=TINYINT},
+      </if>
+      <if test="branchAddress != null">
+        #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="rssdNumber != null">
+        #{rssdNumber,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarFinancialInstitutionBranchDto">
+    update [sar_financial_institution_branch]
+    <set>
+      <if test="financialId != null">
+        [financial_id] = #{financialId,jdbcType=BIGINT},
+      </if>
+      <if test="transationRole != null">
+        [transation_role] = #{transationRole,jdbcType=TINYINT},
+      </if>
+      <if test="branchAddress != null">
+        [branch_address] = #{branchAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="rssdNumber != null">
+        [rssd_number] = #{rssdNumber,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="zipCode != null">
+        [zip_code] = #{zipCode,jdbcType=INTEGER},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=INTEGER},
+      </if>
+        [update_time] = getdate(),
+    </set>
+    where [financial_branch_id] = #{financialBranchId,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

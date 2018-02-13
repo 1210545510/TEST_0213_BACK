@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.WfTaskMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.WfTask">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_Id" jdbcType="VARCHAR" property="orderId" />
+    <result column="task_Name" jdbcType="VARCHAR" property="taskName" />
+    <result column="display_Name" jdbcType="VARCHAR" property="displayName" />
+    <result column="task_Type" jdbcType="TINYINT" property="taskType" />
+    <result column="perform_Type" jdbcType="TINYINT" property="performType" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="create_Time" jdbcType="VARCHAR" property="createTime" />
+    <result column="finish_Time" jdbcType="VARCHAR" property="finishTime" />
+    <result column="expire_Time" jdbcType="VARCHAR" property="expireTime" />
+    <result column="action_Url" jdbcType="VARCHAR" property="actionUrl" />
+    <result column="parent_Task_Id" jdbcType="VARCHAR" property="parentTaskId" />
+    <result column="variable" jdbcType="VARCHAR" property="variable" />
+    <result column="version" jdbcType="TINYINT" property="version" />
+    <result column="score" jdbcType="TINYINT" property="score" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [order_Id], [task_Name], [display_Name], [task_Type], [perform_Type], [operator], 
+    [create_Time], [finish_Time], [expire_Time], [action_Url], [parent_Task_Id], [variable], 
+    [version], [score], [content]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [wf_task]
+    where [id] = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from [wf_task]
+    where [id] = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.WfTask">
+    insert into [wf_task] ([id], [order_Id], [task_Name], 
+      [display_Name], [task_Type], [perform_Type], 
+      [operator], [create_Time], [finish_Time], 
+      [expire_Time], [action_Url], [parent_Task_Id], 
+      [variable], [version], [score], 
+      [content])
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, 
+      #{displayName,jdbcType=VARCHAR}, #{taskType,jdbcType=TINYINT}, #{performType,jdbcType=TINYINT}, 
+      #{operator,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{finishTime,jdbcType=VARCHAR}, 
+      #{expireTime,jdbcType=VARCHAR}, #{actionUrl,jdbcType=VARCHAR}, #{parentTaskId,jdbcType=VARCHAR}, 
+      #{variable,jdbcType=VARCHAR}, #{version,jdbcType=TINYINT}, #{score,jdbcType=TINYINT}, 
+      #{content,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.WfTask">
+    insert into [wf_task]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        [id],
+      </if>
+      <if test="orderId != null">
+        [order_Id],
+      </if>
+      <if test="taskName != null">
+        [task_Name],
+      </if>
+      <if test="displayName != null">
+        [display_Name],
+      </if>
+      <if test="taskType != null">
+        [task_Type],
+      </if>
+      <if test="performType != null">
+        [perform_Type],
+      </if>
+      <if test="operator != null">
+        [operator],
+      </if>
+      <if test="createTime != null">
+        [create_Time],
+      </if>
+      <if test="finishTime != null">
+        [finish_Time],
+      </if>
+      <if test="expireTime != null">
+        [expire_Time],
+      </if>
+      <if test="actionUrl != null">
+        [action_Url],
+      </if>
+      <if test="parentTaskId != null">
+        [parent_Task_Id],
+      </if>
+      <if test="variable != null">
+        [variable],
+      </if>
+      <if test="version != null">
+        [version],
+      </if>
+      <if test="score != null">
+        [score],
+      </if>
+      <if test="content != null">
+        [content],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="performType != null">
+        #{performType,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null">
+        #{actionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentTaskId != null">
+        #{parentTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null">
+        #{variable,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.WfTask">
+    update [wf_task]
+    <set>
+      <if test="orderId != null">
+        [order_Id] = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        [task_Name] = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayName != null">
+        [display_Name] = #{displayName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null">
+        [task_Type] = #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="performType != null">
+        [perform_Type] = #{performType,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null">
+        [operator] = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_Time] = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTime != null">
+        [finish_Time] = #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        [expire_Time] = #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null">
+        [action_Url] = #{actionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentTaskId != null">
+        [parent_Task_Id] = #{parentTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null">
+        [variable] = #{variable,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        [version] = #{version,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        [score] = #{score,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        [content] = #{content,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.WfTask">
+    update [wf_task]
+    set [order_Id] = #{orderId,jdbcType=VARCHAR},
+      [task_Name] = #{taskName,jdbcType=VARCHAR},
+      [display_Name] = #{displayName,jdbcType=VARCHAR},
+      [task_Type] = #{taskType,jdbcType=TINYINT},
+      [perform_Type] = #{performType,jdbcType=TINYINT},
+      [operator] = #{operator,jdbcType=VARCHAR},
+      [create_Time] = #{createTime,jdbcType=VARCHAR},
+      [finish_Time] = #{finishTime,jdbcType=VARCHAR},
+      [expire_Time] = #{expireTime,jdbcType=VARCHAR},
+      [action_Url] = #{actionUrl,jdbcType=VARCHAR},
+      [parent_Task_Id] = #{parentTaskId,jdbcType=VARCHAR},
+      [variable] = #{variable,jdbcType=VARCHAR},
+      [version] = #{version,jdbcType=TINYINT},
+      [score] = #{score,jdbcType=TINYINT},
+      [content] = #{content,jdbcType=VARCHAR}
+    where [id] = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

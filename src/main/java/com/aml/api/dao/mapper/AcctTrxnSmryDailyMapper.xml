@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AcctTrxnSmryDailyMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AcctTrxnSmryDaily">
+    <id column="ACCT_INTRL_ID" jdbcType="VARCHAR" property="acctIntrlId" />
+    <id column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="ACCT_DLY_SMRY_SEQ_ID" jdbcType="DECIMAL" property="acctDlySmrySeqId" />
+    <result column="INTER_HH_JRNL_IN_CT" jdbcType="DECIMAL" property="interHhJrnlInCt" />
+    <result column="INTER_HH_JRNL_IN_AM" jdbcType="DECIMAL" property="interHhJrnlInAm" />
+    <result column="INTER_HH_JRNL_OUT_CT" jdbcType="DECIMAL" property="interHhJrnlOutCt" />
+    <result column="INTER_HH_JRNL_OUT_AM" jdbcType="DECIMAL" property="interHhJrnlOutAm" />
+    <result column="INTER_HH_SCRTY_JRNL_IN_CT" jdbcType="DECIMAL" property="interHhScrtyJrnlInCt" />
+    <result column="INTER_HH_SCRTY_JRNL_OUT_CT" jdbcType="DECIMAL" property="interHhScrtyJrnlOutCt" />
+    <result column="TOT_DEPST_CT" jdbcType="DECIMAL" property="totDepstCt" />
+    <result column="TOT_DEPST_AM" jdbcType="DECIMAL" property="totDepstAm" />
+    <result column="TOT_WDRWL_CT" jdbcType="DECIMAL" property="totWdrwlCt" />
+    <result column="TOT_WDRWL_AM" jdbcType="DECIMAL" property="totWdrwlAm" />
+    <result column="WIRE_TRXN_IN_CT" jdbcType="DECIMAL" property="wireTrxnInCt" />
+    <result column="WIRE_TRXN_IN_AM" jdbcType="DECIMAL" property="wireTrxnInAm" />
+    <result column="WIRE_TRXN_OUT_CT" jdbcType="DECIMAL" property="wireTrxnOutCt" />
+    <result column="WIRE_TRXN_OUT_AM" jdbcType="DECIMAL" property="wireTrxnOutAm" />
+    <result column="HRG_WIRE_TRXN_IN_CT" jdbcType="DECIMAL" property="hrgWireTrxnInCt" />
+    <result column="HRG_WIRE_TRXN_IN_AM" jdbcType="DECIMAL" property="hrgWireTrxnInAm" />
+    <result column="HRG_WIRE_TRXN_OUT_CT" jdbcType="DECIMAL" property="hrgWireTrxnOutCt" />
+    <result column="HRG_WIRE_TRXN_OUT_AM" jdbcType="DECIMAL" property="hrgWireTrxnOutAm" />
+    <result column="FRGN_WIRE_TRXN_IN_CT" jdbcType="DECIMAL" property="frgnWireTrxnInCt" />
+    <result column="FRGN_WIRE_TRXN_IN_AM" jdbcType="DECIMAL" property="frgnWireTrxnInAm" />
+    <result column="FRGN_WIRE_TRXN_OUT_CT" jdbcType="DECIMAL" property="frgnWireTrxnOutCt" />
+    <result column="FRGN_WIRE_TRXN_OUT_AM" jdbcType="DECIMAL" property="frgnWireTrxnOutAm" />
+    <result column="THRD_PARTY_WIRE_IN_CT" jdbcType="DECIMAL" property="thrdPartyWireInCt" />
+    <result column="THRD_PARTY_WIRE_IN_AM" jdbcType="DECIMAL" property="thrdPartyWireInAm" />
+    <result column="THRD_PARTY_WIRES_OUT_CT" jdbcType="DECIMAL" property="thrdPartyWiresOutCt" />
+    <result column="THRD_PARTY_WIRES_OUT_AM" jdbcType="DECIMAL" property="thrdPartyWiresOutAm" />
+    <result column="HRG_CHK_TRXN_IN_CT" jdbcType="DECIMAL" property="hrgChkTrxnInCt" />
+    <result column="HRG_CHK_TRXN_IN_AM" jdbcType="DECIMAL" property="hrgChkTrxnInAm" />
+    <result column="HRG_CHK_TRXN_OUT_CT" jdbcType="DECIMAL" property="hrgChkTrxnOutCt" />
+    <result column="HRG_CHK_TRXN_OUT_AM" jdbcType="DECIMAL" property="hrgChkTrxnOutAm" />
+    <result column="HRG_CL_TRXN_IN_CT" jdbcType="DECIMAL" property="hrgClTrxnInCt" />
+    <result column="HRG_CL_TRXN_IN_AM" jdbcType="DECIMAL" property="hrgClTrxnInAm" />
+    <result column="HRG_CL_TRXN_OUT_CT" jdbcType="DECIMAL" property="hrgClTrxnOutCt" />
+    <result column="HRG_CL_TRXN_OUT_AM" jdbcType="DECIMAL" property="hrgClTrxnOutAm" />
+    <result column="FRGN_CHK_TRXN_IN_CT" jdbcType="DECIMAL" property="frgnChkTrxnInCt" />
+    <result column="FRGN_CHK_TRXN_IN_AM" jdbcType="DECIMAL" property="frgnChkTrxnInAm" />
+    <result column="FRGN_CHK_TRXN_OUT_CT" jdbcType="DECIMAL" property="frgnChkTrxnOutCt" />
+    <result column="FRGN_CHK_TRXN_OUT_AM" jdbcType="DECIMAL" property="frgnChkTrxnOutAm" />
+    <result column="CASH_EQUIV_TRXN_IN_CT" jdbcType="DECIMAL" property="cashEquivTrxnInCt" />
+    <result column="CASH_EQUIV_TRXN_IN_AM" jdbcType="DECIMAL" property="cashEquivTrxnInAm" />
+    <result column="CASH_EQUIV_TRXN_OUT_CT" jdbcType="DECIMAL" property="cashEquivTrxnOutCt" />
+    <result column="CASH_EQUIV_TRXN_OUT_AM" jdbcType="DECIMAL" property="cashEquivTrxnOutAm" />
+    <result column="SCRTY_TRXN_IN_CT" jdbcType="DECIMAL" property="scrtyTrxnInCt" />
+    <result column="SCRTY_TRXN_IN_AM" jdbcType="DECIMAL" property="scrtyTrxnInAm" />
+    <result column="SCRTY_TRXN_OUT_CT" jdbcType="DECIMAL" property="scrtyTrxnOutCt" />
+    <result column="SCRTY_TRXN_OUT_AM" jdbcType="DECIMAL" property="scrtyTrxnOutAm" />
+    <result column="TOT_CHK_IN_CT" jdbcType="DECIMAL" property="totChkInCt" />
+    <result column="TOT_CHK_IN_AM" jdbcType="DECIMAL" property="totChkInAm" />
+    <result column="TOT_CHK_OUT_CT" jdbcType="DECIMAL" property="totChkOutCt" />
+    <result column="TOT_CHK_OUT_AM" jdbcType="DECIMAL" property="totChkOutAm" />
+    <result column="JRNL_TRXN_IN_CT" jdbcType="DECIMAL" property="jrnlTrxnInCt" />
+    <result column="JRNL_TRXN_IN_AM" jdbcType="DECIMAL" property="jrnlTrxnInAm" />
+    <result column="JRNL_TRXN_OUT_CT" jdbcType="DECIMAL" property="jrnlTrxnOutCt" />
+    <result column="JRNL_TRXN_OUT_AM" jdbcType="DECIMAL" property="jrnlTrxnOutAm" />
+    <result column="THRD_PARTY_WDRWL_CT" jdbcType="DECIMAL" property="thrdPartyWdrwlCt" />
+    <result column="THRD_PARTY_WDRWL_AM" jdbcType="DECIMAL" property="thrdPartyWdrwlAm" />
+    <result column="THRD_PARTY_CHK_DSBMT_CT" jdbcType="DECIMAL" property="thrdPartyChkDsbmtCt" />
+    <result column="THRD_PARTY_CHK_DSBMT_AM" jdbcType="DECIMAL" property="thrdPartyChkDsbmtAm" />
+    <result column="CASH_TRXN_IN_CT" jdbcType="DECIMAL" property="cashTrxnInCt" />
+    <result column="CASH_TRXN_IN_AM" jdbcType="DECIMAL" property="cashTrxnInAm" />
+    <result column="CASH_TRXN_OUT_CT" jdbcType="DECIMAL" property="cashTrxnOutCt" />
+    <result column="CASH_TRXN_OUT_AM" jdbcType="DECIMAL" property="cashTrxnOutAm" />
+    <result column="EI_TRXN_IN_CT" jdbcType="DECIMAL" property="eiTrxnInCt" />
+    <result column="EI_TRXN_IN_AM" jdbcType="DECIMAL" property="eiTrxnInAm" />
+    <result column="EI_TRXN_OUT_CT" jdbcType="DECIMAL" property="eiTrxnOutCt" />
+    <result column="EI_TRXN_OUT_AM" jdbcType="DECIMAL" property="eiTrxnOutAm" />
+    <result column="ATM_TRXN_IN_CT" jdbcType="DECIMAL" property="atmTrxnInCt" />
+    <result column="ATM_TRXN_IN_AM" jdbcType="DECIMAL" property="atmTrxnInAm" />
+    <result column="ATM_TRXN_OUT_CT" jdbcType="DECIMAL" property="atmTrxnOutCt" />
+    <result column="ATM_TRXN_OUT_AM" jdbcType="DECIMAL" property="atmTrxnOutAm" />
+    <result column="CMDTY_PRECS_MTLS_IN_CT" jdbcType="DECIMAL" property="cmdtyPrecsMtlsInCt" />
+    <result column="CMDTY_PRECS_MTLS_IN_AM" jdbcType="DECIMAL" property="cmdtyPrecsMtlsInAm" />
+    <result column="CMDTY_PRECS_MTLS_OUT_CT" jdbcType="DECIMAL" property="cmdtyPrecsMtlsOutCt" />
+    <result column="CMDTY_PRECS_MTLS_OUT_AM" jdbcType="DECIMAL" property="cmdtyPrecsMtlsOutAm" />
+    <result column="DBT_CARD_TRXN_CT" jdbcType="DECIMAL" property="dbtCardTrxnCt" />
+    <result column="DBT_CARD_TRXN_AM" jdbcType="DECIMAL" property="dbtCardTrxnAm" />
+    <result column="DBT_CARD_TRXN_DAY_CT" jdbcType="DECIMAL" property="dbtCardTrxnDayCt" />
+    <result column="TOT_DBT_MEMO_AM" jdbcType="DECIMAL" property="totDbtMemoAm" />
+    <result column="TOT_DBT_MEMO_CT" jdbcType="DECIMAL" property="totDbtMemoCt" />
+    <result column="TOT_CDT_MEMO_AM" jdbcType="DECIMAL" property="totCdtMemoAm" />
+    <result column="TOT_CDT_MEMO_CT" jdbcType="DECIMAL" property="totCdtMemoCt" />
+    <result column="DIS_HONRD_CHK_OUT_CT" jdbcType="DECIMAL" property="disHonrdChkOutCt" />
+    <result column="DIS_HONRD_CHK_IN_CT" jdbcType="DECIMAL" property="disHonrdChkInCt" />
+    <result column="TOT_NVSMT_MGR_FEE_AM" jdbcType="DECIMAL" property="totNvsmtMgrFeeAm" />
+    <result column="MAX_IHH_JRNL_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxIhhJrnlActvyRiskInNb" />
+    <result column="MAX_IHH_JRNL_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxIhhJrnlActvyRiskOutNb" />
+    <result column="MAX_JRNL_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxJrnlActvyRiskInNb" />
+    <result column="MAX_JRNL_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxJrnlActvyRiskOutNb" />
+    <result column="DOM_WIRE_TRXN_IN_CT" jdbcType="DECIMAL" property="domWireTrxnInCt" />
+    <result column="DOM_WIRE_TRXN_IN_AM" jdbcType="DECIMAL" property="domWireTrxnInAm" />
+    <result column="DOM_WIRE_TRXN_OUT_CT" jdbcType="DECIMAL" property="domWireTrxnOutCt" />
+    <result column="DOM_WIRE_TRXN_OUT_AM" jdbcType="DECIMAL" property="domWireTrxnOutAm" />
+    <result column="MAX_WIRE_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxWireActvyRiskInNb" />
+    <result column="MAX_WIRE_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxWireActvyRiskOutNb" />
+    <result column="MAX_MI_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxMiActvyRiskInNb" />
+    <result column="MAX_MI_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxMiActvyRiskOutNb" />
+    <result column="MAX_CASH_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxCashActvyRiskInNb" />
+    <result column="MAX_CASH_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxCashActvyRiskOutNb" />
+    <result column="MAX_CHECK_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxCheckActvyRiskInNb" />
+    <result column="MAX_CHECK_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxCheckActvyRiskOutNb" />
+    <result column="MAX_CMDTY_ACTVY_RISK_IN_NB" jdbcType="DECIMAL" property="maxCmdtyActvyRiskInNb" />
+    <result column="MAX_CMDTY_ACTVY_RISK_OUT_NB" jdbcType="DECIMAL" property="maxCmdtyActvyRiskOutNb" />
+    <result column="RDC_ALL_IN_CT" jdbcType="DECIMAL" property="rdcAllInCt" />
+    <result column="RDC_ALL_IN_AM" jdbcType="DECIMAL" property="rdcAllInAm" />
+    <result column="RDC_MOBILE_IN_CT" jdbcType="DECIMAL" property="rdcMobileInCt" />
+    <result column="RDC_MOBILE_IN_AM" jdbcType="DECIMAL" property="rdcMobileInAm" />
+    <result column="RDC_PC_IN_CT" jdbcType="DECIMAL" property="rdcPcInCt" />
+    <result column="RDC_PC_IN_AM" jdbcType="DECIMAL" property="rdcPcInAm" />
+    <result column="RDC_TERMINAL_IN_CT" jdbcType="DECIMAL" property="rdcTerminalInCt" />
+    <result column="RDC_TERMINAL_IN_AM" jdbcType="DECIMAL" property="rdcTerminalInAm" />
+    <result column="RDC_MERCHANT_IN_CT" jdbcType="DECIMAL" property="rdcMerchantInCt" />
+    <result column="RDC_MERCHANT_IN_AM" jdbcType="DECIMAL" property="rdcMerchantInAm" />
+    <result column="RDC_LOCK_BOX_IN_CT" jdbcType="DECIMAL" property="rdcLockBoxInCt" />
+    <result column="RDC_LOCK_BOX_IN_AM" jdbcType="DECIMAL" property="rdcLockBoxInAm" />
+    <result column="RDC_REDEPOSIT_IN_CT" jdbcType="DECIMAL" property="rdcRedepositInCt" />
+    <result column="RDC_REDEPOSIT_IN_AM" jdbcType="DECIMAL" property="rdcRedepositInAm" />
+    <result column="RDC_KLIK_IN_CT" jdbcType="DECIMAL" property="rdcKlikInCt" />
+    <result column="RDC_KLIK_IN_AM" jdbcType="DECIMAL" property="rdcKlikInAm" />
+    <result column="RDC_CLIENT_IN_CT" jdbcType="DECIMAL" property="rdcClientInCt" />
+    <result column="RDC_CLIENT_IN_AM" jdbcType="DECIMAL" property="rdcClientInAm" />
+    <result column="RDC_VENDOR_IN_CT" jdbcType="DECIMAL" property="rdcVendorInCt" />
+    <result column="RDC_VENDOR_IN_AM" jdbcType="DECIMAL" property="rdcVendorInAm" />
+    <result column="RDC_OTHER_IN_CT" jdbcType="DECIMAL" property="rdcOtherInCt" />
+    <result column="RDC_OTHER_IN_AM" jdbcType="DECIMAL" property="rdcOtherInAm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [ACCT_INTRL_ID], [DATA_DUMP_DT], [PRCSNG_BATCH_NM], [ACCT_DLY_SMRY_SEQ_ID], [INTER_HH_JRNL_IN_CT], 
+    [INTER_HH_JRNL_IN_AM], [INTER_HH_JRNL_OUT_CT], [INTER_HH_JRNL_OUT_AM], [INTER_HH_SCRTY_JRNL_IN_CT], 
+    [INTER_HH_SCRTY_JRNL_OUT_CT], [TOT_DEPST_CT], [TOT_DEPST_AM], [TOT_WDRWL_CT], [TOT_WDRWL_AM], 
+    [WIRE_TRXN_IN_CT], [WIRE_TRXN_IN_AM], [WIRE_TRXN_OUT_CT], [WIRE_TRXN_OUT_AM], [HRG_WIRE_TRXN_IN_CT], 
+    [HRG_WIRE_TRXN_IN_AM], [HRG_WIRE_TRXN_OUT_CT], [HRG_WIRE_TRXN_OUT_AM], [FRGN_WIRE_TRXN_IN_CT], 
+    [FRGN_WIRE_TRXN_IN_AM], [FRGN_WIRE_TRXN_OUT_CT], [FRGN_WIRE_TRXN_OUT_AM], [THRD_PARTY_WIRE_IN_CT], 
+    [THRD_PARTY_WIRE_IN_AM], [THRD_PARTY_WIRES_OUT_CT], [THRD_PARTY_WIRES_OUT_AM], [HRG_CHK_TRXN_IN_CT], 
+    [HRG_CHK_TRXN_IN_AM], [HRG_CHK_TRXN_OUT_CT], [HRG_CHK_TRXN_OUT_AM], [HRG_CL_TRXN_IN_CT], 
+    [HRG_CL_TRXN_IN_AM], [HRG_CL_TRXN_OUT_CT], [HRG_CL_TRXN_OUT_AM], [FRGN_CHK_TRXN_IN_CT], 
+    [FRGN_CHK_TRXN_IN_AM], [FRGN_CHK_TRXN_OUT_CT], [FRGN_CHK_TRXN_OUT_AM], [CASH_EQUIV_TRXN_IN_CT], 
+    [CASH_EQUIV_TRXN_IN_AM], [CASH_EQUIV_TRXN_OUT_CT], [CASH_EQUIV_TRXN_OUT_AM], [SCRTY_TRXN_IN_CT], 
+    [SCRTY_TRXN_IN_AM], [SCRTY_TRXN_OUT_CT], [SCRTY_TRXN_OUT_AM], [TOT_CHK_IN_CT], [TOT_CHK_IN_AM], 
+    [TOT_CHK_OUT_CT], [TOT_CHK_OUT_AM], [JRNL_TRXN_IN_CT], [JRNL_TRXN_IN_AM], [JRNL_TRXN_OUT_CT], 
+    [JRNL_TRXN_OUT_AM], [THRD_PARTY_WDRWL_CT], [THRD_PARTY_WDRWL_AM], [THRD_PARTY_CHK_DSBMT_CT], 
+    [THRD_PARTY_CHK_DSBMT_AM], [CASH_TRXN_IN_CT], [CASH_TRXN_IN_AM], [CASH_TRXN_OUT_CT], 
+    [CASH_TRXN_OUT_AM], [EI_TRXN_IN_CT], [EI_TRXN_IN_AM], [EI_TRXN_OUT_CT], [EI_TRXN_OUT_AM], 
+    [ATM_TRXN_IN_CT], [ATM_TRXN_IN_AM], [ATM_TRXN_OUT_CT], [ATM_TRXN_OUT_AM], [CMDTY_PRECS_MTLS_IN_CT], 
+    [CMDTY_PRECS_MTLS_IN_AM], [CMDTY_PRECS_MTLS_OUT_CT], [CMDTY_PRECS_MTLS_OUT_AM], [DBT_CARD_TRXN_CT], 
+    [DBT_CARD_TRXN_AM], [DBT_CARD_TRXN_DAY_CT], [TOT_DBT_MEMO_AM], [TOT_DBT_MEMO_CT], 
+    [TOT_CDT_MEMO_AM], [TOT_CDT_MEMO_CT], [DIS_HONRD_CHK_OUT_CT], [DIS_HONRD_CHK_IN_CT], 
+    [TOT_NVSMT_MGR_FEE_AM], [MAX_IHH_JRNL_ACTVY_RISK_IN_NB], [MAX_IHH_JRNL_ACTVY_RISK_OUT_NB], 
+    [MAX_JRNL_ACTVY_RISK_IN_NB], [MAX_JRNL_ACTVY_RISK_OUT_NB], [DOM_WIRE_TRXN_IN_CT], 
+    [DOM_WIRE_TRXN_IN_AM], [DOM_WIRE_TRXN_OUT_CT], [DOM_WIRE_TRXN_OUT_AM], [MAX_WIRE_ACTVY_RISK_IN_NB], 
+    [MAX_WIRE_ACTVY_RISK_OUT_NB], [MAX_MI_ACTVY_RISK_IN_NB], [MAX_MI_ACTVY_RISK_OUT_NB], 
+    [MAX_CASH_ACTVY_RISK_IN_NB], [MAX_CASH_ACTVY_RISK_OUT_NB], [MAX_CHECK_ACTVY_RISK_IN_NB], 
+    [MAX_CHECK_ACTVY_RISK_OUT_NB], [MAX_CMDTY_ACTVY_RISK_IN_NB], [MAX_CMDTY_ACTVY_RISK_OUT_NB], 
+    [RDC_ALL_IN_CT], [RDC_ALL_IN_AM], [RDC_MOBILE_IN_CT], [RDC_MOBILE_IN_AM], [RDC_PC_IN_CT], 
+    [RDC_PC_IN_AM], [RDC_TERMINAL_IN_CT], [RDC_TERMINAL_IN_AM], [RDC_MERCHANT_IN_CT], 
+    [RDC_MERCHANT_IN_AM], [RDC_LOCK_BOX_IN_CT], [RDC_LOCK_BOX_IN_AM], [RDC_REDEPOSIT_IN_CT], 
+    [RDC_REDEPOSIT_IN_AM], [RDC_KLIK_IN_CT], [RDC_KLIK_IN_AM], [RDC_CLIENT_IN_CT], [RDC_CLIENT_IN_AM], 
+    [RDC_VENDOR_IN_CT], [RDC_VENDOR_IN_AM], [RDC_OTHER_IN_CT], [RDC_OTHER_IN_AM]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[ACCT_TRXN_SMRY_DAILY]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily">
+    delete from [mantas].[ACCT_TRXN_SMRY_DAILY]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily">
+    insert into [mantas].[ACCT_TRXN_SMRY_DAILY] ([ACCT_INTRL_ID], [DATA_DUMP_DT], [PRCSNG_BATCH_NM], 
+      [ACCT_DLY_SMRY_SEQ_ID], [INTER_HH_JRNL_IN_CT], [INTER_HH_JRNL_IN_AM], 
+      [INTER_HH_JRNL_OUT_CT], [INTER_HH_JRNL_OUT_AM], [INTER_HH_SCRTY_JRNL_IN_CT], 
+      [INTER_HH_SCRTY_JRNL_OUT_CT], [TOT_DEPST_CT], [TOT_DEPST_AM], 
+      [TOT_WDRWL_CT], [TOT_WDRWL_AM], [WIRE_TRXN_IN_CT], 
+      [WIRE_TRXN_IN_AM], [WIRE_TRXN_OUT_CT], [WIRE_TRXN_OUT_AM], 
+      [HRG_WIRE_TRXN_IN_CT], [HRG_WIRE_TRXN_IN_AM], [HRG_WIRE_TRXN_OUT_CT], 
+      [HRG_WIRE_TRXN_OUT_AM], [FRGN_WIRE_TRXN_IN_CT], [FRGN_WIRE_TRXN_IN_AM], 
+      [FRGN_WIRE_TRXN_OUT_CT], [FRGN_WIRE_TRXN_OUT_AM], [THRD_PARTY_WIRE_IN_CT], 
+      [THRD_PARTY_WIRE_IN_AM], [THRD_PARTY_WIRES_OUT_CT], 
+      [THRD_PARTY_WIRES_OUT_AM], [HRG_CHK_TRXN_IN_CT], [HRG_CHK_TRXN_IN_AM], 
+      [HRG_CHK_TRXN_OUT_CT], [HRG_CHK_TRXN_OUT_AM], [HRG_CL_TRXN_IN_CT], 
+      [HRG_CL_TRXN_IN_AM], [HRG_CL_TRXN_OUT_CT], [HRG_CL_TRXN_OUT_AM], 
+      [FRGN_CHK_TRXN_IN_CT], [FRGN_CHK_TRXN_IN_AM], [FRGN_CHK_TRXN_OUT_CT], 
+      [FRGN_CHK_TRXN_OUT_AM], [CASH_EQUIV_TRXN_IN_CT], [CASH_EQUIV_TRXN_IN_AM], 
+      [CASH_EQUIV_TRXN_OUT_CT], [CASH_EQUIV_TRXN_OUT_AM], 
+      [SCRTY_TRXN_IN_CT], [SCRTY_TRXN_IN_AM], [SCRTY_TRXN_OUT_CT], 
+      [SCRTY_TRXN_OUT_AM], [TOT_CHK_IN_CT], [TOT_CHK_IN_AM], 
+      [TOT_CHK_OUT_CT], [TOT_CHK_OUT_AM], [JRNL_TRXN_IN_CT], 
+      [JRNL_TRXN_IN_AM], [JRNL_TRXN_OUT_CT], [JRNL_TRXN_OUT_AM], 
+      [THRD_PARTY_WDRWL_CT], [THRD_PARTY_WDRWL_AM], [THRD_PARTY_CHK_DSBMT_CT], 
+      [THRD_PARTY_CHK_DSBMT_AM], [CASH_TRXN_IN_CT], [CASH_TRXN_IN_AM], 
+      [CASH_TRXN_OUT_CT], [CASH_TRXN_OUT_AM], [EI_TRXN_IN_CT], 
+      [EI_TRXN_IN_AM], [EI_TRXN_OUT_CT], [EI_TRXN_OUT_AM], 
+      [ATM_TRXN_IN_CT], [ATM_TRXN_IN_AM], [ATM_TRXN_OUT_CT], 
+      [ATM_TRXN_OUT_AM], [CMDTY_PRECS_MTLS_IN_CT], [CMDTY_PRECS_MTLS_IN_AM], 
+      [CMDTY_PRECS_MTLS_OUT_CT], [CMDTY_PRECS_MTLS_OUT_AM], 
+      [DBT_CARD_TRXN_CT], [DBT_CARD_TRXN_AM], [DBT_CARD_TRXN_DAY_CT], 
+      [TOT_DBT_MEMO_AM], [TOT_DBT_MEMO_CT], [TOT_CDT_MEMO_AM], 
+      [TOT_CDT_MEMO_CT], [DIS_HONRD_CHK_OUT_CT], [DIS_HONRD_CHK_IN_CT], 
+      [TOT_NVSMT_MGR_FEE_AM], [MAX_IHH_JRNL_ACTVY_RISK_IN_NB], 
+      [MAX_IHH_JRNL_ACTVY_RISK_OUT_NB], [MAX_JRNL_ACTVY_RISK_IN_NB], 
+      [MAX_JRNL_ACTVY_RISK_OUT_NB], [DOM_WIRE_TRXN_IN_CT], 
+      [DOM_WIRE_TRXN_IN_AM], [DOM_WIRE_TRXN_OUT_CT], [DOM_WIRE_TRXN_OUT_AM], 
+      [MAX_WIRE_ACTVY_RISK_IN_NB], [MAX_WIRE_ACTVY_RISK_OUT_NB], 
+      [MAX_MI_ACTVY_RISK_IN_NB], [MAX_MI_ACTVY_RISK_OUT_NB], 
+      [MAX_CASH_ACTVY_RISK_IN_NB], [MAX_CASH_ACTVY_RISK_OUT_NB], 
+      [MAX_CHECK_ACTVY_RISK_IN_NB], [MAX_CHECK_ACTVY_RISK_OUT_NB], 
+      [MAX_CMDTY_ACTVY_RISK_IN_NB], [MAX_CMDTY_ACTVY_RISK_OUT_NB], 
+      [RDC_ALL_IN_CT], [RDC_ALL_IN_AM], [RDC_MOBILE_IN_CT], 
+      [RDC_MOBILE_IN_AM], [RDC_PC_IN_CT], [RDC_PC_IN_AM], 
+      [RDC_TERMINAL_IN_CT], [RDC_TERMINAL_IN_AM], [RDC_MERCHANT_IN_CT], 
+      [RDC_MERCHANT_IN_AM], [RDC_LOCK_BOX_IN_CT], [RDC_LOCK_BOX_IN_AM], 
+      [RDC_REDEPOSIT_IN_CT], [RDC_REDEPOSIT_IN_AM], [RDC_KLIK_IN_CT], 
+      [RDC_KLIK_IN_AM], [RDC_CLIENT_IN_CT], [RDC_CLIENT_IN_AM], 
+      [RDC_VENDOR_IN_CT], [RDC_VENDOR_IN_AM], [RDC_OTHER_IN_CT], 
+      [RDC_OTHER_IN_AM])
+    values (#{acctIntrlId,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, #{prcsngBatchNm,jdbcType=VARCHAR}, 
+      #{acctDlySmrySeqId,jdbcType=DECIMAL}, #{interHhJrnlInCt,jdbcType=DECIMAL}, #{interHhJrnlInAm,jdbcType=DECIMAL}, 
+      #{interHhJrnlOutCt,jdbcType=DECIMAL}, #{interHhJrnlOutAm,jdbcType=DECIMAL}, #{interHhScrtyJrnlInCt,jdbcType=DECIMAL}, 
+      #{interHhScrtyJrnlOutCt,jdbcType=DECIMAL}, #{totDepstCt,jdbcType=DECIMAL}, #{totDepstAm,jdbcType=DECIMAL}, 
+      #{totWdrwlCt,jdbcType=DECIMAL}, #{totWdrwlAm,jdbcType=DECIMAL}, #{wireTrxnInCt,jdbcType=DECIMAL}, 
+      #{wireTrxnInAm,jdbcType=DECIMAL}, #{wireTrxnOutCt,jdbcType=DECIMAL}, #{wireTrxnOutAm,jdbcType=DECIMAL}, 
+      #{hrgWireTrxnInCt,jdbcType=DECIMAL}, #{hrgWireTrxnInAm,jdbcType=DECIMAL}, #{hrgWireTrxnOutCt,jdbcType=DECIMAL}, 
+      #{hrgWireTrxnOutAm,jdbcType=DECIMAL}, #{frgnWireTrxnInCt,jdbcType=DECIMAL}, #{frgnWireTrxnInAm,jdbcType=DECIMAL}, 
+      #{frgnWireTrxnOutCt,jdbcType=DECIMAL}, #{frgnWireTrxnOutAm,jdbcType=DECIMAL}, #{thrdPartyWireInCt,jdbcType=DECIMAL}, 
+      #{thrdPartyWireInAm,jdbcType=DECIMAL}, #{thrdPartyWiresOutCt,jdbcType=DECIMAL}, 
+      #{thrdPartyWiresOutAm,jdbcType=DECIMAL}, #{hrgChkTrxnInCt,jdbcType=DECIMAL}, #{hrgChkTrxnInAm,jdbcType=DECIMAL}, 
+      #{hrgChkTrxnOutCt,jdbcType=DECIMAL}, #{hrgChkTrxnOutAm,jdbcType=DECIMAL}, #{hrgClTrxnInCt,jdbcType=DECIMAL}, 
+      #{hrgClTrxnInAm,jdbcType=DECIMAL}, #{hrgClTrxnOutCt,jdbcType=DECIMAL}, #{hrgClTrxnOutAm,jdbcType=DECIMAL}, 
+      #{frgnChkTrxnInCt,jdbcType=DECIMAL}, #{frgnChkTrxnInAm,jdbcType=DECIMAL}, #{frgnChkTrxnOutCt,jdbcType=DECIMAL}, 
+      #{frgnChkTrxnOutAm,jdbcType=DECIMAL}, #{cashEquivTrxnInCt,jdbcType=DECIMAL}, #{cashEquivTrxnInAm,jdbcType=DECIMAL}, 
+      #{cashEquivTrxnOutCt,jdbcType=DECIMAL}, #{cashEquivTrxnOutAm,jdbcType=DECIMAL}, 
+      #{scrtyTrxnInCt,jdbcType=DECIMAL}, #{scrtyTrxnInAm,jdbcType=DECIMAL}, #{scrtyTrxnOutCt,jdbcType=DECIMAL}, 
+      #{scrtyTrxnOutAm,jdbcType=DECIMAL}, #{totChkInCt,jdbcType=DECIMAL}, #{totChkInAm,jdbcType=DECIMAL}, 
+      #{totChkOutCt,jdbcType=DECIMAL}, #{totChkOutAm,jdbcType=DECIMAL}, #{jrnlTrxnInCt,jdbcType=DECIMAL}, 
+      #{jrnlTrxnInAm,jdbcType=DECIMAL}, #{jrnlTrxnOutCt,jdbcType=DECIMAL}, #{jrnlTrxnOutAm,jdbcType=DECIMAL}, 
+      #{thrdPartyWdrwlCt,jdbcType=DECIMAL}, #{thrdPartyWdrwlAm,jdbcType=DECIMAL}, #{thrdPartyChkDsbmtCt,jdbcType=DECIMAL}, 
+      #{thrdPartyChkDsbmtAm,jdbcType=DECIMAL}, #{cashTrxnInCt,jdbcType=DECIMAL}, #{cashTrxnInAm,jdbcType=DECIMAL}, 
+      #{cashTrxnOutCt,jdbcType=DECIMAL}, #{cashTrxnOutAm,jdbcType=DECIMAL}, #{eiTrxnInCt,jdbcType=DECIMAL}, 
+      #{eiTrxnInAm,jdbcType=DECIMAL}, #{eiTrxnOutCt,jdbcType=DECIMAL}, #{eiTrxnOutAm,jdbcType=DECIMAL}, 
+      #{atmTrxnInCt,jdbcType=DECIMAL}, #{atmTrxnInAm,jdbcType=DECIMAL}, #{atmTrxnOutCt,jdbcType=DECIMAL}, 
+      #{atmTrxnOutAm,jdbcType=DECIMAL}, #{cmdtyPrecsMtlsInCt,jdbcType=DECIMAL}, #{cmdtyPrecsMtlsInAm,jdbcType=DECIMAL}, 
+      #{cmdtyPrecsMtlsOutCt,jdbcType=DECIMAL}, #{cmdtyPrecsMtlsOutAm,jdbcType=DECIMAL}, 
+      #{dbtCardTrxnCt,jdbcType=DECIMAL}, #{dbtCardTrxnAm,jdbcType=DECIMAL}, #{dbtCardTrxnDayCt,jdbcType=DECIMAL}, 
+      #{totDbtMemoAm,jdbcType=DECIMAL}, #{totDbtMemoCt,jdbcType=DECIMAL}, #{totCdtMemoAm,jdbcType=DECIMAL}, 
+      #{totCdtMemoCt,jdbcType=DECIMAL}, #{disHonrdChkOutCt,jdbcType=DECIMAL}, #{disHonrdChkInCt,jdbcType=DECIMAL}, 
+      #{totNvsmtMgrFeeAm,jdbcType=DECIMAL}, #{maxIhhJrnlActvyRiskInNb,jdbcType=DECIMAL}, 
+      #{maxIhhJrnlActvyRiskOutNb,jdbcType=DECIMAL}, #{maxJrnlActvyRiskInNb,jdbcType=DECIMAL}, 
+      #{maxJrnlActvyRiskOutNb,jdbcType=DECIMAL}, #{domWireTrxnInCt,jdbcType=DECIMAL}, 
+      #{domWireTrxnInAm,jdbcType=DECIMAL}, #{domWireTrxnOutCt,jdbcType=DECIMAL}, #{domWireTrxnOutAm,jdbcType=DECIMAL}, 
+      #{maxWireActvyRiskInNb,jdbcType=DECIMAL}, #{maxWireActvyRiskOutNb,jdbcType=DECIMAL}, 
+      #{maxMiActvyRiskInNb,jdbcType=DECIMAL}, #{maxMiActvyRiskOutNb,jdbcType=DECIMAL}, 
+      #{maxCashActvyRiskInNb,jdbcType=DECIMAL}, #{maxCashActvyRiskOutNb,jdbcType=DECIMAL}, 
+      #{maxCheckActvyRiskInNb,jdbcType=DECIMAL}, #{maxCheckActvyRiskOutNb,jdbcType=DECIMAL}, 
+      #{maxCmdtyActvyRiskInNb,jdbcType=DECIMAL}, #{maxCmdtyActvyRiskOutNb,jdbcType=DECIMAL}, 
+      #{rdcAllInCt,jdbcType=DECIMAL}, #{rdcAllInAm,jdbcType=DECIMAL}, #{rdcMobileInCt,jdbcType=DECIMAL}, 
+      #{rdcMobileInAm,jdbcType=DECIMAL}, #{rdcPcInCt,jdbcType=DECIMAL}, #{rdcPcInAm,jdbcType=DECIMAL}, 
+      #{rdcTerminalInCt,jdbcType=DECIMAL}, #{rdcTerminalInAm,jdbcType=DECIMAL}, #{rdcMerchantInCt,jdbcType=DECIMAL}, 
+      #{rdcMerchantInAm,jdbcType=DECIMAL}, #{rdcLockBoxInCt,jdbcType=DECIMAL}, #{rdcLockBoxInAm,jdbcType=DECIMAL}, 
+      #{rdcRedepositInCt,jdbcType=DECIMAL}, #{rdcRedepositInAm,jdbcType=DECIMAL}, #{rdcKlikInCt,jdbcType=DECIMAL}, 
+      #{rdcKlikInAm,jdbcType=DECIMAL}, #{rdcClientInCt,jdbcType=DECIMAL}, #{rdcClientInAm,jdbcType=DECIMAL}, 
+      #{rdcVendorInCt,jdbcType=DECIMAL}, #{rdcVendorInAm,jdbcType=DECIMAL}, #{rdcOtherInCt,jdbcType=DECIMAL}, 
+      #{rdcOtherInAm,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily">
+    insert into [mantas].[ACCT_TRXN_SMRY_DAILY]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        [ACCT_INTRL_ID],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="acctDlySmrySeqId != null">
+        [ACCT_DLY_SMRY_SEQ_ID],
+      </if>
+      <if test="interHhJrnlInCt != null">
+        [INTER_HH_JRNL_IN_CT],
+      </if>
+      <if test="interHhJrnlInAm != null">
+        [INTER_HH_JRNL_IN_AM],
+      </if>
+      <if test="interHhJrnlOutCt != null">
+        [INTER_HH_JRNL_OUT_CT],
+      </if>
+      <if test="interHhJrnlOutAm != null">
+        [INTER_HH_JRNL_OUT_AM],
+      </if>
+      <if test="interHhScrtyJrnlInCt != null">
+        [INTER_HH_SCRTY_JRNL_IN_CT],
+      </if>
+      <if test="interHhScrtyJrnlOutCt != null">
+        [INTER_HH_SCRTY_JRNL_OUT_CT],
+      </if>
+      <if test="totDepstCt != null">
+        [TOT_DEPST_CT],
+      </if>
+      <if test="totDepstAm != null">
+        [TOT_DEPST_AM],
+      </if>
+      <if test="totWdrwlCt != null">
+        [TOT_WDRWL_CT],
+      </if>
+      <if test="totWdrwlAm != null">
+        [TOT_WDRWL_AM],
+      </if>
+      <if test="wireTrxnInCt != null">
+        [WIRE_TRXN_IN_CT],
+      </if>
+      <if test="wireTrxnInAm != null">
+        [WIRE_TRXN_IN_AM],
+      </if>
+      <if test="wireTrxnOutCt != null">
+        [WIRE_TRXN_OUT_CT],
+      </if>
+      <if test="wireTrxnOutAm != null">
+        [WIRE_TRXN_OUT_AM],
+      </if>
+      <if test="hrgWireTrxnInCt != null">
+        [HRG_WIRE_TRXN_IN_CT],
+      </if>
+      <if test="hrgWireTrxnInAm != null">
+        [HRG_WIRE_TRXN_IN_AM],
+      </if>
+      <if test="hrgWireTrxnOutCt != null">
+        [HRG_WIRE_TRXN_OUT_CT],
+      </if>
+      <if test="hrgWireTrxnOutAm != null">
+        [HRG_WIRE_TRXN_OUT_AM],
+      </if>
+      <if test="frgnWireTrxnInCt != null">
+        [FRGN_WIRE_TRXN_IN_CT],
+      </if>
+      <if test="frgnWireTrxnInAm != null">
+        [FRGN_WIRE_TRXN_IN_AM],
+      </if>
+      <if test="frgnWireTrxnOutCt != null">
+        [FRGN_WIRE_TRXN_OUT_CT],
+      </if>
+      <if test="frgnWireTrxnOutAm != null">
+        [FRGN_WIRE_TRXN_OUT_AM],
+      </if>
+      <if test="thrdPartyWireInCt != null">
+        [THRD_PARTY_WIRE_IN_CT],
+      </if>
+      <if test="thrdPartyWireInAm != null">
+        [THRD_PARTY_WIRE_IN_AM],
+      </if>
+      <if test="thrdPartyWiresOutCt != null">
+        [THRD_PARTY_WIRES_OUT_CT],
+      </if>
+      <if test="thrdPartyWiresOutAm != null">
+        [THRD_PARTY_WIRES_OUT_AM],
+      </if>
+      <if test="hrgChkTrxnInCt != null">
+        [HRG_CHK_TRXN_IN_CT],
+      </if>
+      <if test="hrgChkTrxnInAm != null">
+        [HRG_CHK_TRXN_IN_AM],
+      </if>
+      <if test="hrgChkTrxnOutCt != null">
+        [HRG_CHK_TRXN_OUT_CT],
+      </if>
+      <if test="hrgChkTrxnOutAm != null">
+        [HRG_CHK_TRXN_OUT_AM],
+      </if>
+      <if test="hrgClTrxnInCt != null">
+        [HRG_CL_TRXN_IN_CT],
+      </if>
+      <if test="hrgClTrxnInAm != null">
+        [HRG_CL_TRXN_IN_AM],
+      </if>
+      <if test="hrgClTrxnOutCt != null">
+        [HRG_CL_TRXN_OUT_CT],
+      </if>
+      <if test="hrgClTrxnOutAm != null">
+        [HRG_CL_TRXN_OUT_AM],
+      </if>
+      <if test="frgnChkTrxnInCt != null">
+        [FRGN_CHK_TRXN_IN_CT],
+      </if>
+      <if test="frgnChkTrxnInAm != null">
+        [FRGN_CHK_TRXN_IN_AM],
+      </if>
+      <if test="frgnChkTrxnOutCt != null">
+        [FRGN_CHK_TRXN_OUT_CT],
+      </if>
+      <if test="frgnChkTrxnOutAm != null">
+        [FRGN_CHK_TRXN_OUT_AM],
+      </if>
+      <if test="cashEquivTrxnInCt != null">
+        [CASH_EQUIV_TRXN_IN_CT],
+      </if>
+      <if test="cashEquivTrxnInAm != null">
+        [CASH_EQUIV_TRXN_IN_AM],
+      </if>
+      <if test="cashEquivTrxnOutCt != null">
+        [CASH_EQUIV_TRXN_OUT_CT],
+      </if>
+      <if test="cashEquivTrxnOutAm != null">
+        [CASH_EQUIV_TRXN_OUT_AM],
+      </if>
+      <if test="scrtyTrxnInCt != null">
+        [SCRTY_TRXN_IN_CT],
+      </if>
+      <if test="scrtyTrxnInAm != null">
+        [SCRTY_TRXN_IN_AM],
+      </if>
+      <if test="scrtyTrxnOutCt != null">
+        [SCRTY_TRXN_OUT_CT],
+      </if>
+      <if test="scrtyTrxnOutAm != null">
+        [SCRTY_TRXN_OUT_AM],
+      </if>
+      <if test="totChkInCt != null">
+        [TOT_CHK_IN_CT],
+      </if>
+      <if test="totChkInAm != null">
+        [TOT_CHK_IN_AM],
+      </if>
+      <if test="totChkOutCt != null">
+        [TOT_CHK_OUT_CT],
+      </if>
+      <if test="totChkOutAm != null">
+        [TOT_CHK_OUT_AM],
+      </if>
+      <if test="jrnlTrxnInCt != null">
+        [JRNL_TRXN_IN_CT],
+      </if>
+      <if test="jrnlTrxnInAm != null">
+        [JRNL_TRXN_IN_AM],
+      </if>
+      <if test="jrnlTrxnOutCt != null">
+        [JRNL_TRXN_OUT_CT],
+      </if>
+      <if test="jrnlTrxnOutAm != null">
+        [JRNL_TRXN_OUT_AM],
+      </if>
+      <if test="thrdPartyWdrwlCt != null">
+        [THRD_PARTY_WDRWL_CT],
+      </if>
+      <if test="thrdPartyWdrwlAm != null">
+        [THRD_PARTY_WDRWL_AM],
+      </if>
+      <if test="thrdPartyChkDsbmtCt != null">
+        [THRD_PARTY_CHK_DSBMT_CT],
+      </if>
+      <if test="thrdPartyChkDsbmtAm != null">
+        [THRD_PARTY_CHK_DSBMT_AM],
+      </if>
+      <if test="cashTrxnInCt != null">
+        [CASH_TRXN_IN_CT],
+      </if>
+      <if test="cashTrxnInAm != null">
+        [CASH_TRXN_IN_AM],
+      </if>
+      <if test="cashTrxnOutCt != null">
+        [CASH_TRXN_OUT_CT],
+      </if>
+      <if test="cashTrxnOutAm != null">
+        [CASH_TRXN_OUT_AM],
+      </if>
+      <if test="eiTrxnInCt != null">
+        [EI_TRXN_IN_CT],
+      </if>
+      <if test="eiTrxnInAm != null">
+        [EI_TRXN_IN_AM],
+      </if>
+      <if test="eiTrxnOutCt != null">
+        [EI_TRXN_OUT_CT],
+      </if>
+      <if test="eiTrxnOutAm != null">
+        [EI_TRXN_OUT_AM],
+      </if>
+      <if test="atmTrxnInCt != null">
+        [ATM_TRXN_IN_CT],
+      </if>
+      <if test="atmTrxnInAm != null">
+        [ATM_TRXN_IN_AM],
+      </if>
+      <if test="atmTrxnOutCt != null">
+        [ATM_TRXN_OUT_CT],
+      </if>
+      <if test="atmTrxnOutAm != null">
+        [ATM_TRXN_OUT_AM],
+      </if>
+      <if test="cmdtyPrecsMtlsInCt != null">
+        [CMDTY_PRECS_MTLS_IN_CT],
+      </if>
+      <if test="cmdtyPrecsMtlsInAm != null">
+        [CMDTY_PRECS_MTLS_IN_AM],
+      </if>
+      <if test="cmdtyPrecsMtlsOutCt != null">
+        [CMDTY_PRECS_MTLS_OUT_CT],
+      </if>
+      <if test="cmdtyPrecsMtlsOutAm != null">
+        [CMDTY_PRECS_MTLS_OUT_AM],
+      </if>
+      <if test="dbtCardTrxnCt != null">
+        [DBT_CARD_TRXN_CT],
+      </if>
+      <if test="dbtCardTrxnAm != null">
+        [DBT_CARD_TRXN_AM],
+      </if>
+      <if test="dbtCardTrxnDayCt != null">
+        [DBT_CARD_TRXN_DAY_CT],
+      </if>
+      <if test="totDbtMemoAm != null">
+        [TOT_DBT_MEMO_AM],
+      </if>
+      <if test="totDbtMemoCt != null">
+        [TOT_DBT_MEMO_CT],
+      </if>
+      <if test="totCdtMemoAm != null">
+        [TOT_CDT_MEMO_AM],
+      </if>
+      <if test="totCdtMemoCt != null">
+        [TOT_CDT_MEMO_CT],
+      </if>
+      <if test="disHonrdChkOutCt != null">
+        [DIS_HONRD_CHK_OUT_CT],
+      </if>
+      <if test="disHonrdChkInCt != null">
+        [DIS_HONRD_CHK_IN_CT],
+      </if>
+      <if test="totNvsmtMgrFeeAm != null">
+        [TOT_NVSMT_MGR_FEE_AM],
+      </if>
+      <if test="maxIhhJrnlActvyRiskInNb != null">
+        [MAX_IHH_JRNL_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxIhhJrnlActvyRiskOutNb != null">
+        [MAX_IHH_JRNL_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="maxJrnlActvyRiskInNb != null">
+        [MAX_JRNL_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxJrnlActvyRiskOutNb != null">
+        [MAX_JRNL_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="domWireTrxnInCt != null">
+        [DOM_WIRE_TRXN_IN_CT],
+      </if>
+      <if test="domWireTrxnInAm != null">
+        [DOM_WIRE_TRXN_IN_AM],
+      </if>
+      <if test="domWireTrxnOutCt != null">
+        [DOM_WIRE_TRXN_OUT_CT],
+      </if>
+      <if test="domWireTrxnOutAm != null">
+        [DOM_WIRE_TRXN_OUT_AM],
+      </if>
+      <if test="maxWireActvyRiskInNb != null">
+        [MAX_WIRE_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxWireActvyRiskOutNb != null">
+        [MAX_WIRE_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="maxMiActvyRiskInNb != null">
+        [MAX_MI_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxMiActvyRiskOutNb != null">
+        [MAX_MI_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="maxCashActvyRiskInNb != null">
+        [MAX_CASH_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxCashActvyRiskOutNb != null">
+        [MAX_CASH_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="maxCheckActvyRiskInNb != null">
+        [MAX_CHECK_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxCheckActvyRiskOutNb != null">
+        [MAX_CHECK_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="maxCmdtyActvyRiskInNb != null">
+        [MAX_CMDTY_ACTVY_RISK_IN_NB],
+      </if>
+      <if test="maxCmdtyActvyRiskOutNb != null">
+        [MAX_CMDTY_ACTVY_RISK_OUT_NB],
+      </if>
+      <if test="rdcAllInCt != null">
+        [RDC_ALL_IN_CT],
+      </if>
+      <if test="rdcAllInAm != null">
+        [RDC_ALL_IN_AM],
+      </if>
+      <if test="rdcMobileInCt != null">
+        [RDC_MOBILE_IN_CT],
+      </if>
+      <if test="rdcMobileInAm != null">
+        [RDC_MOBILE_IN_AM],
+      </if>
+      <if test="rdcPcInCt != null">
+        [RDC_PC_IN_CT],
+      </if>
+      <if test="rdcPcInAm != null">
+        [RDC_PC_IN_AM],
+      </if>
+      <if test="rdcTerminalInCt != null">
+        [RDC_TERMINAL_IN_CT],
+      </if>
+      <if test="rdcTerminalInAm != null">
+        [RDC_TERMINAL_IN_AM],
+      </if>
+      <if test="rdcMerchantInCt != null">
+        [RDC_MERCHANT_IN_CT],
+      </if>
+      <if test="rdcMerchantInAm != null">
+        [RDC_MERCHANT_IN_AM],
+      </if>
+      <if test="rdcLockBoxInCt != null">
+        [RDC_LOCK_BOX_IN_CT],
+      </if>
+      <if test="rdcLockBoxInAm != null">
+        [RDC_LOCK_BOX_IN_AM],
+      </if>
+      <if test="rdcRedepositInCt != null">
+        [RDC_REDEPOSIT_IN_CT],
+      </if>
+      <if test="rdcRedepositInAm != null">
+        [RDC_REDEPOSIT_IN_AM],
+      </if>
+      <if test="rdcKlikInCt != null">
+        [RDC_KLIK_IN_CT],
+      </if>
+      <if test="rdcKlikInAm != null">
+        [RDC_KLIK_IN_AM],
+      </if>
+      <if test="rdcClientInCt != null">
+        [RDC_CLIENT_IN_CT],
+      </if>
+      <if test="rdcClientInAm != null">
+        [RDC_CLIENT_IN_AM],
+      </if>
+      <if test="rdcVendorInCt != null">
+        [RDC_VENDOR_IN_CT],
+      </if>
+      <if test="rdcVendorInAm != null">
+        [RDC_VENDOR_IN_AM],
+      </if>
+      <if test="rdcOtherInCt != null">
+        [RDC_OTHER_IN_CT],
+      </if>
+      <if test="rdcOtherInAm != null">
+        [RDC_OTHER_IN_AM],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        #{acctIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDlySmrySeqId != null">
+        #{acctDlySmrySeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlInCt != null">
+        #{interHhJrnlInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlInAm != null">
+        #{interHhJrnlInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlOutCt != null">
+        #{interHhJrnlOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlOutAm != null">
+        #{interHhJrnlOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhScrtyJrnlInCt != null">
+        #{interHhScrtyJrnlInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhScrtyJrnlOutCt != null">
+        #{interHhScrtyJrnlOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDepstCt != null">
+        #{totDepstCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDepstAm != null">
+        #{totDepstAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totWdrwlCt != null">
+        #{totWdrwlCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totWdrwlAm != null">
+        #{totWdrwlAm,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnInCt != null">
+        #{wireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnInAm != null">
+        #{wireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnOutCt != null">
+        #{wireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnOutAm != null">
+        #{wireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnInCt != null">
+        #{hrgWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnInAm != null">
+        #{hrgWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnOutCt != null">
+        #{hrgWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnOutAm != null">
+        #{hrgWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnInCt != null">
+        #{frgnWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnInAm != null">
+        #{frgnWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnOutCt != null">
+        #{frgnWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnOutAm != null">
+        #{frgnWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWireInCt != null">
+        #{thrdPartyWireInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWireInAm != null">
+        #{thrdPartyWireInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWiresOutCt != null">
+        #{thrdPartyWiresOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWiresOutAm != null">
+        #{thrdPartyWiresOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnInCt != null">
+        #{hrgChkTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnInAm != null">
+        #{hrgChkTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnOutCt != null">
+        #{hrgChkTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnOutAm != null">
+        #{hrgChkTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnInCt != null">
+        #{hrgClTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnInAm != null">
+        #{hrgClTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnOutCt != null">
+        #{hrgClTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnOutAm != null">
+        #{hrgClTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnInCt != null">
+        #{frgnChkTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnInAm != null">
+        #{frgnChkTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnOutCt != null">
+        #{frgnChkTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnOutAm != null">
+        #{frgnChkTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnInCt != null">
+        #{cashEquivTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnInAm != null">
+        #{cashEquivTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnOutCt != null">
+        #{cashEquivTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnOutAm != null">
+        #{cashEquivTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnInCt != null">
+        #{scrtyTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnInAm != null">
+        #{scrtyTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnOutCt != null">
+        #{scrtyTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnOutAm != null">
+        #{scrtyTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkInCt != null">
+        #{totChkInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkInAm != null">
+        #{totChkInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkOutCt != null">
+        #{totChkOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkOutAm != null">
+        #{totChkOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnInCt != null">
+        #{jrnlTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnInAm != null">
+        #{jrnlTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnOutCt != null">
+        #{jrnlTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnOutAm != null">
+        #{jrnlTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWdrwlCt != null">
+        #{thrdPartyWdrwlCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWdrwlAm != null">
+        #{thrdPartyWdrwlAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyChkDsbmtCt != null">
+        #{thrdPartyChkDsbmtCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyChkDsbmtAm != null">
+        #{thrdPartyChkDsbmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnInCt != null">
+        #{cashTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnInAm != null">
+        #{cashTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnOutCt != null">
+        #{cashTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnOutAm != null">
+        #{cashTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnInCt != null">
+        #{eiTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnInAm != null">
+        #{eiTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnOutCt != null">
+        #{eiTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnOutAm != null">
+        #{eiTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnInCt != null">
+        #{atmTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnInAm != null">
+        #{atmTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnOutCt != null">
+        #{atmTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnOutAm != null">
+        #{atmTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsInCt != null">
+        #{cmdtyPrecsMtlsInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsInAm != null">
+        #{cmdtyPrecsMtlsInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsOutCt != null">
+        #{cmdtyPrecsMtlsOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsOutAm != null">
+        #{cmdtyPrecsMtlsOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnCt != null">
+        #{dbtCardTrxnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnAm != null">
+        #{dbtCardTrxnAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnDayCt != null">
+        #{dbtCardTrxnDayCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDbtMemoAm != null">
+        #{totDbtMemoAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDbtMemoCt != null">
+        #{totDbtMemoCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totCdtMemoAm != null">
+        #{totCdtMemoAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCdtMemoCt != null">
+        #{totCdtMemoCt,jdbcType=DECIMAL},
+      </if>
+      <if test="disHonrdChkOutCt != null">
+        #{disHonrdChkOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="disHonrdChkInCt != null">
+        #{disHonrdChkInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totNvsmtMgrFeeAm != null">
+        #{totNvsmtMgrFeeAm,jdbcType=DECIMAL},
+      </if>
+      <if test="maxIhhJrnlActvyRiskInNb != null">
+        #{maxIhhJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxIhhJrnlActvyRiskOutNb != null">
+        #{maxIhhJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxJrnlActvyRiskInNb != null">
+        #{maxJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxJrnlActvyRiskOutNb != null">
+        #{maxJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnInCt != null">
+        #{domWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnInAm != null">
+        #{domWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnOutCt != null">
+        #{domWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnOutAm != null">
+        #{domWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="maxWireActvyRiskInNb != null">
+        #{maxWireActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxWireActvyRiskOutNb != null">
+        #{maxWireActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxMiActvyRiskInNb != null">
+        #{maxMiActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxMiActvyRiskOutNb != null">
+        #{maxMiActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCashActvyRiskInNb != null">
+        #{maxCashActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCashActvyRiskOutNb != null">
+        #{maxCashActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCheckActvyRiskInNb != null">
+        #{maxCheckActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCheckActvyRiskOutNb != null">
+        #{maxCheckActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCmdtyActvyRiskInNb != null">
+        #{maxCmdtyActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCmdtyActvyRiskOutNb != null">
+        #{maxCmdtyActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcAllInCt != null">
+        #{rdcAllInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcAllInAm != null">
+        #{rdcAllInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMobileInCt != null">
+        #{rdcMobileInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMobileInAm != null">
+        #{rdcMobileInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcPcInCt != null">
+        #{rdcPcInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcPcInAm != null">
+        #{rdcPcInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcTerminalInCt != null">
+        #{rdcTerminalInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcTerminalInAm != null">
+        #{rdcTerminalInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMerchantInCt != null">
+        #{rdcMerchantInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMerchantInAm != null">
+        #{rdcMerchantInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcLockBoxInCt != null">
+        #{rdcLockBoxInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcLockBoxInAm != null">
+        #{rdcLockBoxInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcRedepositInCt != null">
+        #{rdcRedepositInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcRedepositInAm != null">
+        #{rdcRedepositInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcKlikInCt != null">
+        #{rdcKlikInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcKlikInAm != null">
+        #{rdcKlikInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcClientInCt != null">
+        #{rdcClientInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcClientInAm != null">
+        #{rdcClientInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcVendorInCt != null">
+        #{rdcVendorInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcVendorInAm != null">
+        #{rdcVendorInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcOtherInCt != null">
+        #{rdcOtherInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcOtherInAm != null">
+        #{rdcOtherInAm,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily">
+    update [mantas].[ACCT_TRXN_SMRY_DAILY]
+    <set>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDlySmrySeqId != null">
+        [ACCT_DLY_SMRY_SEQ_ID] = #{acctDlySmrySeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlInCt != null">
+        [INTER_HH_JRNL_IN_CT] = #{interHhJrnlInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlInAm != null">
+        [INTER_HH_JRNL_IN_AM] = #{interHhJrnlInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlOutCt != null">
+        [INTER_HH_JRNL_OUT_CT] = #{interHhJrnlOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhJrnlOutAm != null">
+        [INTER_HH_JRNL_OUT_AM] = #{interHhJrnlOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhScrtyJrnlInCt != null">
+        [INTER_HH_SCRTY_JRNL_IN_CT] = #{interHhScrtyJrnlInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="interHhScrtyJrnlOutCt != null">
+        [INTER_HH_SCRTY_JRNL_OUT_CT] = #{interHhScrtyJrnlOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDepstCt != null">
+        [TOT_DEPST_CT] = #{totDepstCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDepstAm != null">
+        [TOT_DEPST_AM] = #{totDepstAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totWdrwlCt != null">
+        [TOT_WDRWL_CT] = #{totWdrwlCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totWdrwlAm != null">
+        [TOT_WDRWL_AM] = #{totWdrwlAm,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnInCt != null">
+        [WIRE_TRXN_IN_CT] = #{wireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnInAm != null">
+        [WIRE_TRXN_IN_AM] = #{wireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnOutCt != null">
+        [WIRE_TRXN_OUT_CT] = #{wireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="wireTrxnOutAm != null">
+        [WIRE_TRXN_OUT_AM] = #{wireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnInCt != null">
+        [HRG_WIRE_TRXN_IN_CT] = #{hrgWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnInAm != null">
+        [HRG_WIRE_TRXN_IN_AM] = #{hrgWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnOutCt != null">
+        [HRG_WIRE_TRXN_OUT_CT] = #{hrgWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgWireTrxnOutAm != null">
+        [HRG_WIRE_TRXN_OUT_AM] = #{hrgWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnInCt != null">
+        [FRGN_WIRE_TRXN_IN_CT] = #{frgnWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnInAm != null">
+        [FRGN_WIRE_TRXN_IN_AM] = #{frgnWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnOutCt != null">
+        [FRGN_WIRE_TRXN_OUT_CT] = #{frgnWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnWireTrxnOutAm != null">
+        [FRGN_WIRE_TRXN_OUT_AM] = #{frgnWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWireInCt != null">
+        [THRD_PARTY_WIRE_IN_CT] = #{thrdPartyWireInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWireInAm != null">
+        [THRD_PARTY_WIRE_IN_AM] = #{thrdPartyWireInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWiresOutCt != null">
+        [THRD_PARTY_WIRES_OUT_CT] = #{thrdPartyWiresOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWiresOutAm != null">
+        [THRD_PARTY_WIRES_OUT_AM] = #{thrdPartyWiresOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnInCt != null">
+        [HRG_CHK_TRXN_IN_CT] = #{hrgChkTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnInAm != null">
+        [HRG_CHK_TRXN_IN_AM] = #{hrgChkTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnOutCt != null">
+        [HRG_CHK_TRXN_OUT_CT] = #{hrgChkTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgChkTrxnOutAm != null">
+        [HRG_CHK_TRXN_OUT_AM] = #{hrgChkTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnInCt != null">
+        [HRG_CL_TRXN_IN_CT] = #{hrgClTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnInAm != null">
+        [HRG_CL_TRXN_IN_AM] = #{hrgClTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnOutCt != null">
+        [HRG_CL_TRXN_OUT_CT] = #{hrgClTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hrgClTrxnOutAm != null">
+        [HRG_CL_TRXN_OUT_AM] = #{hrgClTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnInCt != null">
+        [FRGN_CHK_TRXN_IN_CT] = #{frgnChkTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnInAm != null">
+        [FRGN_CHK_TRXN_IN_AM] = #{frgnChkTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnOutCt != null">
+        [FRGN_CHK_TRXN_OUT_CT] = #{frgnChkTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="frgnChkTrxnOutAm != null">
+        [FRGN_CHK_TRXN_OUT_AM] = #{frgnChkTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnInCt != null">
+        [CASH_EQUIV_TRXN_IN_CT] = #{cashEquivTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnInAm != null">
+        [CASH_EQUIV_TRXN_IN_AM] = #{cashEquivTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnOutCt != null">
+        [CASH_EQUIV_TRXN_OUT_CT] = #{cashEquivTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashEquivTrxnOutAm != null">
+        [CASH_EQUIV_TRXN_OUT_AM] = #{cashEquivTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnInCt != null">
+        [SCRTY_TRXN_IN_CT] = #{scrtyTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnInAm != null">
+        [SCRTY_TRXN_IN_AM] = #{scrtyTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnOutCt != null">
+        [SCRTY_TRXN_OUT_CT] = #{scrtyTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scrtyTrxnOutAm != null">
+        [SCRTY_TRXN_OUT_AM] = #{scrtyTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkInCt != null">
+        [TOT_CHK_IN_CT] = #{totChkInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkInAm != null">
+        [TOT_CHK_IN_AM] = #{totChkInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkOutCt != null">
+        [TOT_CHK_OUT_CT] = #{totChkOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totChkOutAm != null">
+        [TOT_CHK_OUT_AM] = #{totChkOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnInCt != null">
+        [JRNL_TRXN_IN_CT] = #{jrnlTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnInAm != null">
+        [JRNL_TRXN_IN_AM] = #{jrnlTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnOutCt != null">
+        [JRNL_TRXN_OUT_CT] = #{jrnlTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="jrnlTrxnOutAm != null">
+        [JRNL_TRXN_OUT_AM] = #{jrnlTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWdrwlCt != null">
+        [THRD_PARTY_WDRWL_CT] = #{thrdPartyWdrwlCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyWdrwlAm != null">
+        [THRD_PARTY_WDRWL_AM] = #{thrdPartyWdrwlAm,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyChkDsbmtCt != null">
+        [THRD_PARTY_CHK_DSBMT_CT] = #{thrdPartyChkDsbmtCt,jdbcType=DECIMAL},
+      </if>
+      <if test="thrdPartyChkDsbmtAm != null">
+        [THRD_PARTY_CHK_DSBMT_AM] = #{thrdPartyChkDsbmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnInCt != null">
+        [CASH_TRXN_IN_CT] = #{cashTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnInAm != null">
+        [CASH_TRXN_IN_AM] = #{cashTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnOutCt != null">
+        [CASH_TRXN_OUT_CT] = #{cashTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTrxnOutAm != null">
+        [CASH_TRXN_OUT_AM] = #{cashTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnInCt != null">
+        [EI_TRXN_IN_CT] = #{eiTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnInAm != null">
+        [EI_TRXN_IN_AM] = #{eiTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnOutCt != null">
+        [EI_TRXN_OUT_CT] = #{eiTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="eiTrxnOutAm != null">
+        [EI_TRXN_OUT_AM] = #{eiTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnInCt != null">
+        [ATM_TRXN_IN_CT] = #{atmTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnInAm != null">
+        [ATM_TRXN_IN_AM] = #{atmTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnOutCt != null">
+        [ATM_TRXN_OUT_CT] = #{atmTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="atmTrxnOutAm != null">
+        [ATM_TRXN_OUT_AM] = #{atmTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsInCt != null">
+        [CMDTY_PRECS_MTLS_IN_CT] = #{cmdtyPrecsMtlsInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsInAm != null">
+        [CMDTY_PRECS_MTLS_IN_AM] = #{cmdtyPrecsMtlsInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsOutCt != null">
+        [CMDTY_PRECS_MTLS_OUT_CT] = #{cmdtyPrecsMtlsOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cmdtyPrecsMtlsOutAm != null">
+        [CMDTY_PRECS_MTLS_OUT_AM] = #{cmdtyPrecsMtlsOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnCt != null">
+        [DBT_CARD_TRXN_CT] = #{dbtCardTrxnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnAm != null">
+        [DBT_CARD_TRXN_AM] = #{dbtCardTrxnAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dbtCardTrxnDayCt != null">
+        [DBT_CARD_TRXN_DAY_CT] = #{dbtCardTrxnDayCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totDbtMemoAm != null">
+        [TOT_DBT_MEMO_AM] = #{totDbtMemoAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDbtMemoCt != null">
+        [TOT_DBT_MEMO_CT] = #{totDbtMemoCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totCdtMemoAm != null">
+        [TOT_CDT_MEMO_AM] = #{totCdtMemoAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCdtMemoCt != null">
+        [TOT_CDT_MEMO_CT] = #{totCdtMemoCt,jdbcType=DECIMAL},
+      </if>
+      <if test="disHonrdChkOutCt != null">
+        [DIS_HONRD_CHK_OUT_CT] = #{disHonrdChkOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="disHonrdChkInCt != null">
+        [DIS_HONRD_CHK_IN_CT] = #{disHonrdChkInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="totNvsmtMgrFeeAm != null">
+        [TOT_NVSMT_MGR_FEE_AM] = #{totNvsmtMgrFeeAm,jdbcType=DECIMAL},
+      </if>
+      <if test="maxIhhJrnlActvyRiskInNb != null">
+        [MAX_IHH_JRNL_ACTVY_RISK_IN_NB] = #{maxIhhJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxIhhJrnlActvyRiskOutNb != null">
+        [MAX_IHH_JRNL_ACTVY_RISK_OUT_NB] = #{maxIhhJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxJrnlActvyRiskInNb != null">
+        [MAX_JRNL_ACTVY_RISK_IN_NB] = #{maxJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxJrnlActvyRiskOutNb != null">
+        [MAX_JRNL_ACTVY_RISK_OUT_NB] = #{maxJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnInCt != null">
+        [DOM_WIRE_TRXN_IN_CT] = #{domWireTrxnInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnInAm != null">
+        [DOM_WIRE_TRXN_IN_AM] = #{domWireTrxnInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnOutCt != null">
+        [DOM_WIRE_TRXN_OUT_CT] = #{domWireTrxnOutCt,jdbcType=DECIMAL},
+      </if>
+      <if test="domWireTrxnOutAm != null">
+        [DOM_WIRE_TRXN_OUT_AM] = #{domWireTrxnOutAm,jdbcType=DECIMAL},
+      </if>
+      <if test="maxWireActvyRiskInNb != null">
+        [MAX_WIRE_ACTVY_RISK_IN_NB] = #{maxWireActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxWireActvyRiskOutNb != null">
+        [MAX_WIRE_ACTVY_RISK_OUT_NB] = #{maxWireActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxMiActvyRiskInNb != null">
+        [MAX_MI_ACTVY_RISK_IN_NB] = #{maxMiActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxMiActvyRiskOutNb != null">
+        [MAX_MI_ACTVY_RISK_OUT_NB] = #{maxMiActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCashActvyRiskInNb != null">
+        [MAX_CASH_ACTVY_RISK_IN_NB] = #{maxCashActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCashActvyRiskOutNb != null">
+        [MAX_CASH_ACTVY_RISK_OUT_NB] = #{maxCashActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCheckActvyRiskInNb != null">
+        [MAX_CHECK_ACTVY_RISK_IN_NB] = #{maxCheckActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCheckActvyRiskOutNb != null">
+        [MAX_CHECK_ACTVY_RISK_OUT_NB] = #{maxCheckActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCmdtyActvyRiskInNb != null">
+        [MAX_CMDTY_ACTVY_RISK_IN_NB] = #{maxCmdtyActvyRiskInNb,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCmdtyActvyRiskOutNb != null">
+        [MAX_CMDTY_ACTVY_RISK_OUT_NB] = #{maxCmdtyActvyRiskOutNb,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcAllInCt != null">
+        [RDC_ALL_IN_CT] = #{rdcAllInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcAllInAm != null">
+        [RDC_ALL_IN_AM] = #{rdcAllInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMobileInCt != null">
+        [RDC_MOBILE_IN_CT] = #{rdcMobileInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMobileInAm != null">
+        [RDC_MOBILE_IN_AM] = #{rdcMobileInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcPcInCt != null">
+        [RDC_PC_IN_CT] = #{rdcPcInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcPcInAm != null">
+        [RDC_PC_IN_AM] = #{rdcPcInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcTerminalInCt != null">
+        [RDC_TERMINAL_IN_CT] = #{rdcTerminalInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcTerminalInAm != null">
+        [RDC_TERMINAL_IN_AM] = #{rdcTerminalInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMerchantInCt != null">
+        [RDC_MERCHANT_IN_CT] = #{rdcMerchantInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcMerchantInAm != null">
+        [RDC_MERCHANT_IN_AM] = #{rdcMerchantInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcLockBoxInCt != null">
+        [RDC_LOCK_BOX_IN_CT] = #{rdcLockBoxInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcLockBoxInAm != null">
+        [RDC_LOCK_BOX_IN_AM] = #{rdcLockBoxInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcRedepositInCt != null">
+        [RDC_REDEPOSIT_IN_CT] = #{rdcRedepositInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcRedepositInAm != null">
+        [RDC_REDEPOSIT_IN_AM] = #{rdcRedepositInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcKlikInCt != null">
+        [RDC_KLIK_IN_CT] = #{rdcKlikInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcKlikInAm != null">
+        [RDC_KLIK_IN_AM] = #{rdcKlikInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcClientInCt != null">
+        [RDC_CLIENT_IN_CT] = #{rdcClientInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcClientInAm != null">
+        [RDC_CLIENT_IN_AM] = #{rdcClientInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcVendorInCt != null">
+        [RDC_VENDOR_IN_CT] = #{rdcVendorInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcVendorInAm != null">
+        [RDC_VENDOR_IN_AM] = #{rdcVendorInAm,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcOtherInCt != null">
+        [RDC_OTHER_IN_CT] = #{rdcOtherInCt,jdbcType=DECIMAL},
+      </if>
+      <if test="rdcOtherInAm != null">
+        [RDC_OTHER_IN_AM] = #{rdcOtherInAm,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AcctTrxnSmryDaily">
+    update [mantas].[ACCT_TRXN_SMRY_DAILY]
+    set [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [ACCT_DLY_SMRY_SEQ_ID] = #{acctDlySmrySeqId,jdbcType=DECIMAL},
+      [INTER_HH_JRNL_IN_CT] = #{interHhJrnlInCt,jdbcType=DECIMAL},
+      [INTER_HH_JRNL_IN_AM] = #{interHhJrnlInAm,jdbcType=DECIMAL},
+      [INTER_HH_JRNL_OUT_CT] = #{interHhJrnlOutCt,jdbcType=DECIMAL},
+      [INTER_HH_JRNL_OUT_AM] = #{interHhJrnlOutAm,jdbcType=DECIMAL},
+      [INTER_HH_SCRTY_JRNL_IN_CT] = #{interHhScrtyJrnlInCt,jdbcType=DECIMAL},
+      [INTER_HH_SCRTY_JRNL_OUT_CT] = #{interHhScrtyJrnlOutCt,jdbcType=DECIMAL},
+      [TOT_DEPST_CT] = #{totDepstCt,jdbcType=DECIMAL},
+      [TOT_DEPST_AM] = #{totDepstAm,jdbcType=DECIMAL},
+      [TOT_WDRWL_CT] = #{totWdrwlCt,jdbcType=DECIMAL},
+      [TOT_WDRWL_AM] = #{totWdrwlAm,jdbcType=DECIMAL},
+      [WIRE_TRXN_IN_CT] = #{wireTrxnInCt,jdbcType=DECIMAL},
+      [WIRE_TRXN_IN_AM] = #{wireTrxnInAm,jdbcType=DECIMAL},
+      [WIRE_TRXN_OUT_CT] = #{wireTrxnOutCt,jdbcType=DECIMAL},
+      [WIRE_TRXN_OUT_AM] = #{wireTrxnOutAm,jdbcType=DECIMAL},
+      [HRG_WIRE_TRXN_IN_CT] = #{hrgWireTrxnInCt,jdbcType=DECIMAL},
+      [HRG_WIRE_TRXN_IN_AM] = #{hrgWireTrxnInAm,jdbcType=DECIMAL},
+      [HRG_WIRE_TRXN_OUT_CT] = #{hrgWireTrxnOutCt,jdbcType=DECIMAL},
+      [HRG_WIRE_TRXN_OUT_AM] = #{hrgWireTrxnOutAm,jdbcType=DECIMAL},
+      [FRGN_WIRE_TRXN_IN_CT] = #{frgnWireTrxnInCt,jdbcType=DECIMAL},
+      [FRGN_WIRE_TRXN_IN_AM] = #{frgnWireTrxnInAm,jdbcType=DECIMAL},
+      [FRGN_WIRE_TRXN_OUT_CT] = #{frgnWireTrxnOutCt,jdbcType=DECIMAL},
+      [FRGN_WIRE_TRXN_OUT_AM] = #{frgnWireTrxnOutAm,jdbcType=DECIMAL},
+      [THRD_PARTY_WIRE_IN_CT] = #{thrdPartyWireInCt,jdbcType=DECIMAL},
+      [THRD_PARTY_WIRE_IN_AM] = #{thrdPartyWireInAm,jdbcType=DECIMAL},
+      [THRD_PARTY_WIRES_OUT_CT] = #{thrdPartyWiresOutCt,jdbcType=DECIMAL},
+      [THRD_PARTY_WIRES_OUT_AM] = #{thrdPartyWiresOutAm,jdbcType=DECIMAL},
+      [HRG_CHK_TRXN_IN_CT] = #{hrgChkTrxnInCt,jdbcType=DECIMAL},
+      [HRG_CHK_TRXN_IN_AM] = #{hrgChkTrxnInAm,jdbcType=DECIMAL},
+      [HRG_CHK_TRXN_OUT_CT] = #{hrgChkTrxnOutCt,jdbcType=DECIMAL},
+      [HRG_CHK_TRXN_OUT_AM] = #{hrgChkTrxnOutAm,jdbcType=DECIMAL},
+      [HRG_CL_TRXN_IN_CT] = #{hrgClTrxnInCt,jdbcType=DECIMAL},
+      [HRG_CL_TRXN_IN_AM] = #{hrgClTrxnInAm,jdbcType=DECIMAL},
+      [HRG_CL_TRXN_OUT_CT] = #{hrgClTrxnOutCt,jdbcType=DECIMAL},
+      [HRG_CL_TRXN_OUT_AM] = #{hrgClTrxnOutAm,jdbcType=DECIMAL},
+      [FRGN_CHK_TRXN_IN_CT] = #{frgnChkTrxnInCt,jdbcType=DECIMAL},
+      [FRGN_CHK_TRXN_IN_AM] = #{frgnChkTrxnInAm,jdbcType=DECIMAL},
+      [FRGN_CHK_TRXN_OUT_CT] = #{frgnChkTrxnOutCt,jdbcType=DECIMAL},
+      [FRGN_CHK_TRXN_OUT_AM] = #{frgnChkTrxnOutAm,jdbcType=DECIMAL},
+      [CASH_EQUIV_TRXN_IN_CT] = #{cashEquivTrxnInCt,jdbcType=DECIMAL},
+      [CASH_EQUIV_TRXN_IN_AM] = #{cashEquivTrxnInAm,jdbcType=DECIMAL},
+      [CASH_EQUIV_TRXN_OUT_CT] = #{cashEquivTrxnOutCt,jdbcType=DECIMAL},
+      [CASH_EQUIV_TRXN_OUT_AM] = #{cashEquivTrxnOutAm,jdbcType=DECIMAL},
+      [SCRTY_TRXN_IN_CT] = #{scrtyTrxnInCt,jdbcType=DECIMAL},
+      [SCRTY_TRXN_IN_AM] = #{scrtyTrxnInAm,jdbcType=DECIMAL},
+      [SCRTY_TRXN_OUT_CT] = #{scrtyTrxnOutCt,jdbcType=DECIMAL},
+      [SCRTY_TRXN_OUT_AM] = #{scrtyTrxnOutAm,jdbcType=DECIMAL},
+      [TOT_CHK_IN_CT] = #{totChkInCt,jdbcType=DECIMAL},
+      [TOT_CHK_IN_AM] = #{totChkInAm,jdbcType=DECIMAL},
+      [TOT_CHK_OUT_CT] = #{totChkOutCt,jdbcType=DECIMAL},
+      [TOT_CHK_OUT_AM] = #{totChkOutAm,jdbcType=DECIMAL},
+      [JRNL_TRXN_IN_CT] = #{jrnlTrxnInCt,jdbcType=DECIMAL},
+      [JRNL_TRXN_IN_AM] = #{jrnlTrxnInAm,jdbcType=DECIMAL},
+      [JRNL_TRXN_OUT_CT] = #{jrnlTrxnOutCt,jdbcType=DECIMAL},
+      [JRNL_TRXN_OUT_AM] = #{jrnlTrxnOutAm,jdbcType=DECIMAL},
+      [THRD_PARTY_WDRWL_CT] = #{thrdPartyWdrwlCt,jdbcType=DECIMAL},
+      [THRD_PARTY_WDRWL_AM] = #{thrdPartyWdrwlAm,jdbcType=DECIMAL},
+      [THRD_PARTY_CHK_DSBMT_CT] = #{thrdPartyChkDsbmtCt,jdbcType=DECIMAL},
+      [THRD_PARTY_CHK_DSBMT_AM] = #{thrdPartyChkDsbmtAm,jdbcType=DECIMAL},
+      [CASH_TRXN_IN_CT] = #{cashTrxnInCt,jdbcType=DECIMAL},
+      [CASH_TRXN_IN_AM] = #{cashTrxnInAm,jdbcType=DECIMAL},
+      [CASH_TRXN_OUT_CT] = #{cashTrxnOutCt,jdbcType=DECIMAL},
+      [CASH_TRXN_OUT_AM] = #{cashTrxnOutAm,jdbcType=DECIMAL},
+      [EI_TRXN_IN_CT] = #{eiTrxnInCt,jdbcType=DECIMAL},
+      [EI_TRXN_IN_AM] = #{eiTrxnInAm,jdbcType=DECIMAL},
+      [EI_TRXN_OUT_CT] = #{eiTrxnOutCt,jdbcType=DECIMAL},
+      [EI_TRXN_OUT_AM] = #{eiTrxnOutAm,jdbcType=DECIMAL},
+      [ATM_TRXN_IN_CT] = #{atmTrxnInCt,jdbcType=DECIMAL},
+      [ATM_TRXN_IN_AM] = #{atmTrxnInAm,jdbcType=DECIMAL},
+      [ATM_TRXN_OUT_CT] = #{atmTrxnOutCt,jdbcType=DECIMAL},
+      [ATM_TRXN_OUT_AM] = #{atmTrxnOutAm,jdbcType=DECIMAL},
+      [CMDTY_PRECS_MTLS_IN_CT] = #{cmdtyPrecsMtlsInCt,jdbcType=DECIMAL},
+      [CMDTY_PRECS_MTLS_IN_AM] = #{cmdtyPrecsMtlsInAm,jdbcType=DECIMAL},
+      [CMDTY_PRECS_MTLS_OUT_CT] = #{cmdtyPrecsMtlsOutCt,jdbcType=DECIMAL},
+      [CMDTY_PRECS_MTLS_OUT_AM] = #{cmdtyPrecsMtlsOutAm,jdbcType=DECIMAL},
+      [DBT_CARD_TRXN_CT] = #{dbtCardTrxnCt,jdbcType=DECIMAL},
+      [DBT_CARD_TRXN_AM] = #{dbtCardTrxnAm,jdbcType=DECIMAL},
+      [DBT_CARD_TRXN_DAY_CT] = #{dbtCardTrxnDayCt,jdbcType=DECIMAL},
+      [TOT_DBT_MEMO_AM] = #{totDbtMemoAm,jdbcType=DECIMAL},
+      [TOT_DBT_MEMO_CT] = #{totDbtMemoCt,jdbcType=DECIMAL},
+      [TOT_CDT_MEMO_AM] = #{totCdtMemoAm,jdbcType=DECIMAL},
+      [TOT_CDT_MEMO_CT] = #{totCdtMemoCt,jdbcType=DECIMAL},
+      [DIS_HONRD_CHK_OUT_CT] = #{disHonrdChkOutCt,jdbcType=DECIMAL},
+      [DIS_HONRD_CHK_IN_CT] = #{disHonrdChkInCt,jdbcType=DECIMAL},
+      [TOT_NVSMT_MGR_FEE_AM] = #{totNvsmtMgrFeeAm,jdbcType=DECIMAL},
+      [MAX_IHH_JRNL_ACTVY_RISK_IN_NB] = #{maxIhhJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_IHH_JRNL_ACTVY_RISK_OUT_NB] = #{maxIhhJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      [MAX_JRNL_ACTVY_RISK_IN_NB] = #{maxJrnlActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_JRNL_ACTVY_RISK_OUT_NB] = #{maxJrnlActvyRiskOutNb,jdbcType=DECIMAL},
+      [DOM_WIRE_TRXN_IN_CT] = #{domWireTrxnInCt,jdbcType=DECIMAL},
+      [DOM_WIRE_TRXN_IN_AM] = #{domWireTrxnInAm,jdbcType=DECIMAL},
+      [DOM_WIRE_TRXN_OUT_CT] = #{domWireTrxnOutCt,jdbcType=DECIMAL},
+      [DOM_WIRE_TRXN_OUT_AM] = #{domWireTrxnOutAm,jdbcType=DECIMAL},
+      [MAX_WIRE_ACTVY_RISK_IN_NB] = #{maxWireActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_WIRE_ACTVY_RISK_OUT_NB] = #{maxWireActvyRiskOutNb,jdbcType=DECIMAL},
+      [MAX_MI_ACTVY_RISK_IN_NB] = #{maxMiActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_MI_ACTVY_RISK_OUT_NB] = #{maxMiActvyRiskOutNb,jdbcType=DECIMAL},
+      [MAX_CASH_ACTVY_RISK_IN_NB] = #{maxCashActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_CASH_ACTVY_RISK_OUT_NB] = #{maxCashActvyRiskOutNb,jdbcType=DECIMAL},
+      [MAX_CHECK_ACTVY_RISK_IN_NB] = #{maxCheckActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_CHECK_ACTVY_RISK_OUT_NB] = #{maxCheckActvyRiskOutNb,jdbcType=DECIMAL},
+      [MAX_CMDTY_ACTVY_RISK_IN_NB] = #{maxCmdtyActvyRiskInNb,jdbcType=DECIMAL},
+      [MAX_CMDTY_ACTVY_RISK_OUT_NB] = #{maxCmdtyActvyRiskOutNb,jdbcType=DECIMAL},
+      [RDC_ALL_IN_CT] = #{rdcAllInCt,jdbcType=DECIMAL},
+      [RDC_ALL_IN_AM] = #{rdcAllInAm,jdbcType=DECIMAL},
+      [RDC_MOBILE_IN_CT] = #{rdcMobileInCt,jdbcType=DECIMAL},
+      [RDC_MOBILE_IN_AM] = #{rdcMobileInAm,jdbcType=DECIMAL},
+      [RDC_PC_IN_CT] = #{rdcPcInCt,jdbcType=DECIMAL},
+      [RDC_PC_IN_AM] = #{rdcPcInAm,jdbcType=DECIMAL},
+      [RDC_TERMINAL_IN_CT] = #{rdcTerminalInCt,jdbcType=DECIMAL},
+      [RDC_TERMINAL_IN_AM] = #{rdcTerminalInAm,jdbcType=DECIMAL},
+      [RDC_MERCHANT_IN_CT] = #{rdcMerchantInCt,jdbcType=DECIMAL},
+      [RDC_MERCHANT_IN_AM] = #{rdcMerchantInAm,jdbcType=DECIMAL},
+      [RDC_LOCK_BOX_IN_CT] = #{rdcLockBoxInCt,jdbcType=DECIMAL},
+      [RDC_LOCK_BOX_IN_AM] = #{rdcLockBoxInAm,jdbcType=DECIMAL},
+      [RDC_REDEPOSIT_IN_CT] = #{rdcRedepositInCt,jdbcType=DECIMAL},
+      [RDC_REDEPOSIT_IN_AM] = #{rdcRedepositInAm,jdbcType=DECIMAL},
+      [RDC_KLIK_IN_CT] = #{rdcKlikInCt,jdbcType=DECIMAL},
+      [RDC_KLIK_IN_AM] = #{rdcKlikInAm,jdbcType=DECIMAL},
+      [RDC_CLIENT_IN_CT] = #{rdcClientInCt,jdbcType=DECIMAL},
+      [RDC_CLIENT_IN_AM] = #{rdcClientInAm,jdbcType=DECIMAL},
+      [RDC_VENDOR_IN_CT] = #{rdcVendorInCt,jdbcType=DECIMAL},
+      [RDC_VENDOR_IN_AM] = #{rdcVendorInAm,jdbcType=DECIMAL},
+      [RDC_OTHER_IN_CT] = #{rdcOtherInCt,jdbcType=DECIMAL},
+      [RDC_OTHER_IN_AM] = #{rdcOtherInAm,jdbcType=DECIMAL}
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

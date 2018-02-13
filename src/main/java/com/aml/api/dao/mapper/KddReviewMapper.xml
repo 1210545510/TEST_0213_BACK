@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.KddReviewMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.KddReview">
+    <result column="REVIEW_ID" jdbcType="DECIMAL" property="reviewId" />
+    <result column="CREAT_ID" jdbcType="DECIMAL" property="creatId" />
+    <result column="CREAT_TS" jdbcType="TIMESTAMP" property="creatTs" />
+    <result column="LOCK_ID" jdbcType="DECIMAL" property="lockId" />
+    <result column="LOCK_TS" jdbcType="TIMESTAMP" property="lockTs" />
+    <result column="STATUS_CD" jdbcType="VARCHAR" property="statusCd" />
+    <result column="STATUS_DT" jdbcType="TIMESTAMP" property="statusDt" />
+    <result column="CNTRY_ID" jdbcType="DECIMAL" property="cntryId" />
+    <result column="CLS_ID" jdbcType="DECIMAL" property="clsId" />
+    <result column="CNTRY_KEY_ID" jdbcType="VARCHAR" property="cntryKeyId" />
+    <result column="SCNRO_ID" jdbcType="DECIMAL" property="scnroId" />
+    <result column="SCNRO_CLASS_CD" jdbcType="VARCHAR" property="scnroClassCd" />
+    <result column="PTTRN_ID" jdbcType="DECIMAL" property="pttrnId" />
+    <result column="DMN_CD" jdbcType="VARCHAR" property="dmnCd" />
+    <result column="ALERT_CT" jdbcType="DECIMAL" property="alertCt" />
+    <result column="REOPN_FL" jdbcType="VARCHAR" property="reopnFl" />
+    <result column="REASN_FL" jdbcType="VARCHAR" property="reasnFl" />
+    <result column="OWNER_SEQ_ID" jdbcType="DECIMAL" property="ownerSeqId" />
+    <result column="SCNRO_CT" jdbcType="DECIMAL" property="scnroCt" />
+    <result column="SCORE_CT" jdbcType="DECIMAL" property="scoreCt" />
+    <result column="SCORE_FL" jdbcType="VARCHAR" property="scoreFl" />
+    <result column="DUE_DT" jdbcType="TIMESTAMP" property="dueDt" />
+    <result column="AUTO_CLS_CT" jdbcType="DECIMAL" property="autoClsCt" />
+    <result column="CSTM_1_TX" jdbcType="VARCHAR" property="cstm1Tx" />
+    <result column="CSTM_2_TX" jdbcType="VARCHAR" property="cstm2Tx" />
+    <result column="CSTM_3_TX" jdbcType="VARCHAR" property="cstm3Tx" />
+    <result column="CSTM_4_TX" jdbcType="VARCHAR" property="cstm4Tx" />
+    <result column="CSTM_5_TX" jdbcType="VARCHAR" property="cstm5Tx" />
+    <result column="CSTM_1_DT" jdbcType="TIMESTAMP" property="cstm1Dt" />
+    <result column="CSTM_2_DT" jdbcType="TIMESTAMP" property="cstm2Dt" />
+    <result column="CSTM_3_DT" jdbcType="TIMESTAMP" property="cstm3Dt" />
+    <result column="CSTM_1_RL" jdbcType="DECIMAL" property="cstm1Rl" />
+    <result column="CSTM_2_RL" jdbcType="DECIMAL" property="cstm2Rl" />
+    <result column="CSTM_3_RL" jdbcType="DECIMAL" property="cstm3Rl" />
+    <result column="AUTO_REASN_FL" jdbcType="VARCHAR" property="autoReasnFl" />
+    <result column="LAST_ACTVY_TYPE_CD" jdbcType="VARCHAR" property="lastActvyTypeCd" />
+    <result column="PREV_MATCH_CT_SM_SCNRO" jdbcType="DECIMAL" property="prevMatchCtSmScnro" />
+    <result column="PREV_MATCH_CT_ALL" jdbcType="DECIMAL" property="prevMatchCtAll" />
+    <result column="OWNER_ORG" jdbcType="VARCHAR" property="ownerOrg" />
+    <result column="AGE" jdbcType="DECIMAL" property="age" />
+    <result column="FOCAL_NTITY_DSPLY_NM" jdbcType="VARCHAR" property="focalNtityDsplyNm" />
+    <result column="FOCAL_NTITY_DSPLY_ID" jdbcType="VARCHAR" property="focalNtityDsplyId" />
+    <result column="PREV_MATCH_CT_SM_SCNRO_CLASS" jdbcType="DECIMAL" property="prevMatchCtSmScnroClass" />
+    <result column="SEND_NTFCTN_CD" jdbcType="VARCHAR" property="sendNtfctnCd" />
+    <result column="BUS_DMN_ST" jdbcType="VARCHAR" property="busDmnSt" />
+    <result column="BUS_DMN_DSPLY_NM_ST" jdbcType="VARCHAR" property="busDmnDsplyNmSt" />
+    <result column="JRSDCN_CD" jdbcType="VARCHAR" property="jrsdcnCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="PRCSNG_BATCH_CMPLT_FL" jdbcType="VARCHAR" property="prcsngBatchCmpltFl" />
+    <result column="HILGT_TX" jdbcType="VARCHAR" property="hilgtTx" />
+    <result column="ORIG_OWNER_SEQ_ID" jdbcType="DECIMAL" property="origOwnerSeqId" />
+    <result column="CLS_ACTVY_TYPE_CD" jdbcType="VARCHAR" property="clsActvyTypeCd" />
+    <result column="CLS_CLASS_CD" jdbcType="VARCHAR" property="clsClassCd" />
+    <result column="SCNRO_DISPL_NM" jdbcType="VARCHAR" property="scnroDisplNm" />
+    <result column="EXTRL_REF_ID" jdbcType="VARCHAR" property="extrlRefId" />
+    <result column="EXTRL_REF_LINK" jdbcType="VARCHAR" property="extrlRefLink" />
+    <result column="EXTRL_REF_SRC_ID" jdbcType="VARCHAR" property="extrlRefSrcId" />
+    <result column="RQST_AUDIT_SEQ_ID" jdbcType="DECIMAL" property="rqstAuditSeqId" />
+    <result column="PRCSNG_DT" jdbcType="TIMESTAMP" property="prcsngDt" />
+    <result column="REVIEW_TYPE_CD" jdbcType="VARCHAR" property="reviewTypeCd" />
+    <result column="ALERT_CASE_CT" jdbcType="DECIMAL" property="alertCaseCt" />
+    <result column="LAST_LINK_FL" jdbcType="VARCHAR" property="lastLinkFl" />
+    <result column="LINK_UPDT_TS" jdbcType="TIMESTAMP" property="linkUpdtTs" />
+    <result column="LINK_UPDT_ID" jdbcType="DECIMAL" property="linkUpdtId" />
+    <result column="REG_STATUS_LIST" jdbcType="VARCHAR" property="regStatusList" />
+    <result column="PURGE_RULE_OVERRIDE_FL" jdbcType="VARCHAR" property="purgeRuleOverrideFl" />
+    <result column="CNTRY_TYPE_CD" jdbcType="VARCHAR" property="cntryTypeCd" />
+    <result column="EXTRL_ALERT_STATUS" jdbcType="VARCHAR" property="extrlAlertStatus" />
+    <result column="EXTRL_ALERT_DTLS" jdbcType="VARCHAR" property="extrlAlertDtls" />
+    <result column="EXTRL_ALERT_DESC_TX" jdbcType="VARCHAR" property="extrlAlertDescTx" />
+    <result column="REPORTED_BY" jdbcType="VARCHAR" property="reportedBy" />
+    <result column="ALERT_PRIORITY" jdbcType="VARCHAR" property="alertPriority" />
+    <result column="ALERT_RISK" jdbcType="VARCHAR" property="alertRisk" />
+    <result column="EVENT_END_DT" jdbcType="TIMESTAMP" property="eventEndDt" />
+    <result column="EVENT_OCCURENCE_TYPE" jdbcType="VARCHAR" property="eventOccurenceType" />
+    <result column="EVENT_START_DT" jdbcType="TIMESTAMP" property="eventStartDt" />
+  </resultMap>
+  <insert id="insert" parameterType="com.aml.api.pojo.KddReview">
+    insert into [mantas].[KDD_REVIEW] ([REVIEW_ID], [CREAT_ID], [CREAT_TS], 
+      [LOCK_ID], [LOCK_TS], [STATUS_CD], 
+      [STATUS_DT], [CNTRY_ID], [CLS_ID], 
+      [CNTRY_KEY_ID], [SCNRO_ID], [SCNRO_CLASS_CD], 
+      [PTTRN_ID], [DMN_CD], [ALERT_CT], 
+      [REOPN_FL], [REASN_FL], [OWNER_SEQ_ID], 
+      [SCNRO_CT], [SCORE_CT], [SCORE_FL], 
+      [DUE_DT], [AUTO_CLS_CT], [CSTM_1_TX], 
+      [CSTM_2_TX], [CSTM_3_TX], [CSTM_4_TX], 
+      [CSTM_5_TX], [CSTM_1_DT], [CSTM_2_DT], 
+      [CSTM_3_DT], [CSTM_1_RL], [CSTM_2_RL], 
+      [CSTM_3_RL], [AUTO_REASN_FL], [LAST_ACTVY_TYPE_CD], 
+      [PREV_MATCH_CT_SM_SCNRO], [PREV_MATCH_CT_ALL], [OWNER_ORG], 
+      [AGE], [FOCAL_NTITY_DSPLY_NM], [FOCAL_NTITY_DSPLY_ID], 
+      [PREV_MATCH_CT_SM_SCNRO_CLASS], [SEND_NTFCTN_CD], 
+      [BUS_DMN_ST], [BUS_DMN_DSPLY_NM_ST], [JRSDCN_CD], 
+      [PRCSNG_BATCH_NM], [PRCSNG_BATCH_CMPLT_FL], [HILGT_TX], 
+      [ORIG_OWNER_SEQ_ID], [CLS_ACTVY_TYPE_CD], [CLS_CLASS_CD], 
+      [SCNRO_DISPL_NM], [EXTRL_REF_ID], [EXTRL_REF_LINK], 
+      [EXTRL_REF_SRC_ID], [RQST_AUDIT_SEQ_ID], [PRCSNG_DT], 
+      [REVIEW_TYPE_CD], [ALERT_CASE_CT], [LAST_LINK_FL], 
+      [LINK_UPDT_TS], [LINK_UPDT_ID], [REG_STATUS_LIST], 
+      [PURGE_RULE_OVERRIDE_FL], [CNTRY_TYPE_CD], [EXTRL_ALERT_STATUS], 
+      [EXTRL_ALERT_DTLS], [EXTRL_ALERT_DESC_TX], [REPORTED_BY], 
+      [ALERT_PRIORITY], [ALERT_RISK], [EVENT_END_DT], 
+      [EVENT_OCCURENCE_TYPE], [EVENT_START_DT])
+    values (#{reviewId,jdbcType=DECIMAL}, #{creatId,jdbcType=DECIMAL}, #{creatTs,jdbcType=TIMESTAMP}, 
+      #{lockId,jdbcType=DECIMAL}, #{lockTs,jdbcType=TIMESTAMP}, #{statusCd,jdbcType=VARCHAR}, 
+      #{statusDt,jdbcType=TIMESTAMP}, #{cntryId,jdbcType=DECIMAL}, #{clsId,jdbcType=DECIMAL}, 
+      #{cntryKeyId,jdbcType=VARCHAR}, #{scnroId,jdbcType=DECIMAL}, #{scnroClassCd,jdbcType=VARCHAR}, 
+      #{pttrnId,jdbcType=DECIMAL}, #{dmnCd,jdbcType=VARCHAR}, #{alertCt,jdbcType=DECIMAL}, 
+      #{reopnFl,jdbcType=VARCHAR}, #{reasnFl,jdbcType=VARCHAR}, #{ownerSeqId,jdbcType=DECIMAL}, 
+      #{scnroCt,jdbcType=DECIMAL}, #{scoreCt,jdbcType=DECIMAL}, #{scoreFl,jdbcType=VARCHAR}, 
+      #{dueDt,jdbcType=TIMESTAMP}, #{autoClsCt,jdbcType=DECIMAL}, #{cstm1Tx,jdbcType=VARCHAR}, 
+      #{cstm2Tx,jdbcType=VARCHAR}, #{cstm3Tx,jdbcType=VARCHAR}, #{cstm4Tx,jdbcType=VARCHAR}, 
+      #{cstm5Tx,jdbcType=VARCHAR}, #{cstm1Dt,jdbcType=TIMESTAMP}, #{cstm2Dt,jdbcType=TIMESTAMP}, 
+      #{cstm3Dt,jdbcType=TIMESTAMP}, #{cstm1Rl,jdbcType=DECIMAL}, #{cstm2Rl,jdbcType=DECIMAL}, 
+      #{cstm3Rl,jdbcType=DECIMAL}, #{autoReasnFl,jdbcType=VARCHAR}, #{lastActvyTypeCd,jdbcType=VARCHAR}, 
+      #{prevMatchCtSmScnro,jdbcType=DECIMAL}, #{prevMatchCtAll,jdbcType=DECIMAL}, #{ownerOrg,jdbcType=VARCHAR}, 
+      #{age,jdbcType=DECIMAL}, #{focalNtityDsplyNm,jdbcType=VARCHAR}, #{focalNtityDsplyId,jdbcType=VARCHAR}, 
+      #{prevMatchCtSmScnroClass,jdbcType=DECIMAL}, #{sendNtfctnCd,jdbcType=VARCHAR}, 
+      #{busDmnSt,jdbcType=VARCHAR}, #{busDmnDsplyNmSt,jdbcType=VARCHAR}, #{jrsdcnCd,jdbcType=VARCHAR}, 
+      #{prcsngBatchNm,jdbcType=VARCHAR}, #{prcsngBatchCmpltFl,jdbcType=VARCHAR}, #{hilgtTx,jdbcType=VARCHAR}, 
+      #{origOwnerSeqId,jdbcType=DECIMAL}, #{clsActvyTypeCd,jdbcType=VARCHAR}, #{clsClassCd,jdbcType=VARCHAR}, 
+      #{scnroDisplNm,jdbcType=VARCHAR}, #{extrlRefId,jdbcType=VARCHAR}, #{extrlRefLink,jdbcType=VARCHAR}, 
+      #{extrlRefSrcId,jdbcType=VARCHAR}, #{rqstAuditSeqId,jdbcType=DECIMAL}, #{prcsngDt,jdbcType=TIMESTAMP}, 
+      #{reviewTypeCd,jdbcType=VARCHAR}, #{alertCaseCt,jdbcType=DECIMAL}, #{lastLinkFl,jdbcType=VARCHAR}, 
+      #{linkUpdtTs,jdbcType=TIMESTAMP}, #{linkUpdtId,jdbcType=DECIMAL}, #{regStatusList,jdbcType=VARCHAR}, 
+      #{purgeRuleOverrideFl,jdbcType=VARCHAR}, #{cntryTypeCd,jdbcType=VARCHAR}, #{extrlAlertStatus,jdbcType=VARCHAR}, 
+      #{extrlAlertDtls,jdbcType=VARCHAR}, #{extrlAlertDescTx,jdbcType=VARCHAR}, #{reportedBy,jdbcType=VARCHAR}, 
+      #{alertPriority,jdbcType=VARCHAR}, #{alertRisk,jdbcType=VARCHAR}, #{eventEndDt,jdbcType=TIMESTAMP}, 
+      #{eventOccurenceType,jdbcType=VARCHAR}, #{eventStartDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.KddReview">
+    insert into [mantas].[KDD_REVIEW]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        [REVIEW_ID],
+      </if>
+      <if test="creatId != null">
+        [CREAT_ID],
+      </if>
+      <if test="creatTs != null">
+        [CREAT_TS],
+      </if>
+      <if test="lockId != null">
+        [LOCK_ID],
+      </if>
+      <if test="lockTs != null">
+        [LOCK_TS],
+      </if>
+      <if test="statusCd != null">
+        [STATUS_CD],
+      </if>
+      <if test="statusDt != null">
+        [STATUS_DT],
+      </if>
+      <if test="cntryId != null">
+        [CNTRY_ID],
+      </if>
+      <if test="clsId != null">
+        [CLS_ID],
+      </if>
+      <if test="cntryKeyId != null">
+        [CNTRY_KEY_ID],
+      </if>
+      <if test="scnroId != null">
+        [SCNRO_ID],
+      </if>
+      <if test="scnroClassCd != null">
+        [SCNRO_CLASS_CD],
+      </if>
+      <if test="pttrnId != null">
+        [PTTRN_ID],
+      </if>
+      <if test="dmnCd != null">
+        [DMN_CD],
+      </if>
+      <if test="alertCt != null">
+        [ALERT_CT],
+      </if>
+      <if test="reopnFl != null">
+        [REOPN_FL],
+      </if>
+      <if test="reasnFl != null">
+        [REASN_FL],
+      </if>
+      <if test="ownerSeqId != null">
+        [OWNER_SEQ_ID],
+      </if>
+      <if test="scnroCt != null">
+        [SCNRO_CT],
+      </if>
+      <if test="scoreCt != null">
+        [SCORE_CT],
+      </if>
+      <if test="scoreFl != null">
+        [SCORE_FL],
+      </if>
+      <if test="dueDt != null">
+        [DUE_DT],
+      </if>
+      <if test="autoClsCt != null">
+        [AUTO_CLS_CT],
+      </if>
+      <if test="cstm1Tx != null">
+        [CSTM_1_TX],
+      </if>
+      <if test="cstm2Tx != null">
+        [CSTM_2_TX],
+      </if>
+      <if test="cstm3Tx != null">
+        [CSTM_3_TX],
+      </if>
+      <if test="cstm4Tx != null">
+        [CSTM_4_TX],
+      </if>
+      <if test="cstm5Tx != null">
+        [CSTM_5_TX],
+      </if>
+      <if test="cstm1Dt != null">
+        [CSTM_1_DT],
+      </if>
+      <if test="cstm2Dt != null">
+        [CSTM_2_DT],
+      </if>
+      <if test="cstm3Dt != null">
+        [CSTM_3_DT],
+      </if>
+      <if test="cstm1Rl != null">
+        [CSTM_1_RL],
+      </if>
+      <if test="cstm2Rl != null">
+        [CSTM_2_RL],
+      </if>
+      <if test="cstm3Rl != null">
+        [CSTM_3_RL],
+      </if>
+      <if test="autoReasnFl != null">
+        [AUTO_REASN_FL],
+      </if>
+      <if test="lastActvyTypeCd != null">
+        [LAST_ACTVY_TYPE_CD],
+      </if>
+      <if test="prevMatchCtSmScnro != null">
+        [PREV_MATCH_CT_SM_SCNRO],
+      </if>
+      <if test="prevMatchCtAll != null">
+        [PREV_MATCH_CT_ALL],
+      </if>
+      <if test="ownerOrg != null">
+        [OWNER_ORG],
+      </if>
+      <if test="age != null">
+        [AGE],
+      </if>
+      <if test="focalNtityDsplyNm != null">
+        [FOCAL_NTITY_DSPLY_NM],
+      </if>
+      <if test="focalNtityDsplyId != null">
+        [FOCAL_NTITY_DSPLY_ID],
+      </if>
+      <if test="prevMatchCtSmScnroClass != null">
+        [PREV_MATCH_CT_SM_SCNRO_CLASS],
+      </if>
+      <if test="sendNtfctnCd != null">
+        [SEND_NTFCTN_CD],
+      </if>
+      <if test="busDmnSt != null">
+        [BUS_DMN_ST],
+      </if>
+      <if test="busDmnDsplyNmSt != null">
+        [BUS_DMN_DSPLY_NM_ST],
+      </if>
+      <if test="jrsdcnCd != null">
+        [JRSDCN_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="prcsngBatchCmpltFl != null">
+        [PRCSNG_BATCH_CMPLT_FL],
+      </if>
+      <if test="hilgtTx != null">
+        [HILGT_TX],
+      </if>
+      <if test="origOwnerSeqId != null">
+        [ORIG_OWNER_SEQ_ID],
+      </if>
+      <if test="clsActvyTypeCd != null">
+        [CLS_ACTVY_TYPE_CD],
+      </if>
+      <if test="clsClassCd != null">
+        [CLS_CLASS_CD],
+      </if>
+      <if test="scnroDisplNm != null">
+        [SCNRO_DISPL_NM],
+      </if>
+      <if test="extrlRefId != null">
+        [EXTRL_REF_ID],
+      </if>
+      <if test="extrlRefLink != null">
+        [EXTRL_REF_LINK],
+      </if>
+      <if test="extrlRefSrcId != null">
+        [EXTRL_REF_SRC_ID],
+      </if>
+      <if test="rqstAuditSeqId != null">
+        [RQST_AUDIT_SEQ_ID],
+      </if>
+      <if test="prcsngDt != null">
+        [PRCSNG_DT],
+      </if>
+      <if test="reviewTypeCd != null">
+        [REVIEW_TYPE_CD],
+      </if>
+      <if test="alertCaseCt != null">
+        [ALERT_CASE_CT],
+      </if>
+      <if test="lastLinkFl != null">
+        [LAST_LINK_FL],
+      </if>
+      <if test="linkUpdtTs != null">
+        [LINK_UPDT_TS],
+      </if>
+      <if test="linkUpdtId != null">
+        [LINK_UPDT_ID],
+      </if>
+      <if test="regStatusList != null">
+        [REG_STATUS_LIST],
+      </if>
+      <if test="purgeRuleOverrideFl != null">
+        [PURGE_RULE_OVERRIDE_FL],
+      </if>
+      <if test="cntryTypeCd != null">
+        [CNTRY_TYPE_CD],
+      </if>
+      <if test="extrlAlertStatus != null">
+        [EXTRL_ALERT_STATUS],
+      </if>
+      <if test="extrlAlertDtls != null">
+        [EXTRL_ALERT_DTLS],
+      </if>
+      <if test="extrlAlertDescTx != null">
+        [EXTRL_ALERT_DESC_TX],
+      </if>
+      <if test="reportedBy != null">
+        [REPORTED_BY],
+      </if>
+      <if test="alertPriority != null">
+        [ALERT_PRIORITY],
+      </if>
+      <if test="alertRisk != null">
+        [ALERT_RISK],
+      </if>
+      <if test="eventEndDt != null">
+        [EVENT_END_DT],
+      </if>
+      <if test="eventOccurenceType != null">
+        [EVENT_OCCURENCE_TYPE],
+      </if>
+      <if test="eventStartDt != null">
+        [EVENT_START_DT],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        #{reviewId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatId != null">
+        #{creatId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatTs != null">
+        #{creatTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockId != null">
+        #{lockId,jdbcType=DECIMAL},
+      </if>
+      <if test="lockTs != null">
+        #{lockTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusCd != null">
+        #{statusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDt != null">
+        #{statusDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cntryId != null">
+        #{cntryId,jdbcType=DECIMAL},
+      </if>
+      <if test="clsId != null">
+        #{clsId,jdbcType=DECIMAL},
+      </if>
+      <if test="cntryKeyId != null">
+        #{cntryKeyId,jdbcType=VARCHAR},
+      </if>
+      <if test="scnroId != null">
+        #{scnroId,jdbcType=DECIMAL},
+      </if>
+      <if test="scnroClassCd != null">
+        #{scnroClassCd,jdbcType=VARCHAR},
+      </if>
+      <if test="pttrnId != null">
+        #{pttrnId,jdbcType=DECIMAL},
+      </if>
+      <if test="dmnCd != null">
+        #{dmnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="alertCt != null">
+        #{alertCt,jdbcType=DECIMAL},
+      </if>
+      <if test="reopnFl != null">
+        #{reopnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="reasnFl != null">
+        #{reasnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerSeqId != null">
+        #{ownerSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="scnroCt != null">
+        #{scnroCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scoreCt != null">
+        #{scoreCt,jdbcType=DECIMAL},
+      </if>
+      <if test="scoreFl != null">
+        #{scoreFl,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDt != null">
+        #{dueDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="autoClsCt != null">
+        #{autoClsCt,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm1Tx != null">
+        #{cstm1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm2Tx != null">
+        #{cstm2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm3Tx != null">
+        #{cstm3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm4Tx != null">
+        #{cstm4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm5Tx != null">
+        #{cstm5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm1Dt != null">
+        #{cstm1Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm2Dt != null">
+        #{cstm2Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm3Dt != null">
+        #{cstm3Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm1Rl != null">
+        #{cstm1Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm2Rl != null">
+        #{cstm2Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm3Rl != null">
+        #{cstm3Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="autoReasnFl != null">
+        #{autoReasnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActvyTypeCd != null">
+        #{lastActvyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prevMatchCtSmScnro != null">
+        #{prevMatchCtSmScnro,jdbcType=DECIMAL},
+      </if>
+      <if test="prevMatchCtAll != null">
+        #{prevMatchCtAll,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerOrg != null">
+        #{ownerOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="focalNtityDsplyNm != null">
+        #{focalNtityDsplyNm,jdbcType=VARCHAR},
+      </if>
+      <if test="focalNtityDsplyId != null">
+        #{focalNtityDsplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="prevMatchCtSmScnroClass != null">
+        #{prevMatchCtSmScnroClass,jdbcType=DECIMAL},
+      </if>
+      <if test="sendNtfctnCd != null">
+        #{sendNtfctnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnSt != null">
+        #{busDmnSt,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnDsplyNmSt != null">
+        #{busDmnDsplyNmSt,jdbcType=VARCHAR},
+      </if>
+      <if test="jrsdcnCd != null">
+        #{jrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchCmpltFl != null">
+        #{prcsngBatchCmpltFl,jdbcType=VARCHAR},
+      </if>
+      <if test="hilgtTx != null">
+        #{hilgtTx,jdbcType=VARCHAR},
+      </if>
+      <if test="origOwnerSeqId != null">
+        #{origOwnerSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="clsActvyTypeCd != null">
+        #{clsActvyTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="clsClassCd != null">
+        #{clsClassCd,jdbcType=VARCHAR},
+      </if>
+      <if test="scnroDisplNm != null">
+        #{scnroDisplNm,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlRefId != null">
+        #{extrlRefId,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlRefLink != null">
+        #{extrlRefLink,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlRefSrcId != null">
+        #{extrlRefSrcId,jdbcType=VARCHAR},
+      </if>
+      <if test="rqstAuditSeqId != null">
+        #{rqstAuditSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="prcsngDt != null">
+        #{prcsngDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewTypeCd != null">
+        #{reviewTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="alertCaseCt != null">
+        #{alertCaseCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lastLinkFl != null">
+        #{lastLinkFl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUpdtTs != null">
+        #{linkUpdtTs,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkUpdtId != null">
+        #{linkUpdtId,jdbcType=DECIMAL},
+      </if>
+      <if test="regStatusList != null">
+        #{regStatusList,jdbcType=VARCHAR},
+      </if>
+      <if test="purgeRuleOverrideFl != null">
+        #{purgeRuleOverrideFl,jdbcType=VARCHAR},
+      </if>
+      <if test="cntryTypeCd != null">
+        #{cntryTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlAlertStatus != null">
+        #{extrlAlertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlAlertDtls != null">
+        #{extrlAlertDtls,jdbcType=VARCHAR},
+      </if>
+      <if test="extrlAlertDescTx != null">
+        #{extrlAlertDescTx,jdbcType=VARCHAR},
+      </if>
+      <if test="reportedBy != null">
+        #{reportedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="alertPriority != null">
+        #{alertPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="alertRisk != null">
+        #{alertRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="eventEndDt != null">
+        #{eventEndDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventOccurenceType != null">
+        #{eventOccurenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventStartDt != null">
+        #{eventStartDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

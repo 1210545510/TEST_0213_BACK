@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.LogsMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Logs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code_name" jdbcType="VARCHAR" property="codeName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="precess" jdbcType="VARCHAR" property="precess" />
+    <result column="enbled" jdbcType="VARCHAR" property="enbled" />
+    <result column="modiffied" jdbcType="VARCHAR" property="modiffied" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created" jdbcType="VARCHAR" property="created" />
+    <result column="midiffied_by" jdbcType="VARCHAR" property="midiffiedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [code_name], [name], [precess], [enbled], [modiffied], [is_deleted], [created_by], 
+    [created], [midiffied_by]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [logs]
+    where [id] = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [logs]
+    where [id] = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.Logs" keyProperty="id" useGeneratedKeys="true" >
+    insert into [logs] ([code_name], [name], [precess], 
+      [enbled], [modiffied], [is_deleted], 
+      [created_by], [created], [midiffied_by]
+      )
+    values (#{codeName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{precess,jdbcType=VARCHAR}, 
+      #{enbled,jdbcType=VARCHAR}, #{modiffied,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{created,jdbcType=VARCHAR}, #{midiffiedBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Logs" keyProperty="id" useGeneratedKeys="true" >
+    insert into [logs]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codeName != null">
+        [code_name],
+      </if>
+      <if test="name != null">
+        [name],
+      </if>
+      <if test="precess != null">
+        [precess],
+      </if>
+      <if test="enbled != null">
+        [enbled],
+      </if>
+      <if test="modiffied != null">
+        [modiffied],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+      <if test="createdBy != null">
+        [created_by],
+      </if>
+      <if test="created != null">
+        [created],
+      </if>
+      <if test="midiffiedBy != null">
+        [midiffied_by],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codeName != null">
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="precess != null">
+        #{precess,jdbcType=VARCHAR},
+      </if>
+      <if test="enbled != null">
+        #{enbled,jdbcType=VARCHAR},
+      </if>
+      <if test="modiffied != null">
+        #{modiffied,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="midiffiedBy != null">
+        #{midiffiedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Logs">
+    update [logs]
+    <set>
+      <if test="codeName != null">
+        [code_name] = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        [name] = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="precess != null">
+        [precess] = #{precess,jdbcType=VARCHAR},
+      </if>
+      <if test="enbled != null">
+        [enbled] = #{enbled,jdbcType=VARCHAR},
+      </if>
+      <if test="modiffied != null">
+        [modiffied] = #{modiffied,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        [created_by] = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        [created] = #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="midiffiedBy != null">
+        [midiffied_by] = #{midiffiedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Logs">
+    update [logs]
+    set [code_name] = #{codeName,jdbcType=VARCHAR},
+      [name] = #{name,jdbcType=VARCHAR},
+      [precess] = #{precess,jdbcType=VARCHAR},
+      [enbled] = #{enbled,jdbcType=VARCHAR},
+      [modiffied] = #{modiffied,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      [created_by] = #{createdBy,jdbcType=VARCHAR},
+      [created] = #{created,jdbcType=VARCHAR},
+      [midiffied_by] = #{midiffiedBy,jdbcType=VARCHAR}
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- Query all records, list Pagination -->
+  <select id="getLogsList" parameterType="com.aml.api.dto.LogsDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [logs]
+    where [is_deleted] = 0
+    order by [id] ASC 
+  </select>
+  <!-- export -->
+  <select id="downLogsExcel" parameterType="com.aml.api.dto.LogsDto" resultType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from [logs]
+    where [is_deleted] = 0
+    	<if test="param != null">
+        	and [id] in (#{param})
+      	</if>
+    order by [id] ASC 
+  </select>
+</mapper>

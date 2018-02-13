@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.ClientBankMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.ClientBank">
+    <id column="INSTN_SEQ_ID" jdbcType="DECIMAL" property="instnSeqId" />
+    <result column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="CB_EFCTV_RISK_NB" jdbcType="DECIMAL" property="cbEfctvRiskNb" />
+    <result column="CB_LIST_SRC_CD" jdbcType="VARCHAR" property="cbListSrcCd" />
+    <result column="CB_MATCH_TX" jdbcType="VARCHAR" property="cbMatchTx" />
+    <result column="BUS_UNIT_CD" jdbcType="VARCHAR" property="busUnitCd" />
+    <result column="ACCT_MGR_NM" jdbcType="VARCHAR" property="acctMgrNm" />
+    <result column="LAST_ACTVY_DT" jdbcType="TIMESTAMP" property="lastActvyDt" />
+    <result column="CB_LIST_RISK_NB" jdbcType="DECIMAL" property="cbListRiskNb" />
+    <result column="CB_MATCH_TYPE_CD" jdbcType="VARCHAR" property="cbMatchTypeCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="JRSDCN_CD" jdbcType="VARCHAR" property="jrsdcnCd" />
+    <result column="BUS_DMN_LIST_TX" jdbcType="VARCHAR" property="busDmnListTx" />
+    
+    <result column="Amount" jdbcType="VARCHAR" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [INSTN_SEQ_ID], [DATA_DUMP_DT], [CB_EFCTV_RISK_NB], [CB_LIST_SRC_CD], [CB_MATCH_TX], 
+    [BUS_UNIT_CD], [ACCT_MGR_NM], [LAST_ACTVY_DT], [CB_LIST_RISK_NB], [CB_MATCH_TYPE_CD], 
+    [PRCSNG_BATCH_NM], [JRSDCN_CD], [BUS_DMN_LIST_TX]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[CLIENT_BANK]
+    where [INSTN_SEQ_ID] = #{instnSeqId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from [mantas].[CLIENT_BANK]
+    where [INSTN_SEQ_ID] = #{instnSeqId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.ClientBank">
+    insert into [mantas].[CLIENT_BANK] ([INSTN_SEQ_ID], [DATA_DUMP_DT], [CB_EFCTV_RISK_NB], 
+      [CB_LIST_SRC_CD], [CB_MATCH_TX], [BUS_UNIT_CD], 
+      [ACCT_MGR_NM], [LAST_ACTVY_DT], [CB_LIST_RISK_NB], 
+      [CB_MATCH_TYPE_CD], [PRCSNG_BATCH_NM], [JRSDCN_CD], 
+      [BUS_DMN_LIST_TX])
+    values (#{instnSeqId,jdbcType=DECIMAL}, #{dataDumpDt,jdbcType=TIMESTAMP}, #{cbEfctvRiskNb,jdbcType=DECIMAL}, 
+      #{cbListSrcCd,jdbcType=VARCHAR}, #{cbMatchTx,jdbcType=VARCHAR}, #{busUnitCd,jdbcType=VARCHAR}, 
+      #{acctMgrNm,jdbcType=VARCHAR}, #{lastActvyDt,jdbcType=TIMESTAMP}, #{cbListRiskNb,jdbcType=DECIMAL}, 
+      #{cbMatchTypeCd,jdbcType=VARCHAR}, #{prcsngBatchNm,jdbcType=VARCHAR}, #{jrsdcnCd,jdbcType=VARCHAR}, 
+      #{busDmnListTx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.ClientBank">
+    insert into [mantas].[CLIENT_BANK]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="instnSeqId != null">
+        [INSTN_SEQ_ID],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="cbEfctvRiskNb != null">
+        [CB_EFCTV_RISK_NB],
+      </if>
+      <if test="cbListSrcCd != null">
+        [CB_LIST_SRC_CD],
+      </if>
+      <if test="cbMatchTx != null">
+        [CB_MATCH_TX],
+      </if>
+      <if test="busUnitCd != null">
+        [BUS_UNIT_CD],
+      </if>
+      <if test="acctMgrNm != null">
+        [ACCT_MGR_NM],
+      </if>
+      <if test="lastActvyDt != null">
+        [LAST_ACTVY_DT],
+      </if>
+      <if test="cbListRiskNb != null">
+        [CB_LIST_RISK_NB],
+      </if>
+      <if test="cbMatchTypeCd != null">
+        [CB_MATCH_TYPE_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="jrsdcnCd != null">
+        [JRSDCN_CD],
+      </if>
+      <if test="busDmnListTx != null">
+        [BUS_DMN_LIST_TX],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="instnSeqId != null">
+        #{instnSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cbEfctvRiskNb != null">
+        #{cbEfctvRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="cbListSrcCd != null">
+        #{cbListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cbMatchTx != null">
+        #{cbMatchTx,jdbcType=VARCHAR},
+      </if>
+      <if test="busUnitCd != null">
+        #{busUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctMgrNm != null">
+        #{acctMgrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActvyDt != null">
+        #{lastActvyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cbListRiskNb != null">
+        #{cbListRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="cbMatchTypeCd != null">
+        #{cbMatchTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="jrsdcnCd != null">
+        #{jrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnListTx != null">
+        #{busDmnListTx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.ClientBank">
+    update [mantas].[CLIENT_BANK]
+    <set>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cbEfctvRiskNb != null">
+        [CB_EFCTV_RISK_NB] = #{cbEfctvRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="cbListSrcCd != null">
+        [CB_LIST_SRC_CD] = #{cbListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cbMatchTx != null">
+        [CB_MATCH_TX] = #{cbMatchTx,jdbcType=VARCHAR},
+      </if>
+      <if test="busUnitCd != null">
+        [BUS_UNIT_CD] = #{busUnitCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctMgrNm != null">
+        [ACCT_MGR_NM] = #{acctMgrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActvyDt != null">
+        [LAST_ACTVY_DT] = #{lastActvyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cbListRiskNb != null">
+        [CB_LIST_RISK_NB] = #{cbListRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="cbMatchTypeCd != null">
+        [CB_MATCH_TYPE_CD] = #{cbMatchTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="jrsdcnCd != null">
+        [JRSDCN_CD] = #{jrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnListTx != null">
+        [BUS_DMN_LIST_TX] = #{busDmnListTx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [INSTN_SEQ_ID] = #{instnSeqId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.ClientBank">
+    update [mantas].[CLIENT_BANK]
+    set [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      [CB_EFCTV_RISK_NB] = #{cbEfctvRiskNb,jdbcType=DECIMAL},
+      [CB_LIST_SRC_CD] = #{cbListSrcCd,jdbcType=VARCHAR},
+      [CB_MATCH_TX] = #{cbMatchTx,jdbcType=VARCHAR},
+      [BUS_UNIT_CD] = #{busUnitCd,jdbcType=VARCHAR},
+      [ACCT_MGR_NM] = #{acctMgrNm,jdbcType=VARCHAR},
+      [LAST_ACTVY_DT] = #{lastActvyDt,jdbcType=TIMESTAMP},
+      [CB_LIST_RISK_NB] = #{cbListRiskNb,jdbcType=DECIMAL},
+      [CB_MATCH_TYPE_CD] = #{cbMatchTypeCd,jdbcType=VARCHAR},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [JRSDCN_CD] = #{jrsdcnCd,jdbcType=VARCHAR},
+      [BUS_DMN_LIST_TX] = #{busDmnListTx,jdbcType=VARCHAR}
+    where [INSTN_SEQ_ID] = #{instnSeqId,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- query -->
+  <select id="getClientBankList" resultMap="BaseResultMap">
+  	SELECT
+		t4.prmry_cust_intrl_id custmerID,
+		t3.acct_intrl_id accountNumber,
+		t1.instn_nm FCBName,
+		t4.acct_efctv_risk_nb riskReting,
+		t3.instn_id BIC,
+		t3.instn_id_type_cd type,
+		t5.ctzshp_cntry1_cd country
+	FROM
+		[mantas].instn_master t1,
+		[mantas].client_bank t2,
+		[mantas].ACCT_ID_INSTN_ID_MAP t3,
+		[mantas].acct t4
+		LEFT JOIN [mantas].cust t5 ON t4.prmry_cust_intrl_id = t5.cust_intrl_id
+	WHERE
+		t1.instn_seq_id = t2.instn_seq_id
+		AND t1.instn_seq_id = t3.instn_seq_id
+		AND t2.instn_seq_id = t3.instn_seq_id
+		AND t3.acct_intrl_id IS NOT NULL
+		AND t3.acct_intrl_id = t4.acct_intrl_id
+      <if test="search != null">
+      	AND t1.instn_nm like CONCAT(CONCAT('%', #{search}), '%')
+      </if>
+      order by instn_seq_id ASC
+  </select>
+  
+  <!-- Export -->
+  <select id="downClientBankExcel" resultType="java.util.Map">				
+  	SELECT 
+	    cb.[INSTN_SEQ_ID], 
+	    cb.[CB_EFCTV_RISK_NB],
+	    cb.[BUS_UNIT_CD], 
+	    cb.[ACCT_MGR_NM], 
+		m.INSTN_NM,
+	    (
+			SELECT SUM(TRXN_IN_AM)
+		FROM
+			[mantas].[CURRENCY_TRXN]
+		WHERE
+			ACCT_INTRL_ID IN (
+				SELECT
+					ACCT_INTRL_ID
+				FROM
+					[mantas].[ACCT_ID_INSTN_ID_MAP] as map
+				WHERE
+					map.INSTN_SEQ_ID = cb.INSTN_SEQ_ID
+			)
+		)AS activityItems
+    from [mantas].[CLIENT_BANK] as cb
+    		LEFT JOIN [mantas].[INSTN_MASTER] m ON m.INSTN_SEQ_ID = cb.INSTN_SEQ_ID
+    where 1 = 1 
+      <if test="search != null">
+      	and (
+      		convert(varchar,cb.INSTN_SEQ_ID) = #{search}
+      		or cb.CB_EFCTV_RISK_NB like CONCAT(CONCAT('%', #{search}), '%')
+      		or cb.ACCT_MGR_NM like CONCAT(CONCAT('%', #{search}), '%')
+      	)
+      </if>
+      order by INSTN_SEQ_ID ASC
+  </select>
+</mapper>

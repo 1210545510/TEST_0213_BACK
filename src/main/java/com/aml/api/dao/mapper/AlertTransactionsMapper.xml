@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AlertTransactionsMapper">
+	
+  <select id="queryTransactionTop5" resultType="map">
+	select TOP 5
+		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_NM
+								when 'MI_TRXN_ARC' then mta.REM_NM 
+								when 'CASH_TRXN_ARC' then '' 
+		END) as counterpartyName,
+		car.CUST_TYPE_CD as customerType,
+		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then 0
+								when 'MI_TRXN_ARC' then 1
+								when 'CASH_TRXN_ARC' then cta.TRXN_ACTVY_AM 
+		END) as alertedTransactionAmount,
+		<!-- % of Alerted Transaction Amount -->
+		<!-- Alerted Transaction Volume -->
+		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_RES_CNTRY_CD
+								when 'MI_TRXN_ARC' then 1
+								when 'CASH_TRXN_ARC' then cta.TRXN_ACTVY_AM 
+		END) as country
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_BREAK kb on(kb.PRNT_BREAK_ID = kr.REVIEW_ID)
+  		join MANTAS.KDD_BREAK_MTCHS kbm on(kb.BREAK_ID = kbm.BREAK_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kbm.DATASET_ID  and kdb.BASE_TABLE like '%ARC')
+  		
+  		
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT_ARC aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.CUST_ARC car on (ca.CUST_INTRL_ID = car.CUST_INTRL_ID)
+  		
+  		
+  		left join MANTAS.WIRE_TRXN_ARC wta on(kdb.BASE_TABLE = 'WIRE_TRXN_ARC' and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.MI_TRXN_ARC mta on(kdb.BASE_TABLE = 'MI_TRXN_ARC' and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.CASH_TRXN_ARC cta on(kdb.BASE_TABLE = 'CASH_TRXN_ARC' and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+	order by case kdb.BASE_TABLE when 'WIRE_TRXN_ARC' then wta.BENEF_TRXN_ACTVY_AM when 'MI_TRXN_ARC' then mta.BENEF_TRXN_ACTVY_AM when 'CASH_TRXN_ARC' then cta.TRXN_BASE_AM end desc
+  </select>
+	
+<!--   <select id="queryAlertTransaction" resultType="map"> -->
+<!-- 	select (case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then ''  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.REM_NM  -->
+<!-- 								when 'CASH_TRXN_ARC' then ''  -->
+<!-- 		END) as originatorName, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then ''  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.CLR_INSTN_ACCT_ID  -->
+<!-- 								when 'CASH_TRXN_ARC' then ''  -->
+<!-- 		END) as originatorAccountID, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then ''  -->
+<!-- 								when 'MI_TRXN_ARC' then '' -->
+<!-- 								when 'CASH_TRXN_ARC' then '' -->
+<!-- 		END) as originatorRisk, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BANK_CARD_ID_NB  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BANK_CARD_ID_NB -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.BANK_CARD_ID_NB -->
+<!-- 		END) as originatorBank, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BANK_TO_BANK_TRNFR_FL  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BANK_TO_BANK_TRNFR_FL -->
+<!-- 								when 'CASH_TRXN_ARC' then '' -->
+<!-- 		END) as intermediaryBank, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_NM  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BENEF_NM -->
+<!-- 								when 'CASH_TRXN_ARC' then '' -->
+<!-- 		END) as beneficiaryName, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_ACCT_ID  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BENEF_ACCT_ID -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.ACCT_INTRL_ID -->
+<!-- 		END) as beneficiaryAccountID, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_ACTVY_RISK_NB  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BENEF_ACTVY_RISK_NB -->
+<!-- 								when 'CASH_TRXN_ARC' then '' -->
+<!-- 		END) as beneficiaryRisk, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.FIX_DT  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.FIX_DT -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.FIX_DT -->
+<!-- 		END) as date, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_NTITY_LIST_SRC_CD  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BENEF_NTITY_LIST_SRC_CD -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.CNDTR_NTITY_LIST_SRC_CD -->
+<!-- 		END) as source, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_ACCT_ID_TYPE_CD  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.BENEF_ACCT_ID_TYPE_CD -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.PRDCT_TYPE_CD -->
+<!-- 		END) as type, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then '1'  -->
+<!-- 								when 'MI_TRXN_ARC' then mta.TRXN_BASE_AM -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.TRXN_BASE_AM -->
+<!-- 		END) as base, -->
+<!-- 		(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 								when 'MI_TRXN_ARC' then mta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 								when 'CASH_TRXN_ARC' then cta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 		END) as transactionReferenceId -->
+<!--   	from -->
+<!--   		KDD_REVIEW kr -->
+<!--   		join KDD_BREAK kb on(kb.PRNT_BREAK_ID = kr.REVIEW_ID) -->
+<!--   		join KDD_BREAK_MTCHS kbm on(kb.BREAK_ID = kbm.BREAK_ID) -->
+<!--   		join KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kbm.DATASET_ID  and kdb.BASE_TABLE like '%ARC') -->
+<!--   		left join CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004') -->
+<!--   		left join ACCT_ARC aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID) -->
+<!--   		left join WIRE_TRXN_ARC wta on(kdb.BASE_TABLE = 'WIRE_TRXN_ARC'  -->
+<!-- 				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!--   		left join MI_TRXN_ARC mta on(kdb.BASE_TABLE = 'MI_TRXN_ARC'  -->
+<!-- 				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!--   		left join CASH_TRXN_ARC cta on(kdb.BASE_TABLE = 'CASH_TRXN_ARC'  -->
+<!-- 				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!-- 	where -->
+<!-- 		kr.REVIEW_ID = #{originalId} -->
+<!-- 	order by kr.REVIEW_ID -->
+<!--   </select> -->
+
+  <select id="queryAlertTransactionByCashTrxnArc" resultType="map">
+	select 
+		cta.TRXN_EXCTN_DT date,
+		cta.TRXN_CHANL_CD source,
+		cta.CNDTR_ACCT_ID_TYPE_CD type,
+		cta.DBT_CDT_CD debitOrCredit,
+		cta.TRXN_BASE_AM amountBase,
+		cta.TRXN_ACTVY_AM amountActivity,
+		cta.ACCT_INTRL_ID accoutId,
+		cta.CHANL_RISK_NB accountRisk
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_BREAK kb on(kb.PRNT_BREAK_ID = kr.REVIEW_ID)
+  		join MANTAS.KDD_BREAK_MTCHS kbm on(kb.BREAK_ID = kbm.BREAK_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kbm.DATASET_ID  and kdb.BASE_TABLE like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT_ARC aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		join MANTAS.CASH_TRXN_ARC cta on(kdb.BASE_TABLE = 'CASH_TRXN_ARC' 
+				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+	order by kr.REVIEW_ID
+  </select>
+
+  <select id="queryAlertTransactionByWireTrxnArc" resultType="map">
+	select 
+		wta.FIX_DT date,
+		wta.TRXN_CHANL_CD source,
+		wta.BENEF_TRXN_ACTVY_AM amountBase,
+		wta.BENEF_NM beneficiaryName,
+		wta.BENEF_ACCT_ID beneficiaryAccountId,
+		wta.BENEF_ACTVY_RISK_NB beneficiaryTisk,
+		wta.TRD_FIN_CNTRCT_INTRL_ID beneficiaryTransactionReferenceId
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_BREAK kb on(kb.PRNT_BREAK_ID = kr.REVIEW_ID)
+  		join MANTAS.KDD_BREAK_MTCHS kbm on(kb.BREAK_ID = kbm.BREAK_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kbm.DATASET_ID  and kdb.BASE_TABLE like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT_ARC aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		join MANTAS.WIRE_TRXN_ARC wta on(kdb.BASE_TABLE = 'WIRE_TRXN_ARC' 
+				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+	order by kr.REVIEW_ID
+  </select>
+  
+  <select id="queryAlertTransactionByMiTrxnArc" resultType="map">
+	select 
+		mta.MANTAS_ISSUE_DATE postDate,
+		mta.MANTAS_POST_DT issueDate,
+		mta.SRC_SYS_CD source,
+		mta.BENEF_TRXN_ACTVY_AM amount,
+		mta.REM_NM remitterName,
+		mta.REM_ACCT_ID remitterAccountId,
+		mta.REM_ACTVY_RISK_NB remitterRisk,
+		mta.BENEF_NM beneficiaryName,
+		mta.BENEF_ACCT_ID beneficiaryAcountId,
+		mta.BENEF_NTITY_RISK_NB beneficiaryRisk,
+		mta.TRD_FIN_CNTRCT_INTRL_ID referenceId
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_BREAK kb on(kb.PRNT_BREAK_ID = kr.REVIEW_ID)
+  		join MANTAS.KDD_BREAK_MTCHS kbm on(kb.BREAK_ID = kbm.BREAK_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kbm.DATASET_ID  and kdb.BASE_TABLE like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT_ARC aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		join MANTAS.MI_TRXN_ARC mta on(kdb.BASE_TABLE = 'MI_TRXN_ARC' 
+				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+	order by kr.REVIEW_ID
+  </select>
+	
+  <select id="queryTransactionNameTop5" resultType="map">
+	select TOP 5 sum(amount) amount,count(amount) volume,name FROM
+		(select 
+			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_TRXN_ACTVY_AM
+									when 'MI_TRXN' then mta.TRXN_BASE_AM
+									when 'CASH_TRXN' then cta.TRXN_BASE_AM
+			END) as amount,
+			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then '' 
+								when 'MI_TRXN' then mta.REM_NM 
+								when 'CASH_TRXN' then '' 
+			END) as name
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN' 
+				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN' 
+				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN' 
+				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+		and (kdb.BASE_TABLE = 'WIRE_TRXN' or kdb.BASE_TABLE = 'MI_TRXN' or kdb.BASE_TABLE = 'CASH_TRXN')
+	) ss
+	GROUP BY name
+	ORDER BY 
+		<if test="type == 0">
+			count(amount) desc
+		</if>
+		<if test="type != 0">
+			amount desc
+		</if>
+  </select>
+	
+  <select id="queryTransactionCountryTop5" resultType="map">
+	select TOP 5 sum(amount) amount,count(amount) volume,area name FROM
+		(select 
+			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_TRXN_ACTVY_AM
+									when 'MI_TRXN' then mta.TRXN_BASE_AM
+									when 'CASH_TRXN' then cta.TRXN_BASE_AM
+			END) as amount,
+			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_RES_CNTRY_CD 
+								when 'MI_TRXN' then ''
+								when 'CASH_TRXN' then '' 
+			END) as area
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN' 
+				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN' 
+				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN' 
+				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+		and (kdb.BASE_TABLE = 'WIRE_TRXN' or kdb.BASE_TABLE = 'MI_TRXN' or kdb.BASE_TABLE = 'CASH_TRXN')
+	) ss
+	GROUP BY area
+	ORDER BY 
+		<if test="type == 0">
+			count(amount) desc
+		</if>
+		<if test="type != 0">
+			amount desc
+		</if>
+  </select>
+	
+  <select id="queryTransactionVolumeMap" resultType="map">
+  	select 
+		count(t.amount) volume,
+		sum(t.amount) amount,
+		t.[date]
+	from
+	(
+		select 
+			(case kdb.BASE_TABLE when 'WIRE_TRXN' then wta.BENEF_TRXN_ACTVY_AM
+										when 'MI_TRXN' then mta.TRXN_BASE_AM
+										when 'CASH_TRXN' then cta.TRXN_BASE_AM
+			END) as amount,
+			(case kdb.BASE_TABLE when 'WIRE_TRXN' then wta.FIX_DT
+										when 'MI_TRXN' then mta.DATA_DUMP_DT
+										when 'CASH_TRXN' then cta.DATA_DUMP_DT
+			END) as date
+	  	from
+	  		MANTAS.KDD_REVIEW kr
+	  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+	  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+	  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+	  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+	  		left join MANTAS.WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN' 
+						and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	  		left join MANTAS.MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN' 
+					and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	  		left join MANTAS.CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN' 
+					and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+		where
+			kr.REVIEW_ID = #{originalId}
+			
+	) t
+	where
+		1 = 1
+		<if test="startDate != null">
+			and CONVERT(VARCHAR(100), t.date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{startDate}), 111)
+		</if>
+		<if test="endDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.date, 111)
+		</if>
+		GROUP BY t.[date]
+		order by t.[date]
+  </select>
+	
+  <select id="queryTransactionAmountMap" resultType="Integer">
+	select 
+		(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_TRXN_ACTVY_AM
+									when 'MI_TRXN' then mta.TRXN_BASE_AM
+									when 'CASH_TRXN' then cta.TRXN_BASE_AM
+		END) as amount
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN' 
+				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN' 
+				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+  		left join MANTAS.CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN' 
+				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+	order by kr.REVIEW_ID
+  </select>
+  
+<!--   <select id="queryTransaction" resultType="map"> -->
+<!--     select * from ( -->
+<!-- 		select (case kdb.BASE_TABLE	when 'WIRE_TRXN' then ''  -->
+<!-- 									when 'MI_TRXN' then mta.REM_NM  -->
+<!-- 									when 'CASH_TRXN' then ''  -->
+<!-- 			END) as originatorName, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then ''  -->
+<!-- 									when 'MI_TRXN' then mta.CLR_INSTN_ACCT_ID  -->
+<!-- 									when 'CASH_TRXN' then ''  -->
+<!-- 			END) as originatorAccountID, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then ''  -->
+<!-- 									when 'MI_TRXN' then '' -->
+<!-- 									when 'CASH_TRXN' then '' -->
+<!-- 			END) as originatorRisk, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BANK_CARD_ID_NB  -->
+<!-- 									when 'MI_TRXN' then mta.BANK_CARD_ID_NB -->
+<!-- 									when 'CASH_TRXN' then cta.BANK_CARD_ID_NB -->
+<!-- 			END) as originatorBank, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BANK_TO_BANK_TRNFR_FL  -->
+<!-- 									when 'MI_TRXN' then mta.BANK_TO_BANK_TRNFR_FL -->
+<!-- 									when 'CASH_TRXN' then '' -->
+<!-- 			END) as intermediaryBank, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_NM  -->
+<!-- 									when 'MI_TRXN' then mta.BENEF_NM -->
+<!-- 									when 'CASH_TRXN' then '' -->
+<!-- 			END) as beneficiaryName, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_ACCT_ID  -->
+<!-- 									when 'MI_TRXN' then mta.BENEF_ACCT_ID -->
+<!-- 									when 'CASH_TRXN' then cta.ACCT_INTRL_ID -->
+<!-- 			END) as beneficiaryAccountID, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.BENEF_ACTVY_RISK_NB  -->
+<!-- 									when 'MI_TRXN' then mta.BENEF_ACTVY_RISK_NB -->
+<!-- 									when 'CASH_TRXN' then '' -->
+<!-- 			END) as beneficiaryRisk, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN' then wta.FIX_DT  -->
+<!-- 									when 'MI_TRXN' then mta.DATA_DUMP_DT -->
+<!-- 									when 'CASH_TRXN' then cta.DATA_DUMP_DT -->
+<!-- 			END) as date, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_NTITY_LIST_SRC_CD  -->
+<!-- 									when 'MI_TRXN_ARC' then mta.BENEF_NTITY_LIST_SRC_CD -->
+<!-- 									when 'CASH_TRXN_ARC' then cta.CNDTR_NTITY_LIST_SRC_CD -->
+<!-- 			END) as source, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.BENEF_ACCT_ID_TYPE_CD  -->
+<!-- 									when 'MI_TRXN_ARC' then mta.BENEF_ACCT_ID_TYPE_CD -->
+<!-- 									when 'CASH_TRXN_ARC' then cta.PRDCT_TYPE_CD -->
+<!-- 			END) as type, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then '1'  -->
+<!-- 									when 'MI_TRXN_ARC' then mta.TRXN_BASE_AM -->
+<!-- 									when 'CASH_TRXN_ARC' then cta.TRXN_BASE_AM -->
+<!-- 			END) as base, -->
+<!-- 			(case kdb.BASE_TABLE	when 'WIRE_TRXN_ARC' then wta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 									when 'MI_TRXN_ARC' then mta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 									when 'CASH_TRXN_ARC' then cta.CXL_PAIR_TRXN_INTRL_ID -->
+<!-- 			END) as transactionReferenceId -->
+<!-- 	  	from -->
+<!-- 	  		KDD_REVIEW kr -->
+<!-- 	  		join KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID) -->
+<!-- 	  		join KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC') -->
+<!-- 	  		left join CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004') -->
+<!-- 	  		left join ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID) -->
+<!-- 	  		left join WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN'  -->
+<!-- 					and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!-- 	  		left join MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN'  -->
+<!-- 					and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!-- 	  		left join CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN'  -->
+<!-- 					and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END)) -->
+<!-- 		where -->
+<!-- 			kr.REVIEW_ID = #{originalId} -->
+<!-- 	) t -->
+<!-- 	where -->
+<!-- 		1 = 1 -->
+<!-- 		<if test="startDate != null"> -->
+<!-- 			and CONVERT(VARCHAR(100), t.date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{startDate}), 111) -->
+<!-- 		</if> -->
+<!-- 		<if test="endDate != null"> -->
+<!-- 			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{endDate}), 111) >= CONVERT(VARCHAR(100), t.date, 111) -->
+<!-- 		</if> -->
+<!-- 		<if test="search != null"> -->
+<!-- 			and ( -->
+<!-- 				t.originatorName like '%${search}%' -->
+<!-- 				or t.originatorAccountID like '%${search}%' -->
+<!-- 				or t.originatorBank like '%${search}%' -->
+<!-- 				or t.intermediaryBank like '%${search}%' -->
+<!-- 				or t.beneficiaryName like '%${search}%' -->
+<!-- 			)  -->
+<!-- 		</if> -->
+<!-- 	order by t.date -->
+<!--   </select> -->
+  
+  <select id="queryTransactionByCashTrxn" resultType="map">
+	select 
+		cta.FO_TRXN_SEQ_ID id,
+		cta.TRXN_EXCTN_DT date,
+		cta.TRXN_CHANL_CD source,
+		cta.CNDTR_ACCT_ID_TYPE_CD type,
+		cta.DBT_CDT_CD debitOrCredit,
+		cta.TRXN_BASE_AM amountBase,
+		cta.TRXN_ACTVY_AM amountActivity,
+		cta.ACCT_INTRL_ID accoutId,
+		cta.CHANL_RISK_NB accountRisk
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.CASH_TRXN cta on(kdb.BASE_TABLE = 'CASH_TRXN' 
+				and cta.ACCT_INTRL_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+		<if test="startDate != null">
+			and CONVERT(VARCHAR(100), cta.TRXN_EXCTN_DT, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{startDate}), 111)
+		</if>
+		<if test="endDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{endDate}), 111) >= CONVERT(VARCHAR(100), cta.TRXN_EXCTN_DT, 111)
+		</if>
+		<if test="search != null">
+		</if>
+	ORDER BY cta.TRXN_EXCTN_DT
+		
+  </select>
+  
+  <select id="queryTransactionByWireTrxn" resultType="map">
+	select 
+		wta.FO_TRXN_SEQ_ID id,
+		wta.FIX_DT date,
+		wta.TRXN_CHANL_CD source,
+		wta.BENEF_TRXN_ACTVY_AM amountBase,
+		wta.BENEF_NM beneficiaryName,
+		wta.BENEF_ACCT_ID beneficiaryAccountId,
+		wta.BENEF_ACTVY_RISK_NB beneficiaryTisk,
+		wta.TRD_FIN_CNTRCT_INTRL_ID beneficiaryTransactionReferenceId
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.WIRE_TRXN wta on(kdb.BASE_TABLE = 'WIRE_TRXN' 
+				and wta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+		<if test="startDate != null">
+			and CONVERT(VARCHAR(100), wta.FIX_DT, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{startDate}), 111)
+		</if>
+		<if test="endDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{endDate}), 111) >= CONVERT(VARCHAR(100), wta.FIX_DT, 111)
+		</if>
+		<if test="search != null">
+		</if>
+	ORDER BY wta.FIX_DT
+  </select>
+  
+  <select id="queryTransactionByMiTrxn" resultType="map">
+	select 
+		mta.FO_TRXN_SEQ_ID id,
+		mta.MANTAS_ISSUE_DATE issueDate,
+		mta.MANTAS_POST_DT postDate,
+		mta.SRC_SYS_CD source,
+		mta.BENEF_TRXN_ACTVY_AM amount,
+		mta.REM_NM remitterName,
+		mta.REM_ACCT_ID remitterAccountId,
+		mta.REM_ACTVY_RISK_NB remitterRisk,
+		mta.BENEF_NM beneficiaryName,
+		mta.BENEF_ACCT_ID beneficiaryAcountId,
+		mta.BENEF_NTITY_RISK_NB beneficiaryRisk,
+		mta.TRD_FIN_CNTRCT_INTRL_ID referenceId
+  	from
+  		MANTAS.KDD_REVIEW kr
+  		join MANTAS.KDD_DATASET kd on(kd.SCNRO_ID = kr.SCNRO_ID)
+  		join MANTAS.KDD_DATASET_BASE kdb on(kdb.DATASET_ID = kd.DATASET_ID  and kdb.BASE_TABLE not like '%ARC')
+  		left join MANTAS.CUST_ACCT ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		left join MANTAS.ACCT aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+  		left join MANTAS.MI_TRXN mta on(kdb.BASE_TABLE = 'MI_TRXN' 
+				and mta.BENEF_ACCT_ID = (case kr.CNTRY_ID when '113000002' then kr.CNTRY_KEY_ID when '113000004' then aa.ACCT_INTRL_ID END))
+	where
+		kr.REVIEW_ID = #{originalId}
+		<if test="startDate != null">
+			and CONVERT(VARCHAR(100), mta.MANTAS_POST_DT, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{startDate}), 111)
+		</if>
+		<if test="endDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{endDate}), 111) >= CONVERT(VARCHAR(100), mta.MANTAS_POST_DT, 111)
+		</if>
+		<if test="search != null">
+		</if>
+	ORDER BY mta.MANTAS_POST_DT
+  </select>
+  
+  <resultMap id="WireResultMap" type="com.aml.api.dto.transaction.TransactionDetailsDto">
+  	<association property="transaction" javaType="com.aml.api.dto.transaction.wire.Transaction">
+    	<result column="FO_TRXN_SEQ_ID" property="transactionReferenceId" />
+    	<result column="BENEF_ACCT_ID_TYPE_CD" property="typeOrSource" />
+    	<result column="BENEF_TRXN_ACTVY_AM" property="sendAmount" />
+    	<result column="BANK_TO_BANK_INSTR_TX" property="bankToBankInstructions" />
+    	<result column="ORIG_TO_BENEF_INSTR_TX" property="originatorToBeneficiaryInstructions" />
+    	<result column="FIX_DT" property="date" />
+    	<result column="BENEF_TRXN_ACTVY_AM" property="receivingAmount" />
+  	</association>
+  	<association property="sendFi" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="receivingFi" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="originator" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+    	<result column="orig_addr" property="address" />
+  	</association>
+  	<association property="beneficiary" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+    	<result column="BENEF_NM" property="name" />
+    	<result column="BENEF_ACTVY_RISK_NB" property="risk" />
+    	<result column="BENEF_ACCT_ID" property="accountId" />
+    	<result column="benef_addr" property="address" />
+  	</association>
+  	<association property="thirdPartyOriginator" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="thirdPartyBeneficiary" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  </resultMap>
+  <!-- 查询WireTrxn交易详情 -->
+  <select id="queryTransactionDetailsByWireTrxn" resultMap="WireResultMap">
+  	select
+  		t.FO_TRXN_SEQ_ID,
+  		t.BENEF_ACCT_ID_TYPE_CD,
+  		t.BENEF_TRXN_ACTVY_AM,
+  		t.BANK_TO_BANK_INSTR_TX,
+  		t.ORIG_TO_BENEF_INSTR_TX,
+  		t.FIX_DT,
+  		t.BENEF_TRXN_ACTVY_AM,
+  		t.BENEF_NM,
+  		t.BENEF_ACTVY_RISK_NB,
+  		t.BENEF_ACCT_ID,
+  		(select DPLY_ADDR_TX from DERIVED_ADDRESS where t.BENEF_ADDR_MSTR_SEQ_ID = DERVD_ADDR_SEQ_ID) benef_addr, 
+  		(select DPLY_ADDR_TX from DERIVED_ADDRESS where t.ORIG_ADDR_MSTR_SEQ_ID = DERVD_ADDR_SEQ_ID) orig_addr
+  	from
+  		<if test="isAlert != 1">
+  			WIRE_TRXN t
+  		</if>
+  		<if test="isAlert == 1">
+	  		WIRE_TRXN_ARC t
+  		</if>
+  	where
+  		FO_TRXN_SEQ_ID = #{id}
+  </select>
+  
+  <resultMap id="MiResultMap" type="com.aml.api.dto.transaction.TransactionDetailsDto">
+  	<association property="transaction" javaType="com.aml.api.dto.transaction.wire.Transaction">
+    	<result column="FO_TRXN_SEQ_ID" property="transactionReferenceId" />
+    	<result column="BENEF_ACCT_ID_TYPE_CD" property="typeOrSource" />
+    	<result column="TRXN_BASE_AM" property="sendAmount" />
+    	<result column="BANK_TO_BANK_INSTR_TX" property="bankToBankInstructions" />
+    	<result column="ORIG_TO_BENEF_INSTR_TX" property="originatorToBeneficiaryInstructions" />
+    	<result column="TRXN_DEP_DT" property="date" />
+    	<result column="TRXN_BASE_AM" property="receivingAmount" />
+  	</association>
+  	<association property="sendFi" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="receivingFi" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="originator" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+    	<result column="REM_NM" property="name" />
+    	<result column="REM_ACTVY_RISK_NB" property="risk" />
+    	<result column="REM_BENEF_TRSTD_FL" property="originatorToBeneficiaryTrusted" />
+    	<result column="orig_addr" property="address" />
+    	<result column="REM_ACCT_ID" property="accountId" />
+  	</association>
+  	<association property="beneficiary" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+    	<result column="BENEF_NM" property="name" />
+    	<result column="BENEF_ACTVY_RISK_NB" property="risk" />
+    	<result column="BENEF_ACCT_ID" property="accountId" />
+    	<result column="benef_addr" property="address" />
+  	</association>
+  	<association property="thirdPartyOriginator" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  	<association property="thirdPartyBeneficiary" javaType="com.aml.api.dto.transaction.wire.TransactionDetails">
+  	
+  	</association>
+  </resultMap>
+  <!-- 查询MiTrxn交易详情 -->
+  <select id="queryTransactionDetailsByMiTrxn" resultMap="MiResultMap">
+  	select
+  		t.FO_TRXN_SEQ_ID,
+  		t.BENEF_ACCT_ID_TYPE_CD,
+  		t.TRXN_BASE_AM,
+  		t.BANK_TO_BANK_INSTR_TX,
+  		t.ORIG_TO_BENEF_INSTR_TX,
+  		t.TRXN_DEP_DT,
+  		t.TRXN_BASE_AM,
+  		t.REM_NM,
+  		t.REM_ACTVY_RISK_ NB,
+  		t.REM_BENEF_TRSTD_FL,
+  		t.REM_ACCT_ID,
+  		(select DPLY_ADDR_TX from DERIVED_ADDRESS where t.ORIG_ADDR_MSTR_SEQ_ID = DERVD_ADDR_SEQ_ID) orig_addr,
+  		t.REM_ACCT_ID,
+  		t.BENEF_NM,
+  		t.BENEF_ACTVY_RISK_NB,
+  		t.BENEF_ACCT_ID,
+  		(select DPLY_ADDR_TX from DERIVED_ADDRESS where t.BENEF_ADDR_MSTR_SEQ_ID = DERVD_ADDR_SEQ_ID) benef_addr
+  	from
+  		<if test="isAlert != 1">
+	  		MI_TRXN t
+  		</if>
+  		<if test="isAlert == 1">
+	  		MI_TRXN_ARC t
+  		</if>
+  	where
+  		t.FO_TRXN_SEQ_ID = #{id}
+  </select>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.CustEmailAddrMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.CustEmailAddr">
+    <id column="CUST_INTRL_ID" jdbcType="VARCHAR" property="custIntrlId" />
+    <id column="EMAIL_SEQ_NB" jdbcType="VARCHAR" property="emailSeqNb" />
+    <result column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="CUST_EMAIL_SEQ_ID" jdbcType="DECIMAL" property="custEmailSeqId" />
+    <result column="EMAIL_ADDR_TX" jdbcType="VARCHAR" property="emailAddrTx" />
+    <result column="SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [CUST_INTRL_ID], [EMAIL_SEQ_NB], [DATA_DUMP_DT], [CUST_EMAIL_SEQ_ID], [EMAIL_ADDR_TX], 
+    [SRC_SYS_CD], [PRCSNG_BATCH_NM]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.aml.api.pojo.CustEmailAddr" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[CUST_EMAIL_ADDR]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [EMAIL_SEQ_NB] = #{emailSeqNb,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aml.api.pojo.CustEmailAddr">
+    delete from [mantas].[CUST_EMAIL_ADDR]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [EMAIL_SEQ_NB] = #{emailSeqNb,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.CustEmailAddr">
+    insert into [mantas].[CUST_EMAIL_ADDR] ([CUST_INTRL_ID], [EMAIL_SEQ_NB], [DATA_DUMP_DT], 
+      [CUST_EMAIL_SEQ_ID], [EMAIL_ADDR_TX], [SRC_SYS_CD], 
+      [PRCSNG_BATCH_NM])
+    values (#{custIntrlId,jdbcType=VARCHAR}, #{emailSeqNb,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, 
+      #{custEmailSeqId,jdbcType=DECIMAL}, #{emailAddrTx,jdbcType=VARCHAR}, #{srcSysCd,jdbcType=VARCHAR}, 
+      #{prcsngBatchNm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.CustEmailAddr">
+    insert into [mantas].[CUST_EMAIL_ADDR]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        [CUST_INTRL_ID],
+      </if>
+      <if test="emailSeqNb != null">
+        [EMAIL_SEQ_NB],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="custEmailSeqId != null">
+        [CUST_EMAIL_SEQ_ID],
+      </if>
+      <if test="emailAddrTx != null">
+        [EMAIL_ADDR_TX],
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        #{custIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="emailSeqNb != null">
+        #{emailSeqNb,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custEmailSeqId != null">
+        #{custEmailSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="emailAddrTx != null">
+        #{emailAddrTx,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.CustEmailAddr">
+    update [mantas].[CUST_EMAIL_ADDR]
+    <set>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custEmailSeqId != null">
+        [CUST_EMAIL_SEQ_ID] = #{custEmailSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="emailAddrTx != null">
+        [EMAIL_ADDR_TX] = #{emailAddrTx,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [EMAIL_SEQ_NB] = #{emailSeqNb,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.CustEmailAddr">
+    update [mantas].[CUST_EMAIL_ADDR]
+    set [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      [CUST_EMAIL_SEQ_ID] = #{custEmailSeqId,jdbcType=DECIMAL},
+      [EMAIL_ADDR_TX] = #{emailAddrTx,jdbcType=VARCHAR},
+      [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR}
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [EMAIL_SEQ_NB] = #{emailSeqNb,jdbcType=VARCHAR}
+  </update>
+</mapper>

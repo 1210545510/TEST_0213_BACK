@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AcctBalPosnSmryMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AcctBalPosnSmry">
+    <id column="ACCT_INTRL_ID" jdbcType="VARCHAR" property="acctIntrlId" />
+    <id column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="ACCT_BAL_SEQ_ID" jdbcType="DECIMAL" property="acctBalSeqId" />
+    <result column="NET_WRTH_AM" jdbcType="DECIMAL" property="netWrthAm" />
+    <result column="AVAIL_PAY_AM" jdbcType="DECIMAL" property="availPayAm" />
+    <result column="EQTY_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="eqtyMktvalLngAm" />
+    <result column="EQTY_MKTVAL_SHRT_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtAm" />
+    <result column="MRGN_EQTY_PT" jdbcType="DECIMAL" property="mrgnEqtyPt" />
+    <result column="LOW_PRICD_SCRTY_AM" jdbcType="DECIMAL" property="lowPricdScrtyAm" />
+    <result column="OPTN_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="optnMktvalLngAm" />
+    <result column="OPTN_MKTVAL_SHRT_AM" jdbcType="DECIMAL" property="optnMktvalShrtAm" />
+    <result column="OPTN_MRGN_RQMT_AM" jdbcType="DECIMAL" property="optnMrgnRqmtAm" />
+    <result column="EQTY_MKTVAL_SHRT_NOBOX_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtNoboxAm" />
+    <result column="NKD_CALL_ASGMT_RISK_AM" jdbcType="DECIMAL" property="nkdCallAsgmtRiskAm" />
+    <result column="NKD_PUT_ASGMT_RISK_AM" jdbcType="DECIMAL" property="nkdPutAsgmtRiskAm" />
+    <result column="NKD_PUT_ASGMT_VAL_AM" jdbcType="DECIMAL" property="nkdPutAsgmtValAm" />
+    <result column="TOT_OPTN_ASGMT_RISK_AM" jdbcType="DECIMAL" property="totOptnAsgmtRiskAm" />
+    <result column="LNG_OPTN_2MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn2moExprnCt" />
+    <result column="LNG_OPTN_6MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn6moExprnCt" />
+    <result column="LNG_OPTN_3MO_6MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn3mo6moExprnCt" />
+    <result column="NKD_OPTN_2MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn2moExprnCt" />
+    <result column="NKD_OPTN_6MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn6moExprnCt" />
+    <result column="NKD_OPTN_3MO_6MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn3mo6moExprnCt" />
+    <result column="HI_CNC_SCRTY_INTRL_ID" jdbcType="VARCHAR" property="hiCncScrtyIntrlId" />
+    <result column="HI_CNC_SCRTY_VAL_AM" jdbcType="DECIMAL" property="hiCncScrtyValAm" />
+    <result column="HI_CNC_SCRTY_UNIT_QT" jdbcType="DECIMAL" property="hiCncScrtyUnitQt" />
+    <result column="HI_CNC_SCRTY_EQTY_PT" jdbcType="DECIMAL" property="hiCncScrtyEqtyPt" />
+    <result column="HI_CNC_SHRT_SCRTY_INTRL_ID" jdbcType="VARCHAR" property="hiCncShrtScrtyIntrlId" />
+    <result column="HI_CNC_SHRT_SCRTY_VAL_AM" jdbcType="DECIMAL" property="hiCncShrtScrtyValAm" />
+    <result column="HI_CNC_SHRT_SCRTY_UNIT_QT" jdbcType="DECIMAL" property="hiCncShrtScrtyUnitQt" />
+    <result column="HI_CNC_SCTR_NM" jdbcType="VARCHAR" property="hiCncSctrNm" />
+    <result column="HI_CNC_SCTR_VAL_AM" jdbcType="DECIMAL" property="hiCncSctrValAm" />
+    <result column="HI_CNC_NKD_OPTN_UND_SCRTY_ID" jdbcType="VARCHAR" property="hiCncNkdOptnUndScrtyId" />
+    <result column="HI_CNC_LNG_OPTN_UND_SCRTY_ID" jdbcType="VARCHAR" property="hiCncLngOptnUndScrtyId" />
+    <result column="HI_CNC_NKD_OPTN_CNTR_QT" jdbcType="DECIMAL" property="hiCncNkdOptnCntrQt" />
+    <result column="HI_CNC_LNG_OPTN_CNTR_QT" jdbcType="DECIMAL" property="hiCncLngOptnCntrQt" />
+    <result column="TOT_NKD_OPTN_CNTR_QT" jdbcType="DECIMAL" property="totNkdOptnCntrQt" />
+    <result column="TOT_LNG_OPTN_CNTR_QT" jdbcType="DECIMAL" property="totLngOptnCntrQt" />
+    <result column="HI_CNC_OPTN_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="hiCncOptnMktvalLngAm" />
+    <result column="HH_ACCT_GRP_ID" jdbcType="VARCHAR" property="hhAcctGrpId" />
+    <result column="MRGN_BAL_AM" jdbcType="DECIMAL" property="mrgnBalAm" />
+    <result column="CASH_BAL_AM" jdbcType="DECIMAL" property="cashBalAm" />
+    <result column="LNG_MRGN_MKTVAL_AM" jdbcType="DECIMAL" property="lngMrgnMktvalAm" />
+    <result column="SHRT_MRGN_MKTVAL_AM" jdbcType="DECIMAL" property="shrtMrgnMktvalAm" />
+    <result column="TOT_CASH_SCRTY_VAL_AM" jdbcType="DECIMAL" property="totCashScrtyValAm" />
+    <result column="MNY_MKT_FUND_BAL_AM" jdbcType="DECIMAL" property="mnyMktFundBalAm" />
+    <result column="MRGN_EQTY_AM" jdbcType="DECIMAL" property="mrgnEqtyAm" />
+    <result column="MFUND_BAL_AM" jdbcType="DECIMAL" property="mfundBalAm" />
+    <result column="BOND_BAL_AM" jdbcType="DECIMAL" property="bondBalAm" />
+    <result column="TOT_DEBT_AM" jdbcType="DECIMAL" property="totDebtAm" />
+    <result column="UNCOL_BAL_AM" jdbcType="DECIMAL" property="uncolBalAm" />
+    <result column="OVR_DRFT_BAL_AM" jdbcType="DECIMAL" property="ovrDrftBalAm" />
+    <result column="LAST_OVR_DRFT_NEG_BAL_AM" jdbcType="DECIMAL" property="lastOvrDrftNegBalAm" />
+    <result column="LAST_OVR_DRFT_DURTN_DY_CT" jdbcType="DECIMAL" property="lastOvrDrftDurtnDyCt" />
+    <result column="LAST_OVR_DRFT_NEG_BAL_DT" jdbcType="TIMESTAMP" property="lastOvrDrftNegBalDt" />
+    <result column="SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+    <result column="CSTM_1_DT" jdbcType="TIMESTAMP" property="cstm1Dt" />
+    <result column="CSTM_2_DT" jdbcType="TIMESTAMP" property="cstm2Dt" />
+    <result column="CSTM_3_DT" jdbcType="TIMESTAMP" property="cstm3Dt" />
+    <result column="CSTM_1_RL" jdbcType="DECIMAL" property="cstm1Rl" />
+    <result column="CSTM_2_RL" jdbcType="DECIMAL" property="cstm2Rl" />
+    <result column="CSTM_3_RL" jdbcType="DECIMAL" property="cstm3Rl" />
+    <result column="CSTM_1_TX" jdbcType="VARCHAR" property="cstm1Tx" />
+    <result column="CSTM_2_TX" jdbcType="VARCHAR" property="cstm2Tx" />
+    <result column="CSTM_3_TX" jdbcType="VARCHAR" property="cstm3Tx" />
+    <result column="CSTM_4_TX" jdbcType="VARCHAR" property="cstm4Tx" />
+    <result column="CSTM_5_TX" jdbcType="VARCHAR" property="cstm5Tx" />
+    <result column="CLTRL_VAL_AM" jdbcType="DECIMAL" property="cltrlValAm" />
+    <result column="CLTRL_RQMT_AM" jdbcType="DECIMAL" property="cltrlRqmtAm" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="ADJ_MRGN_DBT_AM" jdbcType="DECIMAL" property="adjMrgnDbtAm" />
+    <result column="NET_WRTH_RPTNG_AM" jdbcType="DECIMAL" property="netWrthRptngAm" />
+    <result column="AVAIL_PAY_RPTNG_AM" jdbcType="DECIMAL" property="availPayRptngAm" />
+    <result column="MRGN_BAL_RPTNG_AM" jdbcType="DECIMAL" property="mrgnBalRptngAm" />
+    <result column="MRGN_EQTY_RPTNG_AM" jdbcType="DECIMAL" property="mrgnEqtyRptngAm" />
+    <result column="CASH_BAL_RPTNG_AM" jdbcType="DECIMAL" property="cashBalRptngAm" />
+    <result column="LAST_OVR_DRFT_NEG_BAL_RPTNG_AM" jdbcType="DECIMAL" property="lastOvrDrftNegBalRptngAm" />
+    <result column="TOT_CASH_SCRTY_VAL_RPTNG_AM" jdbcType="DECIMAL" property="totCashScrtyValRptngAm" />
+    <result column="UNCOL_BAL_RPTNG_AM" jdbcType="DECIMAL" property="uncolBalRptngAm" />
+    <result column="EQTY_MKTVAL_SHRT_RPTNG_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtRptngAm" />
+    <result column="EQTY_MKTVAL_LNG_RPTNG_AM" jdbcType="DECIMAL" property="eqtyMktvalLngRptngAm" />
+    <result column="LNG_MRGN_MKTVAL_RPTNG_AM" jdbcType="DECIMAL" property="lngMrgnMktvalRptngAm" />
+    <result column="SHRT_MRGN_MKTVAL_RPTNG_AM" jdbcType="DECIMAL" property="shrtMrgnMktvalRptngAm" />
+    <result column="MNY_MKT_FUND_BAL_RPTNG_AM" jdbcType="DECIMAL" property="mnyMktFundBalRptngAm" />
+    <result column="OPTN_MRGN_RQMT_RPTNG_AM" jdbcType="DECIMAL" property="optnMrgnRqmtRptngAm" />
+    <result column="OPTN_MKTVAL_SHRT_RPTNG_AM" jdbcType="DECIMAL" property="optnMktvalShrtRptngAm" />
+    <result column="OPTN_MKTVAL_LNG_RPTNG_AM" jdbcType="DECIMAL" property="optnMktvalLngRptngAm" />
+    <result column="OVR_DRFT_BAL_RPTNG_AM" jdbcType="DECIMAL" property="ovrDrftBalRptngAm" />
+    <result column="CLTRL_VAL_RPTNG_AM" jdbcType="DECIMAL" property="cltrlValRptngAm" />
+    <result column="CLTRL_RQMT_RPTNG_AM" jdbcType="DECIMAL" property="cltrlRqmtRptngAm" />
+    <result column="ADJ_MRGN_DBT_RPTNG_AM" jdbcType="DECIMAL" property="adjMrgnDbtRptngAm" />
+    <result column="TOT_DEBT_RPTNG_AM" jdbcType="DECIMAL" property="totDebtRptngAm" />
+    <result column="FEE_AM" jdbcType="DECIMAL" property="feeAm" />
+    <result column="SUPR_CMSN_AM" jdbcType="DECIMAL" property="suprCmsnAm" />
+    <result column="CASH_VAL_RPTNG_AM" jdbcType="DECIMAL" property="cashValRptngAm" />
+    <result column="CASH_VAL_BASE_AM" jdbcType="DECIMAL" property="cashValBaseAm" />
+    <result column="ACCT_GROSS_ASSETS_RPTNG_AM" jdbcType="DECIMAL" property="acctGrossAssetsRptngAm" />
+    <result column="ACCT_GROSS_ASSETS_BASE_AM" jdbcType="DECIMAL" property="acctGrossAssetsBaseAm" />
+    <result column="LDGR_AM" jdbcType="DECIMAL" property="ldgrAm" />
+    <result column="LDGR_RPTNG_AM" jdbcType="DECIMAL" property="ldgrRptngAm" />
+    <result column="NET_WRTH_AM_RNG_CD" jdbcType="VARCHAR" property="netWrthAmRngCd" />
+    <result column="AVAIL_PAY_AM_RNG_CD" jdbcType="VARCHAR" property="availPayAmRngCd" />
+    <result column="LOW_PRICD_SCRTY_BASE_PR" jdbcType="DECIMAL" property="lowPricdScrtyBasePr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [ACCT_INTRL_ID], [DATA_DUMP_DT], [ACCT_BAL_SEQ_ID], [NET_WRTH_AM], [AVAIL_PAY_AM], 
+    [EQTY_MKTVAL_LNG_AM], [EQTY_MKTVAL_SHRT_AM], [MRGN_EQTY_PT], [LOW_PRICD_SCRTY_AM], 
+    [OPTN_MKTVAL_LNG_AM], [OPTN_MKTVAL_SHRT_AM], [OPTN_MRGN_RQMT_AM], [EQTY_MKTVAL_SHRT_NOBOX_AM], 
+    [NKD_CALL_ASGMT_RISK_AM], [NKD_PUT_ASGMT_RISK_AM], [NKD_PUT_ASGMT_VAL_AM], [TOT_OPTN_ASGMT_RISK_AM], 
+    [LNG_OPTN_2MO_EXPRN_CT], [LNG_OPTN_6MO_EXPRN_CT], [LNG_OPTN_3MO_6MO_EXPRN_CT], [NKD_OPTN_2MO_EXPRN_CT], 
+    [NKD_OPTN_6MO_EXPRN_CT], [NKD_OPTN_3MO_6MO_EXPRN_CT], [HI_CNC_SCRTY_INTRL_ID], [HI_CNC_SCRTY_VAL_AM], 
+    [HI_CNC_SCRTY_UNIT_QT], [HI_CNC_SCRTY_EQTY_PT], [HI_CNC_SHRT_SCRTY_INTRL_ID], [HI_CNC_SHRT_SCRTY_VAL_AM], 
+    [HI_CNC_SHRT_SCRTY_UNIT_QT], [HI_CNC_SCTR_NM], [HI_CNC_SCTR_VAL_AM], [HI_CNC_NKD_OPTN_UND_SCRTY_ID], 
+    [HI_CNC_LNG_OPTN_UND_SCRTY_ID], [HI_CNC_NKD_OPTN_CNTR_QT], [HI_CNC_LNG_OPTN_CNTR_QT], 
+    [TOT_NKD_OPTN_CNTR_QT], [TOT_LNG_OPTN_CNTR_QT], [HI_CNC_OPTN_MKTVAL_LNG_AM], [HH_ACCT_GRP_ID], 
+    [MRGN_BAL_AM], [CASH_BAL_AM], [LNG_MRGN_MKTVAL_AM], [SHRT_MRGN_MKTVAL_AM], [TOT_CASH_SCRTY_VAL_AM], 
+    [MNY_MKT_FUND_BAL_AM], [MRGN_EQTY_AM], [MFUND_BAL_AM], [BOND_BAL_AM], [TOT_DEBT_AM], 
+    [UNCOL_BAL_AM], [OVR_DRFT_BAL_AM], [LAST_OVR_DRFT_NEG_BAL_AM], [LAST_OVR_DRFT_DURTN_DY_CT], 
+    [LAST_OVR_DRFT_NEG_BAL_DT], [SRC_SYS_CD], [CSTM_1_DT], [CSTM_2_DT], [CSTM_3_DT], 
+    [CSTM_1_RL], [CSTM_2_RL], [CSTM_3_RL], [CSTM_1_TX], [CSTM_2_TX], [CSTM_3_TX], [CSTM_4_TX], 
+    [CSTM_5_TX], [CLTRL_VAL_AM], [CLTRL_RQMT_AM], [PRCSNG_BATCH_NM], [ADJ_MRGN_DBT_AM], 
+    [NET_WRTH_RPTNG_AM], [AVAIL_PAY_RPTNG_AM], [MRGN_BAL_RPTNG_AM], [MRGN_EQTY_RPTNG_AM], 
+    [CASH_BAL_RPTNG_AM], [LAST_OVR_DRFT_NEG_BAL_RPTNG_AM], [TOT_CASH_SCRTY_VAL_RPTNG_AM], 
+    [UNCOL_BAL_RPTNG_AM], [EQTY_MKTVAL_SHRT_RPTNG_AM], [EQTY_MKTVAL_LNG_RPTNG_AM], [LNG_MRGN_MKTVAL_RPTNG_AM], 
+    [SHRT_MRGN_MKTVAL_RPTNG_AM], [MNY_MKT_FUND_BAL_RPTNG_AM], [OPTN_MRGN_RQMT_RPTNG_AM], 
+    [OPTN_MKTVAL_SHRT_RPTNG_AM], [OPTN_MKTVAL_LNG_RPTNG_AM], [OVR_DRFT_BAL_RPTNG_AM], 
+    [CLTRL_VAL_RPTNG_AM], [CLTRL_RQMT_RPTNG_AM], [ADJ_MRGN_DBT_RPTNG_AM], [TOT_DEBT_RPTNG_AM], 
+    [FEE_AM], [SUPR_CMSN_AM], [CASH_VAL_RPTNG_AM], [CASH_VAL_BASE_AM], [ACCT_GROSS_ASSETS_RPTNG_AM], 
+    [ACCT_GROSS_ASSETS_BASE_AM], [LDGR_AM], [LDGR_RPTNG_AM], [NET_WRTH_AM_RNG_CD], [AVAIL_PAY_AM_RNG_CD], 
+    [LOW_PRICD_SCRTY_BASE_PR]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.aml.api.pojo.AcctBalPosnSmry" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[ACCT_BAL_POSN_SMRY]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aml.api.pojo.AcctBalPosnSmry">
+    delete from [mantas].[ACCT_BAL_POSN_SMRY]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AcctBalPosnSmry">
+    insert into [mantas].[ACCT_BAL_POSN_SMRY] ([ACCT_INTRL_ID], [DATA_DUMP_DT], [ACCT_BAL_SEQ_ID], 
+      [NET_WRTH_AM], [AVAIL_PAY_AM], [EQTY_MKTVAL_LNG_AM], 
+      [EQTY_MKTVAL_SHRT_AM], [MRGN_EQTY_PT], [LOW_PRICD_SCRTY_AM], 
+      [OPTN_MKTVAL_LNG_AM], [OPTN_MKTVAL_SHRT_AM], [OPTN_MRGN_RQMT_AM], 
+      [EQTY_MKTVAL_SHRT_NOBOX_AM], [NKD_CALL_ASGMT_RISK_AM], 
+      [NKD_PUT_ASGMT_RISK_AM], [NKD_PUT_ASGMT_VAL_AM], [TOT_OPTN_ASGMT_RISK_AM], 
+      [LNG_OPTN_2MO_EXPRN_CT], [LNG_OPTN_6MO_EXPRN_CT], [LNG_OPTN_3MO_6MO_EXPRN_CT], 
+      [NKD_OPTN_2MO_EXPRN_CT], [NKD_OPTN_6MO_EXPRN_CT], [NKD_OPTN_3MO_6MO_EXPRN_CT], 
+      [HI_CNC_SCRTY_INTRL_ID], [HI_CNC_SCRTY_VAL_AM], [HI_CNC_SCRTY_UNIT_QT], 
+      [HI_CNC_SCRTY_EQTY_PT], [HI_CNC_SHRT_SCRTY_INTRL_ID], 
+      [HI_CNC_SHRT_SCRTY_VAL_AM], [HI_CNC_SHRT_SCRTY_UNIT_QT], 
+      [HI_CNC_SCTR_NM], [HI_CNC_SCTR_VAL_AM], [HI_CNC_NKD_OPTN_UND_SCRTY_ID], 
+      [HI_CNC_LNG_OPTN_UND_SCRTY_ID], [HI_CNC_NKD_OPTN_CNTR_QT], 
+      [HI_CNC_LNG_OPTN_CNTR_QT], [TOT_NKD_OPTN_CNTR_QT], [TOT_LNG_OPTN_CNTR_QT], 
+      [HI_CNC_OPTN_MKTVAL_LNG_AM], [HH_ACCT_GRP_ID], [MRGN_BAL_AM], 
+      [CASH_BAL_AM], [LNG_MRGN_MKTVAL_AM], [SHRT_MRGN_MKTVAL_AM], 
+      [TOT_CASH_SCRTY_VAL_AM], [MNY_MKT_FUND_BAL_AM], [MRGN_EQTY_AM], 
+      [MFUND_BAL_AM], [BOND_BAL_AM], [TOT_DEBT_AM], 
+      [UNCOL_BAL_AM], [OVR_DRFT_BAL_AM], [LAST_OVR_DRFT_NEG_BAL_AM], 
+      [LAST_OVR_DRFT_DURTN_DY_CT], [LAST_OVR_DRFT_NEG_BAL_DT], 
+      [SRC_SYS_CD], [CSTM_1_DT], [CSTM_2_DT], 
+      [CSTM_3_DT], [CSTM_1_RL], [CSTM_2_RL], 
+      [CSTM_3_RL], [CSTM_1_TX], [CSTM_2_TX], 
+      [CSTM_3_TX], [CSTM_4_TX], [CSTM_5_TX], 
+      [CLTRL_VAL_AM], [CLTRL_RQMT_AM], [PRCSNG_BATCH_NM], 
+      [ADJ_MRGN_DBT_AM], [NET_WRTH_RPTNG_AM], [AVAIL_PAY_RPTNG_AM], 
+      [MRGN_BAL_RPTNG_AM], [MRGN_EQTY_RPTNG_AM], [CASH_BAL_RPTNG_AM], 
+      [LAST_OVR_DRFT_NEG_BAL_RPTNG_AM], [TOT_CASH_SCRTY_VAL_RPTNG_AM], 
+      [UNCOL_BAL_RPTNG_AM], [EQTY_MKTVAL_SHRT_RPTNG_AM], 
+      [EQTY_MKTVAL_LNG_RPTNG_AM], [LNG_MRGN_MKTVAL_RPTNG_AM], 
+      [SHRT_MRGN_MKTVAL_RPTNG_AM], [MNY_MKT_FUND_BAL_RPTNG_AM], 
+      [OPTN_MRGN_RQMT_RPTNG_AM], [OPTN_MKTVAL_SHRT_RPTNG_AM], 
+      [OPTN_MKTVAL_LNG_RPTNG_AM], [OVR_DRFT_BAL_RPTNG_AM], 
+      [CLTRL_VAL_RPTNG_AM], [CLTRL_RQMT_RPTNG_AM], [ADJ_MRGN_DBT_RPTNG_AM], 
+      [TOT_DEBT_RPTNG_AM], [FEE_AM], [SUPR_CMSN_AM], 
+      [CASH_VAL_RPTNG_AM], [CASH_VAL_BASE_AM], [ACCT_GROSS_ASSETS_RPTNG_AM], 
+      [ACCT_GROSS_ASSETS_BASE_AM], [LDGR_AM], [LDGR_RPTNG_AM], 
+      [NET_WRTH_AM_RNG_CD], [AVAIL_PAY_AM_RNG_CD], [LOW_PRICD_SCRTY_BASE_PR]
+      )
+    values (#{acctIntrlId,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, #{acctBalSeqId,jdbcType=DECIMAL}, 
+      #{netWrthAm,jdbcType=DECIMAL}, #{availPayAm,jdbcType=DECIMAL}, #{eqtyMktvalLngAm,jdbcType=DECIMAL}, 
+      #{eqtyMktvalShrtAm,jdbcType=DECIMAL}, #{mrgnEqtyPt,jdbcType=DECIMAL}, #{lowPricdScrtyAm,jdbcType=DECIMAL}, 
+      #{optnMktvalLngAm,jdbcType=DECIMAL}, #{optnMktvalShrtAm,jdbcType=DECIMAL}, #{optnMrgnRqmtAm,jdbcType=DECIMAL}, 
+      #{eqtyMktvalShrtNoboxAm,jdbcType=DECIMAL}, #{nkdCallAsgmtRiskAm,jdbcType=DECIMAL}, 
+      #{nkdPutAsgmtRiskAm,jdbcType=DECIMAL}, #{nkdPutAsgmtValAm,jdbcType=DECIMAL}, #{totOptnAsgmtRiskAm,jdbcType=DECIMAL}, 
+      #{lngOptn2moExprnCt,jdbcType=DECIMAL}, #{lngOptn6moExprnCt,jdbcType=DECIMAL}, #{lngOptn3mo6moExprnCt,jdbcType=DECIMAL}, 
+      #{nkdOptn2moExprnCt,jdbcType=DECIMAL}, #{nkdOptn6moExprnCt,jdbcType=DECIMAL}, #{nkdOptn3mo6moExprnCt,jdbcType=DECIMAL}, 
+      #{hiCncScrtyIntrlId,jdbcType=VARCHAR}, #{hiCncScrtyValAm,jdbcType=DECIMAL}, #{hiCncScrtyUnitQt,jdbcType=DECIMAL}, 
+      #{hiCncScrtyEqtyPt,jdbcType=DECIMAL}, #{hiCncShrtScrtyIntrlId,jdbcType=VARCHAR}, 
+      #{hiCncShrtScrtyValAm,jdbcType=DECIMAL}, #{hiCncShrtScrtyUnitQt,jdbcType=DECIMAL}, 
+      #{hiCncSctrNm,jdbcType=VARCHAR}, #{hiCncSctrValAm,jdbcType=DECIMAL}, #{hiCncNkdOptnUndScrtyId,jdbcType=VARCHAR}, 
+      #{hiCncLngOptnUndScrtyId,jdbcType=VARCHAR}, #{hiCncNkdOptnCntrQt,jdbcType=DECIMAL}, 
+      #{hiCncLngOptnCntrQt,jdbcType=DECIMAL}, #{totNkdOptnCntrQt,jdbcType=DECIMAL}, #{totLngOptnCntrQt,jdbcType=DECIMAL}, 
+      #{hiCncOptnMktvalLngAm,jdbcType=DECIMAL}, #{hhAcctGrpId,jdbcType=VARCHAR}, #{mrgnBalAm,jdbcType=DECIMAL}, 
+      #{cashBalAm,jdbcType=DECIMAL}, #{lngMrgnMktvalAm,jdbcType=DECIMAL}, #{shrtMrgnMktvalAm,jdbcType=DECIMAL}, 
+      #{totCashScrtyValAm,jdbcType=DECIMAL}, #{mnyMktFundBalAm,jdbcType=DECIMAL}, #{mrgnEqtyAm,jdbcType=DECIMAL}, 
+      #{mfundBalAm,jdbcType=DECIMAL}, #{bondBalAm,jdbcType=DECIMAL}, #{totDebtAm,jdbcType=DECIMAL}, 
+      #{uncolBalAm,jdbcType=DECIMAL}, #{ovrDrftBalAm,jdbcType=DECIMAL}, #{lastOvrDrftNegBalAm,jdbcType=DECIMAL}, 
+      #{lastOvrDrftDurtnDyCt,jdbcType=DECIMAL}, #{lastOvrDrftNegBalDt,jdbcType=TIMESTAMP}, 
+      #{srcSysCd,jdbcType=VARCHAR}, #{cstm1Dt,jdbcType=TIMESTAMP}, #{cstm2Dt,jdbcType=TIMESTAMP}, 
+      #{cstm3Dt,jdbcType=TIMESTAMP}, #{cstm1Rl,jdbcType=DECIMAL}, #{cstm2Rl,jdbcType=DECIMAL}, 
+      #{cstm3Rl,jdbcType=DECIMAL}, #{cstm1Tx,jdbcType=VARCHAR}, #{cstm2Tx,jdbcType=VARCHAR}, 
+      #{cstm3Tx,jdbcType=VARCHAR}, #{cstm4Tx,jdbcType=VARCHAR}, #{cstm5Tx,jdbcType=VARCHAR}, 
+      #{cltrlValAm,jdbcType=DECIMAL}, #{cltrlRqmtAm,jdbcType=DECIMAL}, #{prcsngBatchNm,jdbcType=VARCHAR}, 
+      #{adjMrgnDbtAm,jdbcType=DECIMAL}, #{netWrthRptngAm,jdbcType=DECIMAL}, #{availPayRptngAm,jdbcType=DECIMAL}, 
+      #{mrgnBalRptngAm,jdbcType=DECIMAL}, #{mrgnEqtyRptngAm,jdbcType=DECIMAL}, #{cashBalRptngAm,jdbcType=DECIMAL}, 
+      #{lastOvrDrftNegBalRptngAm,jdbcType=DECIMAL}, #{totCashScrtyValRptngAm,jdbcType=DECIMAL}, 
+      #{uncolBalRptngAm,jdbcType=DECIMAL}, #{eqtyMktvalShrtRptngAm,jdbcType=DECIMAL}, 
+      #{eqtyMktvalLngRptngAm,jdbcType=DECIMAL}, #{lngMrgnMktvalRptngAm,jdbcType=DECIMAL}, 
+      #{shrtMrgnMktvalRptngAm,jdbcType=DECIMAL}, #{mnyMktFundBalRptngAm,jdbcType=DECIMAL}, 
+      #{optnMrgnRqmtRptngAm,jdbcType=DECIMAL}, #{optnMktvalShrtRptngAm,jdbcType=DECIMAL}, 
+      #{optnMktvalLngRptngAm,jdbcType=DECIMAL}, #{ovrDrftBalRptngAm,jdbcType=DECIMAL}, 
+      #{cltrlValRptngAm,jdbcType=DECIMAL}, #{cltrlRqmtRptngAm,jdbcType=DECIMAL}, #{adjMrgnDbtRptngAm,jdbcType=DECIMAL}, 
+      #{totDebtRptngAm,jdbcType=DECIMAL}, #{feeAm,jdbcType=DECIMAL}, #{suprCmsnAm,jdbcType=DECIMAL}, 
+      #{cashValRptngAm,jdbcType=DECIMAL}, #{cashValBaseAm,jdbcType=DECIMAL}, #{acctGrossAssetsRptngAm,jdbcType=DECIMAL}, 
+      #{acctGrossAssetsBaseAm,jdbcType=DECIMAL}, #{ldgrAm,jdbcType=DECIMAL}, #{ldgrRptngAm,jdbcType=DECIMAL}, 
+      #{netWrthAmRngCd,jdbcType=VARCHAR}, #{availPayAmRngCd,jdbcType=VARCHAR}, #{lowPricdScrtyBasePr,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AcctBalPosnSmry">
+    insert into [mantas].[ACCT_BAL_POSN_SMRY]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        [ACCT_INTRL_ID],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="acctBalSeqId != null">
+        [ACCT_BAL_SEQ_ID],
+      </if>
+      <if test="netWrthAm != null">
+        [NET_WRTH_AM],
+      </if>
+      <if test="availPayAm != null">
+        [AVAIL_PAY_AM],
+      </if>
+      <if test="eqtyMktvalLngAm != null">
+        [EQTY_MKTVAL_LNG_AM],
+      </if>
+      <if test="eqtyMktvalShrtAm != null">
+        [EQTY_MKTVAL_SHRT_AM],
+      </if>
+      <if test="mrgnEqtyPt != null">
+        [MRGN_EQTY_PT],
+      </if>
+      <if test="lowPricdScrtyAm != null">
+        [LOW_PRICD_SCRTY_AM],
+      </if>
+      <if test="optnMktvalLngAm != null">
+        [OPTN_MKTVAL_LNG_AM],
+      </if>
+      <if test="optnMktvalShrtAm != null">
+        [OPTN_MKTVAL_SHRT_AM],
+      </if>
+      <if test="optnMrgnRqmtAm != null">
+        [OPTN_MRGN_RQMT_AM],
+      </if>
+      <if test="eqtyMktvalShrtNoboxAm != null">
+        [EQTY_MKTVAL_SHRT_NOBOX_AM],
+      </if>
+      <if test="nkdCallAsgmtRiskAm != null">
+        [NKD_CALL_ASGMT_RISK_AM],
+      </if>
+      <if test="nkdPutAsgmtRiskAm != null">
+        [NKD_PUT_ASGMT_RISK_AM],
+      </if>
+      <if test="nkdPutAsgmtValAm != null">
+        [NKD_PUT_ASGMT_VAL_AM],
+      </if>
+      <if test="totOptnAsgmtRiskAm != null">
+        [TOT_OPTN_ASGMT_RISK_AM],
+      </if>
+      <if test="lngOptn2moExprnCt != null">
+        [LNG_OPTN_2MO_EXPRN_CT],
+      </if>
+      <if test="lngOptn6moExprnCt != null">
+        [LNG_OPTN_6MO_EXPRN_CT],
+      </if>
+      <if test="lngOptn3mo6moExprnCt != null">
+        [LNG_OPTN_3MO_6MO_EXPRN_CT],
+      </if>
+      <if test="nkdOptn2moExprnCt != null">
+        [NKD_OPTN_2MO_EXPRN_CT],
+      </if>
+      <if test="nkdOptn6moExprnCt != null">
+        [NKD_OPTN_6MO_EXPRN_CT],
+      </if>
+      <if test="nkdOptn3mo6moExprnCt != null">
+        [NKD_OPTN_3MO_6MO_EXPRN_CT],
+      </if>
+      <if test="hiCncScrtyIntrlId != null">
+        [HI_CNC_SCRTY_INTRL_ID],
+      </if>
+      <if test="hiCncScrtyValAm != null">
+        [HI_CNC_SCRTY_VAL_AM],
+      </if>
+      <if test="hiCncScrtyUnitQt != null">
+        [HI_CNC_SCRTY_UNIT_QT],
+      </if>
+      <if test="hiCncScrtyEqtyPt != null">
+        [HI_CNC_SCRTY_EQTY_PT],
+      </if>
+      <if test="hiCncShrtScrtyIntrlId != null">
+        [HI_CNC_SHRT_SCRTY_INTRL_ID],
+      </if>
+      <if test="hiCncShrtScrtyValAm != null">
+        [HI_CNC_SHRT_SCRTY_VAL_AM],
+      </if>
+      <if test="hiCncShrtScrtyUnitQt != null">
+        [HI_CNC_SHRT_SCRTY_UNIT_QT],
+      </if>
+      <if test="hiCncSctrNm != null">
+        [HI_CNC_SCTR_NM],
+      </if>
+      <if test="hiCncSctrValAm != null">
+        [HI_CNC_SCTR_VAL_AM],
+      </if>
+      <if test="hiCncNkdOptnUndScrtyId != null">
+        [HI_CNC_NKD_OPTN_UND_SCRTY_ID],
+      </if>
+      <if test="hiCncLngOptnUndScrtyId != null">
+        [HI_CNC_LNG_OPTN_UND_SCRTY_ID],
+      </if>
+      <if test="hiCncNkdOptnCntrQt != null">
+        [HI_CNC_NKD_OPTN_CNTR_QT],
+      </if>
+      <if test="hiCncLngOptnCntrQt != null">
+        [HI_CNC_LNG_OPTN_CNTR_QT],
+      </if>
+      <if test="totNkdOptnCntrQt != null">
+        [TOT_NKD_OPTN_CNTR_QT],
+      </if>
+      <if test="totLngOptnCntrQt != null">
+        [TOT_LNG_OPTN_CNTR_QT],
+      </if>
+      <if test="hiCncOptnMktvalLngAm != null">
+        [HI_CNC_OPTN_MKTVAL_LNG_AM],
+      </if>
+      <if test="hhAcctGrpId != null">
+        [HH_ACCT_GRP_ID],
+      </if>
+      <if test="mrgnBalAm != null">
+        [MRGN_BAL_AM],
+      </if>
+      <if test="cashBalAm != null">
+        [CASH_BAL_AM],
+      </if>
+      <if test="lngMrgnMktvalAm != null">
+        [LNG_MRGN_MKTVAL_AM],
+      </if>
+      <if test="shrtMrgnMktvalAm != null">
+        [SHRT_MRGN_MKTVAL_AM],
+      </if>
+      <if test="totCashScrtyValAm != null">
+        [TOT_CASH_SCRTY_VAL_AM],
+      </if>
+      <if test="mnyMktFundBalAm != null">
+        [MNY_MKT_FUND_BAL_AM],
+      </if>
+      <if test="mrgnEqtyAm != null">
+        [MRGN_EQTY_AM],
+      </if>
+      <if test="mfundBalAm != null">
+        [MFUND_BAL_AM],
+      </if>
+      <if test="bondBalAm != null">
+        [BOND_BAL_AM],
+      </if>
+      <if test="totDebtAm != null">
+        [TOT_DEBT_AM],
+      </if>
+      <if test="uncolBalAm != null">
+        [UNCOL_BAL_AM],
+      </if>
+      <if test="ovrDrftBalAm != null">
+        [OVR_DRFT_BAL_AM],
+      </if>
+      <if test="lastOvrDrftNegBalAm != null">
+        [LAST_OVR_DRFT_NEG_BAL_AM],
+      </if>
+      <if test="lastOvrDrftDurtnDyCt != null">
+        [LAST_OVR_DRFT_DURTN_DY_CT],
+      </if>
+      <if test="lastOvrDrftNegBalDt != null">
+        [LAST_OVR_DRFT_NEG_BAL_DT],
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD],
+      </if>
+      <if test="cstm1Dt != null">
+        [CSTM_1_DT],
+      </if>
+      <if test="cstm2Dt != null">
+        [CSTM_2_DT],
+      </if>
+      <if test="cstm3Dt != null">
+        [CSTM_3_DT],
+      </if>
+      <if test="cstm1Rl != null">
+        [CSTM_1_RL],
+      </if>
+      <if test="cstm2Rl != null">
+        [CSTM_2_RL],
+      </if>
+      <if test="cstm3Rl != null">
+        [CSTM_3_RL],
+      </if>
+      <if test="cstm1Tx != null">
+        [CSTM_1_TX],
+      </if>
+      <if test="cstm2Tx != null">
+        [CSTM_2_TX],
+      </if>
+      <if test="cstm3Tx != null">
+        [CSTM_3_TX],
+      </if>
+      <if test="cstm4Tx != null">
+        [CSTM_4_TX],
+      </if>
+      <if test="cstm5Tx != null">
+        [CSTM_5_TX],
+      </if>
+      <if test="cltrlValAm != null">
+        [CLTRL_VAL_AM],
+      </if>
+      <if test="cltrlRqmtAm != null">
+        [CLTRL_RQMT_AM],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="adjMrgnDbtAm != null">
+        [ADJ_MRGN_DBT_AM],
+      </if>
+      <if test="netWrthRptngAm != null">
+        [NET_WRTH_RPTNG_AM],
+      </if>
+      <if test="availPayRptngAm != null">
+        [AVAIL_PAY_RPTNG_AM],
+      </if>
+      <if test="mrgnBalRptngAm != null">
+        [MRGN_BAL_RPTNG_AM],
+      </if>
+      <if test="mrgnEqtyRptngAm != null">
+        [MRGN_EQTY_RPTNG_AM],
+      </if>
+      <if test="cashBalRptngAm != null">
+        [CASH_BAL_RPTNG_AM],
+      </if>
+      <if test="lastOvrDrftNegBalRptngAm != null">
+        [LAST_OVR_DRFT_NEG_BAL_RPTNG_AM],
+      </if>
+      <if test="totCashScrtyValRptngAm != null">
+        [TOT_CASH_SCRTY_VAL_RPTNG_AM],
+      </if>
+      <if test="uncolBalRptngAm != null">
+        [UNCOL_BAL_RPTNG_AM],
+      </if>
+      <if test="eqtyMktvalShrtRptngAm != null">
+        [EQTY_MKTVAL_SHRT_RPTNG_AM],
+      </if>
+      <if test="eqtyMktvalLngRptngAm != null">
+        [EQTY_MKTVAL_LNG_RPTNG_AM],
+      </if>
+      <if test="lngMrgnMktvalRptngAm != null">
+        [LNG_MRGN_MKTVAL_RPTNG_AM],
+      </if>
+      <if test="shrtMrgnMktvalRptngAm != null">
+        [SHRT_MRGN_MKTVAL_RPTNG_AM],
+      </if>
+      <if test="mnyMktFundBalRptngAm != null">
+        [MNY_MKT_FUND_BAL_RPTNG_AM],
+      </if>
+      <if test="optnMrgnRqmtRptngAm != null">
+        [OPTN_MRGN_RQMT_RPTNG_AM],
+      </if>
+      <if test="optnMktvalShrtRptngAm != null">
+        [OPTN_MKTVAL_SHRT_RPTNG_AM],
+      </if>
+      <if test="optnMktvalLngRptngAm != null">
+        [OPTN_MKTVAL_LNG_RPTNG_AM],
+      </if>
+      <if test="ovrDrftBalRptngAm != null">
+        [OVR_DRFT_BAL_RPTNG_AM],
+      </if>
+      <if test="cltrlValRptngAm != null">
+        [CLTRL_VAL_RPTNG_AM],
+      </if>
+      <if test="cltrlRqmtRptngAm != null">
+        [CLTRL_RQMT_RPTNG_AM],
+      </if>
+      <if test="adjMrgnDbtRptngAm != null">
+        [ADJ_MRGN_DBT_RPTNG_AM],
+      </if>
+      <if test="totDebtRptngAm != null">
+        [TOT_DEBT_RPTNG_AM],
+      </if>
+      <if test="feeAm != null">
+        [FEE_AM],
+      </if>
+      <if test="suprCmsnAm != null">
+        [SUPR_CMSN_AM],
+      </if>
+      <if test="cashValRptngAm != null">
+        [CASH_VAL_RPTNG_AM],
+      </if>
+      <if test="cashValBaseAm != null">
+        [CASH_VAL_BASE_AM],
+      </if>
+      <if test="acctGrossAssetsRptngAm != null">
+        [ACCT_GROSS_ASSETS_RPTNG_AM],
+      </if>
+      <if test="acctGrossAssetsBaseAm != null">
+        [ACCT_GROSS_ASSETS_BASE_AM],
+      </if>
+      <if test="ldgrAm != null">
+        [LDGR_AM],
+      </if>
+      <if test="ldgrRptngAm != null">
+        [LDGR_RPTNG_AM],
+      </if>
+      <if test="netWrthAmRngCd != null">
+        [NET_WRTH_AM_RNG_CD],
+      </if>
+      <if test="availPayAmRngCd != null">
+        [AVAIL_PAY_AM_RNG_CD],
+      </if>
+      <if test="lowPricdScrtyBasePr != null">
+        [LOW_PRICD_SCRTY_BASE_PR],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        #{acctIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctBalSeqId != null">
+        #{acctBalSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAm != null">
+        #{netWrthAm,jdbcType=DECIMAL},
+      </if>
+      <if test="availPayAm != null">
+        #{availPayAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalLngAm != null">
+        #{eqtyMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtAm != null">
+        #{eqtyMktvalShrtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyPt != null">
+        #{mrgnEqtyPt,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPricdScrtyAm != null">
+        #{lowPricdScrtyAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalLngAm != null">
+        #{optnMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalShrtAm != null">
+        #{optnMktvalShrtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMrgnRqmtAm != null">
+        #{optnMrgnRqmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtNoboxAm != null">
+        #{eqtyMktvalShrtNoboxAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdCallAsgmtRiskAm != null">
+        #{nkdCallAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdPutAsgmtRiskAm != null">
+        #{nkdPutAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdPutAsgmtValAm != null">
+        #{nkdPutAsgmtValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totOptnAsgmtRiskAm != null">
+        #{totOptnAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn2moExprnCt != null">
+        #{lngOptn2moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn6moExprnCt != null">
+        #{lngOptn6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn3mo6moExprnCt != null">
+        #{lngOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn2moExprnCt != null">
+        #{nkdOptn2moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn6moExprnCt != null">
+        #{nkdOptn6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn3mo6moExprnCt != null">
+        #{nkdOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyIntrlId != null">
+        #{hiCncScrtyIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncScrtyValAm != null">
+        #{hiCncScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyUnitQt != null">
+        #{hiCncScrtyUnitQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyEqtyPt != null">
+        #{hiCncScrtyEqtyPt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncShrtScrtyIntrlId != null">
+        #{hiCncShrtScrtyIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncShrtScrtyValAm != null">
+        #{hiCncShrtScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncShrtScrtyUnitQt != null">
+        #{hiCncShrtScrtyUnitQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncSctrNm != null">
+        #{hiCncSctrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncSctrValAm != null">
+        #{hiCncSctrValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncNkdOptnUndScrtyId != null">
+        #{hiCncNkdOptnUndScrtyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncLngOptnUndScrtyId != null">
+        #{hiCncLngOptnUndScrtyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncNkdOptnCntrQt != null">
+        #{hiCncNkdOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncLngOptnCntrQt != null">
+        #{hiCncLngOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="totNkdOptnCntrQt != null">
+        #{totNkdOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="totLngOptnCntrQt != null">
+        #{totLngOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncOptnMktvalLngAm != null">
+        #{hiCncOptnMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hhAcctGrpId != null">
+        #{hhAcctGrpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgnBalAm != null">
+        #{mrgnBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBalAm != null">
+        #{cashBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngMrgnMktvalAm != null">
+        #{lngMrgnMktvalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="shrtMrgnMktvalAm != null">
+        #{shrtMrgnMktvalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCashScrtyValAm != null">
+        #{totCashScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mnyMktFundBalAm != null">
+        #{mnyMktFundBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyAm != null">
+        #{mrgnEqtyAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mfundBalAm != null">
+        #{mfundBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="bondBalAm != null">
+        #{bondBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDebtAm != null">
+        #{totDebtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="uncolBalAm != null">
+        #{uncolBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ovrDrftBalAm != null">
+        #{ovrDrftBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalAm != null">
+        #{lastOvrDrftNegBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftDurtnDyCt != null">
+        #{lastOvrDrftDurtnDyCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalDt != null">
+        #{lastOvrDrftNegBalDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcSysCd != null">
+        #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm1Dt != null">
+        #{cstm1Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm2Dt != null">
+        #{cstm2Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm3Dt != null">
+        #{cstm3Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm1Rl != null">
+        #{cstm1Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm2Rl != null">
+        #{cstm2Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm3Rl != null">
+        #{cstm3Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm1Tx != null">
+        #{cstm1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm2Tx != null">
+        #{cstm2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm3Tx != null">
+        #{cstm3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm4Tx != null">
+        #{cstm4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm5Tx != null">
+        #{cstm5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cltrlValAm != null">
+        #{cltrlValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlRqmtAm != null">
+        #{cltrlRqmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="adjMrgnDbtAm != null">
+        #{adjMrgnDbtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthRptngAm != null">
+        #{netWrthRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="availPayRptngAm != null">
+        #{availPayRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnBalRptngAm != null">
+        #{mrgnBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyRptngAm != null">
+        #{mrgnEqtyRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBalRptngAm != null">
+        #{cashBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalRptngAm != null">
+        #{lastOvrDrftNegBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCashScrtyValRptngAm != null">
+        #{totCashScrtyValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="uncolBalRptngAm != null">
+        #{uncolBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtRptngAm != null">
+        #{eqtyMktvalShrtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalLngRptngAm != null">
+        #{eqtyMktvalLngRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngMrgnMktvalRptngAm != null">
+        #{lngMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="shrtMrgnMktvalRptngAm != null">
+        #{shrtMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mnyMktFundBalRptngAm != null">
+        #{mnyMktFundBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMrgnRqmtRptngAm != null">
+        #{optnMrgnRqmtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalShrtRptngAm != null">
+        #{optnMktvalShrtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalLngRptngAm != null">
+        #{optnMktvalLngRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ovrDrftBalRptngAm != null">
+        #{ovrDrftBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlValRptngAm != null">
+        #{cltrlValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlRqmtRptngAm != null">
+        #{cltrlRqmtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="adjMrgnDbtRptngAm != null">
+        #{adjMrgnDbtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDebtRptngAm != null">
+        #{totDebtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAm != null">
+        #{feeAm,jdbcType=DECIMAL},
+      </if>
+      <if test="suprCmsnAm != null">
+        #{suprCmsnAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValRptngAm != null">
+        #{cashValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValBaseAm != null">
+        #{cashValBaseAm,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGrossAssetsRptngAm != null">
+        #{acctGrossAssetsRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGrossAssetsBaseAm != null">
+        #{acctGrossAssetsBaseAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ldgrAm != null">
+        #{ldgrAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ldgrRptngAm != null">
+        #{ldgrRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAmRngCd != null">
+        #{netWrthAmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="availPayAmRngCd != null">
+        #{availPayAmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lowPricdScrtyBasePr != null">
+        #{lowPricdScrtyBasePr,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AcctBalPosnSmry">
+    update [ACCT_BAL_POSN_SMRY]
+    <set>
+      <if test="acctBalSeqId != null">
+        [ACCT_BAL_SEQ_ID] = #{acctBalSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAm != null">
+        [NET_WRTH_AM] = #{netWrthAm,jdbcType=DECIMAL},
+      </if>
+      <if test="availPayAm != null">
+        [AVAIL_PAY_AM] = #{availPayAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalLngAm != null">
+        [EQTY_MKTVAL_LNG_AM] = #{eqtyMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtAm != null">
+        [EQTY_MKTVAL_SHRT_AM] = #{eqtyMktvalShrtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyPt != null">
+        [MRGN_EQTY_PT] = #{mrgnEqtyPt,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPricdScrtyAm != null">
+        [LOW_PRICD_SCRTY_AM] = #{lowPricdScrtyAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalLngAm != null">
+        [OPTN_MKTVAL_LNG_AM] = #{optnMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalShrtAm != null">
+        [OPTN_MKTVAL_SHRT_AM] = #{optnMktvalShrtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMrgnRqmtAm != null">
+        [OPTN_MRGN_RQMT_AM] = #{optnMrgnRqmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtNoboxAm != null">
+        [EQTY_MKTVAL_SHRT_NOBOX_AM] = #{eqtyMktvalShrtNoboxAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdCallAsgmtRiskAm != null">
+        [NKD_CALL_ASGMT_RISK_AM] = #{nkdCallAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdPutAsgmtRiskAm != null">
+        [NKD_PUT_ASGMT_RISK_AM] = #{nkdPutAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdPutAsgmtValAm != null">
+        [NKD_PUT_ASGMT_VAL_AM] = #{nkdPutAsgmtValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totOptnAsgmtRiskAm != null">
+        [TOT_OPTN_ASGMT_RISK_AM] = #{totOptnAsgmtRiskAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn2moExprnCt != null">
+        [LNG_OPTN_2MO_EXPRN_CT] = #{lngOptn2moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn6moExprnCt != null">
+        [LNG_OPTN_6MO_EXPRN_CT] = #{lngOptn6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lngOptn3mo6moExprnCt != null">
+        [LNG_OPTN_3MO_6MO_EXPRN_CT] = #{lngOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn2moExprnCt != null">
+        [NKD_OPTN_2MO_EXPRN_CT] = #{nkdOptn2moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn6moExprnCt != null">
+        [NKD_OPTN_6MO_EXPRN_CT] = #{nkdOptn6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="nkdOptn3mo6moExprnCt != null">
+        [NKD_OPTN_3MO_6MO_EXPRN_CT] = #{nkdOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyIntrlId != null">
+        [HI_CNC_SCRTY_INTRL_ID] = #{hiCncScrtyIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncScrtyValAm != null">
+        [HI_CNC_SCRTY_VAL_AM] = #{hiCncScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyUnitQt != null">
+        [HI_CNC_SCRTY_UNIT_QT] = #{hiCncScrtyUnitQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncScrtyEqtyPt != null">
+        [HI_CNC_SCRTY_EQTY_PT] = #{hiCncScrtyEqtyPt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncShrtScrtyIntrlId != null">
+        [HI_CNC_SHRT_SCRTY_INTRL_ID] = #{hiCncShrtScrtyIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncShrtScrtyValAm != null">
+        [HI_CNC_SHRT_SCRTY_VAL_AM] = #{hiCncShrtScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncShrtScrtyUnitQt != null">
+        [HI_CNC_SHRT_SCRTY_UNIT_QT] = #{hiCncShrtScrtyUnitQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncSctrNm != null">
+        [HI_CNC_SCTR_NM] = #{hiCncSctrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncSctrValAm != null">
+        [HI_CNC_SCTR_VAL_AM] = #{hiCncSctrValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncNkdOptnUndScrtyId != null">
+        [HI_CNC_NKD_OPTN_UND_SCRTY_ID] = #{hiCncNkdOptnUndScrtyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncLngOptnUndScrtyId != null">
+        [HI_CNC_LNG_OPTN_UND_SCRTY_ID] = #{hiCncLngOptnUndScrtyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hiCncNkdOptnCntrQt != null">
+        [HI_CNC_NKD_OPTN_CNTR_QT] = #{hiCncNkdOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncLngOptnCntrQt != null">
+        [HI_CNC_LNG_OPTN_CNTR_QT] = #{hiCncLngOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="totNkdOptnCntrQt != null">
+        [TOT_NKD_OPTN_CNTR_QT] = #{totNkdOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="totLngOptnCntrQt != null">
+        [TOT_LNG_OPTN_CNTR_QT] = #{totLngOptnCntrQt,jdbcType=DECIMAL},
+      </if>
+      <if test="hiCncOptnMktvalLngAm != null">
+        [HI_CNC_OPTN_MKTVAL_LNG_AM] = #{hiCncOptnMktvalLngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="hhAcctGrpId != null">
+        [HH_ACCT_GRP_ID] = #{hhAcctGrpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgnBalAm != null">
+        [MRGN_BAL_AM] = #{mrgnBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBalAm != null">
+        [CASH_BAL_AM] = #{cashBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngMrgnMktvalAm != null">
+        [LNG_MRGN_MKTVAL_AM] = #{lngMrgnMktvalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="shrtMrgnMktvalAm != null">
+        [SHRT_MRGN_MKTVAL_AM] = #{shrtMrgnMktvalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCashScrtyValAm != null">
+        [TOT_CASH_SCRTY_VAL_AM] = #{totCashScrtyValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mnyMktFundBalAm != null">
+        [MNY_MKT_FUND_BAL_AM] = #{mnyMktFundBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyAm != null">
+        [MRGN_EQTY_AM] = #{mrgnEqtyAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mfundBalAm != null">
+        [MFUND_BAL_AM] = #{mfundBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="bondBalAm != null">
+        [BOND_BAL_AM] = #{bondBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDebtAm != null">
+        [TOT_DEBT_AM] = #{totDebtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="uncolBalAm != null">
+        [UNCOL_BAL_AM] = #{uncolBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ovrDrftBalAm != null">
+        [OVR_DRFT_BAL_AM] = #{ovrDrftBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalAm != null">
+        [LAST_OVR_DRFT_NEG_BAL_AM] = #{lastOvrDrftNegBalAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftDurtnDyCt != null">
+        [LAST_OVR_DRFT_DURTN_DY_CT] = #{lastOvrDrftDurtnDyCt,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalDt != null">
+        [LAST_OVR_DRFT_NEG_BAL_DT] = #{lastOvrDrftNegBalDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm1Dt != null">
+        [CSTM_1_DT] = #{cstm1Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm2Dt != null">
+        [CSTM_2_DT] = #{cstm2Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm3Dt != null">
+        [CSTM_3_DT] = #{cstm3Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm1Rl != null">
+        [CSTM_1_RL] = #{cstm1Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm2Rl != null">
+        [CSTM_2_RL] = #{cstm2Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm3Rl != null">
+        [CSTM_3_RL] = #{cstm3Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm1Tx != null">
+        [CSTM_1_TX] = #{cstm1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm2Tx != null">
+        [CSTM_2_TX] = #{cstm2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm3Tx != null">
+        [CSTM_3_TX] = #{cstm3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm4Tx != null">
+        [CSTM_4_TX] = #{cstm4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm5Tx != null">
+        [CSTM_5_TX] = #{cstm5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cltrlValAm != null">
+        [CLTRL_VAL_AM] = #{cltrlValAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlRqmtAm != null">
+        [CLTRL_RQMT_AM] = #{cltrlRqmtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="adjMrgnDbtAm != null">
+        [ADJ_MRGN_DBT_AM] = #{adjMrgnDbtAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthRptngAm != null">
+        [NET_WRTH_RPTNG_AM] = #{netWrthRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="availPayRptngAm != null">
+        [AVAIL_PAY_RPTNG_AM] = #{availPayRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnBalRptngAm != null">
+        [MRGN_BAL_RPTNG_AM] = #{mrgnBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mrgnEqtyRptngAm != null">
+        [MRGN_EQTY_RPTNG_AM] = #{mrgnEqtyRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBalRptngAm != null">
+        [CASH_BAL_RPTNG_AM] = #{cashBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOvrDrftNegBalRptngAm != null">
+        [LAST_OVR_DRFT_NEG_BAL_RPTNG_AM] = #{lastOvrDrftNegBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totCashScrtyValRptngAm != null">
+        [TOT_CASH_SCRTY_VAL_RPTNG_AM] = #{totCashScrtyValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="uncolBalRptngAm != null">
+        [UNCOL_BAL_RPTNG_AM] = #{uncolBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalShrtRptngAm != null">
+        [EQTY_MKTVAL_SHRT_RPTNG_AM] = #{eqtyMktvalShrtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="eqtyMktvalLngRptngAm != null">
+        [EQTY_MKTVAL_LNG_RPTNG_AM] = #{eqtyMktvalLngRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="lngMrgnMktvalRptngAm != null">
+        [LNG_MRGN_MKTVAL_RPTNG_AM] = #{lngMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="shrtMrgnMktvalRptngAm != null">
+        [SHRT_MRGN_MKTVAL_RPTNG_AM] = #{shrtMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="mnyMktFundBalRptngAm != null">
+        [MNY_MKT_FUND_BAL_RPTNG_AM] = #{mnyMktFundBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMrgnRqmtRptngAm != null">
+        [OPTN_MRGN_RQMT_RPTNG_AM] = #{optnMrgnRqmtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalShrtRptngAm != null">
+        [OPTN_MKTVAL_SHRT_RPTNG_AM] = #{optnMktvalShrtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="optnMktvalLngRptngAm != null">
+        [OPTN_MKTVAL_LNG_RPTNG_AM] = #{optnMktvalLngRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ovrDrftBalRptngAm != null">
+        [OVR_DRFT_BAL_RPTNG_AM] = #{ovrDrftBalRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlValRptngAm != null">
+        [CLTRL_VAL_RPTNG_AM] = #{cltrlValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cltrlRqmtRptngAm != null">
+        [CLTRL_RQMT_RPTNG_AM] = #{cltrlRqmtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="adjMrgnDbtRptngAm != null">
+        [ADJ_MRGN_DBT_RPTNG_AM] = #{adjMrgnDbtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="totDebtRptngAm != null">
+        [TOT_DEBT_RPTNG_AM] = #{totDebtRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="feeAm != null">
+        [FEE_AM] = #{feeAm,jdbcType=DECIMAL},
+      </if>
+      <if test="suprCmsnAm != null">
+        [SUPR_CMSN_AM] = #{suprCmsnAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValRptngAm != null">
+        [CASH_VAL_RPTNG_AM] = #{cashValRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValBaseAm != null">
+        [CASH_VAL_BASE_AM] = #{cashValBaseAm,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGrossAssetsRptngAm != null">
+        [ACCT_GROSS_ASSETS_RPTNG_AM] = #{acctGrossAssetsRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGrossAssetsBaseAm != null">
+        [ACCT_GROSS_ASSETS_BASE_AM] = #{acctGrossAssetsBaseAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ldgrAm != null">
+        [LDGR_AM] = #{ldgrAm,jdbcType=DECIMAL},
+      </if>
+      <if test="ldgrRptngAm != null">
+        [LDGR_RPTNG_AM] = #{ldgrRptngAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAmRngCd != null">
+        [NET_WRTH_AM_RNG_CD] = #{netWrthAmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="availPayAmRngCd != null">
+        [AVAIL_PAY_AM_RNG_CD] = #{availPayAmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lowPricdScrtyBasePr != null">
+        [LOW_PRICD_SCRTY_BASE_PR] = #{lowPricdScrtyBasePr,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AcctBalPosnSmry">
+    update [mantas].[ACCT_BAL_POSN_SMRY]
+    set [ACCT_BAL_SEQ_ID] = #{acctBalSeqId,jdbcType=DECIMAL},
+      [NET_WRTH_AM] = #{netWrthAm,jdbcType=DECIMAL},
+      [AVAIL_PAY_AM] = #{availPayAm,jdbcType=DECIMAL},
+      [EQTY_MKTVAL_LNG_AM] = #{eqtyMktvalLngAm,jdbcType=DECIMAL},
+      [EQTY_MKTVAL_SHRT_AM] = #{eqtyMktvalShrtAm,jdbcType=DECIMAL},
+      [MRGN_EQTY_PT] = #{mrgnEqtyPt,jdbcType=DECIMAL},
+      [LOW_PRICD_SCRTY_AM] = #{lowPricdScrtyAm,jdbcType=DECIMAL},
+      [OPTN_MKTVAL_LNG_AM] = #{optnMktvalLngAm,jdbcType=DECIMAL},
+      [OPTN_MKTVAL_SHRT_AM] = #{optnMktvalShrtAm,jdbcType=DECIMAL},
+      [OPTN_MRGN_RQMT_AM] = #{optnMrgnRqmtAm,jdbcType=DECIMAL},
+      [EQTY_MKTVAL_SHRT_NOBOX_AM] = #{eqtyMktvalShrtNoboxAm,jdbcType=DECIMAL},
+      [NKD_CALL_ASGMT_RISK_AM] = #{nkdCallAsgmtRiskAm,jdbcType=DECIMAL},
+      [NKD_PUT_ASGMT_RISK_AM] = #{nkdPutAsgmtRiskAm,jdbcType=DECIMAL},
+      [NKD_PUT_ASGMT_VAL_AM] = #{nkdPutAsgmtValAm,jdbcType=DECIMAL},
+      [TOT_OPTN_ASGMT_RISK_AM] = #{totOptnAsgmtRiskAm,jdbcType=DECIMAL},
+      [LNG_OPTN_2MO_EXPRN_CT] = #{lngOptn2moExprnCt,jdbcType=DECIMAL},
+      [LNG_OPTN_6MO_EXPRN_CT] = #{lngOptn6moExprnCt,jdbcType=DECIMAL},
+      [LNG_OPTN_3MO_6MO_EXPRN_CT] = #{lngOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      [NKD_OPTN_2MO_EXPRN_CT] = #{nkdOptn2moExprnCt,jdbcType=DECIMAL},
+      [NKD_OPTN_6MO_EXPRN_CT] = #{nkdOptn6moExprnCt,jdbcType=DECIMAL},
+      [NKD_OPTN_3MO_6MO_EXPRN_CT] = #{nkdOptn3mo6moExprnCt,jdbcType=DECIMAL},
+      [HI_CNC_SCRTY_INTRL_ID] = #{hiCncScrtyIntrlId,jdbcType=VARCHAR},
+      [HI_CNC_SCRTY_VAL_AM] = #{hiCncScrtyValAm,jdbcType=DECIMAL},
+      [HI_CNC_SCRTY_UNIT_QT] = #{hiCncScrtyUnitQt,jdbcType=DECIMAL},
+      [HI_CNC_SCRTY_EQTY_PT] = #{hiCncScrtyEqtyPt,jdbcType=DECIMAL},
+      [HI_CNC_SHRT_SCRTY_INTRL_ID] = #{hiCncShrtScrtyIntrlId,jdbcType=VARCHAR},
+      [HI_CNC_SHRT_SCRTY_VAL_AM] = #{hiCncShrtScrtyValAm,jdbcType=DECIMAL},
+      [HI_CNC_SHRT_SCRTY_UNIT_QT] = #{hiCncShrtScrtyUnitQt,jdbcType=DECIMAL},
+      [HI_CNC_SCTR_NM] = #{hiCncSctrNm,jdbcType=VARCHAR},
+      [HI_CNC_SCTR_VAL_AM] = #{hiCncSctrValAm,jdbcType=DECIMAL},
+      [HI_CNC_NKD_OPTN_UND_SCRTY_ID] = #{hiCncNkdOptnUndScrtyId,jdbcType=VARCHAR},
+      [HI_CNC_LNG_OPTN_UND_SCRTY_ID] = #{hiCncLngOptnUndScrtyId,jdbcType=VARCHAR},
+      [HI_CNC_NKD_OPTN_CNTR_QT] = #{hiCncNkdOptnCntrQt,jdbcType=DECIMAL},
+      [HI_CNC_LNG_OPTN_CNTR_QT] = #{hiCncLngOptnCntrQt,jdbcType=DECIMAL},
+      [TOT_NKD_OPTN_CNTR_QT] = #{totNkdOptnCntrQt,jdbcType=DECIMAL},
+      [TOT_LNG_OPTN_CNTR_QT] = #{totLngOptnCntrQt,jdbcType=DECIMAL},
+      [HI_CNC_OPTN_MKTVAL_LNG_AM] = #{hiCncOptnMktvalLngAm,jdbcType=DECIMAL},
+      [HH_ACCT_GRP_ID] = #{hhAcctGrpId,jdbcType=VARCHAR},
+      [MRGN_BAL_AM] = #{mrgnBalAm,jdbcType=DECIMAL},
+      [CASH_BAL_AM] = #{cashBalAm,jdbcType=DECIMAL},
+      [LNG_MRGN_MKTVAL_AM] = #{lngMrgnMktvalAm,jdbcType=DECIMAL},
+      [SHRT_MRGN_MKTVAL_AM] = #{shrtMrgnMktvalAm,jdbcType=DECIMAL},
+      [TOT_CASH_SCRTY_VAL_AM] = #{totCashScrtyValAm,jdbcType=DECIMAL},
+      [MNY_MKT_FUND_BAL_AM] = #{mnyMktFundBalAm,jdbcType=DECIMAL},
+      [MRGN_EQTY_AM] = #{mrgnEqtyAm,jdbcType=DECIMAL},
+      [MFUND_BAL_AM] = #{mfundBalAm,jdbcType=DECIMAL},
+      [BOND_BAL_AM] = #{bondBalAm,jdbcType=DECIMAL},
+      [TOT_DEBT_AM] = #{totDebtAm,jdbcType=DECIMAL},
+      [UNCOL_BAL_AM] = #{uncolBalAm,jdbcType=DECIMAL},
+      [OVR_DRFT_BAL_AM] = #{ovrDrftBalAm,jdbcType=DECIMAL},
+      [LAST_OVR_DRFT_NEG_BAL_AM] = #{lastOvrDrftNegBalAm,jdbcType=DECIMAL},
+      [LAST_OVR_DRFT_DURTN_DY_CT] = #{lastOvrDrftDurtnDyCt,jdbcType=DECIMAL},
+      [LAST_OVR_DRFT_NEG_BAL_DT] = #{lastOvrDrftNegBalDt,jdbcType=TIMESTAMP},
+      [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      [CSTM_1_DT] = #{cstm1Dt,jdbcType=TIMESTAMP},
+      [CSTM_2_DT] = #{cstm2Dt,jdbcType=TIMESTAMP},
+      [CSTM_3_DT] = #{cstm3Dt,jdbcType=TIMESTAMP},
+      [CSTM_1_RL] = #{cstm1Rl,jdbcType=DECIMAL},
+      [CSTM_2_RL] = #{cstm2Rl,jdbcType=DECIMAL},
+      [CSTM_3_RL] = #{cstm3Rl,jdbcType=DECIMAL},
+      [CSTM_1_TX] = #{cstm1Tx,jdbcType=VARCHAR},
+      [CSTM_2_TX] = #{cstm2Tx,jdbcType=VARCHAR},
+      [CSTM_3_TX] = #{cstm3Tx,jdbcType=VARCHAR},
+      [CSTM_4_TX] = #{cstm4Tx,jdbcType=VARCHAR},
+      [CSTM_5_TX] = #{cstm5Tx,jdbcType=VARCHAR},
+      [CLTRL_VAL_AM] = #{cltrlValAm,jdbcType=DECIMAL},
+      [CLTRL_RQMT_AM] = #{cltrlRqmtAm,jdbcType=DECIMAL},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [ADJ_MRGN_DBT_AM] = #{adjMrgnDbtAm,jdbcType=DECIMAL},
+      [NET_WRTH_RPTNG_AM] = #{netWrthRptngAm,jdbcType=DECIMAL},
+      [AVAIL_PAY_RPTNG_AM] = #{availPayRptngAm,jdbcType=DECIMAL},
+      [MRGN_BAL_RPTNG_AM] = #{mrgnBalRptngAm,jdbcType=DECIMAL},
+      [MRGN_EQTY_RPTNG_AM] = #{mrgnEqtyRptngAm,jdbcType=DECIMAL},
+      [CASH_BAL_RPTNG_AM] = #{cashBalRptngAm,jdbcType=DECIMAL},
+      [LAST_OVR_DRFT_NEG_BAL_RPTNG_AM] = #{lastOvrDrftNegBalRptngAm,jdbcType=DECIMAL},
+      [TOT_CASH_SCRTY_VAL_RPTNG_AM] = #{totCashScrtyValRptngAm,jdbcType=DECIMAL},
+      [UNCOL_BAL_RPTNG_AM] = #{uncolBalRptngAm,jdbcType=DECIMAL},
+      [EQTY_MKTVAL_SHRT_RPTNG_AM] = #{eqtyMktvalShrtRptngAm,jdbcType=DECIMAL},
+      [EQTY_MKTVAL_LNG_RPTNG_AM] = #{eqtyMktvalLngRptngAm,jdbcType=DECIMAL},
+      [LNG_MRGN_MKTVAL_RPTNG_AM] = #{lngMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      [SHRT_MRGN_MKTVAL_RPTNG_AM] = #{shrtMrgnMktvalRptngAm,jdbcType=DECIMAL},
+      [MNY_MKT_FUND_BAL_RPTNG_AM] = #{mnyMktFundBalRptngAm,jdbcType=DECIMAL},
+      [OPTN_MRGN_RQMT_RPTNG_AM] = #{optnMrgnRqmtRptngAm,jdbcType=DECIMAL},
+      [OPTN_MKTVAL_SHRT_RPTNG_AM] = #{optnMktvalShrtRptngAm,jdbcType=DECIMAL},
+      [OPTN_MKTVAL_LNG_RPTNG_AM] = #{optnMktvalLngRptngAm,jdbcType=DECIMAL},
+      [OVR_DRFT_BAL_RPTNG_AM] = #{ovrDrftBalRptngAm,jdbcType=DECIMAL},
+      [CLTRL_VAL_RPTNG_AM] = #{cltrlValRptngAm,jdbcType=DECIMAL},
+      [CLTRL_RQMT_RPTNG_AM] = #{cltrlRqmtRptngAm,jdbcType=DECIMAL},
+      [ADJ_MRGN_DBT_RPTNG_AM] = #{adjMrgnDbtRptngAm,jdbcType=DECIMAL},
+      [TOT_DEBT_RPTNG_AM] = #{totDebtRptngAm,jdbcType=DECIMAL},
+      [FEE_AM] = #{feeAm,jdbcType=DECIMAL},
+      [SUPR_CMSN_AM] = #{suprCmsnAm,jdbcType=DECIMAL},
+      [CASH_VAL_RPTNG_AM] = #{cashValRptngAm,jdbcType=DECIMAL},
+      [CASH_VAL_BASE_AM] = #{cashValBaseAm,jdbcType=DECIMAL},
+      [ACCT_GROSS_ASSETS_RPTNG_AM] = #{acctGrossAssetsRptngAm,jdbcType=DECIMAL},
+      [ACCT_GROSS_ASSETS_BASE_AM] = #{acctGrossAssetsBaseAm,jdbcType=DECIMAL},
+      [LDGR_AM] = #{ldgrAm,jdbcType=DECIMAL},
+      [LDGR_RPTNG_AM] = #{ldgrRptngAm,jdbcType=DECIMAL},
+      [NET_WRTH_AM_RNG_CD] = #{netWrthAmRngCd,jdbcType=VARCHAR},
+      [AVAIL_PAY_AM_RNG_CD] = #{availPayAmRngCd,jdbcType=VARCHAR},
+      [LOW_PRICD_SCRTY_BASE_PR] = #{lowPricdScrtyBasePr,jdbcType=DECIMAL}
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+      and [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

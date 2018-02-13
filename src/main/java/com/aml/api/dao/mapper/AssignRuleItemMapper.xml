@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AssignRuleItemMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AssignRuleItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rule_id" jdbcType="BIGINT" property="ruleId" />
+    <result column="start_value" jdbcType="INTEGER" property="startValue" />
+    <result column="end_value" jdbcType="INTEGER" property="endValue" />
+    <result column="threshold" jdbcType="INTEGER" property="threshold" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rule_id, start_value, end_value, threshold, create_time, update_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config_assign_rule_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from config_assign_rule_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AssignRuleItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into config_assign_rule_item (rule_id, start_value, end_value, 
+      threshold, create_time, update_time, 
+      is_deleted)
+    values (#{rule_id,jdbcType=TINYINT}, #{startValue,jdbcType=INTEGER}, #{endValue,jdbcType=INTEGER}, 
+      #{threshold,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AssignRuleItem">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into config_assign_rule_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rule_id != null">
+        rule_id,
+      </if>
+      <if test="startValue != null">
+        start_value,
+      </if>
+      <if test="endValue != null">
+        end_value,
+      </if>
+      <if test="threshold != null">
+        threshold,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rule_id != null">
+        #{rule_id,jdbcType=TINYINT},
+      </if>
+      <if test="startValue != null">
+        #{startValue,jdbcType=INTEGER},
+      </if>
+      <if test="endValue != null">
+        #{endValue,jdbcType=INTEGER},
+      </if>
+      <if test="threshold != null">
+        #{threshold,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AssignRuleItem">
+    update config_assign_rule_item
+    <set>
+      <if test="ruleId != null">
+        rule_id = #{ruleId,jdbcType=TINYINT},
+      </if>
+      <if test="startValue != null">
+        start_value = #{startValue,jdbcType=INTEGER},
+      </if>
+      <if test="endValue != null">
+        end_value = #{endValue,jdbcType=INTEGER},
+      </if>
+      <if test="threshold != null">
+        threshold = #{threshold,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AssignRuleItem">
+    update config_assign_rule_item
+    set rule_id = #{ruleId,jdbcType=TINYINT},
+      start_value = #{startValue,jdbcType=INTEGER},
+      end_value = #{endValue,jdbcType=INTEGER},
+      threshold = #{threshold,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  	<update id="deleteByRuleId" >
+		UPDATE config_assign_rule_item
+	    SET 
+	    	is_deleted = 1,
+	    	update_time = getdate()
+	    WHERE rule_id = #{ruleId}
+	</update>
+	
+	<insert id="insertBatch">
+		INSERT INTO config_assign_rule_item (
+			rule_id,
+			start_value,
+			end_value,
+			threshold
+		)
+		VALUES
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(
+				#{item.ruleId},
+				#{item.startValue},
+				#{item.endValue},
+				#{item.threshold}
+			)
+		</foreach>
+	</insert>
+</mapper>

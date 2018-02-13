@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.ReportStatisGroupSarMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.ReportStatisGroupSar">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="statis_date" jdbcType="TIMESTAMP" property="statisDate" />
+    <result column="fiu_sar_count" jdbcType="INTEGER" property="fiuSarCount" />
+    <result column="fcb_sar_count" jdbcType="INTEGER" property="fcbSarCount" />
+    <result column="dct_sar_count" jdbcType="INTEGER" property="dctSarCount" />
+    <result column="ctr_sar_count" jdbcType="INTEGER" property="ctrSarCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, statis_date, fiu_sar_count, fcb_sar_count, dct_sar_count, ctr_sar_count, 
+    create_time, update_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from report_statis_group_sar
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from report_statis_group_sar
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.ReportStatisGroupSar">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_statis_group_sar (statis_date, fiu_sar_count, fcb_sar_count, 
+      dct_sar_count, ctr_sar_count, create_time, 
+      update_time, is_deleted)
+    values (#{statisDate,jdbcType=TIMESTAMP}, #{fiuSarCount,jdbcType=INTEGER}, #{fcbSarCount,jdbcType=INTEGER}, 
+      #{dctSarCount,jdbcType=INTEGER}, #{ctrSarCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.ReportStatisGroupSar">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_statis_group_sar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        statis_date,
+      </if>
+      <if test="fiuSarCount != null">
+        fiu_sar_count,
+      </if>
+      <if test="fcbSarCount != null">
+        fcb_sar_count,
+      </if>
+      <if test="dctSarCount != null">
+        dct_sar_count,
+      </if>
+      <if test="ctrSarCount != null">
+        ctr_sar_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiuSarCount != null">
+        #{fiuSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="fcbSarCount != null">
+        #{fcbSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="dctSarCount != null">
+        #{dctSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="ctrSarCount != null">
+        #{ctrSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.ReportStatisGroupSar">
+    update report_statis_group_sar
+    <set>
+      <if test="statisDate != null">
+        statis_date = #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fiuSarCount != null">
+        fiu_sar_count = #{fiuSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="fcbSarCount != null">
+        fcb_sar_count = #{fcbSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="dctSarCount != null">
+        dct_sar_count = #{dctSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="ctrSarCount != null">
+        ctr_sar_count = #{ctrSarCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.ReportStatisGroupSar">
+    update report_statis_group_sar
+    set statis_date = #{statisDate,jdbcType=TIMESTAMP},
+      fiu_sar_count = #{fiuSarCount,jdbcType=INTEGER},
+      fcb_sar_count = #{fcbSarCount,jdbcType=INTEGER},
+      dct_sar_count = #{dctSarCount,jdbcType=INTEGER},
+      ctr_sar_count = #{ctrSarCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- The trend of total number of SARs filed -->
+  <select id="getTrendTotalOfSar" resultType="map">
+  	select 
+  		SUM (s.fiu_sar_count) +
+		SUM (s.fcb_sar_count) +
+		SUM (s.dct_sar_count) +
+		SUM (s.ctr_sar_count) AS sarCount,
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,s.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,s.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,s.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,s.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,s.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,s.statis_date)) 
+		</if>
+		as timeName
+    from report_statis_group_sar s
+    where 
+		s.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), s.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), s.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,s.statis_date),
+			DATEPART(month,s.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,s.statis_date),
+		</if>
+		DATEPART(year,s.statis_date)
+	ORDER BY DATEPART(year,s.statis_date)
+  </select>
+  
+  <!-- Total number of SARs filed from each source of referral -->
+  <select id="queryEachTotalOfSar" resultType="map">
+  	select 
+  		SUM (s.fiu_sar_count) AS FIU,
+		SUM (s.fcb_sar_count) AS FCB,
+		SUM (s.dct_sar_count) AS DCT,
+		SUM (s.ctr_sar_count) AS CTR,
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,s.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,s.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,s.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,s.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,s.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,s.statis_date)) 
+		</if>
+		as timeName
+    from report_statis_group_sar s
+    where 
+		s.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), s.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), s.statis_date, 111)
+			]]>
+			</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,s.statis_date),
+			DATEPART(month,s.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,s.statis_date),
+		</if>
+		DATEPART(year,s.statis_date)
+	ORDER BY DATEPART(year,s.statis_date)
+  </select>
+</mapper>

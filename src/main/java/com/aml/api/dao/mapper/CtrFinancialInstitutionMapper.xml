@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.CtrFinancialInstitutionMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.CtrFinancialInstitution">
+    <id column="financial_id" jdbcType="BIGINT" property="financialId" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+    <result column="financial_institution_type" jdbcType="TINYINT" property="financialInstitutionType" />
+    <result column="financial_institution_other" jdbcType="VARCHAR" property="financialInstitutionOther" />
+    <result column="primary_federal_regulator" jdbcType="TINYINT" property="primaryFederalRegulator" />
+    <result column="casino_type" jdbcType="TINYINT" property="casinoType" />
+    <result column="casino_other" jdbcType="VARCHAR" property="casinoOther" />
+    <result column="legal_name" jdbcType="VARCHAR" property="legalName" />
+    <result column="alternate_name" jdbcType="VARCHAR" property="alternateName" />
+    <result column="tin" jdbcType="VARCHAR" property="tin" />
+    <result column="tin_type" jdbcType="TINYINT" property="tinType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="zip_code" jdbcType="TINYINT" property="zipCode" />
+    <result column="financial_id_type" jdbcType="VARCHAR" property="financialIdType" />
+    <result column="financial_id_number" jdbcType="VARCHAR" property="financialIdNumber" />
+    <result column="contact_office" jdbcType="VARCHAR" property="contactOffice" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="date_filed" jdbcType="VARCHAR" property="dateFiled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [financial_id], [cid], [financial_institution_type], [financial_institution_other], 
+    [primary_federal_regulator], [casino_type], [casino_other], [legal_name], [alternate_name], 
+    [tin], [tin_type], [address], [city], [state], [zip_code], [financial_id_type], [financial_id_number], 
+    [contact_office], [phone_number], [ext], [date_filed], [create_time], [update_time], 
+    [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [ctr_financial_institution]
+    where [financial_id] = #{financialId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [ctr_financial_institution]
+    where [financial_id] = #{financialId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.CtrFinancialInstitution">
+    <selectKey keyProperty="financialId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [ctr_financial_institution] ([cid], [financial_institution_type], [financial_institution_other], 
+      [primary_federal_regulator], [casino_type], [casino_other], 
+      [legal_name], [alternate_name], [tin], 
+      [tin_type], [address], [city], 
+      [state], [zip_code], [financial_id_type], 
+      [financial_id_number], [contact_office], [phone_number], 
+      [ext], [date_filed], [create_time], 
+      [update_time], [is_deleted])
+    values (#{cid,jdbcType=BIGINT}, #{financialInstitutionType,jdbcType=TINYINT}, #{financialInstitutionOther,jdbcType=VARCHAR}, 
+      #{primaryFederalRegulator,jdbcType=TINYINT}, #{casinoType,jdbcType=TINYINT}, #{casinoOther,jdbcType=VARCHAR}, 
+      #{legalName,jdbcType=VARCHAR}, #{alternateName,jdbcType=VARCHAR}, #{tin,jdbcType=VARCHAR}, 
+      #{tinType,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{state,jdbcType=TINYINT}, #{zipCode,jdbcType=TINYINT}, #{financialIdType,jdbcType=VARCHAR}, 
+      #{financialIdNumber,jdbcType=VARCHAR}, #{contactOffice,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{ext,jdbcType=VARCHAR}, #{dateFiled,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.CtrFinancialInstitution">
+    <selectKey keyProperty="financialId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [ctr_financial_institution]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        [cid],
+      </if>
+      <if test="financialInstitutionType != null">
+        [financial_institution_type],
+      </if>
+      <if test="financialInstitutionOther != null">
+        [financial_institution_other],
+      </if>
+      <if test="primaryFederalRegulator != null">
+        [primary_federal_regulator],
+      </if>
+      <if test="casinoType != null">
+        [casino_type],
+      </if>
+      <if test="casinoOther != null">
+        [casino_other],
+      </if>
+      <if test="legalName != null">
+        [legal_name],
+      </if>
+      <if test="alternateName != null">
+        [alternate_name],
+      </if>
+      <if test="tin != null">
+        [tin],
+      </if>
+      <if test="tinType != null">
+        [tin_type],
+      </if>
+      <if test="address != null">
+        [address],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="zipCode != null">
+        [zip_code],
+      </if>
+      <if test="financialIdType != null">
+        [financial_id_type],
+      </if>
+      <if test="financialIdNumber != null">
+        [financial_id_number],
+      </if>
+      <if test="contactOffice != null">
+        [contact_office],
+      </if>
+      <if test="phoneNumber != null">
+        [phone_number],
+      </if>
+      <if test="ext != null">
+        [ext],
+      </if>
+      <if test="dateFiled != null">
+        [date_filed],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="financialInstitutionType != null">
+        #{financialInstitutionType,jdbcType=TINYINT},
+      </if>
+      <if test="financialInstitutionOther != null">
+        #{financialInstitutionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryFederalRegulator != null">
+        #{primaryFederalRegulator,jdbcType=TINYINT},
+      </if>
+      <if test="casinoType != null">
+        #{casinoType,jdbcType=TINYINT},
+      </if>
+      <if test="casinoOther != null">
+        #{casinoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="alternateName != null">
+        #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="tin != null">
+        #{tin,jdbcType=VARCHAR},
+      </if>
+      <if test="tinType != null">
+        #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=TINYINT},
+      </if>
+      <if test="financialIdType != null">
+        #{financialIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="financialIdNumber != null">
+        #{financialIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactOffice != null">
+        #{contactOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFiled != null">
+        #{dateFiled,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.CtrFinancialInstitution">
+    update [ctr_financial_institution]
+    <set>
+      <if test="cid != null">
+        [cid] = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="financialInstitutionType != null">
+        [financial_institution_type] = #{financialInstitutionType,jdbcType=TINYINT},
+      </if>
+      <if test="financialInstitutionOther != null">
+        [financial_institution_other] = #{financialInstitutionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryFederalRegulator != null">
+        [primary_federal_regulator] = #{primaryFederalRegulator,jdbcType=TINYINT},
+      </if>
+      <if test="casinoType != null">
+        [casino_type] = #{casinoType,jdbcType=TINYINT},
+      </if>
+      <if test="casinoOther != null">
+        [casino_other] = #{casinoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        [legal_name] = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="alternateName != null">
+        [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="tin != null">
+        [tin] = #{tin,jdbcType=VARCHAR},
+      </if>
+      <if test="tinType != null">
+        [tin_type] = #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        [address] = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="zipCode != null">
+        [zip_code] = #{zipCode,jdbcType=TINYINT},
+      </if>
+      <if test="financialIdType != null">
+        [financial_id_type] = #{financialIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="financialIdNumber != null">
+        [financial_id_number] = #{financialIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactOffice != null">
+        [contact_office] = #{contactOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        [phone_number] = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        [ext] = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFiled != null">
+        [date_filed] = #{dateFiled,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [financial_id] = #{financialId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.CtrFinancialInstitution">
+    update [ctr_financial_institution]
+    set [cid] = #{cid,jdbcType=BIGINT},
+      [financial_institution_type] = #{financialInstitutionType,jdbcType=TINYINT},
+      [financial_institution_other] = #{financialInstitutionOther,jdbcType=VARCHAR},
+      [primary_federal_regulator] = #{primaryFederalRegulator,jdbcType=TINYINT},
+      [casino_type] = #{casinoType,jdbcType=TINYINT},
+      [casino_other] = #{casinoOther,jdbcType=VARCHAR},
+      [legal_name] = #{legalName,jdbcType=VARCHAR},
+      [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      [tin] = #{tin,jdbcType=VARCHAR},
+      [tin_type] = #{tinType,jdbcType=TINYINT},
+      [address] = #{address,jdbcType=VARCHAR},
+      [city] = #{city,jdbcType=VARCHAR},
+      [state] = #{state,jdbcType=TINYINT},
+      [zip_code] = #{zipCode,jdbcType=TINYINT},
+      [financial_id_type] = #{financialIdType,jdbcType=VARCHAR},
+      [financial_id_number] = #{financialIdNumber,jdbcType=VARCHAR},
+      [contact_office] = #{contactOffice,jdbcType=VARCHAR},
+      [phone_number] = #{phoneNumber,jdbcType=VARCHAR},
+      [ext] = #{ext,jdbcType=VARCHAR},
+      [date_filed] = #{dateFiled,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [financial_id] = #{financialId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="getCount" resultType="int">
+    select 
+    	count(0)
+    from [ctr_financial_institution]
+    where [cid] = #{cid,jdbcType=BIGINT}
+  </select>
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.CtrFinancialInstitutionDto" keyProperty="financialId" useGeneratedKeys="true">
+    insert into [ctr_financial_institution]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        [cid],
+      </if>
+      <if test="financialInstitutionType != null">
+        [financial_institution_type],
+      </if>
+      <if test="financialInstitutionOther != null">
+        [financial_institution_other],
+      </if>
+      <if test="primaryFederalRegulator != null">
+        [primary_federal_regulator],
+      </if>
+      <if test="casinoType != null">
+        [casino_type],
+      </if>
+      <if test="casinoOther != null">
+        [casino_other],
+      </if>
+      <if test="legalName != null">
+        [legal_name],
+      </if>
+      <if test="alternateName != null">
+        [alternate_name],
+      </if>
+      <if test="tin != null">
+        [tin],
+      </if>
+      <if test="tinType != null">
+        [tin_type],
+      </if>
+      <if test="address != null">
+        [address],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="zipCode != null">
+        [zip_code],
+      </if>
+      <if test="financialIdType != null">
+        [financial_id_type],
+      </if>
+      <if test="financialIdNumber != null">
+        [financial_id_number],
+      </if>
+      <if test="contactOffice != null">
+        [contact_office],
+      </if>
+      <if test="phoneNumber != null">
+        [phone_number],
+      </if>
+      <if test="ext != null">
+        [ext],
+      </if>
+      <if test="dateFiled != null">
+        [date_filed],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="financialInstitutionType != null">
+        #{financialInstitutionType,jdbcType=TINYINT},
+      </if>
+      <if test="financialInstitutionOther != null">
+        #{financialInstitutionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryFederalRegulator != null">
+        #{primaryFederalRegulator,jdbcType=TINYINT},
+      </if>
+      <if test="casinoType != null">
+        #{casinoType,jdbcType=TINYINT},
+      </if>
+      <if test="casinoOther != null">
+        #{casinoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="alternateName != null">
+        #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="tin != null">
+        #{tin,jdbcType=VARCHAR},
+      </if>
+      <if test="tinType != null">
+        #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=TINYINT},
+      </if>
+      <if test="financialIdType != null">
+        #{financialIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="financialIdNumber != null">
+        #{financialIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactOffice != null">
+        #{contactOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFiled != null">
+        #{dateFiled,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.CtrFinancialInstitutionDto">
+    update [ctr_financial_institution]
+    <set>
+      <if test="cid != null">
+        [cid] = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="financialInstitutionType != null">
+        [financial_institution_type] = #{financialInstitutionType,jdbcType=TINYINT},
+      </if>
+      <if test="financialInstitutionOther != null">
+        [financial_institution_other] = #{financialInstitutionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryFederalRegulator != null">
+        [primary_federal_regulator] = #{primaryFederalRegulator,jdbcType=TINYINT},
+      </if>
+      <if test="casinoType != null">
+        [casino_type] = #{casinoType,jdbcType=TINYINT},
+      </if>
+      <if test="casinoOther != null">
+        [casino_other] = #{casinoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null">
+        [legal_name] = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="alternateName != null">
+        [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="tin != null">
+        [tin] = #{tin,jdbcType=VARCHAR},
+      </if>
+      <if test="tinType != null">
+        [tin_type] = #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="address != null">
+        [address] = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="zipCode != null">
+        [zip_code] = #{zipCode,jdbcType=TINYINT},
+      </if>
+      <if test="financialIdType != null">
+        [financial_id_type] = #{financialIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="financialIdNumber != null">
+        [financial_id_number] = #{financialIdNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactOffice != null">
+        [contact_office] = #{contactOffice,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        [phone_number] = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        [ext] = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFiled != null">
+        [date_filed] = #{dateFiled,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where [financial_id] = #{financialId,jdbcType=BIGINT}
+  </update>
+  <!-- query -->
+  <select id="selectByPrimaryKeyDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [ctr_financial_institution]
+    where [cid] = #{cid,jdbcType=BIGINT}
+  </select>
+</mapper>

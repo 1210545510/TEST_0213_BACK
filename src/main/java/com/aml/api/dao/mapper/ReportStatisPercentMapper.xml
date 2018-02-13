@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.ReportStatisPercentMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.ReportStatisPercent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="statis_date" jdbcType="TIMESTAMP" property="statisDate" />
+    <result column="case_count" jdbcType="INTEGER" property="caseCount" />
+    <result column="sar_count" jdbcType="INTEGER" property="sarCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="alert_total" jdbcType="INTEGER" property="alertTotal" />
+    <result column="case_total" jdbcType="INTEGER" property="caseTotal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, statis_date, case_count, sar_count, create_time, update_time, is_deleted, 
+    alert_total, case_total
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from report_statis_percent
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from report_statis_percent
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.ReportStatisPercent">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_statis_percent (statis_date, case_count, sar_count, 
+      create_time, update_time, is_deleted, 
+      alert_total, case_total)
+    values (#{statisDate,jdbcType=TIMESTAMP}, #{caseCount,jdbcType=INTEGER}, #{sarCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, 
+      #{alertTotal,jdbcType=INTEGER}, #{caseTotal,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.ReportStatisPercent">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into report_statis_percent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        statis_date,
+      </if>
+      <if test="caseCount != null">
+        case_count,
+      </if>
+      <if test="sarCount != null">
+        sar_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="alertTotal != null">
+        alert_total,
+      </if>
+      <if test="caseTotal != null">
+        case_total,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseCount != null">
+        #{caseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarCount != null">
+        #{sarCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="alertTotal != null">
+        #{alertTotal,jdbcType=INTEGER},
+      </if>
+      <if test="caseTotal != null">
+        #{caseTotal,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.ReportStatisPercent">
+    update report_statis_percent
+    <set>
+      <if test="statisDate != null">
+        statis_date = #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="caseCount != null">
+        case_count = #{caseCount,jdbcType=INTEGER},
+      </if>
+      <if test="sarCount != null">
+        sar_count = #{sarCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="alertTotal != null">
+        alert_total = #{alertTotal,jdbcType=INTEGER},
+      </if>
+      <if test="caseTotal != null">
+        case_total = #{caseTotal,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.ReportStatisPercent">
+    update report_statis_percent
+    set statis_date = #{statisDate,jdbcType=TIMESTAMP},
+      case_count = #{caseCount,jdbcType=INTEGER},
+      sar_count = #{sarCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      alert_total = #{alertTotal,jdbcType=INTEGER},
+      case_total = #{caseTotal,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- Ratios of productive alerts/ SAR yield rate -->
+  <select id="getYield" resultType="map">
+  	SELECT
+  		<if test="str == 'ratios' ">
+			SUM (p.case_count) AS [value],
+		</if>
+		<if test="str == 'sar' ">
+			SUM (p.sar_count) AS [value],
+		</if>
+		<!--
+		SUM (p.alert_total) AS alertTotal,
+		SUM (p.case_total) AS caseTotal,-->
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,p.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,p.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,p.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,p.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,p.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,p.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_percent p
+	WHERE
+		p.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), p.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), p.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,p.statis_date),
+			DATEPART(month,p.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,p.statis_date),
+		</if>
+		DATEPART(year,p.statis_date)
+	ORDER BY DATEPART(year,p.statis_date)
+  </select>
+  
+  <!-- SAR yield rate -->
+  <select id="querySarYield" resultType="map">
+  	select 
+		alert.[year],
+		MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+		MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+		MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+		MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+		MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+		MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+		MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+		MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+		MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+		MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+		MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+		MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+		SELECT 
+			DATEPART(month,t.statis_date)as [month],DATEPART(YEAR,t.statis_date) as [year],SUM(t.sar_count) as [count]
+		FROM report_statis_percent t 
+		WHERE t.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), t.statis_date, 111)
+			]]>
+			</if>
+		GROUP BY 
+			DATEPART(month,t.statis_date),DATEPART(YEAR,t.statis_date)
+	) alert
+	GROUP BY 
+		alert.[year]
+  	ORDER BY alert.[year] DESC
+  </select>
+</mapper>

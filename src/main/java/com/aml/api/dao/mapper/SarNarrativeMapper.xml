@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarNarrativeMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarNarrative">
+    <id column="narrative_id" jdbcType="BIGINT" property="narrativeId" />
+    <result column="rid" jdbcType="BIGINT" property="rid" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [narrative_id], [rid],[content], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_narrative]
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_narrative]
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarNarrative">
+    <selectKey keyProperty="narrativeId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_narrative] ([rid], [is_deleted], [content]
+      )
+    values (#{rid,jdbcType=BIGINT}, #{isDeleted,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarNarrative">
+    <selectKey keyProperty="narrativeId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_narrative]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+      <if test="content != null">
+        [content],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarNarrative">
+    update [sar_narrative]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="content != null">
+        [content] = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.aml.api.pojo.SarNarrative">
+    update [sar_narrative]
+    set [rid] = #{rid,jdbcType=BIGINT},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      [content] = #{content,jdbcType=LONGVARCHAR}
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarNarrative">
+    update [sar_narrative]
+    set [rid] = #{rid,jdbcType=BIGINT},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </update>
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarNarrativeDto" keyProperty="narrativeId" useGeneratedKeys="true">
+    insert into [sar_narrative]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="content != null">
+        [content],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- query -->
+  <select id="selectByPrimaryKeyDto" parameterType="com.aml.api.dto.SarNarrativeDto" resultMap="BaseResultMap">
+    select 
+    	[narrative_id], [rid],[content]
+    from [sar_narrative]
+    where [is_deleted] = 0 
+      <if test="rid != null">
+        AND [rid] = #{rid,jdbcType=BIGINT}
+      </if>
+<!--       <if test="narrativeId != null"> -->
+<!--         AND [narrative_id] = #{narrativeId,jdbcType=BIGINT} -->
+<!--       </if> -->
+  </select>
+  
+  <!-- getCount -->
+  <select id="getCount" resultType="int">
+    select 
+    	count(1)
+    from [sar_narrative]
+    where [is_deleted] = 0 
+      <if test="rid != null">
+        AND [rid] = #{rid,jdbcType=BIGINT}
+      </if>
+  </select>
+  
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarNarrativeDto">
+    update [sar_narrative]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        [content] = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where [narrative_id] = #{narrativeId,jdbcType=BIGINT}
+  </update>
+</mapper>

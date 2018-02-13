@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.TaskApprovalMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.TaskApproval">
+    <id column="approval_id" jdbcType="BIGINT" property="approvalId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="score" jdbcType="TINYINT" property="score" />
+    <result column="is_approve" jdbcType="TINYINT" property="isApprove" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    
+    <collection property="files" ofType="com.aml.api.pojo.TaskFile">
+		<id column="file_id" jdbcType="BIGINT" property="fileId" />
+	    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+	    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+	    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+	</collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    approval_id, task_id, order_id, role_id, content, score, create_user, create_time, 
+    update_user, update_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wf_task_approval
+    where approval_id = #{approvalId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wf_task_approval
+    where approval_id = #{approvalId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.TaskApproval">
+    <selectKey keyProperty="approvalId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into wf_task_approval
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=TINYINT},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.TaskApproval">
+    update wf_task_approval
+    <set>
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=TINYINT},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where approval_id = #{approvalId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.TaskApproval">
+    update wf_task_approval
+    set task_id = #{taskId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      score = #{score,jdbcType=TINYINT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where approval_id = #{approvalId,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insert" keyProperty="approvalId" useGeneratedKeys="true">
+		INSERT INTO wf_task_approval
+	   <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="taskId != null">
+	        task_id,
+	      </if>
+	      <if test="orderId != null">
+	        order_id,
+	      </if>
+	      <if test="roleId != null">
+	        role_id,
+	      </if>
+	      <if test="status != null">
+	        status,
+	      </if>
+	      <if test="result != null">
+	        result,
+	      </if>
+	      <if test="content != null">
+	        content,
+	      </if>
+	      <if test="score != null">
+	        score,
+	      </if>
+	      <if test="isApprove != null">
+	        is_approve,
+	      </if>
+	      <if test="userName != null">
+	        create_user,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="taskId != null">
+	        #{taskId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orderId != null">
+	        #{orderId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="roleId != null">
+	        #{roleId,jdbcType=VARCHAR},
+	      </if>
+	      <if test="status != null">
+	        #{status,jdbcType=TINYINT},
+	      </if>
+	      <if test="result != null">
+	        #{result,jdbcType=VARCHAR},
+	      </if>
+	      <if test="content != null">
+	        #{content,jdbcType=VARCHAR},
+	      </if>
+	      <if test="score != null">
+	        #{score,jdbcType=TINYINT},
+	      </if>
+	      <if test="isApprove != null">
+	        #{isApprove,jdbcType=TINYINT},
+	      </if>
+	      <if test="userName != null">
+	        #{userName,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<select id="findByTaskId" resultMap="BaseResultMap">
+		SELECT
+			TOP 1
+			a.approval_id,
+			a.task_id,
+			a.order_id,
+			a.role_id,
+			a.result,
+			a.content,
+			s.grade as score,
+			f.file_name,
+			f.file_path
+		FROM
+			wf_task_approval a
+		LEFT JOIN wf_task_file f ON a.task_id = f.task_id AND f.is_deleted = 0
+		LEFT JOIN wf_task_score s ON a.task_id = s.task_id AND s.is_deleted = 0
+		WHERE 
+			a.is_deleted = 0
+			AND a.is_approve = 1
+			AND a.task_id = #{taskId}
+		ORDER BY f.file_id ASC
+	</select>
+	
+	<update id="update">
+		UPDATE wf_task_approval
+		<set>
+			<if test="result != null and result != ''">
+				result = #{result},
+			</if>
+			<if test="content != null and content != ''">
+				content = #{content},
+			</if>
+			<if test="score != null and score != ''">
+				score = #{score},
+			</if>
+			update_user = #{userId},
+			update_time = getdate()
+		</set>
+		where approval_id = #{approvalId}
+	</update>
+	
+	<select id="queryHistoryApprove" resultType="java.util.Map">
+		SELECT
+			a.task_id as taskId,
+			a.create_time as createTime,
+			d.dic_value as statusValue,
+			a.status,
+			a.role_id as roleId,
+			a.create_user operator,
+			a.result,
+			s.grade as score
+		FROM wf_task_approval a
+			LEFT JOIN common_dic_sub d ON a.status = d.dic_key AND d.is_deleted = 0
+			LEFT JOIN wf_task_score s ON s.task_id = a.task_id
+		WHERE
+		 	d.dic_id = #{dicId}
+			AND a.order_Id = #{orderId}
+		ORDER BY a.create_Time ASC
+	</select>
+	
+	<select id="queryLastAlertApprove" resultType="java.util.Map">
+		SELECT
+			a.task_id AS taskId,
+			h.finish_Time AS createTime,
+			d.dic_value AS status,
+			a.role_id AS roleId,
+			a.create_user operator,
+			a.result,
+			s.grade AS score
+		FROM 
+			wf_hist_task h
+			LEFT JOIN wf_task_approval a ON h.id = a.task_id AND a.is_deleted = 0
+			LEFT JOIN common_dic_sub d ON a.status = d.dic_key AND d.is_deleted = 0
+			LEFT JOIN wf_task_score s ON s.task_id = a.task_id
+		WHERE
+			d.dic_id = '12'
+			AND a.is_approve = 1
+			AND h.id = (
+				SELECT
+					ag.task_id
+				FROM
+					alert_group ag
+				LEFT JOIN case_group cg ON cg.alert_id = ag.alert_id
+				WHERE
+					cg.order_id = #{orderId}
+			)
+	</select>
+	
+	<select id="queryUserNameByRoleId" resultType="String">
+		select 
+			create_user
+		from
+			wf_task_approval
+		where
+			create_user IS NOT NULL
+			AND is_approve = 1
+			AND order_Id = #{orderId}
+			AND role_id in (${roleId})
+	</select>
+
+	<!-- 修改 -->  
+	<update id="deleteByTaskId">
+		update wf_task_approval
+		set
+				is_deleted = 1,
+				update_time = getdate()
+		where
+			task_id = #{taskId}
+	</update>
+	
+	<select id="findHistoryOrder" resultType="org.snaker.engine.entity.HistoryOrder">
+		select 
+			h.id,
+			h.process_id as processId,
+			h.order_state as orderState 
+		from
+			wf_hist_order h
+		where
+			h.id = #{id}
+	</select>
+	
+	<insert id="saveSurrogate" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO wf_surrogate (
+		  id,
+		  process_Name,
+		  operator,
+		  surrogate,
+		  odate,
+		  sdate,
+		  edate,
+		  state
+		) 
+		VALUES
+		  (
+		     #{id},
+		     #{processName},
+		     #{operator},
+		     #{surrogate},
+		     #{odate},
+		     #{sdate},
+		     #{edate},
+		     #{state}
+		  ) 
+	</insert>
+	<update id="updateSurrogate">
+		UPDATE wf_surrogate
+		<set>
+			<if test="processName != null and processName != ''">
+				process_Name = #{processName},
+			</if>
+			<if test="surrogate != null and surrogate != ''">
+				surrogate = #{surrogate},
+			</if>
+			<if test="operator != null and operator != ''">
+				operator = #{operator},
+			</if>
+			<if test="odate != null and odate != ''">
+				odate = #{odate},
+			</if>
+			<if test="sdate != null and sdate != ''">
+				sdate = #{sdate},
+			</if>
+			<if test="edate != null and edate != ''">
+				edate = #{edate},
+			</if>
+			<if test="state != null and state != ''">
+				state = #{state},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+</mapper>

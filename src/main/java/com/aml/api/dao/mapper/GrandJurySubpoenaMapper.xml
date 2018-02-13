@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.GrandJurySubpoenaMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.GrandJurySubpoena">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ext_request_id" jdbcType="VARCHAR" property="extRequestId" />
+    <result column="requesting_party" jdbcType="VARCHAR" property="requestingParty" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="id_num" jdbcType="INTEGER" property="idNum" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="account_num" jdbcType="INTEGER" property="accountNum" />
+    <result column="aka_or_dba" jdbcType="VARCHAR" property="akaOrDba" />
+    <result column="internal_bsa" jdbcType="VARCHAR" property="internalBsa" />
+    <result column="cust_status" jdbcType="VARCHAR" property="custStatus" />
+    <result column="swift_code" jdbcType="VARCHAR" property="swiftCode" />
+    <result column="legal_counsel_company" jdbcType="VARCHAR" property="legalCounselCompany" />
+    <result column="legal_counsel_name" jdbcType="VARCHAR" property="legalCounselName" />
+    <result column="fiu_sar_referral" jdbcType="VARCHAR" property="fiuSarReferral" />
+    <result column="alert_id" jdbcType="BIGINT" property="alertId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [ext_request_id], [requesting_party], [name], [birthdate], [id_num], [city], 
+    [state], [address], [country], [bank_name], [account_num], [aka_or_dba], [internal_bsa], 
+    [cust_status], [swift_code], [legal_counsel_company], [legal_counsel_name], [fiu_sar_referral], 
+    [alert_id]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [grand_jury_subpoena]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [grand_jury_subpoena]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.GrandJurySubpoena" keyProperty="id" useGeneratedKeys="true">
+    insert into [grand_jury_subpoena] ([ext_request_id], [requesting_party], [name], 
+      [birthdate], [id_num], [city], 
+      [state], [address], [country], 
+      [bank_name], [account_num], [aka_or_dba], 
+      [internal_bsa], [cust_status], [swift_code], 
+      [legal_counsel_company], [legal_counsel_name], 
+      [fiu_sar_referral], [alert_id])
+    values (#{extRequestId,jdbcType=VARCHAR}, #{requestingParty,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{birthdate,jdbcType=TIMESTAMP}, #{idNum,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{accountNum,jdbcType=INTEGER}, #{akaOrDba,jdbcType=VARCHAR}, 
+      #{internalBsa,jdbcType=VARCHAR}, #{custStatus,jdbcType=VARCHAR}, #{swiftCode,jdbcType=VARCHAR}, 
+      #{legalCounselCompany,jdbcType=VARCHAR}, #{legalCounselName,jdbcType=VARCHAR}, 
+      #{fiuSarReferral,jdbcType=VARCHAR}, #{alertId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.GrandJurySubpoena" keyProperty="id" useGeneratedKeys="true">
+    insert into [grand_jury_subpoena]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="extRequestId != null">
+        [ext_request_id],
+      </if>
+      <if test="requestingParty != null">
+        [requesting_party],
+      </if>
+      <if test="name != null">
+        [name],
+      </if>
+      <if test="birthdate != null">
+        [birthdate],
+      </if>
+      <if test="idNum != null">
+        [id_num],
+      </if>
+      <if test="city != null">
+        [city],
+      </if>
+      <if test="state != null">
+        [state],
+      </if>
+      <if test="address != null">
+        [address],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+      <if test="bankName != null">
+        [bank_name],
+      </if>
+      <if test="accountNum != null">
+        [account_num],
+      </if>
+      <if test="akaOrDba != null">
+        [aka_or_dba],
+      </if>
+      <if test="internalBsa != null">
+        [internal_bsa],
+      </if>
+      <if test="custStatus != null">
+        [cust_status],
+      </if>
+      <if test="swiftCode != null">
+        [swift_code],
+      </if>
+      <if test="legalCounselCompany != null">
+        [legal_counsel_company],
+      </if>
+      <if test="legalCounselName != null">
+        [legal_counsel_name],
+      </if>
+      <if test="fiuSarReferral != null">
+        [fiu_sar_referral],
+      </if>
+      <if test="alertId != null">
+        [alert_id],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="extRequestId != null">
+        #{extRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingParty != null">
+        #{requestingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNum != null">
+        #{idNum,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        #{accountNum,jdbcType=INTEGER},
+      </if>
+      <if test="akaOrDba != null">
+        #{akaOrDba,jdbcType=VARCHAR},
+      </if>
+      <if test="internalBsa != null">
+        #{internalBsa,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null">
+        #{custStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="swiftCode != null">
+        #{swiftCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCounselCompany != null">
+        #{legalCounselCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCounselName != null">
+        #{legalCounselName,jdbcType=VARCHAR},
+      </if>
+      <if test="fiuSarReferral != null">
+        #{fiuSarReferral,jdbcType=VARCHAR},
+      </if>
+      <if test="alertId != null">
+        #{alertId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.GrandJurySubpoena">
+    update [grand_jury_subpoena]
+    <set>
+      <if test="extRequestId != null">
+        [ext_request_id] = #{extRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingParty != null">
+        [requesting_party] = #{requestingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        [name] = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNum != null">
+        [id_num] = #{idNum,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        [city] = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        [state] = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        [address] = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        [bank_name] = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNum != null">
+        [account_num] = #{accountNum,jdbcType=INTEGER},
+      </if>
+      <if test="akaOrDba != null">
+        [aka_or_dba] = #{akaOrDba,jdbcType=VARCHAR},
+      </if>
+      <if test="internalBsa != null">
+        [internal_bsa] = #{internalBsa,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null">
+        [cust_status] = #{custStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="swiftCode != null">
+        [swift_code] = #{swiftCode,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCounselCompany != null">
+        [legal_counsel_company] = #{legalCounselCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCounselName != null">
+        [legal_counsel_name] = #{legalCounselName,jdbcType=VARCHAR},
+      </if>
+      <if test="fiuSarReferral != null">
+        [fiu_sar_referral] = #{fiuSarReferral,jdbcType=VARCHAR},
+      </if>
+      <if test="alertId != null">
+        [alert_id] = #{alertId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.GrandJurySubpoena">
+    update [grand_jury_subpoena]
+    set [ext_request_id] = #{extRequestId,jdbcType=VARCHAR},
+      [requesting_party] = #{requestingParty,jdbcType=VARCHAR},
+      [name] = #{name,jdbcType=VARCHAR},
+      [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      [id_num] = #{idNum,jdbcType=INTEGER},
+      [city] = #{city,jdbcType=VARCHAR},
+      [state] = #{state,jdbcType=VARCHAR},
+      [address] = #{address,jdbcType=VARCHAR},
+      [country] = #{country,jdbcType=VARCHAR},
+      [bank_name] = #{bankName,jdbcType=VARCHAR},
+      [account_num] = #{accountNum,jdbcType=INTEGER},
+      [aka_or_dba] = #{akaOrDba,jdbcType=VARCHAR},
+      [internal_bsa] = #{internalBsa,jdbcType=VARCHAR},
+      [cust_status] = #{custStatus,jdbcType=VARCHAR},
+      [swift_code] = #{swiftCode,jdbcType=VARCHAR},
+      [legal_counsel_company] = #{legalCounselCompany,jdbcType=VARCHAR},
+      [legal_counsel_name] = #{legalCounselName,jdbcType=VARCHAR},
+      [fiu_sar_referral] = #{fiuSarReferral,jdbcType=VARCHAR},
+      [alert_id] = #{alertId,jdbcType=BIGINT}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- query -->
+  <select id="getGrandJurySubpoenaList" resultMap="BaseResultMap">
+  	select [ext_request_id], [requesting_party], [name], 
+      [birthdate], [id_num], [city], 
+      [state], [address], [country], 
+      [bank_name], [account_num], [aka_or_dba], 
+      [internal_bsa], [cust_status], [swift_code], 
+      [legal_counsel_company], [legal_counsel_name], [fiu_sar_referral], 
+      [alert_id]
+      from [grand_jury_subpoena]
+      where 1 = 1 
+      <if test="search != null">
+      	and (
+      		convert(varchar,ext_request_id) = #{search}
+      		or requesting_party like CONCAT(CONCAT('%', #{search}), '%')
+      		or name like CONCAT(CONCAT('%', #{search}), '%')
+      		or convert(varchar,id_num) = #{search}
+      		or city like CONCAT(CONCAT('%', #{search}), '%')
+      		or state like CONCAT(CONCAT('%', #{search}), '%')
+      		or address like CONCAT(CONCAT('%', #{search}), '%')
+      		or country like CONCAT(CONCAT('%', #{search}), '%')
+      		or bank_name like CONCAT(CONCAT('%', #{search}), '%')
+      		or account_num like CONCAT(CONCAT('%', #{search}), '%')
+      		or aka_or_dba like CONCAT(CONCAT('%', #{search}), '%')
+      		or internal_bsa like CONCAT(CONCAT('%', #{search}), '%')
+      		or cust_status like CONCAT(CONCAT('%', #{search}), '%')
+      		or swift_code like CONCAT(CONCAT('%', #{search}), '%')
+      		or legal_counsel_company like CONCAT(CONCAT('%', #{search}), '%')
+      		or legal_counsel_name like CONCAT(CONCAT('%', #{search}), '%')
+      		or fiu_sar_referral like CONCAT(CONCAT('%', #{search}), '%')
+      	)
+      </if>
+      order by ext_request_id ASC
+  </select>
+  
+  <!-- Export -->
+  <select id="downGrandJurySubpoenaExcel" resultType="java.util.Map">
+  	select [ext_request_id], [requesting_party], [name], 
+      [birthdate], [id_num], [city], 
+      [state], [address], [country], 
+      [bank_name], [account_num], [aka_or_dba], 
+      [internal_bsa], [cust_status], [swift_code], 
+      [legal_counsel_company], [legal_counsel_name], [fiu_sar_referral], 
+      [alert_id]
+      from [grand_jury_subpoena]
+      where 1 = 1 
+      <if test="search != null">
+      	and (
+      		convert(varchar,ext_request_id) = #{search}
+      		or requesting_party like CONCAT(CONCAT('%', #{search}), '%')
+      		or name like CONCAT(CONCAT('%', #{search}), '%')
+      		or convert(varchar,id_num) = #{search}
+      		or city like CONCAT(CONCAT('%', #{search}), '%')
+      		or state like CONCAT(CONCAT('%', #{search}), '%')
+      		or address like CONCAT(CONCAT('%', #{search}), '%')
+      		or country like CONCAT(CONCAT('%', #{search}), '%')
+      		or bank_name like CONCAT(CONCAT('%', #{search}), '%')
+      		or account_num like CONCAT(CONCAT('%', #{search}), '%')
+      		or aka_or_dba like CONCAT(CONCAT('%', #{search}), '%')
+      		or internal_bsa like CONCAT(CONCAT('%', #{search}), '%')
+      		or cust_status like CONCAT(CONCAT('%', #{search}), '%')
+      		or swift_code like CONCAT(CONCAT('%', #{search}), '%')
+      		or legal_counsel_company like CONCAT(CONCAT('%', #{search}), '%')
+      		or legal_counsel_name like CONCAT(CONCAT('%', #{search}), '%')
+      		or fiu_sar_referral like CONCAT(CONCAT('%', #{search}), '%')
+      	)
+      </if>
+      order by ext_request_id ASC
+  </select>
+</mapper>

@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.CtrTransAmountTypeMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.CtrTransAmountType">
+    <id column="trans_id" jdbcType="BIGINT" property="transId" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+    <result column="trans_date" jdbcType="TIMESTAMP" property="transDate" />
+    <result column="trans_type" jdbcType="TINYINT" property="transType" />
+    <result column="in_deposit" jdbcType="VARCHAR" property="inDeposit" />
+    <result column="in_payment" jdbcType="VARCHAR" property="inPayment" />
+    <result column="in_currency_received" jdbcType="VARCHAR" property="inCurrencyReceived" />
+    <result column="in_negotiable_instrument" jdbcType="VARCHAR" property="inNegotiableInstrument" />
+    <result column="in_currency_exchange" jdbcType="VARCHAR" property="inCurrencyExchange" />
+    <result column="in_prepaid_access" jdbcType="VARCHAR" property="inPrepaidAccess" />
+    <result column="in_other_instrument" jdbcType="VARCHAR" property="inOtherInstrument" />
+    <result column="in_currency_wager" jdbcType="VARCHAR" property="inCurrencyWager" />
+    <result column="in_bills_inserted" jdbcType="VARCHAR" property="inBillsInserted" />
+    <result column="in_other_name" jdbcType="VARCHAR" property="inOtherName" />
+    <result column="in_other_value" jdbcType="VARCHAR" property="inOtherValue" />
+    <result column="in_total_cash" jdbcType="VARCHAR" property="inTotalCash" />
+    <result column="out_withdrawal" jdbcType="VARCHAR" property="outWithdrawal" />
+    <result column="out_advance" jdbcType="VARCHAR" property="outAdvance" />
+    <result column="out_currency_paid" jdbcType="VARCHAR" property="outCurrencyPaid" />
+    <result column="out_negotiable_instrument" jdbcType="VARCHAR" property="outNegotiableInstrument" />
+    <result column="out_currency_exchange" jdbcType="VARCHAR" property="outCurrencyExchange" />
+    <result column="out_prepaid_access" jdbcType="VARCHAR" property="outPrepaidAccess" />
+    <result column="out_redemption_instrument" jdbcType="VARCHAR" property="outRedemptionInstrument" />
+    <result column="out_payment_wager" jdbcType="VARCHAR" property="outPaymentWager" />
+    <result column="out_travel_expenses" jdbcType="VARCHAR" property="outTravelExpenses" />
+    <result column="out_tournament_payment" jdbcType="VARCHAR" property="outTournamentPayment" />
+    <result column="out_other_name" jdbcType="VARCHAR" property="outOtherName" />
+    <result column="out_other_value" jdbcType="VARCHAR" property="outOtherValue" />
+    <result column="out_total_cash" jdbcType="VARCHAR" property="outTotalCash" />
+    <result column="in_foreign_cash" jdbcType="VARCHAR" property="inForeignCash" />
+    <result column="in_foreign_country" jdbcType="TINYINT" property="inForeignCountry" />
+    <result column="out_foreign_cash" jdbcType="VARCHAR" property="outForeignCash" />
+    <result column="out_foreign_country" jdbcType="TINYINT" property="outForeignCountry" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [trans_id], [cid], [trans_date], [trans_type], [in_deposit], [in_payment], [in_currency_received], 
+    [in_negotiable_instrument], [in_currency_exchange], [in_prepaid_access], [in_other_instrument], 
+    [in_currency_wager], [in_bills_inserted], [in_other_name], [in_other_value], [in_total_cash], 
+    [out_withdrawal], [out_advance], [out_currency_paid], [out_negotiable_instrument], 
+    [out_currency_exchange], [out_prepaid_access], [out_redemption_instrument], [out_payment_wager], 
+    [out_travel_expenses], [out_tournament_payment], [out_other_name], [out_other_value], 
+    [out_total_cash], [in_foreign_cash], [in_foreign_country], [out_foreign_cash], [out_foreign_country], 
+    [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [ctr_trans_amount_type]
+    where [trans_id] = #{transId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [ctr_trans_amount_type]
+    where [trans_id] = #{transId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.CtrTransAmountType">
+    <selectKey keyProperty="transId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [ctr_trans_amount_type] ([cid], [trans_date], [trans_type], 
+      [in_deposit], [in_payment], [in_currency_received], 
+      [in_negotiable_instrument], [in_currency_exchange], 
+      [in_prepaid_access], [in_other_instrument], [in_currency_wager], 
+      [in_bills_inserted], [in_other_name], [in_other_value], 
+      [in_total_cash], [out_withdrawal], [out_advance], 
+      [out_currency_paid], [out_negotiable_instrument], 
+      [out_currency_exchange], [out_prepaid_access], 
+      [out_redemption_instrument], [out_payment_wager], 
+      [out_travel_expenses], [out_tournament_payment], 
+      [out_other_name], [out_other_value], [out_total_cash], 
+      [in_foreign_cash], [in_foreign_country], [out_foreign_cash], 
+      [out_foreign_country], [create_time], [update_time], 
+      [is_deleted])
+    values (#{cid,jdbcType=BIGINT}, #{transDate,jdbcType=TIMESTAMP}, #{transType,jdbcType=TINYINT}, 
+      #{inDeposit,jdbcType=VARCHAR}, #{inPayment,jdbcType=VARCHAR}, #{inCurrencyReceived,jdbcType=VARCHAR}, 
+      #{inNegotiableInstrument,jdbcType=VARCHAR}, #{inCurrencyExchange,jdbcType=VARCHAR}, 
+      #{inPrepaidAccess,jdbcType=VARCHAR}, #{inOtherInstrument,jdbcType=VARCHAR}, #{inCurrencyWager,jdbcType=VARCHAR}, 
+      #{inBillsInserted,jdbcType=VARCHAR}, #{inOtherName,jdbcType=VARCHAR}, #{inOtherValue,jdbcType=VARCHAR}, 
+      #{inTotalCash,jdbcType=VARCHAR}, #{outWithdrawal,jdbcType=VARCHAR}, #{outAdvance,jdbcType=VARCHAR}, 
+      #{outCurrencyPaid,jdbcType=VARCHAR}, #{outNegotiableInstrument,jdbcType=VARCHAR}, 
+      #{outCurrencyExchange,jdbcType=VARCHAR}, #{outPrepaidAccess,jdbcType=VARCHAR}, 
+      #{outRedemptionInstrument,jdbcType=VARCHAR}, #{outPaymentWager,jdbcType=VARCHAR}, 
+      #{outTravelExpenses,jdbcType=VARCHAR}, #{outTournamentPayment,jdbcType=VARCHAR}, 
+      #{outOtherName,jdbcType=VARCHAR}, #{outOtherValue,jdbcType=VARCHAR}, #{outTotalCash,jdbcType=VARCHAR}, 
+      #{inForeignCash,jdbcType=VARCHAR}, #{inForeignCountry,jdbcType=TINYINT}, #{outForeignCash,jdbcType=VARCHAR}, 
+      #{outForeignCountry,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.CtrTransAmountType">
+    <selectKey keyProperty="transId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [ctr_trans_amount_type]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        [cid],
+      </if>
+      <if test="transDate != null">
+        [trans_date],
+      </if>
+      <if test="transType != null">
+        [trans_type],
+      </if>
+      <if test="inDeposit != null">
+        [in_deposit],
+      </if>
+      <if test="inPayment != null">
+        [in_payment],
+      </if>
+      <if test="inCurrencyReceived != null">
+        [in_currency_received],
+      </if>
+      <if test="inNegotiableInstrument != null">
+        [in_negotiable_instrument],
+      </if>
+      <if test="inCurrencyExchange != null">
+        [in_currency_exchange],
+      </if>
+      <if test="inPrepaidAccess != null">
+        [in_prepaid_access],
+      </if>
+      <if test="inOtherInstrument != null">
+        [in_other_instrument],
+      </if>
+      <if test="inCurrencyWager != null">
+        [in_currency_wager],
+      </if>
+      <if test="inBillsInserted != null">
+        [in_bills_inserted],
+      </if>
+      <if test="inOtherName != null">
+        [in_other_name],
+      </if>
+      <if test="inOtherValue != null">
+        [in_other_value],
+      </if>
+      <if test="inTotalCash != null">
+        [in_total_cash],
+      </if>
+      <if test="outWithdrawal != null">
+        [out_withdrawal],
+      </if>
+      <if test="outAdvance != null">
+        [out_advance],
+      </if>
+      <if test="outCurrencyPaid != null">
+        [out_currency_paid],
+      </if>
+      <if test="outNegotiableInstrument != null">
+        [out_negotiable_instrument],
+      </if>
+      <if test="outCurrencyExchange != null">
+        [out_currency_exchange],
+      </if>
+      <if test="outPrepaidAccess != null">
+        [out_prepaid_access],
+      </if>
+      <if test="outRedemptionInstrument != null">
+        [out_redemption_instrument],
+      </if>
+      <if test="outPaymentWager != null">
+        [out_payment_wager],
+      </if>
+      <if test="outTravelExpenses != null">
+        [out_travel_expenses],
+      </if>
+      <if test="outTournamentPayment != null">
+        [out_tournament_payment],
+      </if>
+      <if test="outOtherName != null">
+        [out_other_name],
+      </if>
+      <if test="outOtherValue != null">
+        [out_other_value],
+      </if>
+      <if test="outTotalCash != null">
+        [out_total_cash],
+      </if>
+      <if test="inForeignCash != null">
+        [in_foreign_cash],
+      </if>
+      <if test="inForeignCountry != null">
+        [in_foreign_country],
+      </if>
+      <if test="outForeignCash != null">
+        [out_foreign_cash],
+      </if>
+      <if test="outForeignCountry != null">
+        [out_foreign_country],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="transDate != null">
+        #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transType != null">
+        #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="inDeposit != null">
+        #{inDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="inPayment != null">
+        #{inPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyReceived != null">
+        #{inCurrencyReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="inNegotiableInstrument != null">
+        #{inNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyExchange != null">
+        #{inCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="inPrepaidAccess != null">
+        #{inPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherInstrument != null">
+        #{inOtherInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyWager != null">
+        #{inCurrencyWager,jdbcType=VARCHAR},
+      </if>
+      <if test="inBillsInserted != null">
+        #{inBillsInserted,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherName != null">
+        #{inOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherValue != null">
+        #{inOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inTotalCash != null">
+        #{inTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outWithdrawal != null">
+        #{outWithdrawal,jdbcType=VARCHAR},
+      </if>
+      <if test="outAdvance != null">
+        #{outAdvance,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyPaid != null">
+        #{outCurrencyPaid,jdbcType=VARCHAR},
+      </if>
+      <if test="outNegotiableInstrument != null">
+        #{outNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyExchange != null">
+        #{outCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrepaidAccess != null">
+        #{outPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="outRedemptionInstrument != null">
+        #{outRedemptionInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outPaymentWager != null">
+        #{outPaymentWager,jdbcType=VARCHAR},
+      </if>
+      <if test="outTravelExpenses != null">
+        #{outTravelExpenses,jdbcType=VARCHAR},
+      </if>
+      <if test="outTournamentPayment != null">
+        #{outTournamentPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherName != null">
+        #{outOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherValue != null">
+        #{outOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="outTotalCash != null">
+        #{outTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCash != null">
+        #{inForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCountry != null">
+        #{inForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="outForeignCash != null">
+        #{outForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outForeignCountry != null">
+        #{outForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.CtrTransAmountType">
+    update [ctr_trans_amount_type]
+    <set>
+      <if test="cid != null">
+        [cid] = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="transDate != null">
+        [trans_date] = #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transType != null">
+        [trans_type] = #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="inDeposit != null">
+        [in_deposit] = #{inDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="inPayment != null">
+        [in_payment] = #{inPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyReceived != null">
+        [in_currency_received] = #{inCurrencyReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="inNegotiableInstrument != null">
+        [in_negotiable_instrument] = #{inNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyExchange != null">
+        [in_currency_exchange] = #{inCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="inPrepaidAccess != null">
+        [in_prepaid_access] = #{inPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherInstrument != null">
+        [in_other_instrument] = #{inOtherInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyWager != null">
+        [in_currency_wager] = #{inCurrencyWager,jdbcType=VARCHAR},
+      </if>
+      <if test="inBillsInserted != null">
+        [in_bills_inserted] = #{inBillsInserted,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherName != null">
+        [in_other_name] = #{inOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherValue != null">
+        [in_other_value] = #{inOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inTotalCash != null">
+        [in_total_cash] = #{inTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outWithdrawal != null">
+        [out_withdrawal] = #{outWithdrawal,jdbcType=VARCHAR},
+      </if>
+      <if test="outAdvance != null">
+        [out_advance] = #{outAdvance,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyPaid != null">
+        [out_currency_paid] = #{outCurrencyPaid,jdbcType=VARCHAR},
+      </if>
+      <if test="outNegotiableInstrument != null">
+        [out_negotiable_instrument] = #{outNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyExchange != null">
+        [out_currency_exchange] = #{outCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrepaidAccess != null">
+        [out_prepaid_access] = #{outPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="outRedemptionInstrument != null">
+        [out_redemption_instrument] = #{outRedemptionInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outPaymentWager != null">
+        [out_payment_wager] = #{outPaymentWager,jdbcType=VARCHAR},
+      </if>
+      <if test="outTravelExpenses != null">
+        [out_travel_expenses] = #{outTravelExpenses,jdbcType=VARCHAR},
+      </if>
+      <if test="outTournamentPayment != null">
+        [out_tournament_payment] = #{outTournamentPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherName != null">
+        [out_other_name] = #{outOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherValue != null">
+        [out_other_value] = #{outOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="outTotalCash != null">
+        [out_total_cash] = #{outTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCash != null">
+        [in_foreign_cash] = #{inForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCountry != null">
+        [in_foreign_country] = #{inForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="outForeignCash != null">
+        [out_foreign_cash] = #{outForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outForeignCountry != null">
+        [out_foreign_country] = #{outForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [trans_id] = #{transId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.CtrTransAmountType">
+    update [ctr_trans_amount_type]
+    set [cid] = #{cid,jdbcType=BIGINT},
+      [trans_date] = #{transDate,jdbcType=TIMESTAMP},
+      [trans_type] = #{transType,jdbcType=TINYINT},
+      [in_deposit] = #{inDeposit,jdbcType=VARCHAR},
+      [in_payment] = #{inPayment,jdbcType=VARCHAR},
+      [in_currency_received] = #{inCurrencyReceived,jdbcType=VARCHAR},
+      [in_negotiable_instrument] = #{inNegotiableInstrument,jdbcType=VARCHAR},
+      [in_currency_exchange] = #{inCurrencyExchange,jdbcType=VARCHAR},
+      [in_prepaid_access] = #{inPrepaidAccess,jdbcType=VARCHAR},
+      [in_other_instrument] = #{inOtherInstrument,jdbcType=VARCHAR},
+      [in_currency_wager] = #{inCurrencyWager,jdbcType=VARCHAR},
+      [in_bills_inserted] = #{inBillsInserted,jdbcType=VARCHAR},
+      [in_other_name] = #{inOtherName,jdbcType=VARCHAR},
+      [in_other_value] = #{inOtherValue,jdbcType=VARCHAR},
+      [in_total_cash] = #{inTotalCash,jdbcType=VARCHAR},
+      [out_withdrawal] = #{outWithdrawal,jdbcType=VARCHAR},
+      [out_advance] = #{outAdvance,jdbcType=VARCHAR},
+      [out_currency_paid] = #{outCurrencyPaid,jdbcType=VARCHAR},
+      [out_negotiable_instrument] = #{outNegotiableInstrument,jdbcType=VARCHAR},
+      [out_currency_exchange] = #{outCurrencyExchange,jdbcType=VARCHAR},
+      [out_prepaid_access] = #{outPrepaidAccess,jdbcType=VARCHAR},
+      [out_redemption_instrument] = #{outRedemptionInstrument,jdbcType=VARCHAR},
+      [out_payment_wager] = #{outPaymentWager,jdbcType=VARCHAR},
+      [out_travel_expenses] = #{outTravelExpenses,jdbcType=VARCHAR},
+      [out_tournament_payment] = #{outTournamentPayment,jdbcType=VARCHAR},
+      [out_other_name] = #{outOtherName,jdbcType=VARCHAR},
+      [out_other_value] = #{outOtherValue,jdbcType=VARCHAR},
+      [out_total_cash] = #{outTotalCash,jdbcType=VARCHAR},
+      [in_foreign_cash] = #{inForeignCash,jdbcType=VARCHAR},
+      [in_foreign_country] = #{inForeignCountry,jdbcType=TINYINT},
+      [out_foreign_cash] = #{outForeignCash,jdbcType=VARCHAR},
+      [out_foreign_country] = #{outForeignCountry,jdbcType=TINYINT},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [trans_id] = #{transId,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.CtrTransAmountTypeDto" keyProperty="transId" useGeneratedKeys="true">
+    insert into [ctr_trans_amount_type]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        [cid],
+      </if>
+      <if test="transDate != null">
+        [trans_date],
+      </if>
+      <if test="transType != null">
+        [trans_type],
+      </if>
+      <if test="inDeposit != null">
+        [in_deposit],
+      </if>
+      <if test="inPayment != null">
+        [in_payment],
+      </if>
+      <if test="inCurrencyReceived != null">
+        [in_currency_received],
+      </if>
+      <if test="inNegotiableInstrument != null">
+        [in_negotiable_instrument],
+      </if>
+      <if test="inCurrencyExchange != null">
+        [in_currency_exchange],
+      </if>
+      <if test="inPrepaidAccess != null">
+        [in_prepaid_access],
+      </if>
+      <if test="inOtherInstrument != null">
+        [in_other_instrument],
+      </if>
+      <if test="inCurrencyWager != null">
+        [in_currency_wager],
+      </if>
+      <if test="inBillsInserted != null">
+        [in_bills_inserted],
+      </if>
+      <if test="inOtherName != null">
+        [in_other_name],
+      </if>
+      <if test="inOtherValue != null">
+        [in_other_value],
+      </if>
+      <if test="inTotalCash != null">
+        [in_total_cash],
+      </if>
+      <if test="outWithdrawal != null">
+        [out_withdrawal],
+      </if>
+      <if test="outAdvance != null">
+        [out_advance],
+      </if>
+      <if test="outCurrencyPaid != null">
+        [out_currency_paid],
+      </if>
+      <if test="outNegotiableInstrument != null">
+        [out_negotiable_instrument],
+      </if>
+      <if test="outCurrencyExchange != null">
+        [out_currency_exchange],
+      </if>
+      <if test="outPrepaidAccess != null">
+        [out_prepaid_access],
+      </if>
+      <if test="outRedemptionInstrument != null">
+        [out_redemption_instrument],
+      </if>
+      <if test="outPaymentWager != null">
+        [out_payment_wager],
+      </if>
+      <if test="outTravelExpenses != null">
+        [out_travel_expenses],
+      </if>
+      <if test="outTournamentPayment != null">
+        [out_tournament_payment],
+      </if>
+      <if test="outOtherName != null">
+        [out_other_name],
+      </if>
+      <if test="outOtherValue != null">
+        [out_other_value],
+      </if>
+      <if test="outTotalCash != null">
+        [out_total_cash],
+      </if>
+      <if test="inForeignCash != null">
+        [in_foreign_cash],
+      </if>
+      <if test="inForeignCountry != null">
+        [in_foreign_country],
+      </if>
+      <if test="outForeignCash != null">
+        [out_foreign_cash],
+      </if>
+      <if test="outForeignCountry != null">
+        [out_foreign_country],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="transDate != null">
+        #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transType != null">
+        #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="inDeposit != null">
+        #{inDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="inPayment != null">
+        #{inPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyReceived != null">
+        #{inCurrencyReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="inNegotiableInstrument != null">
+        #{inNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyExchange != null">
+        #{inCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="inPrepaidAccess != null">
+        #{inPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherInstrument != null">
+        #{inOtherInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyWager != null">
+        #{inCurrencyWager,jdbcType=VARCHAR},
+      </if>
+      <if test="inBillsInserted != null">
+        #{inBillsInserted,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherName != null">
+        #{inOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherValue != null">
+        #{inOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inTotalCash != null">
+        #{inTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outWithdrawal != null">
+        #{outWithdrawal,jdbcType=VARCHAR},
+      </if>
+      <if test="outAdvance != null">
+        #{outAdvance,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyPaid != null">
+        #{outCurrencyPaid,jdbcType=VARCHAR},
+      </if>
+      <if test="outNegotiableInstrument != null">
+        #{outNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyExchange != null">
+        #{outCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrepaidAccess != null">
+        #{outPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="outRedemptionInstrument != null">
+        #{outRedemptionInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outPaymentWager != null">
+        #{outPaymentWager,jdbcType=VARCHAR},
+      </if>
+      <if test="outTravelExpenses != null">
+        #{outTravelExpenses,jdbcType=VARCHAR},
+      </if>
+      <if test="outTournamentPayment != null">
+        #{outTournamentPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherName != null">
+        #{outOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherValue != null">
+        #{outOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="outTotalCash != null">
+        #{outTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCash != null">
+        #{inForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCountry != null">
+        #{inForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="outForeignCash != null">
+        #{outForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outForeignCountry != null">
+        #{outForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getCount"  resultType="int">
+    select 
+    	count(0)
+    from [ctr_trans_amount_type]
+    where [cid] = #{cid,jdbcType=BIGINT}
+  </select>
+  <!-- query -->
+  <select id="selectByPrimaryKeyDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [ctr_trans_amount_type]
+    where [cid] = #{cid,jdbcType=BIGINT}
+  </select>
+  
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.CtrTransAmountTypeDto">
+    update [ctr_trans_amount_type]
+    <set>
+      <if test="cid != null">
+        [cid] = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="transDate != null">
+        [trans_date] = #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transType != null">
+        [trans_type] = #{transType,jdbcType=TINYINT},
+      </if>
+      <if test="inDeposit != null">
+        [in_deposit] = #{inDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="inPayment != null">
+        [in_payment] = #{inPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyReceived != null">
+        [in_currency_received] = #{inCurrencyReceived,jdbcType=VARCHAR},
+      </if>
+      <if test="inNegotiableInstrument != null">
+        [in_negotiable_instrument] = #{inNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyExchange != null">
+        [in_currency_exchange] = #{inCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="inPrepaidAccess != null">
+        [in_prepaid_access] = #{inPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherInstrument != null">
+        [in_other_instrument] = #{inOtherInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="inCurrencyWager != null">
+        [in_currency_wager] = #{inCurrencyWager,jdbcType=VARCHAR},
+      </if>
+      <if test="inBillsInserted != null">
+        [in_bills_inserted] = #{inBillsInserted,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherName != null">
+        [in_other_name] = #{inOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="inOtherValue != null">
+        [in_other_value] = #{inOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="inTotalCash != null">
+        [in_total_cash] = #{inTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outWithdrawal != null">
+        [out_withdrawal] = #{outWithdrawal,jdbcType=VARCHAR},
+      </if>
+      <if test="outAdvance != null">
+        [out_advance] = #{outAdvance,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyPaid != null">
+        [out_currency_paid] = #{outCurrencyPaid,jdbcType=VARCHAR},
+      </if>
+      <if test="outNegotiableInstrument != null">
+        [out_negotiable_instrument] = #{outNegotiableInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outCurrencyExchange != null">
+        [out_currency_exchange] = #{outCurrencyExchange,jdbcType=VARCHAR},
+      </if>
+      <if test="outPrepaidAccess != null">
+        [out_prepaid_access] = #{outPrepaidAccess,jdbcType=VARCHAR},
+      </if>
+      <if test="outRedemptionInstrument != null">
+        [out_redemption_instrument] = #{outRedemptionInstrument,jdbcType=VARCHAR},
+      </if>
+      <if test="outPaymentWager != null">
+        [out_payment_wager] = #{outPaymentWager,jdbcType=VARCHAR},
+      </if>
+      <if test="outTravelExpenses != null">
+        [out_travel_expenses] = #{outTravelExpenses,jdbcType=VARCHAR},
+      </if>
+      <if test="outTournamentPayment != null">
+        [out_tournament_payment] = #{outTournamentPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherName != null">
+        [out_other_name] = #{outOtherName,jdbcType=VARCHAR},
+      </if>
+      <if test="outOtherValue != null">
+        [out_other_value] = #{outOtherValue,jdbcType=VARCHAR},
+      </if>
+      <if test="outTotalCash != null">
+        [out_total_cash] = #{outTotalCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCash != null">
+        [in_foreign_cash] = #{inForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="inForeignCountry != null">
+        [in_foreign_country] = #{inForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="outForeignCash != null">
+        [out_foreign_cash] = #{outForeignCash,jdbcType=VARCHAR},
+      </if>
+      <if test="outForeignCountry != null">
+        [out_foreign_country] = #{outForeignCountry,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where [trans_id] = #{transId,jdbcType=BIGINT}
+  </update>
+</mapper>

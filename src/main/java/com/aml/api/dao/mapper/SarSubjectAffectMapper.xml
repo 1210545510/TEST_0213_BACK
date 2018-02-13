@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarSubjectAffectMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarSubjectAffect">
+    <id column="affect_id" jdbcType="BIGINT" property="affectId" />
+    <result column="sub_id" jdbcType="BIGINT" property="subId" />
+    <result column="institution_tin" jdbcType="VARCHAR" property="institutionTin" />
+    <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [affect_id], [sub_id], [institution_tin], [account_number], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_subject_affect]
+    where [affect_id] = #{affectId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_subject_affect]
+    where [affect_id] = #{affectId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarSubjectAffect">
+    <selectKey keyProperty="affectId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_affect] ([sub_id], [institution_tin], [account_number], 
+      [is_deleted])
+    values (#{subId,jdbcType=BIGINT}, #{institutionTin,jdbcType=VARCHAR}, #{accountNumber,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarSubjectAffect">
+    <selectKey keyProperty="affectId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_affect]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        [sub_id],
+      </if>
+      <if test="institutionTin != null">
+        [institution_tin],
+      </if>
+      <if test="accountNumber != null">
+        [account_number],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="institutionTin != null">
+        #{institutionTin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarSubjectAffect">
+    update [sar_subject_affect]
+    <set>
+      <if test="subId != null">
+        [sub_id] = #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="institutionTin != null">
+        [institution_tin] = #{institutionTin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        [account_number] = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [affect_id] = #{affectId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarSubjectAffect">
+    update [sar_subject_affect]
+    set [sub_id] = #{subId,jdbcType=BIGINT},
+      [institution_tin] = #{institutionTin,jdbcType=VARCHAR},
+      [account_number] = #{accountNumber,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [affect_id] = #{affectId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarSubjectAffectDto" keyProperty="affectId" useGeneratedKeys="true">
+    insert into [sar_subject_affect]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        [sub_id],
+      </if>
+      <if test="institutionTin != null">
+        [institution_tin],
+      </if>
+      <if test="accountNumber != null">
+        [account_number],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="institutionTin != null">
+        #{institutionTin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarSubjectAffectDto">
+    update [sar_subject_affect]
+    <set>
+      <if test="subId != null">
+        [sub_id] = #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="institutionTin != null">
+        [institution_tin] = #{institutionTin,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        [account_number] = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [affect_id] = #{affectId,jdbcType=BIGINT}
+  </update>
+</mapper>

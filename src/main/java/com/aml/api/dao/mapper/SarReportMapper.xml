@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarReportMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarReport">
+    <id column="rid" jdbcType="BIGINT" property="rid" />
+    <result column="filing_name" jdbcType="VARCHAR" property="filingName" />
+    <result column="filing_type" jdbcType="VARCHAR" property="filingType" />
+    <result column="filing_indentifier" jdbcType="VARCHAR" property="filingIndentifier" />
+    <result column="attachment" jdbcType="VARCHAR" property="attachment" />
+    <result column="case_id" jdbcType="BIGINT" property="caseId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [rid], [filing_name], [filing_type], [filing_indentifier], [attachment], [case_id], 
+    [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_report]
+    where [rid] = #{rid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_report]
+    where [rid] = #{rid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarReport">
+    <selectKey keyProperty="rid" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_report] ([filing_name], [filing_type], [filing_indentifier], 
+      [attachment], [case_id], [create_time], 
+      [update_time], [is_deleted])
+    values (#{filingName,jdbcType=VARCHAR}, #{filingType,jdbcType=TINYINT}, #{filingIndentifier,jdbcType=VARCHAR}, 
+      #{attachment,jdbcType=VARCHAR}, #{caseId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarReport">
+    <selectKey keyProperty="rid" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_report]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="filingName != null">
+        [filing_name],
+      </if>
+      <if test="filingType != null">
+        [filing_type],
+      </if>
+      <if test="filingIndentifier != null">
+        [filing_indentifier],
+      </if>
+      <if test="attachment != null">
+        [attachment],
+      </if>
+      <if test="caseId != null">
+        [case_id],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="filingName != null">
+        #{filingName,jdbcType=VARCHAR},
+      </if>
+      <if test="filingType != null">
+        #{filingType,jdbcType=TINYINT},
+      </if>
+      <if test="filingIndentifier != null">
+        #{filingIndentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null">
+        #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarReport">
+    update [sar_report]
+    <set>
+      <if test="filingName != null">
+        [filing_name] = #{filingName,jdbcType=VARCHAR},
+      </if>
+      <if test="filingType != null">
+        [filing_type] = #{filingType,jdbcType=TINYINT},
+      </if>
+      <if test="filingIndentifier != null">
+        [filing_indentifier] = #{filingIndentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        [attachment] = #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null">
+        [case_id] = #{caseId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [rid] = #{rid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarReport">
+    update [sar_report]
+    set [filing_name] = #{filingName,jdbcType=VARCHAR},
+      [filing_type] = #{filingType,jdbcType=TINYINT},
+      [filing_indentifier] = #{filingIndentifier,jdbcType=VARCHAR},
+      [attachment] = #{attachment,jdbcType=VARCHAR},
+      [case_id] = #{caseId,jdbcType=BIGINT},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [rid] = #{rid,jdbcType=BIGINT}
+  </update>
+  
+  <insert id="insertSelectiveDto" keyProperty="rid" useGeneratedKeys="true" >
+    insert into [sar_report]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="filingName != null">
+        [filing_name],
+      </if>
+      <if test="filingType != null">
+        [filing_type],
+      </if>
+      <if test="filingIndentifier != null">
+        [filing_indentifier],
+      </if>
+      <if test="attachment != null">
+        [attachment],
+      </if>
+      <if test="caseId != null">
+        [case_id],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="filingName != null">
+        #{filingName,jdbcType=VARCHAR},
+      </if>
+      <if test="filingType != null">
+        #{filingType,jdbcType=TINYINT},
+      </if>
+      <if test="filingIndentifier != null">
+        #{filingIndentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null">
+        #{caseId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <!-- Query -->
+  <select id="selectByPrimaryKeyDto" resultMap="BaseResultMap">
+    select 
+    	[rid], [filing_name], [filing_type], [filing_indentifier], [attachment], [case_id], [create_time]
+    from [sar_report]
+    where [case_id] = #{caseId,jdbcType=BIGINT} and [is_deleted] = 0
+  </select>
+  
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarReportDto">
+    update [sar_report]
+    <set>
+      <if test="filingName != null">
+        [filing_name] = #{filingName,jdbcType=VARCHAR},
+      </if>
+      <if test="filingType != null">
+        [filing_type] = #{filingType,jdbcType=TINYINT},
+      </if>
+      <if test="filingIndentifier != null">
+        [filing_indentifier] = #{filingIndentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="attachment != null">
+        [attachment] = #{attachment,jdbcType=VARCHAR},
+      </if>
+      <if test="caseId != null">
+        [case_id] = #{caseId,jdbcType=BIGINT},
+      </if>
+        [update_time] = getdate(),
+    </set>
+    where [rid] = #{rid,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

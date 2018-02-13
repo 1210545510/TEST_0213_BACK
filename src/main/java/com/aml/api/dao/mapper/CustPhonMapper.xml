@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.CustPhonMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.CustPhon">
+    <id column="CUST_INTRL_ID" jdbcType="VARCHAR" property="custIntrlId" />
+    <id column="PHON_SEQ_NB" jdbcType="VARCHAR" property="phonSeqNb" />
+    <result column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="CUST_PHON_SEQ_ID" jdbcType="DECIMAL" property="custPhonSeqId" />
+    <result column="PHON_USAGE_CD" jdbcType="VARCHAR" property="phonUsageCd" />
+    <result column="PHON_NB" jdbcType="VARCHAR" property="phonNb" />
+    <result column="PHON_EXT_NB" jdbcType="VARCHAR" property="phonExtNb" />
+    <result column="SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="CNTRY_OF_PHON" jdbcType="VARCHAR" property="cntryOfPhon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [CUST_INTRL_ID], [PHON_SEQ_NB], [DATA_DUMP_DT], [CUST_PHON_SEQ_ID], [PHON_USAGE_CD], 
+    [PHON_NB], [PHON_EXT_NB], [SRC_SYS_CD], [PRCSNG_BATCH_NM], [CNTRY_OF_PHON]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.aml.api.pojo.CustPhon" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[CUST_PHON]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [PHON_SEQ_NB] = #{phonSeqNb,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.aml.api.pojo.CustPhon">
+    delete from [mantas].[CUST_PHON]
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [PHON_SEQ_NB] = #{phonSeqNb,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.CustPhon">
+    insert into [mantas].[CUST_PHON] ([CUST_INTRL_ID], [PHON_SEQ_NB], [DATA_DUMP_DT], 
+      [CUST_PHON_SEQ_ID], [PHON_USAGE_CD], [PHON_NB], 
+      [PHON_EXT_NB], [SRC_SYS_CD], [PRCSNG_BATCH_NM], 
+      [CNTRY_OF_PHON])
+    values (#{custIntrlId,jdbcType=VARCHAR}, #{phonSeqNb,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, 
+      #{custPhonSeqId,jdbcType=DECIMAL}, #{phonUsageCd,jdbcType=VARCHAR}, #{phonNb,jdbcType=VARCHAR}, 
+      #{phonExtNb,jdbcType=VARCHAR}, #{srcSysCd,jdbcType=VARCHAR}, #{prcsngBatchNm,jdbcType=VARCHAR}, 
+      #{cntryOfPhon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.CustPhon">
+    insert into [mantas].[CUST_PHON]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        [CUST_INTRL_ID],
+      </if>
+      <if test="phonSeqNb != null">
+        [PHON_SEQ_NB],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="custPhonSeqId != null">
+        [CUST_PHON_SEQ_ID],
+      </if>
+      <if test="phonUsageCd != null">
+        [PHON_USAGE_CD],
+      </if>
+      <if test="phonNb != null">
+        [PHON_NB],
+      </if>
+      <if test="phonExtNb != null">
+        [PHON_EXT_NB],
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="cntryOfPhon != null">
+        [CNTRY_OF_PHON],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custIntrlId != null">
+        #{custIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="phonSeqNb != null">
+        #{phonSeqNb,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custPhonSeqId != null">
+        #{custPhonSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="phonUsageCd != null">
+        #{phonUsageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="phonNb != null">
+        #{phonNb,jdbcType=VARCHAR},
+      </if>
+      <if test="phonExtNb != null">
+        #{phonExtNb,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="cntryOfPhon != null">
+        #{cntryOfPhon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.CustPhon">
+    update [mantas].[CUST_PHON]
+    <set>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custPhonSeqId != null">
+        [CUST_PHON_SEQ_ID] = #{custPhonSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="phonUsageCd != null">
+        [PHON_USAGE_CD] = #{phonUsageCd,jdbcType=VARCHAR},
+      </if>
+      <if test="phonNb != null">
+        [PHON_NB] = #{phonNb,jdbcType=VARCHAR},
+      </if>
+      <if test="phonExtNb != null">
+        [PHON_EXT_NB] = #{phonExtNb,jdbcType=VARCHAR},
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="cntryOfPhon != null">
+        [CNTRY_OF_PHON] = #{cntryOfPhon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [PHON_SEQ_NB] = #{phonSeqNb,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.CustPhon">
+    update [mantas].[CUST_PHON]
+    set [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      [CUST_PHON_SEQ_ID] = #{custPhonSeqId,jdbcType=DECIMAL},
+      [PHON_USAGE_CD] = #{phonUsageCd,jdbcType=VARCHAR},
+      [PHON_NB] = #{phonNb,jdbcType=VARCHAR},
+      [PHON_EXT_NB] = #{phonExtNb,jdbcType=VARCHAR},
+      [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [CNTRY_OF_PHON] = #{cntryOfPhon,jdbcType=VARCHAR}
+    where [CUST_INTRL_ID] = #{custIntrlId,jdbcType=VARCHAR}
+      and [PHON_SEQ_NB] = #{phonSeqNb,jdbcType=VARCHAR}
+  </update>
+</mapper>

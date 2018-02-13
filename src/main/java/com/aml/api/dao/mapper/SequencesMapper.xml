@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SequencesMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Sequences">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="object_type" jdbcType="VARCHAR" property="objectType" />
+    <result column="width" jdbcType="VARCHAR" property="width" />
+    <result column="conla_chart" jdbcType="VARCHAR" property="conlaChart" />
+    <result column="create_pression" jdbcType="VARCHAR" property="createPression" />
+    <result column="sequernce" jdbcType="VARCHAR" property="sequernce" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="create_peer" jdbcType="VARCHAR" property="createPeer" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_modify" jdbcType="VARCHAR" property="lastModify" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [object_type], [width], [conla_chart], [create_pression], [sequernce], [value], 
+    [create_peer], [create_date], [last_modify], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sequences]
+    where [id] = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [sequences]
+    where [id] = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.Sequences" keyProperty="id" useGeneratedKeys="true" >
+    insert into [sequences] ([object_type], [width], [conla_chart], 
+      [create_pression], [sequernce], [value], 
+      [create_peer], [create_date], [last_modify], 
+      [is_deleted])
+    values (#{objectType,jdbcType=VARCHAR}, #{width,jdbcType=VARCHAR}, #{conlaChart,jdbcType=VARCHAR}, 
+      #{createPression,jdbcType=VARCHAR}, #{sequernce,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{createPeer,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastModify,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Sequences" keyProperty="id" useGeneratedKeys="true" >
+    insert into [sequences]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        [object_type],
+      </if>
+      <if test="width != null">
+        [width],
+      </if>
+      <if test="conlaChart != null">
+        [conla_chart],
+      </if>
+      <if test="createPression != null">
+        [create_pression],
+      </if>
+      <if test="sequernce != null">
+        [sequernce],
+      </if>
+      <if test="value != null">
+        [value],
+      </if>
+      <if test="createPeer != null">
+        [create_peer],
+      </if>
+      <if test="createDate != null">
+        [create_date],
+      </if>
+      <if test="lastModify != null">
+        [last_modify],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectType != null">
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="conlaChart != null">
+        #{conlaChart,jdbcType=VARCHAR},
+      </if>
+      <if test="createPression != null">
+        #{createPression,jdbcType=VARCHAR},
+      </if>
+      <if test="sequernce != null">
+        #{sequernce,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeer != null">
+        #{createPeer,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModify != null">
+        #{lastModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Sequences">
+    update [sequences]
+    <set>
+      <if test="objectType != null">
+        [object_type] = #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        [width] = #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="conlaChart != null">
+        [conla_chart] = #{conlaChart,jdbcType=VARCHAR},
+      </if>
+      <if test="createPression != null">
+        [create_pression] = #{createPression,jdbcType=VARCHAR},
+      </if>
+      <if test="sequernce != null">
+        [sequernce] = #{sequernce,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        [value] = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeer != null">
+        [create_peer] = #{createPeer,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        [create_date] = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModify != null">
+        [last_modify] = #{lastModify,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Sequences">
+    update [sequences]
+    set [object_type] = #{objectType,jdbcType=VARCHAR},
+      [width] = #{width,jdbcType=VARCHAR},
+      [conla_chart] = #{conlaChart,jdbcType=VARCHAR},
+      [create_pression] = #{createPression,jdbcType=VARCHAR},
+      [sequernce] = #{sequernce,jdbcType=VARCHAR},
+      [value] = #{value,jdbcType=VARCHAR},
+      [create_peer] = #{createPeer,jdbcType=VARCHAR},
+      [create_date] = #{createDate,jdbcType=TIMESTAMP},
+      [last_modify] = #{lastModify,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- Query all records, list Pagination -->
+  <select id="getSequencesList" parameterType="com.aml.api.dto.SequencesDto" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sequences]
+    where [is_deleted] = 0
+    order by [id] ASC
+  </select>
+  <!-- export -->
+  <select id="downSequencesExcel" parameterType="com.aml.api.dto.SequencesDto" resultType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from [sequences]
+    where [is_deleted] = 0
+    	<if test="param != null">
+        	and [id] in (#{param})
+      	</if>
+    order by [id] ASC
+  </select>
+</mapper>

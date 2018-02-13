@@ -1,0 +1,2610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AlertGroupMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AlertGroup">
+    <id column="alert_id" jdbcType="BIGINT" property="alertId" />
+    <result column="sys_type" jdbcType="CHAR" property="sysType" />
+    <result column="data_type" jdbcType="INTEGER" property="dataType" />
+    <result column="subject_type" jdbcType="CHAR" property="subjectType" />
+    <result column="alert_type" jdbcType="CHAR" property="alertType" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="preStatus" jdbcType="TINYINT" property="preStatus" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="volume" jdbcType="INTEGER" property="volume" />
+    <result column="geography" jdbcType="VARCHAR" property="geography" />
+    <result column="scenario" jdbcType="VARCHAR" property="scenario" />
+    <result column="due_date" jdbcType="TIMESTAMP" property="dueDate" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="focus" jdbcType="VARCHAR" property="focus" />
+    <result column="jurisdiction" jdbcType="VARCHAR" property="jurisdiction" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="risk_class" jdbcType="VARCHAR" property="riskClass" />
+    <result column="link_case" jdbcType="VARCHAR" property="linkCase" />
+    <result column="book_date" jdbcType="TIMESTAMP" property="bookDate" />
+    <result column="focus_type" jdbcType="VARCHAR" property="focusType" />
+    <result column="highlights" jdbcType="VARCHAR" property="highlights" />
+    <result column="alert_reason" jdbcType="VARCHAR" property="alertReason" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="owner_org" jdbcType="VARCHAR" property="ownerOrg" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="role_num" jdbcType="TINYINT" property="roleNum" />
+    <result column="is_lock" jdbcType="INTEGER" property="isLock" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="business_date" jdbcType="TIMESTAMP" property="businessDate" />
+    <result column="review_start_date" jdbcType="TIMESTAMP" property="reviewStartDate" />
+    <result column="closed_date" jdbcType="TIMESTAMP" property="closedDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    
+    <result column="userName" jdbcType="VARCHAR" property="userName" /> 
+    <result column="lastUpdatedDate "  property="lastUpdatedDate" />
+    <result column="businessDate"  property="businessDate" />
+    <result column="alertCount" jdbcType="VARCHAR" property="value" />
+    <result column="dic_value" jdbcType="VARCHAR" property="name" />
+    <result column="actor_Id" jdbcType="VARCHAR" property="actorId" /> 
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="reviewDate" jdbcType="VARCHAR" property="reviewDate" />
+    
+    <result column="timeName" jdbcType="VARCHAR" property="timeName" />
+    
+    <result column="January" jdbcType="VARCHAR" property="january" />
+    <result column="February" jdbcType="VARCHAR" property="february" />
+    <result column="March" jdbcType="VARCHAR" property="march" />
+    <result column="April" jdbcType="VARCHAR" property="april" />
+    <result column="May" jdbcType="VARCHAR" property="may" />
+    <result column="June" jdbcType="VARCHAR" property="june" />
+    <result column="July" jdbcType="VARCHAR" property="july" />
+    <result column="August" jdbcType="VARCHAR" property="august" />
+    <result column="September" jdbcType="VARCHAR" property="september" />
+    <result column="October" jdbcType="VARCHAR" property="october" />
+    <result column="November" jdbcType="VARCHAR" property="november" />
+    <result column="December" jdbcType="VARCHAR" property="december" />
+  </resultMap>
+  
+  <resultMap id="teamResultMap" type="com.aml.api.pojo.AlertTeam">
+	    <id column="OWNER_ORG" jdbcType="VARCHAR" property="ownerOrg" />
+	    <collection property="list" ofType="java.lang.String">
+			<id column="alert_id" jdbcType="INTEGER" property="alertId" />
+		</collection>
+	</resultMap>
+	<resultMap id="userResultMap" type="com.aml.api.dto.Users">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="operator" jdbcType="VARCHAR" property="userName" />
+    	<result column="grade" jdbcType="VARCHAR" property="score" /> 
+  </resultMap>
+  <sql id="Base_Column_List">
+    [alert_id], [sys_type], [data_type], [subject_type], [alert_type],  [status], [score], 
+    [subject], [amount], [volume], [geography], [scenario], [due_date], [creation_date], 
+    [focus], [jurisdiction], [domain], [risk_class], [link_case], [book_date], [focus_type], 
+    [highlights], [alert_reason], [customer_id], [account_id], [file_url], 
+    [owner_org], [role_id], [role_num], [is_lock], [order_id], [task_id], [business_date], 
+    [review_start_date], [closed_date], [remark], [create_user], [create_time], [update_user], 
+    [update_time], [is_deleted],file_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [alert_group]
+    where [alert_id] = #{alertId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [alert_group]
+    where [alert_id] = #{alertId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AlertGroup">
+    insert into [alert_group] ([alert_id], [sys_type], [data_type], 
+      [subject_type], [alert_type], [status], 
+      [score], [subject], [amount], 
+      [volume], [geography], [scenario], 
+      [due_date], [creation_date], [focus], 
+      [jurisdiction], [domain], [risk_class], 
+      [link_case], [book_date], [focus_type], 
+      [highlights], [alert_reason],
+      [customer_id], [account_id], [file_url], 
+      [owner_org], [role_id], [role_num], 
+      [is_lock], [order_id], [task_id], 
+      [business_date], [review_start_date], [closed_date], 
+      [remark], [create_user], [create_time], 
+      [update_user], [update_time], [is_deleted]
+      )
+    values (#{alertId,jdbcType=BIGINT}, #{sysType,jdbcType=CHAR}, #{dataType,jdbcType=INTEGER}, 
+      #{subjectType,jdbcType=CHAR}, #{alertType,jdbcType=CHAR}, #{status,jdbcType=TINYINT}, 
+      #{score,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{volume,jdbcType=INTEGER}, #{geography,jdbcType=VARCHAR}, #{scenario,jdbcType=VARCHAR}, 
+      #{dueDate,jdbcType=TIMESTAMP}, #{creationDate,jdbcType=TIMESTAMP}, #{focus,jdbcType=VARCHAR}, 
+      #{jurisdiction,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR}, #{riskClass,jdbcType=VARCHAR}, 
+      #{linkCase,jdbcType=VARCHAR}, #{bookDate,jdbcType=TIMESTAMP}, #{focusType,jdbcType=VARCHAR}, 
+      #{highlights,jdbcType=VARCHAR}, #{alertReason,jdbcType=VARCHAR},
+      #{customerId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, 
+      #{ownerOrg,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{roleNum,jdbcType=TINYINT}, 
+      #{isLock,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, 
+      #{businessDate,jdbcType=TIMESTAMP}, #{reviewStartDate,jdbcType=TIMESTAMP}, #{closedDate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AlertGroup">
+    insert into [alert_group]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="alertId != null">
+        [alert_id],
+      </if>
+      <if test="sysType != null">
+        [sys_type],
+      </if>
+      <if test="dataType != null">
+        [data_type],
+      </if>
+      <if test="subjectType != null">
+        [subject_type],
+      </if>
+      <if test="alertType != null">
+        [alert_type],
+      </if>
+      <if test="status != null">
+        [status],
+      </if>
+      <if test="score != null">
+        [score],
+      </if>
+      <if test="subject != null">
+        [subject],
+      </if>
+      <if test="amount != null">
+        [amount],
+      </if>
+      <if test="volume != null">
+        [volume],
+      </if>
+      <if test="geography != null">
+        [geography],
+      </if>
+      <if test="scenario != null">
+        [scenario],
+      </if>
+      <if test="dueDate != null">
+        [due_date],
+      </if>
+      <if test="creationDate != null">
+        [creation_date],
+      </if>
+      <if test="focus != null">
+        [focus],
+      </if>
+      <if test="jurisdiction != null">
+        [jurisdiction],
+      </if>
+      <if test="domain != null">
+        [domain],
+      </if>
+      <if test="riskClass != null">
+        [risk_class],
+      </if>
+      <if test="linkCase != null">
+        [link_case],
+      </if>
+      <if test="bookDate != null">
+        [book_date],
+      </if>
+      <if test="focusType != null">
+        [focus_type],
+      </if>
+      <if test="highlights != null">
+        [highlights],
+      </if>
+      <if test="alertReason != null">
+        [alert_reason],
+      </if>
+      <if test="customerId != null">
+        [customer_id],
+      </if>
+      <if test="accountId != null">
+        [account_id],
+      </if>
+      <if test="fileUrl != null">
+        [file_url],
+      </if>
+      <if test="fileName != null">
+        [file_name],
+      </if>
+      <if test="ownerOrg != null">
+        [owner_org],
+      </if>
+      <if test="roleId != null">
+        [role_id],
+      </if>
+      <if test="roleNum != null">
+        [role_num],
+      </if>
+      <if test="isLock != null">
+        [is_lock],
+      </if>
+      <if test="orderId != null">
+        [order_id],
+      </if>
+      <if test="taskId != null">
+        [task_id],
+      </if>
+      <if test="businessDate != null">
+        [business_date],
+      </if>
+      <if test="reviewStartDate != null">
+        [review_start_date],
+      </if>
+      <if test="closedDate != null">
+        [closed_date],
+      </if>
+      <if test="isAdminCreate != null">
+        [is_admin_create],
+      </if>
+      <if test="remark != null">
+        [remark],
+      </if>
+      <if test="createUser != null">
+        [create_user],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateUser != null">
+        [update_user],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="alertId != null">
+        #{alertId,jdbcType=BIGINT},
+      </if>
+      <if test="sysType != null">
+        #{sysType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=CHAR},
+      </if>
+      <if test="alertType != null">
+        #{alertType,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="geography != null">
+        #{geography,jdbcType=VARCHAR},
+      </if>
+      <if test="scenario != null">
+        #{scenario,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focus != null">
+        #{focus,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdiction != null">
+        #{jurisdiction,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="riskClass != null">
+        #{riskClass,jdbcType=VARCHAR},
+      </if>
+      <if test="linkCase != null">
+        #{linkCase,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null">
+        #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focusType != null">
+        #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="highlights != null">
+        #{highlights,jdbcType=VARCHAR},
+      </if>
+      <if test="alertReason != null">
+        #{alertReason,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerOrg != null">
+        #{ownerOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNum != null">
+        #{roleNum,jdbcType=TINYINT},
+      </if>
+      <if test="isLock != null">
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessDate != null">
+        #{businessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewStartDate != null">
+        #{reviewStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closedDate != null">
+        #{closedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAdminCreate != null">
+        #{isAdminCreate,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AlertGroup">
+    update [alert_group]
+    <set>
+      <if test="sysType != null">
+        [sys_type] = #{sysType,jdbcType=CHAR},
+      </if>
+      <if test="dataType != null">
+        [data_type] = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="subjectType != null">
+        [subject_type] = #{subjectType,jdbcType=CHAR},
+      </if>
+      <if test="alertType != null">
+        [alert_type] = #{alertType,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        [status] = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="score != null">
+        [score] = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        [subject] = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        [amount] = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        [volume] = #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="geography != null">
+        [geography] = #{geography,jdbcType=VARCHAR},
+      </if>
+      <if test="scenario != null">
+        [scenario] = #{scenario,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        [due_date] = #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationDate != null">
+        [creation_date] = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focus != null">
+        [focus] = #{focus,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdiction != null">
+        [jurisdiction] = #{jurisdiction,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        [domain] = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="riskClass != null">
+        [risk_class] = #{riskClass,jdbcType=VARCHAR},
+      </if>
+      <if test="linkCase != null">
+        [link_case] = #{linkCase,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null">
+        [book_date] = #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focusType != null">
+        [focus_type] = #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="highlights != null">
+        [highlights] = #{highlights,jdbcType=VARCHAR},
+      </if>
+      <if test="alertReason != null">
+        [alert_reason] = #{alertReason,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        [customer_id] = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        [account_id] = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null">
+        [file_url] = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        [file_name] = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerOrg != null">
+        [owner_org] = #{ownerOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        [role_id] = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNum != null">
+        [role_num] = #{roleNum,jdbcType=TINYINT},
+      </if>
+      <if test="isLock != null">
+        [is_lock] = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        [order_id] = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        [task_id] = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessDate != null">
+        [business_date] = #{businessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewStartDate != null">
+        [review_start_date] = #{reviewStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closedDate != null">
+        [closed_date] = #{closedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        [remark] = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        [create_user] = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        [update_user] = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [alert_id] = #{alertId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AlertGroup">
+    update [alert_group]
+    set [sys_type] = #{sysType,jdbcType=CHAR},
+      [data_type] = #{dataType,jdbcType=INTEGER},
+      [subject_type] = #{subjectType,jdbcType=CHAR},
+      [alert_type] = #{alertType,jdbcType=CHAR},
+      [status] = #{status,jdbcType=TINYINT},
+      [score] = #{score,jdbcType=INTEGER},
+      [subject] = #{subject,jdbcType=VARCHAR},
+      [amount] = #{amount,jdbcType=DECIMAL},
+      [volume] = #{volume,jdbcType=INTEGER},
+      [geography] = #{geography,jdbcType=VARCHAR},
+      [scenario] = #{scenario,jdbcType=VARCHAR},
+      [due_date] = #{dueDate,jdbcType=TIMESTAMP},
+      [creation_date] = #{creationDate,jdbcType=TIMESTAMP},
+      [focus] = #{focus,jdbcType=VARCHAR},
+      [jurisdiction] = #{jurisdiction,jdbcType=VARCHAR},
+      [domain] = #{domain,jdbcType=VARCHAR},
+      [risk_class] = #{riskClass,jdbcType=VARCHAR},
+      [link_case] = #{linkCase,jdbcType=VARCHAR},
+      [book_date] = #{bookDate,jdbcType=TIMESTAMP},
+      [focus_type] = #{focusType,jdbcType=VARCHAR},
+      [highlights] = #{highlights,jdbcType=VARCHAR},
+      [alert_reason] = #{alertReason,jdbcType=VARCHAR},
+      [customer_id] = #{customerId,jdbcType=VARCHAR},
+      [account_id] = #{accountId,jdbcType=VARCHAR},
+      [file_url] = #{fileUrl,jdbcType=VARCHAR},
+      [owner_org] = #{ownerOrg,jdbcType=VARCHAR},
+      [role_id] = #{roleId,jdbcType=VARCHAR},
+      [role_num] = #{roleNum,jdbcType=TINYINT},
+      [is_lock] = #{isLock,jdbcType=INTEGER},
+      [order_id] = #{orderId,jdbcType=VARCHAR},
+      [task_id] = #{taskId,jdbcType=VARCHAR},
+      [business_date] = #{businessDate,jdbcType=TIMESTAMP},
+      [review_start_date] = #{reviewStartDate,jdbcType=TIMESTAMP},
+      [closed_date] = #{closedDate,jdbcType=TIMESTAMP},
+      [remark] = #{remark,jdbcType=VARCHAR},
+      [create_user] = #{createUser,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_user] = #{updateUser,jdbcType=VARCHAR},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [alert_id] = #{alertId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryPageAlert" resultType="map">
+  	select 
+    	a.alert_id alertId,
+		a.status status,
+		(select s.dic_value from common_dic_sub s where a.status = s.dic_key AND s.dic_id = 12 AND s.is_deleted = 0) statusValue,
+    	a.score,
+    	a.subject,
+    	a.amount,
+    	a.volume,
+    	a.geography,
+    	a.scenario,
+    	a.order_id orderId,
+    	a.task_Id taskId,
+    	a.create_time createDate,
+    	a.due_date dueDate,
+    	a.owner_org teamCode,
+    	a.role_id roleId,
+    	a.create_time businessDate,
+    	a.highlights,
+    	(select s.dic_value from common_dic_sub s where a.alert_type = s.dic_key AND s.dic_id =42 AND s.is_deleted = 0) typeValue,
+    	a.focus,
+    	a.link_case linkedCase,
+    	a.account_id account,
+    	wt.actor_Id userName
+    from 
+    	[alert_group] a
+    	LEFT JOIN wf_task_actor wt ON(a.task_Id = wt.task_Id)
+    where 
+    	a.is_deleted = 0
+    	<if test="alertId != null">
+    		and alert_id like '%${alertId}%'
+    	</if>
+    	<if test="userName != null">
+    		and CHARINDEX(','+ wt.actor_Id +',' , ','+ #{userName} +',') > 0
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.create_time, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+  		order by ${orderby}
+  </select>
+  
+  <select id="queryPageAlertReviewed" resultType="map">
+  	select top ${pageSize} 
+		a.alert_id alertId,
+		a.status,
+		a.statusValue,
+		a.score,
+		a.subject,
+		a.amount,
+		a.volume,
+		a.geography,
+    	a.scenario,
+    	a.order_id orderId,
+    	a.task_Id taskId,
+    	a.create_time createDate,
+    	a.due_date dueDate,
+    	a.role_id roleId,
+    	a.create_time businessDate,
+    	a.highlights,
+    	a.typeValue,
+    	a.focus,
+    	a.link_case linkedCase,
+    	a.account_id account,
+    	a.userName
+	from (select row_number() over(order by ${orderby}) as rownumber,* from(
+  	select 
+    	a.alert_id,a.status,(select s.dic_value from common_dic_sub s where a.status = s.dic_key AND s.dic_id = 12 AND s.is_deleted = 0) statusValue,
+    	a.score,a.subject,a.amount,a.volume,a.geography,
+    	a.scenario,a.order_id,a.task_Id,a.create_time,a.update_time,a.due_date,a.role_id,a.highlights,
+    	(select s.dic_value from common_dic_sub s where a.alert_type = s.dic_key AND s.dic_id = 42 AND s.is_deleted = 0) typeValue,
+    	a.focus,a.link_case,a.account_id,
+  	    (stuff((SELECT ',' + ta.actor_id FROM wf_task_actor ta WHERE ta.task_id = a.task_id FOR xml path ('')),1,1,'')) userName
+  	from
+  		[alert_group] a
+  		LEFT JOIN wf_hist_order d ON d.order_No = a.alert_id
+  		LEFT JOIN wf_hist_task ht ON ht.order_Id = d.id
+  		LEFT JOIN wf_hist_task_actor wt ON wt.task_Id = ht.id
+  		LEFT JOIN wf_task_actor ta ON ta.task_Id = a.task_id
+  	where
+    		a.is_deleted = 0
+    		and a.status NOT IN('3','6','9')
+    	<if test="alertId != null">
+    		and a.alert_id like '%${alertId}%'
+    	</if>
+    	<if test="userName != null">
+    		and wt.actor_Id = #{userName}
+    	</if>
+    	<if test="assigner != null">
+    		and ta.actor_Id = #{assigner}
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.create_time, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+		GROUP BY a.alert_id,a.status,a.score,a.subject,a.amount,a.volume,a.geography,
+			a.scenario,a.order_id,a.task_Id,a.create_time,a.update_time,a.due_date,a.role_id,
+			a.highlights,a.focus,a.link_case,a.account_id,a.alert_type,a.task_id
+  		) as a) as a where rownumber > ${offset}
+  </select>
+  
+  <select id="queryPageAlertReviewed_count" resultType="int">
+  	select count(0) from (
+  	select 
+    	a.alert_id alertId,a.status,a.score,a.subject,a.amount,a.volume,a.geography,
+    	a.scenario,a.order_id orderId,a.task_Id taskId,a.create_time createDate,
+    	a.due_date dueDate,a.role_id roleId,a.create_time businessDate,a.highlights,
+    	a.alert_type type,a.focus,a.link_case linkedCase,a.account_id account,
+  	    (stuff((SELECT ',' + ta.actor_id FROM wf_task_actor ta WHERE ta.task_id = a.task_id FOR xml path ('')),1,1,'')) userName
+  	from
+  		[alert_group] a
+  		LEFT JOIN wf_hist_order d ON d.order_No = a.alert_id
+  		LEFT JOIN wf_hist_task ht ON ht.order_Id = d.id
+  		LEFT JOIN wf_hist_task_actor wt ON wt.task_Id = ht.id
+  		LEFT JOIN wf_task_actor ta ON ta.task_Id = a.task_id
+  	where
+    		a.is_deleted = 0
+    		and a.status NOT IN('3','6','9')
+    	<if test="alertId != null">
+    		and alert_id like '%${alertId}%'
+    	</if>
+    	<if test="userName != null">
+    		and wt.actor_Id = #{userName}
+    	</if>
+    	<if test="assigner != null">
+    		and ta.actor_Id = #{assigner}
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.create_time, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+		GROUP BY a.alert_id,a.status,a.score,a.subject,a.amount,a.volume,a.geography,
+			a.scenario,a.order_id,a.task_Id,a.create_time,a.due_date,a.role_id,
+			a.highlights,a.alert_type,a.focus,a.link_case,a.account_id,a.task_id
+  		) as c
+  	</select>
+  	
+  <select id="queryAlertReviewedExport" resultType="map">
+  	select 
+  		DISTINCT
+    	a.alert_id alertId,
+    	a.status,
+    	(select s.dic_value from common_dic_sub s where a.status = s.dic_key AND s.dic_id = 12 AND s.is_deleted = 0) statusValue,
+    	a.score,
+    	a.subject,
+    	a.amount,
+    	a.volume,
+    	a.geography,
+    	a.scenario,
+    	a.order_id orderId,
+    	a.task_Id taskId,
+    	a.create_time createDate,
+    	a.update_time updateDate,
+    	a.due_date dueDate,
+    	a.role_id roleId,
+    	a.highlights,
+    	(select s.dic_value from common_dic_sub s where a.alert_type = s.dic_key AND s.dic_id = 42 AND s.is_deleted = 0) typeValue,
+    	a.focus,
+    	a.link_case linkCase,
+    	a.account_id accountId,
+  	    (stuff((SELECT ',' + ta.actor_id FROM wf_task_actor ta WHERE ta.task_id = a.task_id FOR xml path ('')),1,1,'')) userName
+  	from
+  		[alert_group] a
+  		LEFT JOIN wf_hist_order d ON d.order_No = a.alert_id
+  		LEFT JOIN wf_hist_task ht ON ht.order_Id = d.id
+  		LEFT JOIN wf_hist_task_actor wt ON wt.task_Id = ht.id
+  		LEFT JOIN wf_task_actor ta ON ta.task_Id = a.task_id
+  	where
+    		a.is_deleted = 0
+    		and a.status NOT IN('3','6','9')
+    	<if test="alertId != null">
+    		and a.alert_id like '%${alertId}%'
+    	</if>
+    	<if test="userName != null">
+    		and CHARINDEX(','+ wt.actor_Id +',' , ','+ #{userName} +',') > 0
+    	</if>
+    	<if test="assigner != null">
+    		and ta.actor_Id = #{assigner}
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.create_time, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+		order by ${orderby}
+  </select>
+  
+  <!-- DataCenter alert/CTR -->
+  <select id="getAlertInfoList" resultMap="BaseResultMap">
+  	select 
+  		a.[alert_id], a.[sys_type], a.[data_type], a.[subject_type], 
+	    a.[alert_type], a.[status], a.[score], a.[subject], a.[amount], a.[volume], a.[geography], a.[scenario], 
+	    a.[due_date], a.[creation_date], a.[focus], a.[jurisdiction], a.[customer_id], a.[risk_class], 
+	    a.[link_case], a.[book_date], a.[is_lock], a.[order_id], a.[task_id], a.[remark], 
+	    a.[create_user], a.[create_time], a.[update_user], a.[update_time], a.[is_deleted], a.[focus_type], 
+	    a.[highlights],c.dic_value,wt.operator as actorId
+    from 
+    	[alert_group] a
+    	left join wf_hist_task wt on(a.task_Id = wt.id)
+    	left JOIN wf_hist_task_actor w ON w.task_Id = a.task_id
+    	left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+    where 
+    	a.is_deleted = 0 and a.status in (3,6,9)
+    	<if test="alertType != null">
+    		and a.alert_type = #{alertType}
+    	</if>
+    	<if test="userName != null">
+    		and wt.operator = #{userName}
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.creation_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.creation_date, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="alertId != null">
+  			and a.alert_id like '%${alertId}%'
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+  		order by a.update_time DESC
+  </select>
+  
+  	<!-- 查询一条Alert信息 -->
+	<select id="findAlertGroup" resultMap="BaseResultMap">
+		SELECT
+			a.alert_id,
+			a.sys_type,
+			a.data_type,
+			a.subject_type,
+			a.alert_type,
+			a.status,
+			a.preStatus,
+			a.score,
+			a.subject,
+			a.amount,
+			a.volume,
+			a.geography,
+			a.scenario,
+			a.due_date,
+			a.creation_date,
+			a.focus,
+			a.jurisdiction,
+			a.[domain],
+			a.risk_class,
+			a.link_case,
+			a.book_date,
+			a.focus_type,
+			a.highlights,
+			a.alert_reason,
+			a.customer_id,
+			a.account_id,
+			a.file_url,
+			a.owner_org,
+			a.role_id,
+			a.role_num,
+			a.is_lock,
+			a.order_id,
+			a.task_id,
+			a.business_date,
+			a.review_start_date,
+			a.closed_date,
+			a.remark
+		FROM
+			alert_group a
+		WHERE
+			a.alert_id = #{alertId}
+			and a.is_deleted = 0
+	</select>
+	
+	<!-- 查询最新一条记录ID -->
+	<select id="findNewAlertId" resultType="java.lang.Long">
+		SELECT
+			TOP 1
+			a.alert_id
+		FROM
+			alert_group a
+		WHERE
+			a.alert_id like (CONVERT(VARCHAR(100), GETDATE(), 112) + '%')
+		ORDER BY a.alert_id DESC
+	</select>
+	
+	<select id="queryAlert" resultMap="teamResultMap">
+		SELECT
+			g.owner_org,
+			g.alert_id
+		FROM
+			alert_group g
+		WHERE
+			g.is_deleted = 0
+			AND (g.order_id = '' OR g.order_id IS NULL)
+			AND (g.task_id = '' OR g.task_id IS NULL)
+			AND (g.sys_type = #{sysType}  OR g.is_admin_create = #{isAdminCreate}  )
+			AND datediff(DAY,	g.create_time,getdate()) = 0
+	</select>
+	
+	<select id="queryPrivateAlert" resultType="java.util.Map">
+		SELECT
+			g.alert_id alertId,
+			g.owner_org ownerOrg,
+			g.create_user userName
+		FROM
+			alert_group g
+		WHERE
+			g.is_deleted = 0
+			AND (g.order_id = '' OR g.order_id IS NULL)
+			AND (g.task_id = '' OR g.task_id IS NULL)
+			AND g.sys_type = #{sysType} 
+			AND g.is_admin_create = #{isAdminCreate} 
+			AND datediff(DAY,	g.create_time,getdate()) = 0
+	</select>
+	
+	<!-- 查询当天被锁定的Alert信息 -->
+	<select id="queryIsLockAlert" resultMap="teamResultMap">
+		SELECT
+			g.owner_org,
+			g.alert_id
+		FROM
+			alert_group g
+		WHERE
+			g.is_deleted = 0
+			AND g.data_type is not NULL
+			AND g.status = 1
+			AND g.is_lock = 1
+		<!-- AND datediff(DAY,a.create_time,getdate()) = 0  -->
+	</select>
+	
+	<!-- 查询分析员评分记录 -->
+	<select id="queryAnalystScore" resultMap="userResultMap">
+		SELECT
+			a.operator,
+			CAST (AVG(a.grade) AS DEC(18, 0)) AS grade
+		FROM
+			(
+				SELECT
+					(
+						SELECT
+							ht.operator
+						FROM
+							wf_hist_task ht
+						WHERE
+							ht.id = h.parent_task_id
+					) AS operator,
+					s.grade * 1.0 grade
+				FROM
+					wf_task_score s
+				LEFT JOIN wf_task_approval a ON s.task_id = a.task_id
+				LEFT JOIN wf_hist_task h ON a.task_id = h.id
+				WHERE
+					CHARINDEX(','+a.role_id+',' , ','+#{roleIds}+',') > 0
+			) AS a
+		GROUP BY a.operator
+	</select>
+	
+	<!-- 修改alert -->  
+	<update id="updateFlow">
+		update alert_group
+		set
+			<if test="orderId != null">
+				order_id = #{orderId},
+			</if>
+			<if test="taskId != null">
+				task_id = #{taskId},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="preStatus != null">
+				preStatus = #{preStatus},
+			</if>
+			<if test="roleNum != null">
+				role_num = #{roleNum},
+			</if>
+			<if test="isLock != null">
+				is_lock = #{isLock},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId},
+			</if>
+			<if test="closedDate != null">
+				closed_date = getdate(),
+			</if>
+			<if test="reviewStartDate != null">
+				review_start_date = getdate(),
+			</if>
+				update_time = getdate()
+		where
+			alert_id = #{alertId}
+	</update>
+
+  <!-- export -->
+  <select id="downAlertInfoExcel" resultType="java.util.Map">
+  	select 
+	    a.alert_id alertId,
+		a.status status,
+		(select s.dic_value from common_dic_sub s where a.status = s.dic_key AND s.dic_id = 12 AND s.is_deleted = 0) statusValue,
+    	a.score,
+    	a.subject,
+    	a.amount,
+    	a.volume,
+    	a.geography,
+    	a.scenario,
+    	a.order_id orderId,
+    	a.task_Id taskId,
+    	a.create_time createDate,
+    	a.due_date dueDate,
+    	a.role_id roleId,
+    	a.create_time businessDate,
+    	a.highlights,
+    	a.focus,
+    	a.focus_type focusType,
+    	a.link_case linkedCase,
+    	a.account_id account,
+    	w.actor_Id userName
+    from 
+    	[alert_group] a
+    	left join wf_hist_task wt on(a.task_Id = wt.id)
+    	left JOIN wf_hist_task_actor w ON w.task_Id = a.task_id
+    where 
+    	a.is_deleted = 0 and a.status in (3,6,9)
+    	<if test="alertType != null">
+    		and a.alert_type = #{alertType}
+    	</if>
+    	<if test="userName != null">
+    		and wt.operator = #{userName}
+    	</if>
+    	<if test="createStartDate != null">
+			and CONVERT(VARCHAR(100), a.creation_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111)
+    	</if>
+    	<if test="createEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.creation_date, 111)
+    	</if>
+    	<if test="dueStartDate != null">
+			and CONVERT(VARCHAR(100), a.due_date, 111) >= CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueStartDate}), 111)
+    	</if>
+    	<if test="dueEndDate != null">
+			and CONVERT(VARCHAR(100), CONVERT(DATETIME, #{dueEndDate}), 111) >= CONVERT(VARCHAR(100), a.due_date, 111)
+    	</if>
+    	<if test="status != null">
+    		and a.status = #{status}
+    	</if>
+  		<if test="amountMin != null">
+  			and a.amount >= #{amountMin}
+  		</if>
+  		<if test="amountMax != null">
+  			and #{amountMax} >= a.amount
+  		</if>
+  		<if test="volumeMin != null">
+  			and a.volume >= #{volumeMin}
+  		</if>
+  		<if test="volumeMax != null">
+  			and #{volumeMax} >= a.volume
+  		</if>
+  		<if test="scoreMin != null">
+  			and a.score >= #{scoreMin}
+  		</if>
+  		<if test="scoreMax != null">
+  			and #{scoreMax} >= a.score
+  		</if>
+  		<if test="alertId != null">
+  			and a.alert_id like '%${alertId}%'
+  		</if>
+  		<if test="geography != null">
+  			and a.geography like ('%'+#{geography}+'%')
+  		</if>
+  		<if test="scenario != null">
+  			and a.scenario like ('%'+#{scenario}+'%')
+  		</if>
+  		order by a.update_time DESC
+  </select>
+  
+  <select id="getAlertGroup" resultMap="BaseResultMap">
+  	SELECT 
+  		a.status,c.dic_value,c.dic_key,COUNT(1) AS [alertCount] 
+  	FROM alert_group a 
+	LEFT JOIN common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+	left JOIN wf_task_actor w ON w.task_Id = a.task_id
+	WHERE a.is_deleted = 0 and a.task_id != '' and a.status not in (3,6,9)
+	and a.status != 0
+	<if test="param != null">
+		AND CHARINDEX(','+w.actor_Id+',' , ','+#{param}+',') > 0
+	</if>
+	<if test="org != null">
+		AND a.owner_org = #{org}
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	GROUP BY a.status,c.dic_value,c.dic_key
+  </select>
+  
+  <!-- The total number of alert reviewed -->
+  <select id="getAlertTotal" resultMap="BaseResultMap">
+  	SELECT 
+  		DISTINCT 
+			a.order_id as order_id
+  	FROM alert_group a 
+  	LEFT JOIN wf_hist_task h ON h.order_Id = a.order_id
+	left JOIN wf_hist_task_actor w ON w.task_Id = h.id
+	WHERE a.is_deleted = 0 and a.task_id != '' and a.status in (3,6,9)
+	<if test="param != null">
+		AND CHARINDEX(','+w.actor_Id+',' , ','+#{param}+',') > 0
+	</if>
+	<if test="org != null">
+		AND a.owner_org = #{org}
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+	GROUP BY a.order_id
+  </select>
+  
+  <!-- The total number of alert reviewed -->
+  <select id="getAlertAmountVolume" resultMap="BaseResultMap">
+  	SELECT 
+  		ISNULL(sum(a.amount),0) AS amount,ISNULL(sum(a.volume),0) AS volume
+  	FROM alert_group a 
+  	LEFT JOIN wf_hist_task h ON h.order_Id = a.order_id
+	left JOIN wf_hist_task_actor w ON w.task_Id = h.id
+	WHERE a.is_deleted = 0 and a.task_id != '' and a.status IN(3,6,9)
+	<if test="param != null">
+		AND CHARINDEX(','+w.actor_Id+',' , ','+#{param}+',') > 0
+	</if>
+	<if test="org != null">
+		AND a.owner_org = #{org}
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+  </select>
+  
+  <!-- The total number of alert reviewed -->
+  <select id="getAlertAvgScore" resultMap="BaseResultMap">
+  	SELECT 
+  		AVG(ISNULL(s.grade,0) + 0.00) as num
+  	FROM alert_group a 
+  	LEFT JOIN wf_task_score s ON s.order_id = a.order_id
+	LEFT JOIN wf_hist_task h ON h.order_Id = a.order_id
+	left JOIN wf_hist_task_actor w ON w.task_Id = h.id
+	WHERE a.is_deleted = 0 and a.status IN(3,6,9)
+	<if test="param != null">
+		AND CHARINDEX(','+w.actor_Id+',' , ','+#{param}+',') > 0
+	</if>
+	<if test="org != null">
+		AND a.owner_org = #{org}
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.closed_date, 111)
+	]]>
+	</if>
+  </select>
+  
+  <!-- The total  by month -->
+  <select id="getAlertTotalByMonth" resultMap="BaseResultMap">
+	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count] 
+	FROM alert_group a 
+	where a.is_deleted = 0 and a.status IN(3,6,9)
+	and a.create_time != ''  and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  
+  <!--Export The total  by month -->
+  <select id="downAlertInfoTotalByMonth" resultType="java.util.Map">
+  	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count] 
+	FROM alert_group a 
+	where a.is_deleted = 0 and a.status IN(3,6,9)
+	and a.create_time != '' and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  
+  <!-- The Amount total  by month -->
+  <select id="getAlertAmountByMonth" resultMap="BaseResultMap">
+	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[amount] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[amount] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[amount] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[amount] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[amount] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[amount] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[amount] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[amount] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[amount] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[amount] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[amount] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[amount] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],SUM(a.amount) as [amount]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status IN(3,6,9) and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  <!-- The Amount total  by month export -->
+  <select id="getAlertAmountByMonthExport" resultType="java.util.Map">
+	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[amount] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[amount] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[amount] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[amount] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[amount] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[amount] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[amount] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[amount] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[amount] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[amount] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[amount] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[amount] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],SUM(a.amount) as [amount]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status IN(3,6,9) and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  
+  <!-- The volume total  by month -->
+  <select id="getAlertVolumeByMonth" resultMap="BaseResultMap">
+	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[volume] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[volume] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[volume] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[volume] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[volume] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[volume] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[volume] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[volume] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[volume] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[volume] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[volume] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[volume] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],SUM(a.volume) as [volume]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status IN(3,6,9) and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  
+  <!-- The volume total  by month export -->
+  <select id="getAlertVolumeByMonthExport" resultType="java.util.Map">
+	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[volume] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[volume] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[volume] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[volume] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[volume] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[volume] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[volume] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[volume] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[volume] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[volume] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[volume] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[volume] ELSE 0 END ) as December 
+	from 
+	(SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],SUM(a.volume) as [volume]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status IN(3,6,9) and a.task_id != ''
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)) as alert
+	GROUP BY alert.[year]
+	order by alert.[year] DESC
+  </select>
+  
+  <!-- Average review time per alert -->
+  <select id="getAlertReviewTime" resultMap="BaseResultMap">
+	 select 
+		c.[operator] as userName,
+		MAX(CASE c.[month] WHEN 1 THEN c.[time] ELSE 0 END ) as January,
+		MAX(CASE c.[month] WHEN 2 THEN c.[time] ELSE 0 END ) as February,
+		MAX(CASE c.[month] WHEN 3 THEN c.[time] ELSE 0 END ) as March,
+		MAX(CASE c.[month] WHEN 4 THEN c.[time] ELSE 0 END ) as April,
+		MAX(CASE c.[month] WHEN 5 THEN c.[time] ELSE 0 END ) as May,	 
+		MAX(CASE c.[month] WHEN 6 THEN c.[time] ELSE 0 END ) as June, 
+		MAX(CASE c.[month] WHEN 7 THEN c.[time] ELSE 0 END ) as July, 
+		MAX(CASE c.[month] WHEN 8 THEN c.[time] ELSE 0 END ) as August, 
+		MAX(CASE c.[month] WHEN 9 THEN c.[time] ELSE 0 END ) as September, 
+		MAX(CASE c.[month] WHEN 10 THEN c.[time] ELSE 0 END ) as October, 
+		MAX(CASE c.[month] WHEN 11 THEN c.[time] ELSE 0 END ) as November, 
+		MAX(CASE c.[month] WHEN 12 THEN c.[time] ELSE 0 END ) as December 
+		from 
+	(select 
+	datepart(month,t.create_time) as month,
+	t.operator,
+			sum(DateDiff(
+				n,
+				t.create_Time,
+				t.finish_Time
+			)) as [time]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = a.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id = '10042' and a.task_id != ''
+	GROUP BY datepart(month,t.create_time),t.operator,a.order_Id) as c
+	GROUP BY c.[operator]
+	order by c.[operator] DESC
+  </select>
+  
+  <!-- Average review time per alert Excel-->
+  <select id="getAlertReviewTimeExcel" resultType="java.util.Map">
+	 select 
+		c.[operator] as userName,
+		MAX(CASE c.[month] WHEN 1 THEN c.[time] ELSE 0 END ) as January,
+		MAX(CASE c.[month] WHEN 2 THEN c.[time] ELSE 0 END ) as February,
+		MAX(CASE c.[month] WHEN 3 THEN c.[time] ELSE 0 END ) as March,
+		MAX(CASE c.[month] WHEN 4 THEN c.[time] ELSE 0 END ) as April,
+		MAX(CASE c.[month] WHEN 5 THEN c.[time] ELSE 0 END ) as May,	 
+		MAX(CASE c.[month] WHEN 6 THEN c.[time] ELSE 0 END ) as June, 
+		MAX(CASE c.[month] WHEN 7 THEN c.[time] ELSE 0 END ) as July, 
+		MAX(CASE c.[month] WHEN 8 THEN c.[time] ELSE 0 END ) as August, 
+		MAX(CASE c.[month] WHEN 9 THEN c.[time] ELSE 0 END ) as September, 
+		MAX(CASE c.[month] WHEN 10 THEN c.[time] ELSE 0 END ) as October, 
+		MAX(CASE c.[month] WHEN 11 THEN c.[time] ELSE 0 END ) as November, 
+		MAX(CASE c.[month] WHEN 12 THEN c.[time] ELSE 0 END ) as December 
+		from 
+	(select 
+	datepart(month,t.create_time) as month,
+	t.operator,
+			sum(DateDiff(
+				n,
+				t.create_Time,
+				t.finish_Time
+			)) as [time]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = a.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id = '10042' and a.task_id != ''
+	GROUP BY datepart(month,t.create_time),t.operator,a.order_Id) as c
+	GROUP BY c.[operator]
+	order by c.[operator] DESC
+  </select>
+  
+  <!-- Average review time per alert 折线图 -->
+  <select id="getAlertReviewTimeFoldLine" resultType="map">
+	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,a.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,a.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,a.create_time)) 
+		</if>
+		as timeName ,
+		sum(DateDiff(
+			n,
+			t.create_Time,
+			t.finish_Time
+		)) as [value]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = p.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id = '10042' and a.task_id != ''
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time),
+			datepart(month,a.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,a.create_time),
+		</if>
+		datepart(year,a.create_time)
+	ORDER BY datepart(year,a.create_time)
+  </select>
+  
+  <!-- Average review time per alert QA -->
+  <select id="getAlertReviewTimeQA" resultMap="BaseResultMap">
+	select 
+		c.[operator] as userName,
+		MAX(CASE c.[month] WHEN 1 THEN c.[time] ELSE 0 END ) as January,
+		MAX(CASE c.[month] WHEN 2 THEN c.[time] ELSE 0 END ) as February,
+		MAX(CASE c.[month] WHEN 3 THEN c.[time] ELSE 0 END ) as March,
+		MAX(CASE c.[month] WHEN 4 THEN c.[time] ELSE 0 END ) as April,
+		MAX(CASE c.[month] WHEN 5 THEN c.[time] ELSE 0 END ) as May,	 
+		MAX(CASE c.[month] WHEN 6 THEN c.[time] ELSE 0 END ) as June, 
+		MAX(CASE c.[month] WHEN 7 THEN c.[time] ELSE 0 END ) as July, 
+		MAX(CASE c.[month] WHEN 8 THEN c.[time] ELSE 0 END ) as August, 
+		MAX(CASE c.[month] WHEN 9 THEN c.[time] ELSE 0 END ) as September, 
+		MAX(CASE c.[month] WHEN 10 THEN c.[time] ELSE 0 END ) as October, 
+		MAX(CASE c.[month] WHEN 11 THEN c.[time] ELSE 0 END ) as November, 
+		MAX(CASE c.[month] WHEN 12 THEN c.[time] ELSE 0 END ) as December 
+		from 
+	(select 
+	datepart(month,t.create_time) as month,
+	t.operator,
+			sum(DateDiff(
+				n,
+				t.create_Time,
+				t.finish_Time
+			)) as [time]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = a.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id in ('10041','10043') and a.task_id != ''
+	GROUP BY datepart(month,t.create_time),t.operator,a.order_Id) as c
+	GROUP BY c.[operator]
+	order by c.[operator] DESC
+  </select>
+  
+  
+  
+  <!-- Average review time per alert QA Excel-->
+  <select id="getAlertReviewTimeQAExcel" resultType="java.util.Map">
+	 select 
+		c.[operator] as userName,
+		MAX(CASE c.[month] WHEN 1 THEN c.[time] ELSE 0 END ) as January,
+		MAX(CASE c.[month] WHEN 2 THEN c.[time] ELSE 0 END ) as February,
+		MAX(CASE c.[month] WHEN 3 THEN c.[time] ELSE 0 END ) as March,
+		MAX(CASE c.[month] WHEN 4 THEN c.[time] ELSE 0 END ) as April,
+		MAX(CASE c.[month] WHEN 5 THEN c.[time] ELSE 0 END ) as May,	 
+		MAX(CASE c.[month] WHEN 6 THEN c.[time] ELSE 0 END ) as June, 
+		MAX(CASE c.[month] WHEN 7 THEN c.[time] ELSE 0 END ) as July, 
+		MAX(CASE c.[month] WHEN 8 THEN c.[time] ELSE 0 END ) as August, 
+		MAX(CASE c.[month] WHEN 9 THEN c.[time] ELSE 0 END ) as September, 
+		MAX(CASE c.[month] WHEN 10 THEN c.[time] ELSE 0 END ) as October, 
+		MAX(CASE c.[month] WHEN 11 THEN c.[time] ELSE 0 END ) as November, 
+		MAX(CASE c.[month] WHEN 12 THEN c.[time] ELSE 0 END ) as December 
+		from 
+	(select 
+	datepart(month,t.create_time) as month,
+	t.operator,
+			sum(DateDiff(
+				n,
+				t.create_Time,
+				t.finish_Time
+			)) as [time]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = a.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id in ('10041','10043') and a.task_id != ''
+	GROUP BY datepart(month,t.create_time),t.operator,a.order_Id) as c
+	GROUP BY c.[operator]
+	order by c.[operator] DESC
+  </select>
+  <!-- Average review time per alert QA 折线图 -->
+  <select id="getAlertReviewTimeQAFoldLine" resultType="map">
+	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,a.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,a.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,a.create_time)) 
+		</if>
+		as timeName ,
+		sum(DateDiff(
+			n,
+			t.create_Time,
+			t.finish_Time
+		)) as [value]
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	AND t.id = p.task_id
+	AND a.status IN(3,6,9)
+	AND a.role_id in ('10041','10043') and a.task_id != ''
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time),
+			datepart(month,a.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,a.create_time),
+		</if>
+		datepart(year,a.create_time)
+	ORDER BY datepart(year,a.create_time)
+  </select>
+  
+  <resultMap type="com.aml.api.dto.AlertInfoReviewDto" id="ResultMap">
+  	<id column="reviewDate" property="reviewDate"/>
+  	<collection property="list" ofType="Map">
+  		<result column="org" property="org"/>
+  		<result column="userName" property="userName"/>
+  		<result column="num" property="num"/>
+  	</collection>
+  </resultMap>
+  <!-- group by OWNER_ORG -->
+  <select id="getAlertReview" resultMap="ResultMap">
+	SELECT k.OWNER_ORG as org,CONVERT(varchar(100), a.create_time, 111) as reviewDate,t.operator as userName,COUNT(1)as [num]
+  	from 
+  	alert_info a 
+  	left join alert_group ai on (a.alert_id = ai.alert_id and ai.is_deleted = 0)
+	LEFT JOIN [mantas].[KDD_REVIEW] k on k.REVIEW_ID = a.original_id
+	LEFT JOIN wf_hist_task t on t.order_Id = ai.order_id
+	LEFT JOIN wf_task_approval p on p.task_id = ai.task_id
+	where a.is_deleted = 0 and p.role_id = '10042' and ai.task_id != '' AND ai.status IN(3,6,9)
+	<if test="org !=null">
+		and k.OWNER_ORG= #{org}
+	</if>
+	GROUP BY k.OWNER_ORG,CONVERT(varchar(100), a.create_time, 111),t.operator
+	ORDER BY CONVERT(varchar(100), a.create_time, 111) DESC
+  </select>
+  
+  <!-- <select id="getAlertReviewExcel" resultType="ResultMap">
+	SELECT k.OWNER_ORG as org,CONVERT(varchar(100), a.create_time, 111) as reviewDate,t.operator as userName,COUNT(1)as [num]
+  	from alert_group a 
+	LEFT JOIN KDD_REVIEW k on k.REVIEW_ID = a.original_id
+	LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+	LEFT JOIN wf_task_approval p on p.task_id = t.id
+	where a.is_deleted = 0 and p.role_id = '10042' and a.task_id != '' AND a.status IN(3,6,9)
+	<if test="org !=null">
+		and k.OWNER_ORG= #{org}
+	</if>
+	GROUP BY k.OWNER_ORG,CONVERT(varchar(100), a.create_time, 111),t.operator
+	ORDER BY CONVERT(varchar(100), a.create_time, 111) DESC
+  </select> -->
+  
+  <!-- Escalation/waive rate -->
+  <select id="getRate" resultMap="BaseResultMap">
+  	select 
+	alert.[year],alert.[value] as [name],alert.[status],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+	SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count],c.dic_value as [value],a.status as [status]
+	FROM alert_group a 
+	left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status in (3,6,9)
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time),c.dic_value,a.status
+	) as alert
+	GROUP BY alert.[year],alert.[status],alert.[value]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Percentage of alert reviewed reversed by QA -->
+  <select id="getReversed" resultMap="BaseResultMap">
+  	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+	SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status in (7,12)
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)
+	) as alert
+	GROUP BY alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- Percentage of alert reviewed reversed by QA Excel-->
+  <select id="getReversedExcel" resultType="java.util.Map">
+  	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+	SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status in (7,12)
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)
+	) as alert
+	GROUP BY alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- The total number of productive case escalated each month -->
+  <select id="getEscalated" resultMap="BaseResultMap">
+  	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+	SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status = 9
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)
+	) as alert
+	GROUP BY alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- The total number of productive case escalated each month Excel-->
+  <select id="getEscalatedExcel" resultType="java.util.Map">
+  	select 
+	alert.[year],
+	MAX(CASE alert.[month] WHEN 1 THEN alert.[count] ELSE 0 END ) as January,
+	MAX(CASE alert.[month] WHEN 2 THEN alert.[count] ELSE 0 END ) as February,
+	MAX(CASE alert.[month] WHEN 3 THEN alert.[count] ELSE 0 END ) as March,
+	MAX(CASE alert.[month] WHEN 4 THEN alert.[count] ELSE 0 END ) as April,
+	MAX(CASE alert.[month] WHEN 5 THEN alert.[count] ELSE 0 END ) as May,	 
+	MAX(CASE alert.[month] WHEN 6 THEN alert.[count] ELSE 0 END ) as June, 
+	MAX(CASE alert.[month] WHEN 7 THEN alert.[count] ELSE 0 END ) as July, 
+	MAX(CASE alert.[month] WHEN 8 THEN alert.[count] ELSE 0 END ) as August, 
+	MAX(CASE alert.[month] WHEN 9 THEN alert.[count] ELSE 0 END ) as September, 
+	MAX(CASE alert.[month] WHEN 10 THEN alert.[count] ELSE 0 END ) as October, 
+	MAX(CASE alert.[month] WHEN 11 THEN alert.[count] ELSE 0 END ) as November, 
+	MAX(CASE alert.[month] WHEN 12 THEN alert.[count] ELSE 0 END ) as December 
+	from 
+	(
+	SELECT 
+		datepart(month,a.create_time) as [month],datepart(year,a.create_time) as [year],count(1) as [count]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' and a.status = 9
+	GROUP BY datepart(month,a.create_time),datepart(year,a.create_time)
+	) as alert
+	GROUP BY alert.[year]
+	ORDER BY alert.[year] DESC
+  </select>
+  
+  <!-- pending total -->
+  <select id="getAlertPending" resultType="int">
+  	SELECT 
+  		count(1) 
+  	FROM alert_group a 
+	left JOIN wf_task_actor w ON w.task_Id = a.task_id
+	WHERE a.is_deleted = 0 and a.task_id != '' AND a.status not IN (3,6,9)
+	<if test="param != null">
+		AND CHARINDEX(','+w.actor_Id+',' , ','+#{param}+',') > 0
+	</if>
+	<if test="org != null">
+		AND a.owner_org = #{org}
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+  </select>
+  
+  <select id="getReviewTimeAlert" resultMap="BaseResultMap">
+  	select 
+  	cast( 
+			sum(DateDiff(
+				ms,
+				t.create_Time,
+				t.finish_Time
+			))*1.0 / (
+					SELECT
+						DateDiff(
+							ms,
+							MIN (t.create_Time),
+							MAX (t.finish_Time)
+						)
+						
+					FROM
+						 wf_hist_task t
+					WHERE
+						t.order_id = a.order_Id 
+					GROUP BY
+						t.order_Id
+				)*100 as decimal(10,2)) as [num]
+	from alert_group a 
+		join wf_hist_task t on(a.order_id = t.order_Id)
+		join wf_task_approval p on (
+		t.id = p.task_id 
+		<if test="roleId != null">
+			AND p.role_id = #{roleId}
+		</if> )
+	where 
+	a.status in (11,14,19) 
+	and  a.is_deleted = 0
+	GROUP BY a.order_Id
+  </select>
+  
+  <select id="getAlertReviewTimeTotalQA" resultType="int">
+	select  
+			ISNULL(sum(DateDiff(
+				hh,
+				t.create_Time,
+				t.finish_Time
+			)),0)
+	from alert_group a, wf_hist_task t, wf_task_approval p
+	where 
+	a.order_id = t.order_Id
+	and a.order_id = p.order_id
+	AND t.id = a.task_id
+	AND a.status IN(3,6,9)
+	AND a.task_id != ''
+	<if test="roleId != null">
+	AND p.role_id in (#{roleId})
+	</if>
+	<if test="param != null">
+			AND t.operator = #{param}
+	</if>
+  </select>
+  
+  <!-- 折线图 -->
+  <select id="getReversedFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,a.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,a.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,a.create_time)) 
+		</if>
+		as timeName ,
+		count(1) as [value]
+	FROM alert_group a 
+	where a.is_deleted = 0
+	and a.create_time != '' 
+	and a.status in (7,12)
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time),
+			datepart(month,a.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,a.create_time),
+		</if>
+		datepart(year,a.create_time)
+	ORDER BY datepart(year,a.create_time)
+  </select>
+  
+  <!-- The total number of productive case escalated each month 折线图 -->
+  <select id="getEscalatedFoldLine" resultType="map">
+	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (9)
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Escalation -->
+  <select id="getEscalationRateFoldLine"  resultType="map">
+	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (9)
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Waived -->
+  <select id="getWaviedRateFoldLine" resultType="map">
+	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (3,6)
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Escalation I -->
+  <select id="getEscalationRateIFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (9)
+					<if test="org !=null">
+						and a.owner_org= #{org}
+					</if>
+					<if test="param != null">
+							AND ht.actor_Id in (#{param})
+					</if>
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Escalation Team -->
+  <select id="getEscalationRateTeamFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (9)
+					<if test="org !=null">
+						and a.owner_org= #{org}
+					</if>
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Waived I -->
+  <select id="getWaivedRateIFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (3,6)
+					<if test="org !=null">
+						and a.owner_org= #{org}
+					</if>
+					<if test="param != null">
+							AND ht.actor_Id in (#{param})
+					</if>
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Waived Team -->
+  <select id="getWaivedRateTeamFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,t.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,t.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,t.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,t.create_time)) 
+		</if>
+		as timeName ,
+		cast(count(1) *100.0 /(select count(0) FROM alert_group g where g.status in (3,6,9)) as dec(18,2)) as [value]
+	FROM 
+		(
+			SELECT 
+					a.create_time,c.dic_value,a.status,a.alert_id
+			FROM
+				alert_group a 
+				left join common_dic_sub c ON c.dic_key = a.status and c.is_deleted = 0 and c.dic_id = 12
+				LEFT JOIN wf_hist_task t on t.order_Id = a.order_id
+				LEFT JOIN wf_hist_task_actor ht ON ht.task_Id = t.id
+			WHERE 
+					a.is_deleted = 0
+					and a.create_time != '' 
+					and a.status in (3,6)
+					<if test="org !=null">
+						and a.owner_org= #{org}
+					</if>
+					<if test="createStartDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+					<if test="createEndDate !=null">
+					<![CDATA[
+						AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+					]]>
+					</if>
+			GROUP BY a.create_time,c.dic_value,a.status,a.alert_id
+		) t
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,t.create_time),
+			datepart(month,t.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,t.create_time),
+		</if>
+		datepart(year,t.create_time)
+	ORDER BY datepart(year,t.create_time)
+  </select>
+  
+  <!-- Average score for the alerts QA reviewed / team  折线图 -->
+  <select id="getAverageTeamFoldLine" resultType="map">
+  	SELECT 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time) as [key],
+		</if>
+		<if test="type == 2 ">
+			datepart(MONTH,a.create_time) as [key],
+		</if>
+		CONVERT(VARCHAR(10),datepart(YEAR,a.create_time)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),datepart(MONTH,a.create_time)) 
+			+'-'+ CONVERT(VARCHAR(10),datepart(DAY,a.create_time)) 
+		</if>
+		as timeName,
+		AVG(ISNULL(s.grade,0) + 0.00) as [value]
+	FROM alert_group a 
+  	LEFT JOIN wf_task_score s ON s.order_id = a.order_id
+	LEFT JOIN wf_hist_task h ON h.order_Id = a.order_id
+	left JOIN wf_hist_task_actor w ON w.task_Id = h.id
+	WHERE a.is_deleted = 0 and a.status IN(3,6,9)
+	<if test="roleId !=null">
+		and a.role_id= #{roleId}
+	</if>
+	<if test="param !=null">
+		and w.actor_id in (#{param})
+	</if>
+	<if test="createStartDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	<if test="createEndDate !=null">
+	<![CDATA[
+		AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), a.create_time, 111)
+	]]>
+	</if>
+	GROUP BY 
+		<if test="type == 0 or type == 1 ">
+			datepart(day,a.create_time),
+			datepart(month,a.create_time),
+		</if>
+		<if test="type == 2 ">
+			datepart(month,a.create_time),
+		</if>
+		datepart(year,a.create_time)
+	ORDER BY datepart(year,a.create_time)
+  </select>
+  
+  <select id="isSameGroup" resultType="int">
+  	select 
+  		count(0)
+  	from
+  		(
+  			select 
+		  		g.owner_org
+		  	from
+		  		alert_group g
+		  	where
+		  		g.alert_id in (<foreach collection="alertIdList" item="item" separator=","> #{item}</foreach>)
+		  		and g.is_deleted = 0
+		  	group by g.owner_org
+	  	) t
+  </select>
+  
+  <select id="checkMergeState" resultType="int">
+  	select
+  		count(0)
+  	from
+  		alert_group g
+  	where
+		g.alert_id in (<foreach collection="alertIdList" item="item" separator=","> #{item}</foreach>)
+		and g.status != 2 and g.status != 1
+  		and g.is_deleted = 0
+  </select>
+  
+  <select id="queryFile" resultMap="BaseResultMap">
+  	select
+  		file_url,file_name
+  	from
+  		alert_group
+  	where
+  		alert_id = #{alertId}
+  		and is_deleted = 0
+  </select>
+  <!-- 查询前一天系统自动生成的Alert数量 -->
+  <select id="queryAlertCountMantas" resultType="int">
+  	SELECT
+		COUNT (0)
+	FROM
+		alert_group a
+	WHERE
+		a.is_deleted = 0
+	AND a.sys_type = 'mantas'
+	AND a.status IN (3, 6, 9)
+	AND CONVERT (
+		VARCHAR (100),
+		a.create_time,
+		23
+	) = CONVERT (
+		VARCHAR (100),
+		DATEADD(DAY ,- 1, GETDATE()),
+		23
+	)
+  </select>
+  
+  <!-- 查询前一天Alert被QA驳回并最终Waived数量 -->
+  <select id="queryAlertWaivedByQa" resultType="int">
+  	SELECT
+		COUNT (0)
+	FROM
+		alert_group a
+	LEFT JOIN wf_task_approval w ON a.order_id = w.order_id
+	WHERE
+		a.status = 3
+	AND w.result = 'Disagree'
+	AND w.role_id IN (10041, 10043)
+	AND CONVERT (
+		VARCHAR (100),
+		a.create_time,
+		23
+	) = CONVERT (
+		VARCHAR (100),
+		DATEADD(DAY ,- 1, GETDATE()),
+		23
+	)
+  </select>
+  <!-- 统计前一天Alert的数量 -->
+  <select id="queryPreAlertCount" resultType="int">
+  	SELECT
+		COUNT(0)
+	FROM
+		alert_group a
+	WHERE
+		a.is_deleted = 0
+	AND a.status IN (3, 6, 9)
+	AND CONVERT (
+		VARCHAR (100),
+		a.create_time,
+		23
+	) = CONVERT (
+		VARCHAR (100),
+		DATEADD(DAY ,- 1, GETDATE()),
+		23
+	)
+  </select>
+</mapper>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.RfiMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Rfi">
+    <id column="control" jdbcType="INTEGER" property="control" />
+    <result column="relate_id" jdbcType="BIGINT" property="relateId" />
+    <result column="source" jdbcType="TINYINT" property="source" />
+    <result column="subject_name" jdbcType="VARCHAR" property="subjectName" />
+    <result column="subject_country" jdbcType="VARCHAR" property="subjectCountry" />
+    <result column="subject_type" jdbcType="VARCHAR" property="subjectType" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="requesting_party" jdbcType="VARCHAR" property="requestingParty" />
+    <result column="recipient" jdbcType="VARCHAR" property="recipient" />
+    <result column="transaction_id" jdbcType="VARCHAR" property="transactionId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    
+    <collection property="sendRfi" ofType="com.aml.api.pojo.SendRFI">
+	    <id column="sr_id" jdbcType="BIGINT" property="id" />
+	    <result column="sr_control_id" jdbcType="BIGINT" property="controlId" />
+	    <result column="sr_from" jdbcType="VARCHAR" property="from" />
+	    <result column="sr_to" jdbcType="VARCHAR" property="to" />
+	    <result column="sr_subject" jdbcType="VARCHAR" property="subject" />
+	    <result column="sr_comment" jdbcType="VARCHAR" property="comment" />
+	    <result column="sr_file_urls" jdbcType="VARCHAR" property="fileUrls" />
+	    <result column="sr_file_names" jdbcType="VARCHAR" property="fileNames" />
+	    <result column="sr_remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="sr_create_user" jdbcType="VARCHAR" property="createUser" />
+	    <result column="sr_create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="sr_update_user" jdbcType="NVARCHAR" property="updateUser" />
+	    <result column="sr_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="sr_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    [control], [relate_id], [source], [subject_name], [subject_country], [subject_type], 
+    [customer_id], [requesting_party], [recipient], [transaction_id], [create_user], 
+    [create_time], [update_user], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [rfi]
+    where [control] = #{control,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [rfi]
+    where [control] = #{control,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.Rfi">
+    insert into [rfi] ([control], [relate_id], [source], 
+      [subject_name], [subject_country], [subject_type], 
+      [customer_id], [requesting_party], [recipient], 
+      [transaction_id], [create_user], [create_time], 
+      [update_user], [update_time], [is_deleted]
+      )
+    values (#{control,jdbcType=INTEGER}, #{relateId,jdbcType=BIGINT}, #{source,jdbcType=TINYINT}, 
+      #{subjectName,jdbcType=VARCHAR}, #{subjectCountry,jdbcType=VARCHAR}, #{subjectType,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{requestingParty,jdbcType=VARCHAR}, #{recipient,jdbcType=VARCHAR}, 
+      #{transactionId,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Rfi">
+    insert into [rfi]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="control != null">
+        [control],
+      </if>
+      <if test="relateId != null">
+        [relate_id],
+      </if>
+      <if test="source != null">
+        [source],
+      </if>
+      <if test="subjectName != null">
+        [subject_name],
+      </if>
+      <if test="subjectCountry != null">
+        [subject_country],
+      </if>
+      <if test="subjectType != null">
+        [subject_type],
+      </if>
+      <if test="customerId != null">
+        [customer_id],
+      </if>
+      <if test="requestingParty != null">
+        [requesting_party],
+      </if>
+      <if test="recipient != null">
+        [recipient],
+      </if>
+      <if test="transactionId != null">
+        [transaction_id],
+      </if>
+      <if test="createUser != null">
+        [create_user],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateUser != null">
+        [update_user],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="control != null">
+        #{control,jdbcType=INTEGER},
+      </if>
+      <if test="relateId != null">
+        #{relateId,jdbcType=BIGINT},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="subjectName != null">
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCountry != null">
+        #{subjectCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingParty != null">
+        #{requestingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionId != null">
+        #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Rfi">
+    update [rfi]
+    <set>
+      <if test="relateId != null">
+        [relate_id] = #{relateId,jdbcType=BIGINT},
+      </if>
+      <if test="source != null">
+        [source] = #{source,jdbcType=TINYINT},
+      </if>
+      <if test="subjectName != null">
+        [subject_name] = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectCountry != null">
+        [subject_country] = #{subjectCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectType != null">
+        [subject_type] = #{subjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        [customer_id] = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestingParty != null">
+        [requesting_party] = #{requestingParty,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null">
+        [recipient] = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionId != null">
+        [transaction_id] = #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        [create_user] = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        [update_user] = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [control] = #{control,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Rfi">
+    update [rfi]
+    set [relate_id] = #{relateId,jdbcType=BIGINT},
+      [source] = #{source,jdbcType=TINYINT},
+      [subject_name] = #{subjectName,jdbcType=VARCHAR},
+      [subject_country] = #{subjectCountry,jdbcType=VARCHAR},
+      [subject_type] = #{subjectType,jdbcType=VARCHAR},
+      [customer_id] = #{customerId,jdbcType=VARCHAR},
+      [requesting_party] = #{requestingParty,jdbcType=VARCHAR},
+      [recipient] = #{recipient,jdbcType=VARCHAR},
+      [transaction_id] = #{transactionId,jdbcType=VARCHAR},
+      [create_user] = #{createUser,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_user] = #{updateUser,jdbcType=VARCHAR},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [control] = #{control,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findNewControlId" resultType="Long">
+	SELECT
+		TOP 1
+		a.control
+	FROM
+		rfi a
+	WHERE
+		a.control like (CONVERT(VARCHAR(100), GETDATE(), 112) + '%')
+	ORDER BY a.control DESC
+  </select>
+  
+  <select id="queryControlByRelateIdAndSource" resultType="Long">
+  	select 
+  		control
+  	from
+  		rfi
+  	where
+  		relate_id = #{relateId}
+  		and source = #{source}
+  		and is_deleted = 0
+  </select>
+  
+  <select id="queryRfiList" resultMap="BaseResultMap">
+  	select
+  		[control], [relate_id], [source], [subject_name], [subject_country], [subject_type], 
+	    [customer_id], [requesting_party], [recipient], [transaction_id], [create_user], 
+	    [create_time], [update_user], [update_time]
+  	from
+  		rfi
+  	order by create_time desc
+  </select>
+  
+  <select id="queryRfiExport" resultType="Map">
+  	select
+  		[control], [relate_id], [source], [subject_name], [subject_country], [subject_type], 
+	    [customer_id], [requesting_party], [recipient], [transaction_id], [create_user], 
+	    [create_time], [update_user], [update_time]
+  	from
+  		rfi
+  	order by create_time desc
+  </select>
+  
+  <select id="queryRfiHistory" resultMap="BaseResultMap">
+  	select
+  		r.control,r.relate_id,r.source,r.subject_name,r.subject_country,r.subject_type,r.customer_id,
+  		r.requesting_party,r.recipient,r.create_user,r.create_time,r.update_user,r.update_time,
+  		sr.from sr_from,sr.to sr_to,sr.subject sr_subject,sr.comment sr_comment,sr.file_urls sr_file_urls,
+  		sr.file_names sr_file_names,sr.create_user sr_create_user,
+  		sr.create_time sr_create_time,sr.update_user sr_update_user,sr.update_time sr_update_time
+  	from
+  		rfi r
+  		send_rfi sr on (r.control = sr.control_id and sr.is_deleted = 0)
+  	where
+  		r.control = #{control}
+  		and r.is_deleted = 0
+  	order by sr.create_time desc
+  </select>
+</mapper>

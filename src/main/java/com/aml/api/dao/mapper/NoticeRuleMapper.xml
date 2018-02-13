@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.NoticeRuleMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.NoticeRule">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="warn_type" jdbcType="TINYINT" property="warnType" />
+    <result column="remind_type" jdbcType="VARCHAR" property="remindType" />
+    <result column="days" jdbcType="INTEGER" property="days" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="interval_days" jdbcType="INTEGER" property="intervalDays" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, warn_type, days, num, interval_days, create_time, update_time, is_deleted
+  </sql>
+  <select id="queryNoticeRule" resultMap="BaseResultMap">
+  	SELECT
+		r.id,
+		r.warn_type,
+		r.remind_type,
+		r.days,
+		r.num,
+		r.interval_days
+	FROM
+		config_notice_rule r
+		LEFT JOIN common_dic_sub ds ON ds.dic_key = r.warn_type AND ds.dic_id = 45 AND ds.is_deleted = 0
+	WHERE
+		r.is_deleted = 0
+	ORDER BY r.id ASC	
+  </select>
+  
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO config_notice_rule (
+		  warn_type,
+		  remind_type,
+		  days,
+		  num,
+		  interval_days
+		) 
+		VALUES
+		  (
+		     #{warnType},
+		     #{remindType},
+		     #{days},
+		     #{num},
+		     #{intervalDays}
+		  ) 
+	</insert>
+	
+	<update id="update">
+		UPDATE config_notice_rule
+		<set>
+			<if test="warnType != null">
+				warn_type = #{warnType},
+			</if>
+			<if test="remindType != null">
+				remind_type = #{remindType},
+			</if>
+			<if test="days != null">
+				days = #{days},
+			</if>
+			<if test="num != null">
+				num = #{num},
+			</if>
+			<if test="intervalDays != null">
+				interval_days = #{intervalDays},
+			</if>
+			update_time = getdate()
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.WfTaskFileMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.WfTaskFile">
+    <id column="file_id" jdbcType="BIGINT" property="fileId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [file_id], [task_id], [file_name], [file_type], [file_path], [create_user], [create_time], 
+    [update_user], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [wf_task_file]
+    where [file_id] = #{fileId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [wf_task_file]
+    where [file_id] = #{fileId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.WfTaskFile">
+    insert into [wf_task_file] ([file_id], [task_id], [file_name], 
+      [file_type], [file_path], [create_user], 
+      [create_time], [update_user], [update_time], 
+      [is_deleted])
+    values (#{fileId,jdbcType=BIGINT}, #{taskId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{fileType,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.WfTaskFile">
+    insert into [wf_task_file]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        [file_id],
+      </if>
+      <if test="taskId != null">
+        [task_id],
+      </if>
+      <if test="fileName != null">
+        [file_name],
+      </if>
+      <if test="fileType != null">
+        [file_type],
+      </if>
+      <if test="filePath != null">
+        [file_path],
+      </if>
+      <if test="createUser != null">
+        [create_user],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateUser != null">
+        [update_user],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=BIGINT},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.WfTaskFile">
+    update [wf_task_file]
+    <set>
+      <if test="taskId != null">
+        [task_id] = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        [file_name] = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        [file_type] = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        [file_path] = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        [create_user] = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        [update_user] = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [file_id] = #{fileId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.WfTaskFile">
+    update [wf_task_file]
+    set [task_id] = #{taskId,jdbcType=VARCHAR},
+      [file_name] = #{fileName,jdbcType=VARCHAR},
+      [file_type] = #{fileType,jdbcType=VARCHAR},
+      [file_path] = #{filePath,jdbcType=VARCHAR},
+      [create_user] = #{createUser,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_user] = #{updateUser,jdbcType=VARCHAR},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [file_id] = #{fileId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryAllFile" resultMap="BaseResultMap">
+  	select
+  		wtf.file_name,wtf.file_path
+  	from
+  		<if test="alertId != null">
+  			alert_group a 	
+  		</if>
+  		<if test="alertId == null and caseId != null">
+  			case_group a
+  		</if>
+  		join wf_task_approval wta on(a.order_id = wta.order_id and wta.is_deleted = 0)
+  		join wf_task_file wtf on (wta.task_id = wtf.task_id and wtf.is_deleted = 0)
+  	where
+  		<if test="alertId != null">
+  			a.alert_id = #{alertId}
+  		</if>
+  		<if test="alertId == null and caseId != null">
+  			a.case_id = #{caseId}
+  		</if>
+  		and a.is_deleted = 0
+  </select>
+  
+</mapper>

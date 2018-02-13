@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AlertInfoMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AlertInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sys_type" jdbcType="CHAR" property="sysType" />
+    <result column="original_id" jdbcType="BIGINT" property="originalId" />
+    <result column="alert_id" jdbcType="BIGINT" property="alertId" />
+    <result column="subject_type" jdbcType="CHAR" property="subjectType" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="volume" jdbcType="INTEGER" property="volume" />
+    <result column="geography" jdbcType="VARCHAR" property="geography" />
+    <result column="scenario" jdbcType="VARCHAR" property="scenario" />
+    <result column="due_date" jdbcType="TIMESTAMP" property="dueDate" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="focus" jdbcType="VARCHAR" property="focus" />
+    <result column="jurisdiction" jdbcType="VARCHAR" property="jurisdiction" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="risk_class" jdbcType="VARCHAR" property="riskClass" />
+    <result column="link_case" jdbcType="VARCHAR" property="linkCase" />
+    <result column="case_reason" jdbcType="VARCHAR" property="caseReason" />
+    <result column="book_date" jdbcType="TIMESTAMP" property="bookDate" />
+    <result column="focus_type" jdbcType="VARCHAR" property="focusType" />
+    <result column="highlights" jdbcType="VARCHAR" property="highlights" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [sys_type], [original_id], [alert_id], [subject_type], [score], [subject], 
+    [amount], [volume], [geography], [scenario], [due_date], [creation_date], [focus], 
+    [jurisdiction], [domain], [risk_class], [link_case], [book_date], 
+    [focus_type], [highlights], [remark], [create_user], [create_time], [update_user], 
+    [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [alert_info]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [alert_info]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AlertInfo">
+    insert into [alert_info] ([id], [sys_type], [original_id], 
+      [alert_id], [subject_type], [score], 
+      [subject], [amount], [volume], 
+      [geography], [scenario], [due_date], 
+      [creation_date], [focus], [jurisdiction], 
+      [domain], [risk_class], [link_case], 
+      [case_reason], [book_date], [focus_type], 
+      [highlights], [remark], [create_user], 
+      [create_time], [update_user], [update_time], 
+      [is_deleted])
+    values (#{id,jdbcType=BIGINT}, #{sysType,jdbcType=CHAR}, #{originalId,jdbcType=BIGINT}, 
+      #{alertId,jdbcType=BIGINT}, #{subjectType,jdbcType=CHAR}, #{score,jdbcType=INTEGER}, 
+      #{subject,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{volume,jdbcType=INTEGER}, 
+      #{geography,jdbcType=VARCHAR}, #{scenario,jdbcType=VARCHAR}, #{dueDate,jdbcType=TIMESTAMP}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{focus,jdbcType=VARCHAR}, #{jurisdiction,jdbcType=VARCHAR}, 
+      #{domain,jdbcType=VARCHAR}, #{riskClass,jdbcType=VARCHAR}, #{linkCase,jdbcType=VARCHAR}, 
+      #{caseReason,jdbcType=VARCHAR}, #{bookDate,jdbcType=TIMESTAMP}, #{focusType,jdbcType=VARCHAR}, 
+      #{highlights,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AlertInfo" useGeneratedKeys="true" keyColumn="id">
+    insert into [alert_info]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        [id],
+      </if>
+      <if test="sysType != null">
+        [sys_type],
+      </if>
+      <if test="originalId != null">
+        [original_id],
+      </if>
+      <if test="alertId != null">
+        [alert_id],
+      </if>
+      <if test="subjectType != null">
+        [subject_type],
+      </if>
+      <if test="score != null">
+        [score],
+      </if>
+      <if test="subject != null">
+        [subject],
+      </if>
+      <if test="amount != null">
+        [amount],
+      </if>
+      <if test="volume != null">
+        [volume],
+      </if>
+      <if test="geography != null">
+        [geography],
+      </if>
+      <if test="scenario != null">
+        [scenario],
+      </if>
+      <if test="dueDate != null">
+        [due_date],
+      </if>
+      <if test="creationDate != null">
+        [creation_date],
+      </if>
+      <if test="focus != null">
+        [focus],
+      </if>
+      <if test="jurisdiction != null">
+        [jurisdiction],
+      </if>
+      <if test="domain != null">
+        [domain],
+      </if>
+      <if test="riskClass != null">
+        [risk_class],
+      </if>
+      <if test="linkCase != null">
+        [link_case],
+      </if>
+      <if test="caseReason != null">
+        [case_reason],
+      </if>
+      <if test="bookDate != null">
+        [book_date],
+      </if>
+      <if test="focusType != null">
+        [focus_type],
+      </if>
+      <if test="highlights != null">
+        [highlights],
+      </if>
+      <if test="remark != null">
+        [remark],
+      </if>
+      <if test="createUser != null">
+        [create_user],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateUser != null">
+        [update_user],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sysType != null">
+        #{sysType,jdbcType=CHAR},
+      </if>
+      <if test="originalId != null">
+        #{originalId,jdbcType=BIGINT},
+      </if>
+      <if test="alertId != null">
+        #{alertId,jdbcType=BIGINT},
+      </if>
+      <if test="subjectType != null">
+        #{subjectType,jdbcType=CHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="geography != null">
+        #{geography,jdbcType=VARCHAR},
+      </if>
+      <if test="scenario != null">
+        #{scenario,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focus != null">
+        #{focus,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdiction != null">
+        #{jurisdiction,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="riskClass != null">
+        #{riskClass,jdbcType=VARCHAR},
+      </if>
+      <if test="linkCase != null">
+        #{linkCase,jdbcType=VARCHAR},
+      </if>
+      <if test="caseReason != null">
+        #{caseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null">
+        #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focusType != null">
+        #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="highlights != null">
+        #{highlights,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AlertInfo">
+    update [alert_info]
+    <set>
+      <if test="sysType != null">
+        [sys_type] = #{sysType,jdbcType=CHAR},
+      </if>
+      <if test="originalId != null">
+        [original_id] = #{originalId,jdbcType=BIGINT},
+      </if>
+      <if test="alertId != null">
+        [alert_id] = #{alertId,jdbcType=BIGINT},
+      </if>
+      <if test="subjectType != null">
+        [subject_type] = #{subjectType,jdbcType=CHAR},
+      </if>
+      <if test="score != null">
+        [score] = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null">
+        [subject] = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        [amount] = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null">
+        [volume] = #{volume,jdbcType=INTEGER},
+      </if>
+      <if test="geography != null">
+        [geography] = #{geography,jdbcType=VARCHAR},
+      </if>
+      <if test="scenario != null">
+        [scenario] = #{scenario,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        [due_date] = #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creationDate != null">
+        [creation_date] = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focus != null">
+        [focus] = #{focus,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdiction != null">
+        [jurisdiction] = #{jurisdiction,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        [domain] = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="riskClass != null">
+        [risk_class] = #{riskClass,jdbcType=VARCHAR},
+      </if>
+      <if test="linkCase != null">
+        [link_case] = #{linkCase,jdbcType=VARCHAR},
+      </if>
+      <if test="caseReason != null">
+        [case_reason] = #{caseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDate != null">
+        [book_date] = #{bookDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="focusType != null">
+        [focus_type] = #{focusType,jdbcType=VARCHAR},
+      </if>
+      <if test="highlights != null">
+        [highlights] = #{highlights,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        [remark] = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        [create_user] = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        [update_user] = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AlertInfo">
+    update [alert_info]
+    set [sys_type] = #{sysType,jdbcType=CHAR},
+      [original_id] = #{originalId,jdbcType=BIGINT},
+      [alert_id] = #{alertId,jdbcType=BIGINT},
+      [subject_type] = #{subjectType,jdbcType=CHAR},
+      [score] = #{score,jdbcType=INTEGER},
+      [subject] = #{subject,jdbcType=VARCHAR},
+      [amount] = #{amount,jdbcType=DECIMAL},
+      [volume] = #{volume,jdbcType=INTEGER},
+      [geography] = #{geography,jdbcType=VARCHAR},
+      [scenario] = #{scenario,jdbcType=VARCHAR},
+      [due_date] = #{dueDate,jdbcType=TIMESTAMP},
+      [creation_date] = #{creationDate,jdbcType=TIMESTAMP},
+      [focus] = #{focus,jdbcType=VARCHAR},
+      [jurisdiction] = #{jurisdiction,jdbcType=VARCHAR},
+      [domain] = #{domain,jdbcType=VARCHAR},
+      [risk_class] = #{riskClass,jdbcType=VARCHAR},
+      [link_case] = #{linkCase,jdbcType=VARCHAR},
+      [case_reason] = #{caseReason,jdbcType=VARCHAR},
+      [book_date] = #{bookDate,jdbcType=TIMESTAMP},
+      [focus_type] = #{focusType,jdbcType=VARCHAR},
+      [highlights] = #{highlights,jdbcType=VARCHAR},
+      [remark] = #{remark,jdbcType=VARCHAR},
+      [create_user] = #{createUser,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_user] = #{updateUser,jdbcType=VARCHAR},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查询关联Alert列表 -->
+  <select id="queryAlertReviewList" resultMap="BaseResultMap">
+  	SELECT
+		a.id,
+		a.sys_type,
+		a.original_id,
+		a.alert_id,
+		a.subject_type,
+		a.score,
+		a.subject,
+		a.amount,
+		a.volume,
+		a.geography,
+		a.scenario,
+		a.due_date,
+		a.creation_date,
+		a.focus,
+		a.jurisdiction,
+		a.domain,
+		a.risk_class,
+		a.link_case,
+		a.book_date,
+		a.focus_type,
+		a.highlights,
+		a.remark
+	FROM
+		alert_group g
+	LEFT JOIN alert_info a ON a.alert_id = g.alert_id
+	WHERE
+		a.is_deleted = 0
+	AND a.alert_id = #{alertId}
+	ORDER BY a.id
+<!-- 	ORDER BY ${orderby} -->
+  </select>
+  
+  <!-- Alert Review Info -->
+  <select id="queryAlertReview" resultType="Map">
+  	SELECT
+		TOP 1 
+		a.account_id accountId,
+		a.customer_id customerId,
+		a.alert_id alertId,
+		a.file_url fileUrl,
+		a.alert_reason alertReason,
+		a.business_date businessDate,
+		a.due_date dueDate,
+		a.review_start_date reviewStartDate,
+		a.update_time lastUpdatedDate,
+		a.closed_date closedDate,
+		a.status status,
+		a.order_id orderId,
+		a.task_id taskId,
+		a.owner_org teamCode,
+		a.role_id roleId,
+		a.remark remark,
+		a.subject,
+		ai.id,
+		ai.original_id originalId,
+		ai.amount,
+		ai.volume,
+		ai.jurisdiction jurisdictionClass,
+		ai.domain,
+		ai.risk_class riskClass,
+		ai.link_case linkedCase,
+		ai.book_date bookDate,
+		ai.focus_type focusType,
+		ai.focus,
+		ai.geography,
+		ai.subject,
+		ai.scenario,
+		ai.highlights,
+		ai.book_date bookDate,
+		wt.actor_Id userName
+	FROM
+		alert_group a
+		LEFT JOIN alert_info ai ON ai.alert_id = a.alert_id AND ai.is_deleted = 0
+		LEFT JOIN wf_task_actor wt ON a.task_id = wt.task_Id
+	WHERE
+		a.is_deleted = 0
+		AND a.alert_id = #{alertId}
+	<if test="id != null">
+  		AND ai.id = #{id}
+  	</if>
+  </select>
+  
+  <select id="searchAlertId" resultType="Long">
+  	select 
+  		g.alert_id
+  	from
+  		alert_group g
+    	LEFT JOIN wf_task_actor wt ON(g.task_Id = wt.task_Id)
+  	where
+  		g.alert_id like '%${alertId}%'
+  		and CHARINDEX(','+ wt.actor_Id +',' , ','+ #{userName} +',') > 0
+  		and g.is_deleted = 0
+  </select>
+  
+  <select id="queryByAlertCount" resultType="int">
+  	select 
+  		count(0)
+  	from
+  		alert_info
+  	where
+  		alert_id = #{alertId}
+  		and is_deleted = 0
+  </select>
+  
+  <select id="queryAllAmount" resultType="BigDecimal">
+  	select 
+  		ISNULL(sum(amount),0)
+  	from
+  		alert_info
+  	where
+  		alert_id = #{alertId}
+  		and is_deleted = 0
+  </select>
+  
+  <select id="queryAllVolume" resultType="Integer">
+  	select 
+  		ISNULL(sum(volume),0)
+  	from
+  		alert_info
+  	where
+  		alert_id = #{alertId}
+  		and is_deleted = 0
+  </select>
+  
+  <update id="updateByAlertMerge">
+  	update [alert_info]
+    set
+    	alert_id = #{aId}
+    where
+    	alert_id in (<foreach collection="alertIdList" item="item" separator=",">#{item}</foreach>)
+  		and is_deleted = 0
+  </update>
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.WfHistOrderMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.WfHistOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="process_Id" jdbcType="VARCHAR" property="processId" />
+    <result column="order_State" jdbcType="TINYINT" property="orderState" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_Time" jdbcType="VARCHAR" property="createTime" />
+    <result column="end_Time" jdbcType="VARCHAR" property="endTime" />
+    <result column="expire_Time" jdbcType="VARCHAR" property="expireTime" />
+    <result column="priority" jdbcType="TINYINT" property="priority" />
+    <result column="parent_Id" jdbcType="VARCHAR" property="parentId" />
+    <result column="order_No" jdbcType="VARCHAR" property="orderNo" />
+    <result column="variable" jdbcType="VARCHAR" property="variable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `process_Id`, `order_State`, `creator`, `create_Time`, `end_Time`, `expire_Time`, 
+    `priority`, `parent_Id`, `order_No`, `variable`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `wf_hist_order`
+    where `id` = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from `wf_hist_order`
+    where `id` = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.WfHistOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `wf_hist_order` (`process_Id`, `order_State`, `creator`, 
+      `create_Time`, `end_Time`, `expire_Time`, 
+      `priority`, `parent_Id`, `order_No`, 
+      `variable`)
+    values (#{processId,jdbcType=VARCHAR}, #{orderState,jdbcType=TINYINT}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{expireTime,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=TINYINT}, #{parentId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{variable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.WfHistOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `wf_hist_order`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="processId != null">
+        `process_Id`,
+      </if>
+      <if test="orderState != null">
+        `order_State`,
+      </if>
+      <if test="creator != null">
+        `creator`,
+      </if>
+      <if test="createTime != null">
+        `create_Time`,
+      </if>
+      <if test="endTime != null">
+        `end_Time`,
+      </if>
+      <if test="expireTime != null">
+        `expire_Time`,
+      </if>
+      <if test="priority != null">
+        `priority`,
+      </if>
+      <if test="parentId != null">
+        `parent_Id`,
+      </if>
+      <if test="orderNo != null">
+        `order_No`,
+      </if>
+      <if test="variable != null">
+        `variable`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="processId != null">
+        #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null">
+        #{variable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.WfHistOrder">
+    update `wf_hist_order`
+    <set>
+      <if test="processId != null">
+        `process_Id` = #{processId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        `order_State` = #{orderState,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null">
+        `creator` = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        `create_Time` = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        `end_Time` = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        `expire_Time` = #{expireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        `priority` = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        `parent_Id` = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        `order_No` = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="variable != null">
+        `variable` = #{variable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.WfHistOrder">
+    update `wf_hist_order`
+    set `process_Id` = #{processId,jdbcType=VARCHAR},
+      `order_State` = #{orderState,jdbcType=TINYINT},
+      `creator` = #{creator,jdbcType=VARCHAR},
+      `create_Time` = #{createTime,jdbcType=VARCHAR},
+      `end_Time` = #{endTime,jdbcType=VARCHAR},
+      `expire_Time` = #{expireTime,jdbcType=VARCHAR},
+      `priority` = #{priority,jdbcType=TINYINT},
+      `parent_Id` = #{parentId,jdbcType=VARCHAR},
+      `order_No` = #{orderNo,jdbcType=VARCHAR},
+      `variable` = #{variable,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 流程数据 -->
+  <select id="getWorkflowData" resultType="map">
+  	SELECT
+		( CASE WHEN TIME >= 30 THEN 30 ELSE TIME END ) as [key],
+		COUNT (0) as [value]
+	FROM
+		(SELECT
+				DATEDIFF(DAY,
+					MIN (h.create_Time),
+					MAX (h.finish_Time)
+				) AS [time]
+			FROM
+				wf_hist_order d
+			LEFT JOIN wf_hist_task h ON h.order_Id = d.id
+			WHERE
+				1 = 1
+				<if test="processId != null">
+					AND d.process_Id = #{processId}
+				</if>
+				<if test="createStartDate !=null">
+				<![CDATA[
+					AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100),h.finish_Time, 111)
+				]]>
+				</if>
+				<if test="createEndDate !=null">
+				<![CDATA[
+					AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), h.finish_Time, 111)
+				]]>
+				</if>
+			GROUP BY d.id
+		) AS t
+	WHERE
+		t.[time] >= 25
+	GROUP BY
+		( CASE WHEN TIME >= 30 THEN 30 ELSE TIME END )
+  </select>
+  
+</mapper>

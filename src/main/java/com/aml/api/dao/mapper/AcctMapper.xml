@@ -1,0 +1,2379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AcctMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.Acct">
+    <id column="ACCT_INTRL_ID" jdbcType="VARCHAR" property="acctIntrlId" />
+    <result column="DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+    <result column="ACCT_SEQ_ID" jdbcType="DECIMAL" property="acctSeqId" />
+    <result column="SGMNT_ID" jdbcType="VARCHAR" property="sgmntId" />
+    <result column="OPTN_APRVL_LVL_CD" jdbcType="VARCHAR" property="optnAprvlLvlCd" />
+    <result column="OPTN_APPVL_DT" jdbcType="TIMESTAMP" property="optnAppvlDt" />
+    <result column="RGSTN_TYPE_CD" jdbcType="VARCHAR" property="rgstnTypeCd" />
+    <result column="ACCT_TYPE1_CD" jdbcType="VARCHAR" property="acctType1Cd" />
+    <result column="ACCT_TYPE2_CD" jdbcType="VARCHAR" property="acctType2Cd" />
+    <result column="ACCT_OPEN_DT" jdbcType="TIMESTAMP" property="acctOpenDt" />
+    <result column="MAINT_RQMT_PT" jdbcType="DECIMAL" property="maintRqmtPt" />
+    <result column="ACCT_TAX_ID" jdbcType="VARCHAR" property="acctTaxId" />
+    <result column="TAX_ID_FRMT_CD" jdbcType="VARCHAR" property="taxIdFrmtCd" />
+    <result column="MRGN_APPVL_FL" jdbcType="VARCHAR" property="mrgnAppvlFl" />
+    <result column="TAX_WTHLD_CD" jdbcType="VARCHAR" property="taxWthldCd" />
+    <result column="TITL_LINE1_TX" jdbcType="VARCHAR" property="titlLine1Tx" />
+    <result column="TITL_LINE2_TX" jdbcType="VARCHAR" property="titlLine2Tx" />
+    <result column="TITL_LINE3_TX" jdbcType="VARCHAR" property="titlLine3Tx" />
+    <result column="DSCRN_FL" jdbcType="VARCHAR" property="dscrnFl" />
+    <result column="HH_ACCT_GRP_ID" jdbcType="VARCHAR" property="hhAcctGrpId" />
+    <result column="MKTG_CAMP_CD" jdbcType="VARCHAR" property="mktgCampCd" />
+    <result column="CMSN_SCHED_TBL_CD" jdbcType="VARCHAR" property="cmsnSchedTblCd" />
+    <result column="EMP_ACCT_FL" jdbcType="VARCHAR" property="empAcctFl" />
+    <result column="TEST_ACCT_FL" jdbcType="VARCHAR" property="testAcctFl" />
+    <result column="ACCT_STAT_CD" jdbcType="VARCHAR" property="acctStatCd" />
+    <result column="ACCT_STAT_DT" jdbcType="TIMESTAMP" property="acctStatDt" />
+    <result column="ALT_ACCT_ID" jdbcType="VARCHAR" property="altAcctId" />
+    <result column="NVSMT_MGR_RETL_REFRL_FL" jdbcType="VARCHAR" property="nvsmtMgrRetlRefrlFl" />
+    <result column="LAST_ACTVY_DT" jdbcType="TIMESTAMP" property="lastActvyDt" />
+    <result column="SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+    <result column="ACCT_DSPLY_NM" jdbcType="VARCHAR" property="acctDsplyNm" />
+    <result column="ACCT_BUS_RISK_NB" jdbcType="DECIMAL" property="acctBusRiskNb" />
+    <result column="ACCT_CUST_RISK_NB" jdbcType="DECIMAL" property="acctCustRiskNb" />
+    <result column="ACCT_GEO_RISK_NB" jdbcType="DECIMAL" property="acctGeoRiskNb" />
+    <result column="STMT_CUST_QT" jdbcType="DECIMAL" property="stmtCustQt" />
+    <result column="PRMRY_PRDCT_TYPE_CD" jdbcType="VARCHAR" property="prmryPrdctTypeCd" />
+    <result column="LAST_STMT_DT" jdbcType="TIMESTAMP" property="lastStmtDt" />
+    <result column="STMT_SUPR_FL" jdbcType="VARCHAR" property="stmtSuprFl" />
+    <result column="NOTFY_LTR_SUPR_FL" jdbcType="VARCHAR" property="notfyLtrSuprFl" />
+    <result column="LEGAL_NTITY_ID" jdbcType="VARCHAR" property="legalNtityId" />
+    <result column="ACCT_PRM_BRKR_CD" jdbcType="VARCHAR" property="acctPrmBrkrCd" />
+    <result column="INSTN_CNTRY_CD" jdbcType="VARCHAR" property="instnCntryCd" />
+    <result column="GLOBL_RLSHP_FL" jdbcType="VARCHAR" property="globlRlshpFl" />
+    <result column="ACCT_LIST_SRC_CD" jdbcType="VARCHAR" property="acctListSrcCd" />
+    <result column="PRMRY_CUST_INTRL_ID" jdbcType="VARCHAR" property="prmryCustIntrlId" />
+    <result column="ACCT_EFCTV_RISK_NB" jdbcType="DECIMAL" property="acctEfctvRiskNb" />
+    <result column="ACCT_LIST_RISK_NB" jdbcType="DECIMAL" property="acctListRiskNb" />
+    <result column="ACCT_MATCH_TX" jdbcType="VARCHAR" property="acctMatchTx" />
+    <result column="ACCT_MATCH_TYPE_CD" jdbcType="VARCHAR" property="acctMatchTypeCd" />
+    <result column="CSTM_RISK1_NB" jdbcType="DECIMAL" property="cstmRisk1Nb" />
+    <result column="CSTM_RISK2_NB" jdbcType="DECIMAL" property="cstmRisk2Nb" />
+    <result column="TAX_PAYR_CUST_INTRL_ID" jdbcType="VARCHAR" property="taxPayrCustIntrlId" />
+    <result column="CSTM_1_DT" jdbcType="TIMESTAMP" property="cstm1Dt" />
+    <result column="CSTM_2_DT" jdbcType="TIMESTAMP" property="cstm2Dt" />
+    <result column="CSTM_3_DT" jdbcType="TIMESTAMP" property="cstm3Dt" />
+    <result column="CSTM_1_RL" jdbcType="DECIMAL" property="cstm1Rl" />
+    <result column="CSTM_2_RL" jdbcType="DECIMAL" property="cstm2Rl" />
+    <result column="CSTM_3_RL" jdbcType="DECIMAL" property="cstm3Rl" />
+    <result column="CSTM_1_TX" jdbcType="VARCHAR" property="cstm1Tx" />
+    <result column="CSTM_2_TX" jdbcType="VARCHAR" property="cstm2Tx" />
+    <result column="CSTM_3_TX" jdbcType="VARCHAR" property="cstm3Tx" />
+    <result column="CSTM_4_TX" jdbcType="VARCHAR" property="cstm4Tx" />
+    <result column="CSTM_5_TX" jdbcType="VARCHAR" property="cstm5Tx" />
+    <result column="PTTRN_DAY_TRD_FL" jdbcType="VARCHAR" property="pttrnDayTrdFl" />
+    <result column="DAY_TRD_APRVL_STAT_CD" jdbcType="VARCHAR" property="dayTrdAprvlStatCd" />
+    <result column="DAY_TRD_APRVL_UPDT_DT" jdbcType="TIMESTAMP" property="dayTrdAprvlUpdtDt" />
+    <result column="DAY_TRD_APRVL_UPDT_U_INTRL_ID" jdbcType="VARCHAR" property="dayTrdAprvlUpdtUIntrlId" />
+    <result column="DAY_TRD_APRVL_REQ_DT" jdbcType="TIMESTAMP" property="dayTrdAprvlReqDt" />
+    <result column="STBLTY_SURVL_LEVEL_NB" jdbcType="DECIMAL" property="stbltySurvlLevelNb" />
+    <result column="ACCT_RPTNG_CRNCY_CD" jdbcType="VARCHAR" property="acctRptngCrncyCd" />
+    <result column="DMCLD_BRCH_CD" jdbcType="VARCHAR" property="dmcldBrchCd" />
+    <result column="PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+    <result column="ULTMT_INSTL_CUST_INTRL_ID" jdbcType="VARCHAR" property="ultmtInstlCustIntrlId" />
+    <result column="DVP_RVP_FL" jdbcType="VARCHAR" property="dvpRvpFl" />
+    <result column="MANTAS_ACCT_HOLDR_TYPE_CD" jdbcType="VARCHAR" property="mantasAcctHoldrTypeCd" />
+    <result column="MANTAS_ACCT_BUS_TYPE_CD" jdbcType="VARCHAR" property="mantasAcctBusTypeCd" />
+    <result column="MANTAS_ACCT_OWNRSHP_TYPE_CD" jdbcType="VARCHAR" property="mantasAcctOwnrshpTypeCd" />
+    <result column="MANTAS_ACCT_PURP_CD" jdbcType="VARCHAR" property="mantasAcctPurpCd" />
+    <result column="RETRMT_ACCT_FL" jdbcType="VARCHAR" property="retrmtAcctFl" />
+    <result column="JRSDCN_CD" jdbcType="VARCHAR" property="jrsdcnCd" />
+    <result column="BUS_DMN_LIST_TX" jdbcType="VARCHAR" property="busDmnListTx" />
+    <result column="HIGH_ACTVY_ACCT_FL" jdbcType="VARCHAR" property="highActvyAcctFl" />
+    <result column="FIRM_ACCT_ORG_INTRL_ID" jdbcType="VARCHAR" property="firmAcctOrgIntrlId" />
+    <result column="PAY_BASIS_TYPE_CD" jdbcType="VARCHAR" property="payBasisTypeCd" />
+    <result column="CASH_RPT_EXMPT_FL" jdbcType="VARCHAR" property="cashRptExmptFl" />
+    <result column="ACCT_EFCTV_RISK_FACTR_TX" jdbcType="VARCHAR" property="acctEfctvRiskFactrTx" />
+    <result column="ACCT_CUST_LIST_SRC_CD" jdbcType="VARCHAR" property="acctCustListSrcCd" />
+    <result column="SRVC_TEAM_INTRL_ID" jdbcType="VARCHAR" property="srvcTeamIntrlId" />
+    <result column="FEE_SCHED_CD" jdbcType="VARCHAR" property="feeSchedCd" />
+    <result column="PAY_BASIS_START_DT" jdbcType="TIMESTAMP" property="payBasisStartDt" />
+    <result column="RISK_TLRNC_CD" jdbcType="VARCHAR" property="riskTlrncCd" />
+    <result column="PRMRY_CUST_PIN_NB" jdbcType="VARCHAR" property="prmryCustPinNb" />
+    <result column="ACCT_PEER_GRP_INTRL_ID" jdbcType="VARCHAR" property="acctPeerGrpIntrlId" />
+    <result column="PRTFLO_MGR_INTRL_ID" jdbcType="VARCHAR" property="prtfloMgrIntrlId" />
+    <result column="HIGH_PRFL_FL" jdbcType="VARCHAR" property="highPrflFl" />
+    <result column="PROD_INTRL_ID" jdbcType="VARCHAR" property="prodIntrlId" />
+    <result column="SRC_INIT_FUNDS" jdbcType="VARCHAR" property="srcInitFunds" />
+    <result column="MTHD_INIT_FUNDS" jdbcType="VARCHAR" property="mthdInitFunds" />
+    <result column="MTHD_ACCT_OPNG" jdbcType="VARCHAR" property="mthdAcctOpng" />
+    <result column="ACCT_CLOSE_DT" jdbcType="TIMESTAMP" property="acctCloseDt" />
+    <result column="ACCT_RPT_CAT_CD" jdbcType="VARCHAR" property="acctRptCatCd" />
+    <result column="ADMIN_CD" jdbcType="VARCHAR" property="adminCd" />
+    <result column="BKUP_ADMIN_CD" jdbcType="VARCHAR" property="bkupAdminCd" />
+    <result column="BKNG_CTR_CD" jdbcType="VARCHAR" property="bkngCtrCd" />
+    <result column="CPCTY_CD" jdbcType="VARCHAR" property="cpctyCd" />
+    <result column="CNTRL_GRP_CD" jdbcType="VARCHAR" property="cntrlGrpCd" />
+    <result column="CNTRL_ID" jdbcType="VARCHAR" property="cntrlId" />
+    <result column="HARD_HOLD_FL" jdbcType="VARCHAR" property="hardHoldFl" />
+    <result column="LOCAL_ACCT_OFFCR" jdbcType="VARCHAR" property="localAcctOffcr" />
+    <result column="PLEDGE_FL" jdbcType="VARCHAR" property="pledgeFl" />
+    <result column="REAL_EST_OFFCR_CD" jdbcType="VARCHAR" property="realEstOffcrCd" />
+    <result column="RLSHP_ID" jdbcType="VARCHAR" property="rlshpId" />
+    <result column="STATE_CD" jdbcType="VARCHAR" property="stateCd" />
+    <result column="STOP_PAYMT_FL" jdbcType="VARCHAR" property="stopPaymtFl" />
+    <result column="TRST_REVIEW_DT" jdbcType="TIMESTAMP" property="trstReviewDt" />
+    <result column="TITL_LINE4_TX" jdbcType="VARCHAR" property="titlLine4Tx" />
+    <result column="NVSMT_OBJ_CD" jdbcType="VARCHAR" property="nvsmtObjCd" />
+    <result column="NVSMT_OFFCR_CD" jdbcType="VARCHAR" property="nvsmtOffcrCd" />
+    <result column="AVP_DT" jdbcType="TIMESTAMP" property="avpDt" />
+    <result column="BLLNG_PRDCT_CD" jdbcType="VARCHAR" property="bllngPrdctCd" />
+    <result column="DSCRN_CD" jdbcType="VARCHAR" property="dscrnCd" />
+    <result column="HOLD_ALL_MAIL_CD" jdbcType="VARCHAR" property="holdAllMailCd" />
+    <result column="INCM_RNG_CD" jdbcType="VARCHAR" property="incmRngCd" />
+    <result column="MGR_NM" jdbcType="VARCHAR" property="mgrNm" />
+    <result column="MANGD_ACCT_FL" jdbcType="VARCHAR" property="mangdAcctFl" />
+    <result column="GRWTH_NVSMT_OBJ_RNKNG_CD" jdbcType="VARCHAR" property="grwthNvsmtObjRnkngCd" />
+    <result column="INCM_NVSMT_OBJ_RNKNG_CD" jdbcType="VARCHAR" property="incmNvsmtObjRnkngCd" />
+    <result column="LQDTY_NVSMT_OBJ_RNKNG_CD" jdbcType="VARCHAR" property="lqdtyNvsmtObjRnkngCd" />
+    <result column="TAX_DFFRD_NVSMT_OBJ_RNKNG_CD" jdbcType="VARCHAR" property="taxDffrdNvsmtObjRnkngCd" />
+    <result column="OWNRSHP_CAT_CD" jdbcType="VARCHAR" property="ownrshpCatCd" />
+    <result column="PLAN_NB_TX" jdbcType="VARCHAR" property="planNbTx" />
+    <result column="STOCK_OPTN_PLAN_FL" jdbcType="VARCHAR" property="stockOptnPlanFl" />
+    <result column="SPCLTN_FL" jdbcType="VARCHAR" property="spcltnFl" />
+    <result column="STYLE_CD" jdbcType="VARCHAR" property="styleCd" />
+    <result column="SRVC_LEVEL_TX" jdbcType="VARCHAR" property="srvcLevelTx" />
+    <result column="PERM_ACCT_INTRL_ID" jdbcType="VARCHAR" property="permAcctIntrlId" />
+    <result column="OFAC_REASN_CD" jdbcType="VARCHAR" property="ofacReasnCd" />
+    <result column="SPCLTN_LVL" jdbcType="VARCHAR" property="spcltnLvl" />
+    <result column="OPTN_APRVL_CD" jdbcType="VARCHAR" property="optnAprvlCd" />
+    <result column="CNSLDTN_NBR_CD" jdbcType="VARCHAR" property="cnsldtnNbrCd" />
+    <result column="DSC_MANGD_CD" jdbcType="VARCHAR" property="dscMangdCd" />
+    <result column="LEAD_ACCT_FL" jdbcType="CHAR" property="leadAcctFl" />
+    <result column="LEAD_TRACK_CD" jdbcType="VARCHAR" property="leadTrackCd" />
+    <result column="QLFID_PLAN_EMP_NM" jdbcType="VARCHAR" property="qlfidPlanEmpNm" />
+    <result column="RLLVR_FL" jdbcType="CHAR" property="rllvrFl" />
+    <result column="PRMRY_CLNT_FL" jdbcType="CHAR" property="prmryClntFl" />
+    <result column="INSDR_ACCT_FL" jdbcType="VARCHAR" property="insdrAcctFl" />
+    <result column="SMALL_HH_FL" jdbcType="VARCHAR" property="smallHhFl" />
+    <result column="CPI_FL" jdbcType="VARCHAR" property="cpiFl" />
+    <result column="STNDG_INSTR_US_ACCT_FL" jdbcType="VARCHAR" property="stndgInstrUsAcctFl" />
+    <result column="US_POA_SIGN_FL" jdbcType="VARCHAR" property="usPoaSignFl" />
+    <result column="RECALCITRANT_FL" jdbcType="VARCHAR" property="recalcitrantFl" />
+    <result column="PRIOR_PRD_END_NET_WRTH_AM" jdbcType="DECIMAL" property="priorPrdEndNetWrthAm" />
+    <result column="NET_WRTH_AM_PRD_END_DT" jdbcType="TIMESTAMP" property="netWrthAmPrdEndDt" />
+    <result column="EXTRL_NVSMT_ACCT_FL" jdbcType="VARCHAR" property="extrlNvsmtAcctFl" />
+    <result column="GEO_JRSDCN_CD" jdbcType="VARCHAR" property="geoJrsdcnCd" />
+    <result column="FATCA_STATUS_CD" jdbcType="VARCHAR" property="fatcaStatusCd" />
+    <result column="FATCA_POOLED_RPT_TYPE_CD" jdbcType="VARCHAR" property="fatcaPooledRptTypeCd" />
+    <result column="FATCA_INDICIA_FL" jdbcType="VARCHAR" property="fatcaIndiciaFl" />
+    <result column="FSDF_STG_SRC" jdbcType="VARCHAR" property="fsdfStgSrc" />
+    <result column="INT_AM" jdbcType="DECIMAL" property="intAm" />
+    <result column="DIVIDEND_AM" jdbcType="DECIMAL" property="dividendAm" />
+    <result column="GROSS_PROCEEDS_RDMPT_AM" jdbcType="DECIMAL" property="grossProceedsRdmptAm" />
+    <result column="OTHER_INCM_AM" jdbcType="DECIMAL" property="otherIncmAm" />
+    
+    
+    
+    <result column="ADDR_USAGE_CD" property="addrUsageCd" />
+    <result column="ADDR_CITY_NM" property="addrCityNm" />
+    <result column="ADDR_CNTRY_CD" property="addrCntryCd" />
+    <result column="ADDR_RGN_NM" property="addrRgnNm" />
+    <result column="ADDR_STATE_CD" property="addrStateCd" />
+    
+    <association property="acctBal" javaType="com.aml.api.pojo.AcctBalPosnSmry">
+	    <id column="b_ACCT_INTRL_ID" jdbcType="VARCHAR" property="acctIntrlId" />
+	    <id column="b_DATA_DUMP_DT" jdbcType="TIMESTAMP" property="dataDumpDt" />
+	    <result column="b_ACCT_BAL_SEQ_ID" jdbcType="DECIMAL" property="acctBalSeqId" />
+	    <result column="b_NET_WRTH_AM" jdbcType="DECIMAL" property="netWrthAm" />
+	    <result column="b_AVAIL_PAY_AM" jdbcType="DECIMAL" property="availPayAm" />
+	    <result column="b_EQTY_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="eqtyMktvalLngAm" />
+	    <result column="b_EQTY_MKTVAL_SHRT_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtAm" />
+	    <result column="b_MRGN_EQTY_PT" jdbcType="DECIMAL" property="mrgnEqtyPt" />
+	    <result column="b_LOW_PRICD_SCRTY_AM" jdbcType="DECIMAL" property="lowPricdScrtyAm" />
+	    <result column="b_OPTN_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="optnMktvalLngAm" />
+	    <result column="b_OPTN_MKTVAL_SHRT_AM" jdbcType="DECIMAL" property="optnMktvalShrtAm" />
+	    <result column="b_OPTN_MRGN_RQMT_AM" jdbcType="DECIMAL" property="optnMrgnRqmtAm" />
+	    <result column="b_EQTY_MKTVAL_SHRT_NOBOX_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtNoboxAm" />
+	    <result column="b_NKD_CALL_ASGMT_RISK_AM" jdbcType="DECIMAL" property="nkdCallAsgmtRiskAm" />
+	    <result column="b_NKD_PUT_ASGMT_RISK_AM" jdbcType="DECIMAL" property="nkdPutAsgmtRiskAm" />
+	    <result column="b_NKD_PUT_ASGMT_VAL_AM" jdbcType="DECIMAL" property="nkdPutAsgmtValAm" />
+	    <result column="b_TOT_OPTN_ASGMT_RISK_AM" jdbcType="DECIMAL" property="totOptnAsgmtRiskAm" />
+	    <result column="b_LNG_OPTN_2MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn2moExprnCt" />
+	    <result column="b_LNG_OPTN_6MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn6moExprnCt" />
+	    <result column="b_LNG_OPTN_3MO_6MO_EXPRN_CT" jdbcType="DECIMAL" property="lngOptn3mo6moExprnCt" />
+	    <result column="b_NKD_OPTN_2MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn2moExprnCt" />
+	    <result column="b_NKD_OPTN_6MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn6moExprnCt" />
+	    <result column="b_NKD_OPTN_3MO_6MO_EXPRN_CT" jdbcType="DECIMAL" property="nkdOptn3mo6moExprnCt" />
+	    <result column="b_HI_CNC_SCRTY_INTRL_ID" jdbcType="VARCHAR" property="hiCncScrtyIntrlId" />
+	    <result column="b_HI_CNC_SCRTY_VAL_AM" jdbcType="DECIMAL" property="hiCncScrtyValAm" />
+	    <result column="b_HI_CNC_SCRTY_UNIT_QT" jdbcType="DECIMAL" property="hiCncScrtyUnitQt" />
+	    <result column="b_HI_CNC_SCRTY_EQTY_PT" jdbcType="DECIMAL" property="hiCncScrtyEqtyPt" />
+	    <result column="b_HI_CNC_SHRT_SCRTY_INTRL_ID" jdbcType="VARCHAR" property="hiCncShrtScrtyIntrlId" />
+	    <result column="b_HI_CNC_SHRT_SCRTY_VAL_AM" jdbcType="DECIMAL" property="hiCncShrtScrtyValAm" />
+	    <result column="b_HI_CNC_SHRT_SCRTY_UNIT_QT" jdbcType="DECIMAL" property="hiCncShrtScrtyUnitQt" />
+	    <result column="b_HI_CNC_SCTR_NM" jdbcType="VARCHAR" property="hiCncSctrNm" />
+	    <result column="b_HI_CNC_SCTR_VAL_AM" jdbcType="DECIMAL" property="hiCncSctrValAm" />
+	    <result column="b_HI_CNC_NKD_OPTN_UND_SCRTY_ID" jdbcType="VARCHAR" property="hiCncNkdOptnUndScrtyId" />
+	    <result column="b_HI_CNC_LNG_OPTN_UND_SCRTY_ID" jdbcType="VARCHAR" property="hiCncLngOptnUndScrtyId" />
+	    <result column="b_HI_CNC_NKD_OPTN_CNTR_QT" jdbcType="DECIMAL" property="hiCncNkdOptnCntrQt" />
+	    <result column="b_HI_CNC_LNG_OPTN_CNTR_QT" jdbcType="DECIMAL" property="hiCncLngOptnCntrQt" />
+	    <result column="b_TOT_NKD_OPTN_CNTR_QT" jdbcType="DECIMAL" property="totNkdOptnCntrQt" />
+	    <result column="b_TOT_LNG_OPTN_CNTR_QT" jdbcType="DECIMAL" property="totLngOptnCntrQt" />
+	    <result column="b_HI_CNC_OPTN_MKTVAL_LNG_AM" jdbcType="DECIMAL" property="hiCncOptnMktvalLngAm" />
+	    <result column="b_HH_ACCT_GRP_ID" jdbcType="VARCHAR" property="hhAcctGrpId" />
+	    <result column="b_MRGN_BAL_AM" jdbcType="DECIMAL" property="mrgnBalAm" />
+	    <result column="b_CASH_BAL_AM" jdbcType="DECIMAL" property="cashBalAm" />
+	    <result column="b_LNG_MRGN_MKTVAL_AM" jdbcType="DECIMAL" property="lngMrgnMktvalAm" />
+	    <result column="b_SHRT_MRGN_MKTVAL_AM" jdbcType="DECIMAL" property="shrtMrgnMktvalAm" />
+	    <result column="b_TOT_CASH_SCRTY_VAL_AM" jdbcType="DECIMAL" property="totCashScrtyValAm" />
+	    <result column="b_MNY_MKT_FUND_BAL_AM" jdbcType="DECIMAL" property="mnyMktFundBalAm" />
+	    <result column="b_MRGN_EQTY_AM" jdbcType="DECIMAL" property="mrgnEqtyAm" />
+	    <result column="b_MFUND_BAL_AM" jdbcType="DECIMAL" property="mfundBalAm" />
+	    <result column="b_BOND_BAL_AM" jdbcType="DECIMAL" property="bondBalAm" />
+	    <result column="b_TOT_DEBT_AM" jdbcType="DECIMAL" property="totDebtAm" />
+	    <result column="b_UNCOL_BAL_AM" jdbcType="DECIMAL" property="uncolBalAm" />
+	    <result column="b_OVR_DRFT_BAL_AM" jdbcType="DECIMAL" property="ovrDrftBalAm" />
+	    <result column="b_LAST_OVR_DRFT_NEG_BAL_AM" jdbcType="DECIMAL" property="lastOvrDrftNegBalAm" />
+	    <result column="b_LAST_OVR_DRFT_DURTN_DY_CT" jdbcType="DECIMAL" property="lastOvrDrftDurtnDyCt" />
+	    <result column="b_LAST_OVR_DRFT_NEG_BAL_DT" jdbcType="TIMESTAMP" property="lastOvrDrftNegBalDt" />
+	    <result column="b_SRC_SYS_CD" jdbcType="VARCHAR" property="srcSysCd" />
+	    <result column="b_CSTM_1_DT" jdbcType="TIMESTAMP" property="cstm1Dt" />
+	    <result column="b_CSTM_2_DT" jdbcType="TIMESTAMP" property="cstm2Dt" />
+	    <result column="b_CSTM_3_DT" jdbcType="TIMESTAMP" property="cstm3Dt" />
+	    <result column="b_CSTM_1_RL" jdbcType="DECIMAL" property="cstm1Rl" />
+	    <result column="b_CSTM_2_RL" jdbcType="DECIMAL" property="cstm2Rl" />
+	    <result column="b_CSTM_3_RL" jdbcType="DECIMAL" property="cstm3Rl" />
+	    <result column="b_CSTM_1_TX" jdbcType="VARCHAR" property="cstm1Tx" />
+	    <result column="b_CSTM_2_TX" jdbcType="VARCHAR" property="cstm2Tx" />
+	    <result column="b_CSTM_3_TX" jdbcType="VARCHAR" property="cstm3Tx" />
+	    <result column="b_CSTM_4_TX" jdbcType="VARCHAR" property="cstm4Tx" />
+	    <result column="b_CSTM_5_TX" jdbcType="VARCHAR" property="cstm5Tx" />
+	    <result column="b_CLTRL_VAL_AM" jdbcType="DECIMAL" property="cltrlValAm" />
+	    <result column="b_CLTRL_RQMT_AM" jdbcType="DECIMAL" property="cltrlRqmtAm" />
+	    <result column="b_PRCSNG_BATCH_NM" jdbcType="VARCHAR" property="prcsngBatchNm" />
+	    <result column="b_ADJ_MRGN_DBT_AM" jdbcType="DECIMAL" property="adjMrgnDbtAm" />
+	    <result column="b_NET_WRTH_RPTNG_AM" jdbcType="DECIMAL" property="netWrthRptngAm" />
+	    <result column="b_AVAIL_PAY_RPTNG_AM" jdbcType="DECIMAL" property="availPayRptngAm" />
+	    <result column="b_MRGN_BAL_RPTNG_AM" jdbcType="DECIMAL" property="mrgnBalRptngAm" />
+	    <result column="b_MRGN_EQTY_RPTNG_AM" jdbcType="DECIMAL" property="mrgnEqtyRptngAm" />
+	    <result column="b_CASH_BAL_RPTNG_AM" jdbcType="DECIMAL" property="cashBalRptngAm" />
+	    <result column="b_LAST_OVR_DRFT_NEG_BAL_RPTNG_AM" jdbcType="DECIMAL" property="lastOvrDrftNegBalRptngAm" />
+	    <result column="b_TOT_CASH_SCRTY_VAL_RPTNG_AM" jdbcType="DECIMAL" property="totCashScrtyValRptngAm" />
+	    <result column="b_UNCOL_BAL_RPTNG_AM" jdbcType="DECIMAL" property="uncolBalRptngAm" />
+	    <result column="b_EQTY_MKTVAL_SHRT_RPTNG_AM" jdbcType="DECIMAL" property="eqtyMktvalShrtRptngAm" />
+	    <result column="b_EQTY_MKTVAL_LNG_RPTNG_AM" jdbcType="DECIMAL" property="eqtyMktvalLngRptngAm" />
+	    <result column="b_LNG_MRGN_MKTVAL_RPTNG_AM" jdbcType="DECIMAL" property="lngMrgnMktvalRptngAm" />
+	    <result column="b_SHRT_MRGN_MKTVAL_RPTNG_AM" jdbcType="DECIMAL" property="shrtMrgnMktvalRptngAm" />
+	    <result column="b_MNY_MKT_FUND_BAL_RPTNG_AM" jdbcType="DECIMAL" property="mnyMktFundBalRptngAm" />
+	    <result column="b_OPTN_MRGN_RQMT_RPTNG_AM" jdbcType="DECIMAL" property="optnMrgnRqmtRptngAm" />
+	    <result column="b_OPTN_MKTVAL_SHRT_RPTNG_AM" jdbcType="DECIMAL" property="optnMktvalShrtRptngAm" />
+	    <result column="b_OPTN_MKTVAL_LNG_RPTNG_AM" jdbcType="DECIMAL" property="optnMktvalLngRptngAm" />
+	    <result column="b_OVR_DRFT_BAL_RPTNG_AM" jdbcType="DECIMAL" property="ovrDrftBalRptngAm" />
+	    <result column="b_CLTRL_VAL_RPTNG_AM" jdbcType="DECIMAL" property="cltrlValRptngAm" />
+	    <result column="b_CLTRL_RQMT_RPTNG_AM" jdbcType="DECIMAL" property="cltrlRqmtRptngAm" />
+	    <result column="b_ADJ_MRGN_DBT_RPTNG_AM" jdbcType="DECIMAL" property="adjMrgnDbtRptngAm" />
+	    <result column="b_TOT_DEBT_RPTNG_AM" jdbcType="DECIMAL" property="totDebtRptngAm" />
+	    <result column="b_FEE_AM" jdbcType="DECIMAL" property="feeAm" />
+	    <result column="b_SUPR_CMSN_AM" jdbcType="DECIMAL" property="suprCmsnAm" />
+	    <result column="b_CASH_VAL_RPTNG_AM" jdbcType="DECIMAL" property="cashValRptngAm" />
+	    <result column="b_CASH_VAL_BASE_AM" jdbcType="DECIMAL" property="cashValBaseAm" />
+	    <result column="b_ACCT_GROSS_ASSETS_RPTNG_AM" jdbcType="DECIMAL" property="acctGrossAssetsRptngAm" />
+	    <result column="b_ACCT_GROSS_ASSETS_BASE_AM" jdbcType="DECIMAL" property="acctGrossAssetsBaseAm" />
+	    <result column="b_LDGR_AM" jdbcType="DECIMAL" property="ldgrAm" />
+	    <result column="b_LDGR_RPTNG_AM" jdbcType="DECIMAL" property="ldgrRptngAm" />
+	    <result column="b_NET_WRTH_AM_RNG_CD" jdbcType="VARCHAR" property="netWrthAmRngCd" />
+	    <result column="b_AVAIL_PAY_AM_RNG_CD" jdbcType="VARCHAR" property="availPayAmRngCd" />
+	    <result column="b_LOW_PRICD_SCRTY_BASE_PR" jdbcType="DECIMAL" property="lowPricdScrtyBasePr" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    [ACCT_INTRL_ID], [DATA_DUMP_DT], [ACCT_SEQ_ID], [SGMNT_ID], [OPTN_APRVL_LVL_CD], 
+    [OPTN_APPVL_DT], [RGSTN_TYPE_CD], [ACCT_TYPE1_CD], [ACCT_TYPE2_CD], [ACCT_OPEN_DT], 
+    [MAINT_RQMT_PT], [ACCT_TAX_ID], [TAX_ID_FRMT_CD], [MRGN_APPVL_FL], [TAX_WTHLD_CD], 
+    [TITL_LINE1_TX], [TITL_LINE2_TX], [TITL_LINE3_TX], [DSCRN_FL], [HH_ACCT_GRP_ID], 
+    [MKTG_CAMP_CD], [CMSN_SCHED_TBL_CD], [EMP_ACCT_FL], [TEST_ACCT_FL], [ACCT_STAT_CD], 
+    [ACCT_STAT_DT], [ALT_ACCT_ID], [NVSMT_MGR_RETL_REFRL_FL], [LAST_ACTVY_DT], [SRC_SYS_CD], 
+    [ACCT_DSPLY_NM], [ACCT_BUS_RISK_NB], [ACCT_CUST_RISK_NB], [ACCT_GEO_RISK_NB], [STMT_CUST_QT], 
+    [PRMRY_PRDCT_TYPE_CD], [LAST_STMT_DT], [STMT_SUPR_FL], [NOTFY_LTR_SUPR_FL], [LEGAL_NTITY_ID], 
+    [ACCT_PRM_BRKR_CD], [INSTN_CNTRY_CD], [GLOBL_RLSHP_FL], [ACCT_LIST_SRC_CD], [PRMRY_CUST_INTRL_ID], 
+    [ACCT_EFCTV_RISK_NB], [ACCT_LIST_RISK_NB], [ACCT_MATCH_TX], [ACCT_MATCH_TYPE_CD], 
+    [CSTM_RISK1_NB], [CSTM_RISK2_NB], [TAX_PAYR_CUST_INTRL_ID], [CSTM_1_DT], [CSTM_2_DT], 
+    [CSTM_3_DT], [CSTM_1_RL], [CSTM_2_RL], [CSTM_3_RL], [CSTM_1_TX], [CSTM_2_TX], [CSTM_3_TX], 
+    [CSTM_4_TX], [CSTM_5_TX], [PTTRN_DAY_TRD_FL], [DAY_TRD_APRVL_STAT_CD], [DAY_TRD_APRVL_UPDT_DT], 
+    [DAY_TRD_APRVL_UPDT_U_INTRL_ID], [DAY_TRD_APRVL_REQ_DT], [STBLTY_SURVL_LEVEL_NB], 
+    [ACCT_RPTNG_CRNCY_CD], [DMCLD_BRCH_CD], [PRCSNG_BATCH_NM], [ULTMT_INSTL_CUST_INTRL_ID], 
+    [DVP_RVP_FL], [MANTAS_ACCT_HOLDR_TYPE_CD], [MANTAS_ACCT_BUS_TYPE_CD], [MANTAS_ACCT_OWNRSHP_TYPE_CD], 
+    [MANTAS_ACCT_PURP_CD], [RETRMT_ACCT_FL], [JRSDCN_CD], [BUS_DMN_LIST_TX], [HIGH_ACTVY_ACCT_FL], 
+    [FIRM_ACCT_ORG_INTRL_ID], [PAY_BASIS_TYPE_CD], [CASH_RPT_EXMPT_FL], [ACCT_EFCTV_RISK_FACTR_TX], 
+    [ACCT_CUST_LIST_SRC_CD], [SRVC_TEAM_INTRL_ID], [FEE_SCHED_CD], [PAY_BASIS_START_DT], 
+    [RISK_TLRNC_CD], [PRMRY_CUST_PIN_NB], [ACCT_PEER_GRP_INTRL_ID], [PRTFLO_MGR_INTRL_ID], 
+    [HIGH_PRFL_FL], [PROD_INTRL_ID], [SRC_INIT_FUNDS], [MTHD_INIT_FUNDS], [MTHD_ACCT_OPNG], 
+    [ACCT_CLOSE_DT], [ACCT_RPT_CAT_CD], [ADMIN_CD], [BKUP_ADMIN_CD], [BKNG_CTR_CD], [CPCTY_CD], 
+    [CNTRL_GRP_CD], [CNTRL_ID], [HARD_HOLD_FL], [LOCAL_ACCT_OFFCR], [PLEDGE_FL], [REAL_EST_OFFCR_CD], 
+    [RLSHP_ID], [STATE_CD], [STOP_PAYMT_FL], [TRST_REVIEW_DT], [TITL_LINE4_TX], [NVSMT_OBJ_CD], 
+    [NVSMT_OFFCR_CD], [AVP_DT], [BLLNG_PRDCT_CD], [DSCRN_CD], [HOLD_ALL_MAIL_CD], [INCM_RNG_CD], 
+    [MGR_NM], [MANGD_ACCT_FL], [GRWTH_NVSMT_OBJ_RNKNG_CD], [INCM_NVSMT_OBJ_RNKNG_CD], 
+    [LQDTY_NVSMT_OBJ_RNKNG_CD], [TAX_DFFRD_NVSMT_OBJ_RNKNG_CD], [OWNRSHP_CAT_CD], [PLAN_NB_TX], 
+    [STOCK_OPTN_PLAN_FL], [SPCLTN_FL], [STYLE_CD], [SRVC_LEVEL_TX], [PERM_ACCT_INTRL_ID], 
+    [OFAC_REASN_CD], [SPCLTN_LVL], [OPTN_APRVL_CD], [CNSLDTN_NBR_CD], [DSC_MANGD_CD], 
+    [LEAD_ACCT_FL], [LEAD_TRACK_CD], [QLFID_PLAN_EMP_NM], [RLLVR_FL], [PRMRY_CLNT_FL], 
+    [INSDR_ACCT_FL], [SMALL_HH_FL], [CPI_FL], [STNDG_INSTR_US_ACCT_FL], [US_POA_SIGN_FL], 
+    [RECALCITRANT_FL], [PRIOR_PRD_END_NET_WRTH_AM], [NET_WRTH_AM_PRD_END_DT], [EXTRL_NVSMT_ACCT_FL], 
+    [GEO_JRSDCN_CD], [FATCA_STATUS_CD], [FATCA_POOLED_RPT_TYPE_CD], [FATCA_INDICIA_FL], 
+    [FSDF_STG_SRC], [INT_AM], [DIVIDEND_AM], [GROSS_PROCEEDS_RDMPT_AM], [OTHER_INCM_AM]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [mantas].[ACCT]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from [mantas].[ACCT]
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.Acct">
+    insert into [mantas].[ACCT] ([ACCT_INTRL_ID], [DATA_DUMP_DT], [ACCT_SEQ_ID], 
+      [SGMNT_ID], [OPTN_APRVL_LVL_CD], [OPTN_APPVL_DT], 
+      [RGSTN_TYPE_CD], [ACCT_TYPE1_CD], [ACCT_TYPE2_CD], 
+      [ACCT_OPEN_DT], [MAINT_RQMT_PT], [ACCT_TAX_ID], 
+      [TAX_ID_FRMT_CD], [MRGN_APPVL_FL], [TAX_WTHLD_CD], 
+      [TITL_LINE1_TX], [TITL_LINE2_TX], [TITL_LINE3_TX], 
+      [DSCRN_FL], [HH_ACCT_GRP_ID], [MKTG_CAMP_CD], 
+      [CMSN_SCHED_TBL_CD], [EMP_ACCT_FL], [TEST_ACCT_FL], 
+      [ACCT_STAT_CD], [ACCT_STAT_DT], [ALT_ACCT_ID], 
+      [NVSMT_MGR_RETL_REFRL_FL], [LAST_ACTVY_DT], [SRC_SYS_CD], 
+      [ACCT_DSPLY_NM], [ACCT_BUS_RISK_NB], [ACCT_CUST_RISK_NB], 
+      [ACCT_GEO_RISK_NB], [STMT_CUST_QT], [PRMRY_PRDCT_TYPE_CD], 
+      [LAST_STMT_DT], [STMT_SUPR_FL], [NOTFY_LTR_SUPR_FL], 
+      [LEGAL_NTITY_ID], [ACCT_PRM_BRKR_CD], [INSTN_CNTRY_CD], 
+      [GLOBL_RLSHP_FL], [ACCT_LIST_SRC_CD], [PRMRY_CUST_INTRL_ID], 
+      [ACCT_EFCTV_RISK_NB], [ACCT_LIST_RISK_NB], [ACCT_MATCH_TX], 
+      [ACCT_MATCH_TYPE_CD], [CSTM_RISK1_NB], [CSTM_RISK2_NB], 
+      [TAX_PAYR_CUST_INTRL_ID], [CSTM_1_DT], [CSTM_2_DT], 
+      [CSTM_3_DT], [CSTM_1_RL], [CSTM_2_RL], 
+      [CSTM_3_RL], [CSTM_1_TX], [CSTM_2_TX], 
+      [CSTM_3_TX], [CSTM_4_TX], [CSTM_5_TX], 
+      [PTTRN_DAY_TRD_FL], [DAY_TRD_APRVL_STAT_CD], [DAY_TRD_APRVL_UPDT_DT], 
+      [DAY_TRD_APRVL_UPDT_U_INTRL_ID], [DAY_TRD_APRVL_REQ_DT], 
+      [STBLTY_SURVL_LEVEL_NB], [ACCT_RPTNG_CRNCY_CD], [DMCLD_BRCH_CD], 
+      [PRCSNG_BATCH_NM], [ULTMT_INSTL_CUST_INTRL_ID], [DVP_RVP_FL], 
+      [MANTAS_ACCT_HOLDR_TYPE_CD], [MANTAS_ACCT_BUS_TYPE_CD], 
+      [MANTAS_ACCT_OWNRSHP_TYPE_CD], [MANTAS_ACCT_PURP_CD], 
+      [RETRMT_ACCT_FL], [JRSDCN_CD], [BUS_DMN_LIST_TX], 
+      [HIGH_ACTVY_ACCT_FL], [FIRM_ACCT_ORG_INTRL_ID], [PAY_BASIS_TYPE_CD], 
+      [CASH_RPT_EXMPT_FL], [ACCT_EFCTV_RISK_FACTR_TX], [ACCT_CUST_LIST_SRC_CD], 
+      [SRVC_TEAM_INTRL_ID], [FEE_SCHED_CD], [PAY_BASIS_START_DT], 
+      [RISK_TLRNC_CD], [PRMRY_CUST_PIN_NB], [ACCT_PEER_GRP_INTRL_ID], 
+      [PRTFLO_MGR_INTRL_ID], [HIGH_PRFL_FL], [PROD_INTRL_ID], 
+      [SRC_INIT_FUNDS], [MTHD_INIT_FUNDS], [MTHD_ACCT_OPNG], 
+      [ACCT_CLOSE_DT], [ACCT_RPT_CAT_CD], [ADMIN_CD], 
+      [BKUP_ADMIN_CD], [BKNG_CTR_CD], [CPCTY_CD], 
+      [CNTRL_GRP_CD], [CNTRL_ID], [HARD_HOLD_FL], 
+      [LOCAL_ACCT_OFFCR], [PLEDGE_FL], [REAL_EST_OFFCR_CD], 
+      [RLSHP_ID], [STATE_CD], [STOP_PAYMT_FL], 
+      [TRST_REVIEW_DT], [TITL_LINE4_TX], [NVSMT_OBJ_CD], 
+      [NVSMT_OFFCR_CD], [AVP_DT], [BLLNG_PRDCT_CD], 
+      [DSCRN_CD], [HOLD_ALL_MAIL_CD], [INCM_RNG_CD], 
+      [MGR_NM], [MANGD_ACCT_FL], [GRWTH_NVSMT_OBJ_RNKNG_CD], 
+      [INCM_NVSMT_OBJ_RNKNG_CD], [LQDTY_NVSMT_OBJ_RNKNG_CD], 
+      [TAX_DFFRD_NVSMT_OBJ_RNKNG_CD], [OWNRSHP_CAT_CD], 
+      [PLAN_NB_TX], [STOCK_OPTN_PLAN_FL], [SPCLTN_FL], 
+      [STYLE_CD], [SRVC_LEVEL_TX], [PERM_ACCT_INTRL_ID], 
+      [OFAC_REASN_CD], [SPCLTN_LVL], [OPTN_APRVL_CD], 
+      [CNSLDTN_NBR_CD], [DSC_MANGD_CD], [LEAD_ACCT_FL], 
+      [LEAD_TRACK_CD], [QLFID_PLAN_EMP_NM], [RLLVR_FL], 
+      [PRMRY_CLNT_FL], [INSDR_ACCT_FL], [SMALL_HH_FL], 
+      [CPI_FL], [STNDG_INSTR_US_ACCT_FL], [US_POA_SIGN_FL], 
+      [RECALCITRANT_FL], [PRIOR_PRD_END_NET_WRTH_AM], [NET_WRTH_AM_PRD_END_DT], 
+      [EXTRL_NVSMT_ACCT_FL], [GEO_JRSDCN_CD], [FATCA_STATUS_CD], 
+      [FATCA_POOLED_RPT_TYPE_CD], [FATCA_INDICIA_FL], [FSDF_STG_SRC], 
+      [INT_AM], [DIVIDEND_AM], [GROSS_PROCEEDS_RDMPT_AM], 
+      [OTHER_INCM_AM])
+    values (#{acctIntrlId,jdbcType=VARCHAR}, #{dataDumpDt,jdbcType=TIMESTAMP}, #{acctSeqId,jdbcType=DECIMAL}, 
+      #{sgmntId,jdbcType=VARCHAR}, #{optnAprvlLvlCd,jdbcType=VARCHAR}, #{optnAppvlDt,jdbcType=TIMESTAMP}, 
+      #{rgstnTypeCd,jdbcType=VARCHAR}, #{acctType1Cd,jdbcType=VARCHAR}, #{acctType2Cd,jdbcType=VARCHAR}, 
+      #{acctOpenDt,jdbcType=TIMESTAMP}, #{maintRqmtPt,jdbcType=DECIMAL}, #{acctTaxId,jdbcType=VARCHAR}, 
+      #{taxIdFrmtCd,jdbcType=VARCHAR}, #{mrgnAppvlFl,jdbcType=VARCHAR}, #{taxWthldCd,jdbcType=VARCHAR}, 
+      #{titlLine1Tx,jdbcType=VARCHAR}, #{titlLine2Tx,jdbcType=VARCHAR}, #{titlLine3Tx,jdbcType=VARCHAR}, 
+      #{dscrnFl,jdbcType=VARCHAR}, #{hhAcctGrpId,jdbcType=VARCHAR}, #{mktgCampCd,jdbcType=VARCHAR}, 
+      #{cmsnSchedTblCd,jdbcType=VARCHAR}, #{empAcctFl,jdbcType=VARCHAR}, #{testAcctFl,jdbcType=VARCHAR}, 
+      #{acctStatCd,jdbcType=VARCHAR}, #{acctStatDt,jdbcType=TIMESTAMP}, #{altAcctId,jdbcType=VARCHAR}, 
+      #{nvsmtMgrRetlRefrlFl,jdbcType=VARCHAR}, #{lastActvyDt,jdbcType=TIMESTAMP}, #{srcSysCd,jdbcType=VARCHAR}, 
+      #{acctDsplyNm,jdbcType=VARCHAR}, #{acctBusRiskNb,jdbcType=DECIMAL}, #{acctCustRiskNb,jdbcType=DECIMAL}, 
+      #{acctGeoRiskNb,jdbcType=DECIMAL}, #{stmtCustQt,jdbcType=DECIMAL}, #{prmryPrdctTypeCd,jdbcType=VARCHAR}, 
+      #{lastStmtDt,jdbcType=TIMESTAMP}, #{stmtSuprFl,jdbcType=VARCHAR}, #{notfyLtrSuprFl,jdbcType=VARCHAR}, 
+      #{legalNtityId,jdbcType=VARCHAR}, #{acctPrmBrkrCd,jdbcType=VARCHAR}, #{instnCntryCd,jdbcType=VARCHAR}, 
+      #{globlRlshpFl,jdbcType=VARCHAR}, #{acctListSrcCd,jdbcType=VARCHAR}, #{prmryCustIntrlId,jdbcType=VARCHAR}, 
+      #{acctEfctvRiskNb,jdbcType=DECIMAL}, #{acctListRiskNb,jdbcType=DECIMAL}, #{acctMatchTx,jdbcType=VARCHAR}, 
+      #{acctMatchTypeCd,jdbcType=VARCHAR}, #{cstmRisk1Nb,jdbcType=DECIMAL}, #{cstmRisk2Nb,jdbcType=DECIMAL}, 
+      #{taxPayrCustIntrlId,jdbcType=VARCHAR}, #{cstm1Dt,jdbcType=TIMESTAMP}, #{cstm2Dt,jdbcType=TIMESTAMP}, 
+      #{cstm3Dt,jdbcType=TIMESTAMP}, #{cstm1Rl,jdbcType=DECIMAL}, #{cstm2Rl,jdbcType=DECIMAL}, 
+      #{cstm3Rl,jdbcType=DECIMAL}, #{cstm1Tx,jdbcType=VARCHAR}, #{cstm2Tx,jdbcType=VARCHAR}, 
+      #{cstm3Tx,jdbcType=VARCHAR}, #{cstm4Tx,jdbcType=VARCHAR}, #{cstm5Tx,jdbcType=VARCHAR}, 
+      #{pttrnDayTrdFl,jdbcType=VARCHAR}, #{dayTrdAprvlStatCd,jdbcType=VARCHAR}, #{dayTrdAprvlUpdtDt,jdbcType=TIMESTAMP}, 
+      #{dayTrdAprvlUpdtUIntrlId,jdbcType=VARCHAR}, #{dayTrdAprvlReqDt,jdbcType=TIMESTAMP}, 
+      #{stbltySurvlLevelNb,jdbcType=DECIMAL}, #{acctRptngCrncyCd,jdbcType=VARCHAR}, #{dmcldBrchCd,jdbcType=VARCHAR}, 
+      #{prcsngBatchNm,jdbcType=VARCHAR}, #{ultmtInstlCustIntrlId,jdbcType=VARCHAR}, #{dvpRvpFl,jdbcType=VARCHAR}, 
+      #{mantasAcctHoldrTypeCd,jdbcType=VARCHAR}, #{mantasAcctBusTypeCd,jdbcType=VARCHAR}, 
+      #{mantasAcctOwnrshpTypeCd,jdbcType=VARCHAR}, #{mantasAcctPurpCd,jdbcType=VARCHAR}, 
+      #{retrmtAcctFl,jdbcType=VARCHAR}, #{jrsdcnCd,jdbcType=VARCHAR}, #{busDmnListTx,jdbcType=VARCHAR}, 
+      #{highActvyAcctFl,jdbcType=VARCHAR}, #{firmAcctOrgIntrlId,jdbcType=VARCHAR}, #{payBasisTypeCd,jdbcType=VARCHAR}, 
+      #{cashRptExmptFl,jdbcType=VARCHAR}, #{acctEfctvRiskFactrTx,jdbcType=VARCHAR}, #{acctCustListSrcCd,jdbcType=VARCHAR}, 
+      #{srvcTeamIntrlId,jdbcType=VARCHAR}, #{feeSchedCd,jdbcType=VARCHAR}, #{payBasisStartDt,jdbcType=TIMESTAMP}, 
+      #{riskTlrncCd,jdbcType=VARCHAR}, #{prmryCustPinNb,jdbcType=VARCHAR}, #{acctPeerGrpIntrlId,jdbcType=VARCHAR}, 
+      #{prtfloMgrIntrlId,jdbcType=VARCHAR}, #{highPrflFl,jdbcType=VARCHAR}, #{prodIntrlId,jdbcType=VARCHAR}, 
+      #{srcInitFunds,jdbcType=VARCHAR}, #{mthdInitFunds,jdbcType=VARCHAR}, #{mthdAcctOpng,jdbcType=VARCHAR}, 
+      #{acctCloseDt,jdbcType=TIMESTAMP}, #{acctRptCatCd,jdbcType=VARCHAR}, #{adminCd,jdbcType=VARCHAR}, 
+      #{bkupAdminCd,jdbcType=VARCHAR}, #{bkngCtrCd,jdbcType=VARCHAR}, #{cpctyCd,jdbcType=VARCHAR}, 
+      #{cntrlGrpCd,jdbcType=VARCHAR}, #{cntrlId,jdbcType=VARCHAR}, #{hardHoldFl,jdbcType=VARCHAR}, 
+      #{localAcctOffcr,jdbcType=VARCHAR}, #{pledgeFl,jdbcType=VARCHAR}, #{realEstOffcrCd,jdbcType=VARCHAR}, 
+      #{rlshpId,jdbcType=VARCHAR}, #{stateCd,jdbcType=VARCHAR}, #{stopPaymtFl,jdbcType=VARCHAR}, 
+      #{trstReviewDt,jdbcType=TIMESTAMP}, #{titlLine4Tx,jdbcType=VARCHAR}, #{nvsmtObjCd,jdbcType=VARCHAR}, 
+      #{nvsmtOffcrCd,jdbcType=VARCHAR}, #{avpDt,jdbcType=TIMESTAMP}, #{bllngPrdctCd,jdbcType=VARCHAR}, 
+      #{dscrnCd,jdbcType=VARCHAR}, #{holdAllMailCd,jdbcType=VARCHAR}, #{incmRngCd,jdbcType=VARCHAR}, 
+      #{mgrNm,jdbcType=VARCHAR}, #{mangdAcctFl,jdbcType=VARCHAR}, #{grwthNvsmtObjRnkngCd,jdbcType=VARCHAR}, 
+      #{incmNvsmtObjRnkngCd,jdbcType=VARCHAR}, #{lqdtyNvsmtObjRnkngCd,jdbcType=VARCHAR}, 
+      #{taxDffrdNvsmtObjRnkngCd,jdbcType=VARCHAR}, #{ownrshpCatCd,jdbcType=VARCHAR}, 
+      #{planNbTx,jdbcType=VARCHAR}, #{stockOptnPlanFl,jdbcType=VARCHAR}, #{spcltnFl,jdbcType=VARCHAR}, 
+      #{styleCd,jdbcType=VARCHAR}, #{srvcLevelTx,jdbcType=VARCHAR}, #{permAcctIntrlId,jdbcType=VARCHAR}, 
+      #{ofacReasnCd,jdbcType=VARCHAR}, #{spcltnLvl,jdbcType=VARCHAR}, #{optnAprvlCd,jdbcType=VARCHAR}, 
+      #{cnsldtnNbrCd,jdbcType=VARCHAR}, #{dscMangdCd,jdbcType=VARCHAR}, #{leadAcctFl,jdbcType=CHAR}, 
+      #{leadTrackCd,jdbcType=VARCHAR}, #{qlfidPlanEmpNm,jdbcType=VARCHAR}, #{rllvrFl,jdbcType=CHAR}, 
+      #{prmryClntFl,jdbcType=CHAR}, #{insdrAcctFl,jdbcType=VARCHAR}, #{smallHhFl,jdbcType=VARCHAR}, 
+      #{cpiFl,jdbcType=VARCHAR}, #{stndgInstrUsAcctFl,jdbcType=VARCHAR}, #{usPoaSignFl,jdbcType=VARCHAR}, 
+      #{recalcitrantFl,jdbcType=VARCHAR}, #{priorPrdEndNetWrthAm,jdbcType=DECIMAL}, #{netWrthAmPrdEndDt,jdbcType=TIMESTAMP}, 
+      #{extrlNvsmtAcctFl,jdbcType=VARCHAR}, #{geoJrsdcnCd,jdbcType=VARCHAR}, #{fatcaStatusCd,jdbcType=VARCHAR}, 
+      #{fatcaPooledRptTypeCd,jdbcType=VARCHAR}, #{fatcaIndiciaFl,jdbcType=VARCHAR}, #{fsdfStgSrc,jdbcType=VARCHAR}, 
+      #{intAm,jdbcType=DECIMAL}, #{dividendAm,jdbcType=DECIMAL}, #{grossProceedsRdmptAm,jdbcType=DECIMAL}, 
+      #{otherIncmAm,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.Acct">
+    insert into [mantas].[ACCT]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        [ACCT_INTRL_ID],
+      </if>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT],
+      </if>
+      <if test="acctSeqId != null">
+        [ACCT_SEQ_ID],
+      </if>
+      <if test="sgmntId != null">
+        [SGMNT_ID],
+      </if>
+      <if test="optnAprvlLvlCd != null">
+        [OPTN_APRVL_LVL_CD],
+      </if>
+      <if test="optnAppvlDt != null">
+        [OPTN_APPVL_DT],
+      </if>
+      <if test="rgstnTypeCd != null">
+        [RGSTN_TYPE_CD],
+      </if>
+      <if test="acctType1Cd != null">
+        [ACCT_TYPE1_CD],
+      </if>
+      <if test="acctType2Cd != null">
+        [ACCT_TYPE2_CD],
+      </if>
+      <if test="acctOpenDt != null">
+        [ACCT_OPEN_DT],
+      </if>
+      <if test="maintRqmtPt != null">
+        [MAINT_RQMT_PT],
+      </if>
+      <if test="acctTaxId != null">
+        [ACCT_TAX_ID],
+      </if>
+      <if test="taxIdFrmtCd != null">
+        [TAX_ID_FRMT_CD],
+      </if>
+      <if test="mrgnAppvlFl != null">
+        [MRGN_APPVL_FL],
+      </if>
+      <if test="taxWthldCd != null">
+        [TAX_WTHLD_CD],
+      </if>
+      <if test="titlLine1Tx != null">
+        [TITL_LINE1_TX],
+      </if>
+      <if test="titlLine2Tx != null">
+        [TITL_LINE2_TX],
+      </if>
+      <if test="titlLine3Tx != null">
+        [TITL_LINE3_TX],
+      </if>
+      <if test="dscrnFl != null">
+        [DSCRN_FL],
+      </if>
+      <if test="hhAcctGrpId != null">
+        [HH_ACCT_GRP_ID],
+      </if>
+      <if test="mktgCampCd != null">
+        [MKTG_CAMP_CD],
+      </if>
+      <if test="cmsnSchedTblCd != null">
+        [CMSN_SCHED_TBL_CD],
+      </if>
+      <if test="empAcctFl != null">
+        [EMP_ACCT_FL],
+      </if>
+      <if test="testAcctFl != null">
+        [TEST_ACCT_FL],
+      </if>
+      <if test="acctStatCd != null">
+        [ACCT_STAT_CD],
+      </if>
+      <if test="acctStatDt != null">
+        [ACCT_STAT_DT],
+      </if>
+      <if test="altAcctId != null">
+        [ALT_ACCT_ID],
+      </if>
+      <if test="nvsmtMgrRetlRefrlFl != null">
+        [NVSMT_MGR_RETL_REFRL_FL],
+      </if>
+      <if test="lastActvyDt != null">
+        [LAST_ACTVY_DT],
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD],
+      </if>
+      <if test="acctDsplyNm != null">
+        [ACCT_DSPLY_NM],
+      </if>
+      <if test="acctBusRiskNb != null">
+        [ACCT_BUS_RISK_NB],
+      </if>
+      <if test="acctCustRiskNb != null">
+        [ACCT_CUST_RISK_NB],
+      </if>
+      <if test="acctGeoRiskNb != null">
+        [ACCT_GEO_RISK_NB],
+      </if>
+      <if test="stmtCustQt != null">
+        [STMT_CUST_QT],
+      </if>
+      <if test="prmryPrdctTypeCd != null">
+        [PRMRY_PRDCT_TYPE_CD],
+      </if>
+      <if test="lastStmtDt != null">
+        [LAST_STMT_DT],
+      </if>
+      <if test="stmtSuprFl != null">
+        [STMT_SUPR_FL],
+      </if>
+      <if test="notfyLtrSuprFl != null">
+        [NOTFY_LTR_SUPR_FL],
+      </if>
+      <if test="legalNtityId != null">
+        [LEGAL_NTITY_ID],
+      </if>
+      <if test="acctPrmBrkrCd != null">
+        [ACCT_PRM_BRKR_CD],
+      </if>
+      <if test="instnCntryCd != null">
+        [INSTN_CNTRY_CD],
+      </if>
+      <if test="globlRlshpFl != null">
+        [GLOBL_RLSHP_FL],
+      </if>
+      <if test="acctListSrcCd != null">
+        [ACCT_LIST_SRC_CD],
+      </if>
+      <if test="prmryCustIntrlId != null">
+        [PRMRY_CUST_INTRL_ID],
+      </if>
+      <if test="acctEfctvRiskNb != null">
+        [ACCT_EFCTV_RISK_NB],
+      </if>
+      <if test="acctListRiskNb != null">
+        [ACCT_LIST_RISK_NB],
+      </if>
+      <if test="acctMatchTx != null">
+        [ACCT_MATCH_TX],
+      </if>
+      <if test="acctMatchTypeCd != null">
+        [ACCT_MATCH_TYPE_CD],
+      </if>
+      <if test="cstmRisk1Nb != null">
+        [CSTM_RISK1_NB],
+      </if>
+      <if test="cstmRisk2Nb != null">
+        [CSTM_RISK2_NB],
+      </if>
+      <if test="taxPayrCustIntrlId != null">
+        [TAX_PAYR_CUST_INTRL_ID],
+      </if>
+      <if test="cstm1Dt != null">
+        [CSTM_1_DT],
+      </if>
+      <if test="cstm2Dt != null">
+        [CSTM_2_DT],
+      </if>
+      <if test="cstm3Dt != null">
+        [CSTM_3_DT],
+      </if>
+      <if test="cstm1Rl != null">
+        [CSTM_1_RL],
+      </if>
+      <if test="cstm2Rl != null">
+        [CSTM_2_RL],
+      </if>
+      <if test="cstm3Rl != null">
+        [CSTM_3_RL],
+      </if>
+      <if test="cstm1Tx != null">
+        [CSTM_1_TX],
+      </if>
+      <if test="cstm2Tx != null">
+        [CSTM_2_TX],
+      </if>
+      <if test="cstm3Tx != null">
+        [CSTM_3_TX],
+      </if>
+      <if test="cstm4Tx != null">
+        [CSTM_4_TX],
+      </if>
+      <if test="cstm5Tx != null">
+        [CSTM_5_TX],
+      </if>
+      <if test="pttrnDayTrdFl != null">
+        [PTTRN_DAY_TRD_FL],
+      </if>
+      <if test="dayTrdAprvlStatCd != null">
+        [DAY_TRD_APRVL_STAT_CD],
+      </if>
+      <if test="dayTrdAprvlUpdtDt != null">
+        [DAY_TRD_APRVL_UPDT_DT],
+      </if>
+      <if test="dayTrdAprvlUpdtUIntrlId != null">
+        [DAY_TRD_APRVL_UPDT_U_INTRL_ID],
+      </if>
+      <if test="dayTrdAprvlReqDt != null">
+        [DAY_TRD_APRVL_REQ_DT],
+      </if>
+      <if test="stbltySurvlLevelNb != null">
+        [STBLTY_SURVL_LEVEL_NB],
+      </if>
+      <if test="acctRptngCrncyCd != null">
+        [ACCT_RPTNG_CRNCY_CD],
+      </if>
+      <if test="dmcldBrchCd != null">
+        [DMCLD_BRCH_CD],
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM],
+      </if>
+      <if test="ultmtInstlCustIntrlId != null">
+        [ULTMT_INSTL_CUST_INTRL_ID],
+      </if>
+      <if test="dvpRvpFl != null">
+        [DVP_RVP_FL],
+      </if>
+      <if test="mantasAcctHoldrTypeCd != null">
+        [MANTAS_ACCT_HOLDR_TYPE_CD],
+      </if>
+      <if test="mantasAcctBusTypeCd != null">
+        [MANTAS_ACCT_BUS_TYPE_CD],
+      </if>
+      <if test="mantasAcctOwnrshpTypeCd != null">
+        [MANTAS_ACCT_OWNRSHP_TYPE_CD],
+      </if>
+      <if test="mantasAcctPurpCd != null">
+        [MANTAS_ACCT_PURP_CD],
+      </if>
+      <if test="retrmtAcctFl != null">
+        [RETRMT_ACCT_FL],
+      </if>
+      <if test="jrsdcnCd != null">
+        [JRSDCN_CD],
+      </if>
+      <if test="busDmnListTx != null">
+        [BUS_DMN_LIST_TX],
+      </if>
+      <if test="highActvyAcctFl != null">
+        [HIGH_ACTVY_ACCT_FL],
+      </if>
+      <if test="firmAcctOrgIntrlId != null">
+        [FIRM_ACCT_ORG_INTRL_ID],
+      </if>
+      <if test="payBasisTypeCd != null">
+        [PAY_BASIS_TYPE_CD],
+      </if>
+      <if test="cashRptExmptFl != null">
+        [CASH_RPT_EXMPT_FL],
+      </if>
+      <if test="acctEfctvRiskFactrTx != null">
+        [ACCT_EFCTV_RISK_FACTR_TX],
+      </if>
+      <if test="acctCustListSrcCd != null">
+        [ACCT_CUST_LIST_SRC_CD],
+      </if>
+      <if test="srvcTeamIntrlId != null">
+        [SRVC_TEAM_INTRL_ID],
+      </if>
+      <if test="feeSchedCd != null">
+        [FEE_SCHED_CD],
+      </if>
+      <if test="payBasisStartDt != null">
+        [PAY_BASIS_START_DT],
+      </if>
+      <if test="riskTlrncCd != null">
+        [RISK_TLRNC_CD],
+      </if>
+      <if test="prmryCustPinNb != null">
+        [PRMRY_CUST_PIN_NB],
+      </if>
+      <if test="acctPeerGrpIntrlId != null">
+        [ACCT_PEER_GRP_INTRL_ID],
+      </if>
+      <if test="prtfloMgrIntrlId != null">
+        [PRTFLO_MGR_INTRL_ID],
+      </if>
+      <if test="highPrflFl != null">
+        [HIGH_PRFL_FL],
+      </if>
+      <if test="prodIntrlId != null">
+        [PROD_INTRL_ID],
+      </if>
+      <if test="srcInitFunds != null">
+        [SRC_INIT_FUNDS],
+      </if>
+      <if test="mthdInitFunds != null">
+        [MTHD_INIT_FUNDS],
+      </if>
+      <if test="mthdAcctOpng != null">
+        [MTHD_ACCT_OPNG],
+      </if>
+      <if test="acctCloseDt != null">
+        [ACCT_CLOSE_DT],
+      </if>
+      <if test="acctRptCatCd != null">
+        [ACCT_RPT_CAT_CD],
+      </if>
+      <if test="adminCd != null">
+        [ADMIN_CD],
+      </if>
+      <if test="bkupAdminCd != null">
+        [BKUP_ADMIN_CD],
+      </if>
+      <if test="bkngCtrCd != null">
+        [BKNG_CTR_CD],
+      </if>
+      <if test="cpctyCd != null">
+        [CPCTY_CD],
+      </if>
+      <if test="cntrlGrpCd != null">
+        [CNTRL_GRP_CD],
+      </if>
+      <if test="cntrlId != null">
+        [CNTRL_ID],
+      </if>
+      <if test="hardHoldFl != null">
+        [HARD_HOLD_FL],
+      </if>
+      <if test="localAcctOffcr != null">
+        [LOCAL_ACCT_OFFCR],
+      </if>
+      <if test="pledgeFl != null">
+        [PLEDGE_FL],
+      </if>
+      <if test="realEstOffcrCd != null">
+        [REAL_EST_OFFCR_CD],
+      </if>
+      <if test="rlshpId != null">
+        [RLSHP_ID],
+      </if>
+      <if test="stateCd != null">
+        [STATE_CD],
+      </if>
+      <if test="stopPaymtFl != null">
+        [STOP_PAYMT_FL],
+      </if>
+      <if test="trstReviewDt != null">
+        [TRST_REVIEW_DT],
+      </if>
+      <if test="titlLine4Tx != null">
+        [TITL_LINE4_TX],
+      </if>
+      <if test="nvsmtObjCd != null">
+        [NVSMT_OBJ_CD],
+      </if>
+      <if test="nvsmtOffcrCd != null">
+        [NVSMT_OFFCR_CD],
+      </if>
+      <if test="avpDt != null">
+        [AVP_DT],
+      </if>
+      <if test="bllngPrdctCd != null">
+        [BLLNG_PRDCT_CD],
+      </if>
+      <if test="dscrnCd != null">
+        [DSCRN_CD],
+      </if>
+      <if test="holdAllMailCd != null">
+        [HOLD_ALL_MAIL_CD],
+      </if>
+      <if test="incmRngCd != null">
+        [INCM_RNG_CD],
+      </if>
+      <if test="mgrNm != null">
+        [MGR_NM],
+      </if>
+      <if test="mangdAcctFl != null">
+        [MANGD_ACCT_FL],
+      </if>
+      <if test="grwthNvsmtObjRnkngCd != null">
+        [GRWTH_NVSMT_OBJ_RNKNG_CD],
+      </if>
+      <if test="incmNvsmtObjRnkngCd != null">
+        [INCM_NVSMT_OBJ_RNKNG_CD],
+      </if>
+      <if test="lqdtyNvsmtObjRnkngCd != null">
+        [LQDTY_NVSMT_OBJ_RNKNG_CD],
+      </if>
+      <if test="taxDffrdNvsmtObjRnkngCd != null">
+        [TAX_DFFRD_NVSMT_OBJ_RNKNG_CD],
+      </if>
+      <if test="ownrshpCatCd != null">
+        [OWNRSHP_CAT_CD],
+      </if>
+      <if test="planNbTx != null">
+        [PLAN_NB_TX],
+      </if>
+      <if test="stockOptnPlanFl != null">
+        [STOCK_OPTN_PLAN_FL],
+      </if>
+      <if test="spcltnFl != null">
+        [SPCLTN_FL],
+      </if>
+      <if test="styleCd != null">
+        [STYLE_CD],
+      </if>
+      <if test="srvcLevelTx != null">
+        [SRVC_LEVEL_TX],
+      </if>
+      <if test="permAcctIntrlId != null">
+        [PERM_ACCT_INTRL_ID],
+      </if>
+      <if test="ofacReasnCd != null">
+        [OFAC_REASN_CD],
+      </if>
+      <if test="spcltnLvl != null">
+        [SPCLTN_LVL],
+      </if>
+      <if test="optnAprvlCd != null">
+        [OPTN_APRVL_CD],
+      </if>
+      <if test="cnsldtnNbrCd != null">
+        [CNSLDTN_NBR_CD],
+      </if>
+      <if test="dscMangdCd != null">
+        [DSC_MANGD_CD],
+      </if>
+      <if test="leadAcctFl != null">
+        [LEAD_ACCT_FL],
+      </if>
+      <if test="leadTrackCd != null">
+        [LEAD_TRACK_CD],
+      </if>
+      <if test="qlfidPlanEmpNm != null">
+        [QLFID_PLAN_EMP_NM],
+      </if>
+      <if test="rllvrFl != null">
+        [RLLVR_FL],
+      </if>
+      <if test="prmryClntFl != null">
+        [PRMRY_CLNT_FL],
+      </if>
+      <if test="insdrAcctFl != null">
+        [INSDR_ACCT_FL],
+      </if>
+      <if test="smallHhFl != null">
+        [SMALL_HH_FL],
+      </if>
+      <if test="cpiFl != null">
+        [CPI_FL],
+      </if>
+      <if test="stndgInstrUsAcctFl != null">
+        [STNDG_INSTR_US_ACCT_FL],
+      </if>
+      <if test="usPoaSignFl != null">
+        [US_POA_SIGN_FL],
+      </if>
+      <if test="recalcitrantFl != null">
+        [RECALCITRANT_FL],
+      </if>
+      <if test="priorPrdEndNetWrthAm != null">
+        [PRIOR_PRD_END_NET_WRTH_AM],
+      </if>
+      <if test="netWrthAmPrdEndDt != null">
+        [NET_WRTH_AM_PRD_END_DT],
+      </if>
+      <if test="extrlNvsmtAcctFl != null">
+        [EXTRL_NVSMT_ACCT_FL],
+      </if>
+      <if test="geoJrsdcnCd != null">
+        [GEO_JRSDCN_CD],
+      </if>
+      <if test="fatcaStatusCd != null">
+        [FATCA_STATUS_CD],
+      </if>
+      <if test="fatcaPooledRptTypeCd != null">
+        [FATCA_POOLED_RPT_TYPE_CD],
+      </if>
+      <if test="fatcaIndiciaFl != null">
+        [FATCA_INDICIA_FL],
+      </if>
+      <if test="fsdfStgSrc != null">
+        [FSDF_STG_SRC],
+      </if>
+      <if test="intAm != null">
+        [INT_AM],
+      </if>
+      <if test="dividendAm != null">
+        [DIVIDEND_AM],
+      </if>
+      <if test="grossProceedsRdmptAm != null">
+        [GROSS_PROCEEDS_RDMPT_AM],
+      </if>
+      <if test="otherIncmAm != null">
+        [OTHER_INCM_AM],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acctIntrlId != null">
+        #{acctIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDumpDt != null">
+        #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctSeqId != null">
+        #{acctSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="sgmntId != null">
+        #{sgmntId,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAprvlLvlCd != null">
+        #{optnAprvlLvlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAppvlDt != null">
+        #{optnAppvlDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rgstnTypeCd != null">
+        #{rgstnTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType1Cd != null">
+        #{acctType1Cd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType2Cd != null">
+        #{acctType2Cd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctOpenDt != null">
+        #{acctOpenDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintRqmtPt != null">
+        #{maintRqmtPt,jdbcType=DECIMAL},
+      </if>
+      <if test="acctTaxId != null">
+        #{acctTaxId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxIdFrmtCd != null">
+        #{taxIdFrmtCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgnAppvlFl != null">
+        #{mrgnAppvlFl,jdbcType=VARCHAR},
+      </if>
+      <if test="taxWthldCd != null">
+        #{taxWthldCd,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine1Tx != null">
+        #{titlLine1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine2Tx != null">
+        #{titlLine2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine3Tx != null">
+        #{titlLine3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="dscrnFl != null">
+        #{dscrnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="hhAcctGrpId != null">
+        #{hhAcctGrpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mktgCampCd != null">
+        #{mktgCampCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmsnSchedTblCd != null">
+        #{cmsnSchedTblCd,jdbcType=VARCHAR},
+      </if>
+      <if test="empAcctFl != null">
+        #{empAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="testAcctFl != null">
+        #{testAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatCd != null">
+        #{acctStatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatDt != null">
+        #{acctStatDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="altAcctId != null">
+        #{altAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtMgrRetlRefrlFl != null">
+        #{nvsmtMgrRetlRefrlFl,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActvyDt != null">
+        #{lastActvyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcSysCd != null">
+        #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDsplyNm != null">
+        #{acctDsplyNm,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBusRiskNb != null">
+        #{acctBusRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctCustRiskNb != null">
+        #{acctCustRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGeoRiskNb != null">
+        #{acctGeoRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtCustQt != null">
+        #{stmtCustQt,jdbcType=DECIMAL},
+      </if>
+      <if test="prmryPrdctTypeCd != null">
+        #{prmryPrdctTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lastStmtDt != null">
+        #{lastStmtDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stmtSuprFl != null">
+        #{stmtSuprFl,jdbcType=VARCHAR},
+      </if>
+      <if test="notfyLtrSuprFl != null">
+        #{notfyLtrSuprFl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalNtityId != null">
+        #{legalNtityId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPrmBrkrCd != null">
+        #{acctPrmBrkrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="instnCntryCd != null">
+        #{instnCntryCd,jdbcType=VARCHAR},
+      </if>
+      <if test="globlRlshpFl != null">
+        #{globlRlshpFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctListSrcCd != null">
+        #{acctListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prmryCustIntrlId != null">
+        #{prmryCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctEfctvRiskNb != null">
+        #{acctEfctvRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctListRiskNb != null">
+        #{acctListRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctMatchTx != null">
+        #{acctMatchTx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctMatchTypeCd != null">
+        #{acctMatchTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cstmRisk1Nb != null">
+        #{cstmRisk1Nb,jdbcType=DECIMAL},
+      </if>
+      <if test="cstmRisk2Nb != null">
+        #{cstmRisk2Nb,jdbcType=DECIMAL},
+      </if>
+      <if test="taxPayrCustIntrlId != null">
+        #{taxPayrCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm1Dt != null">
+        #{cstm1Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm2Dt != null">
+        #{cstm2Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm3Dt != null">
+        #{cstm3Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm1Rl != null">
+        #{cstm1Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm2Rl != null">
+        #{cstm2Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm3Rl != null">
+        #{cstm3Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm1Tx != null">
+        #{cstm1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm2Tx != null">
+        #{cstm2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm3Tx != null">
+        #{cstm3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm4Tx != null">
+        #{cstm4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm5Tx != null">
+        #{cstm5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="pttrnDayTrdFl != null">
+        #{pttrnDayTrdFl,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlStatCd != null">
+        #{dayTrdAprvlStatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlUpdtDt != null">
+        #{dayTrdAprvlUpdtDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dayTrdAprvlUpdtUIntrlId != null">
+        #{dayTrdAprvlUpdtUIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlReqDt != null">
+        #{dayTrdAprvlReqDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stbltySurvlLevelNb != null">
+        #{stbltySurvlLevelNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctRptngCrncyCd != null">
+        #{acctRptngCrncyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dmcldBrchCd != null">
+        #{dmcldBrchCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="ultmtInstlCustIntrlId != null">
+        #{ultmtInstlCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dvpRvpFl != null">
+        #{dvpRvpFl,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctHoldrTypeCd != null">
+        #{mantasAcctHoldrTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctBusTypeCd != null">
+        #{mantasAcctBusTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctOwnrshpTypeCd != null">
+        #{mantasAcctOwnrshpTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctPurpCd != null">
+        #{mantasAcctPurpCd,jdbcType=VARCHAR},
+      </if>
+      <if test="retrmtAcctFl != null">
+        #{retrmtAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="jrsdcnCd != null">
+        #{jrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnListTx != null">
+        #{busDmnListTx,jdbcType=VARCHAR},
+      </if>
+      <if test="highActvyAcctFl != null">
+        #{highActvyAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="firmAcctOrgIntrlId != null">
+        #{firmAcctOrgIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasisTypeCd != null">
+        #{payBasisTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cashRptExmptFl != null">
+        #{cashRptExmptFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctEfctvRiskFactrTx != null">
+        #{acctEfctvRiskFactrTx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCustListSrcCd != null">
+        #{acctCustListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="srvcTeamIntrlId != null">
+        #{srvcTeamIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="feeSchedCd != null">
+        #{feeSchedCd,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasisStartDt != null">
+        #{payBasisStartDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskTlrncCd != null">
+        #{riskTlrncCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prmryCustPinNb != null">
+        #{prmryCustPinNb,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPeerGrpIntrlId != null">
+        #{acctPeerGrpIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="prtfloMgrIntrlId != null">
+        #{prtfloMgrIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="highPrflFl != null">
+        #{highPrflFl,jdbcType=VARCHAR},
+      </if>
+      <if test="prodIntrlId != null">
+        #{prodIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcInitFunds != null">
+        #{srcInitFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="mthdInitFunds != null">
+        #{mthdInitFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="mthdAcctOpng != null">
+        #{mthdAcctOpng,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCloseDt != null">
+        #{acctCloseDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctRptCatCd != null">
+        #{acctRptCatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCd != null">
+        #{adminCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bkupAdminCd != null">
+        #{bkupAdminCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bkngCtrCd != null">
+        #{bkngCtrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cpctyCd != null">
+        #{cpctyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cntrlGrpCd != null">
+        #{cntrlGrpCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cntrlId != null">
+        #{cntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hardHoldFl != null">
+        #{hardHoldFl,jdbcType=VARCHAR},
+      </if>
+      <if test="localAcctOffcr != null">
+        #{localAcctOffcr,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeFl != null">
+        #{pledgeFl,jdbcType=VARCHAR},
+      </if>
+      <if test="realEstOffcrCd != null">
+        #{realEstOffcrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rlshpId != null">
+        #{rlshpId,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCd != null">
+        #{stateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPaymtFl != null">
+        #{stopPaymtFl,jdbcType=VARCHAR},
+      </if>
+      <if test="trstReviewDt != null">
+        #{trstReviewDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="titlLine4Tx != null">
+        #{titlLine4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtObjCd != null">
+        #{nvsmtObjCd,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtOffcrCd != null">
+        #{nvsmtOffcrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="avpDt != null">
+        #{avpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bllngPrdctCd != null">
+        #{bllngPrdctCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dscrnCd != null">
+        #{dscrnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="holdAllMailCd != null">
+        #{holdAllMailCd,jdbcType=VARCHAR},
+      </if>
+      <if test="incmRngCd != null">
+        #{incmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrNm != null">
+        #{mgrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="mangdAcctFl != null">
+        #{mangdAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="grwthNvsmtObjRnkngCd != null">
+        #{grwthNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="incmNvsmtObjRnkngCd != null">
+        #{incmNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lqdtyNvsmtObjRnkngCd != null">
+        #{lqdtyNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="taxDffrdNvsmtObjRnkngCd != null">
+        #{taxDffrdNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ownrshpCatCd != null">
+        #{ownrshpCatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="planNbTx != null">
+        #{planNbTx,jdbcType=VARCHAR},
+      </if>
+      <if test="stockOptnPlanFl != null">
+        #{stockOptnPlanFl,jdbcType=VARCHAR},
+      </if>
+      <if test="spcltnFl != null">
+        #{spcltnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="styleCd != null">
+        #{styleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="srvcLevelTx != null">
+        #{srvcLevelTx,jdbcType=VARCHAR},
+      </if>
+      <if test="permAcctIntrlId != null">
+        #{permAcctIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="ofacReasnCd != null">
+        #{ofacReasnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="spcltnLvl != null">
+        #{spcltnLvl,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAprvlCd != null">
+        #{optnAprvlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cnsldtnNbrCd != null">
+        #{cnsldtnNbrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dscMangdCd != null">
+        #{dscMangdCd,jdbcType=VARCHAR},
+      </if>
+      <if test="leadAcctFl != null">
+        #{leadAcctFl,jdbcType=CHAR},
+      </if>
+      <if test="leadTrackCd != null">
+        #{leadTrackCd,jdbcType=VARCHAR},
+      </if>
+      <if test="qlfidPlanEmpNm != null">
+        #{qlfidPlanEmpNm,jdbcType=VARCHAR},
+      </if>
+      <if test="rllvrFl != null">
+        #{rllvrFl,jdbcType=CHAR},
+      </if>
+      <if test="prmryClntFl != null">
+        #{prmryClntFl,jdbcType=CHAR},
+      </if>
+      <if test="insdrAcctFl != null">
+        #{insdrAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="smallHhFl != null">
+        #{smallHhFl,jdbcType=VARCHAR},
+      </if>
+      <if test="cpiFl != null">
+        #{cpiFl,jdbcType=VARCHAR},
+      </if>
+      <if test="stndgInstrUsAcctFl != null">
+        #{stndgInstrUsAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="usPoaSignFl != null">
+        #{usPoaSignFl,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcitrantFl != null">
+        #{recalcitrantFl,jdbcType=VARCHAR},
+      </if>
+      <if test="priorPrdEndNetWrthAm != null">
+        #{priorPrdEndNetWrthAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAmPrdEndDt != null">
+        #{netWrthAmPrdEndDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extrlNvsmtAcctFl != null">
+        #{extrlNvsmtAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="geoJrsdcnCd != null">
+        #{geoJrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaStatusCd != null">
+        #{fatcaStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaPooledRptTypeCd != null">
+        #{fatcaPooledRptTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaIndiciaFl != null">
+        #{fatcaIndiciaFl,jdbcType=VARCHAR},
+      </if>
+      <if test="fsdfStgSrc != null">
+        #{fsdfStgSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="intAm != null">
+        #{intAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dividendAm != null">
+        #{dividendAm,jdbcType=DECIMAL},
+      </if>
+      <if test="grossProceedsRdmptAm != null">
+        #{grossProceedsRdmptAm,jdbcType=DECIMAL},
+      </if>
+      <if test="otherIncmAm != null">
+        #{otherIncmAm,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.Acct">
+    update [mantas].[ACCT]
+    <set>
+      <if test="dataDumpDt != null">
+        [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctSeqId != null">
+        [ACCT_SEQ_ID] = #{acctSeqId,jdbcType=DECIMAL},
+      </if>
+      <if test="sgmntId != null">
+        [SGMNT_ID] = #{sgmntId,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAprvlLvlCd != null">
+        [OPTN_APRVL_LVL_CD] = #{optnAprvlLvlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAppvlDt != null">
+        [OPTN_APPVL_DT] = #{optnAppvlDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rgstnTypeCd != null">
+        [RGSTN_TYPE_CD] = #{rgstnTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType1Cd != null">
+        [ACCT_TYPE1_CD] = #{acctType1Cd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType2Cd != null">
+        [ACCT_TYPE2_CD] = #{acctType2Cd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctOpenDt != null">
+        [ACCT_OPEN_DT] = #{acctOpenDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintRqmtPt != null">
+        [MAINT_RQMT_PT] = #{maintRqmtPt,jdbcType=DECIMAL},
+      </if>
+      <if test="acctTaxId != null">
+        [ACCT_TAX_ID] = #{acctTaxId,jdbcType=VARCHAR},
+      </if>
+      <if test="taxIdFrmtCd != null">
+        [TAX_ID_FRMT_CD] = #{taxIdFrmtCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgnAppvlFl != null">
+        [MRGN_APPVL_FL] = #{mrgnAppvlFl,jdbcType=VARCHAR},
+      </if>
+      <if test="taxWthldCd != null">
+        [TAX_WTHLD_CD] = #{taxWthldCd,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine1Tx != null">
+        [TITL_LINE1_TX] = #{titlLine1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine2Tx != null">
+        [TITL_LINE2_TX] = #{titlLine2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="titlLine3Tx != null">
+        [TITL_LINE3_TX] = #{titlLine3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="dscrnFl != null">
+        [DSCRN_FL] = #{dscrnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="hhAcctGrpId != null">
+        [HH_ACCT_GRP_ID] = #{hhAcctGrpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mktgCampCd != null">
+        [MKTG_CAMP_CD] = #{mktgCampCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cmsnSchedTblCd != null">
+        [CMSN_SCHED_TBL_CD] = #{cmsnSchedTblCd,jdbcType=VARCHAR},
+      </if>
+      <if test="empAcctFl != null">
+        [EMP_ACCT_FL] = #{empAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="testAcctFl != null">
+        [TEST_ACCT_FL] = #{testAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatCd != null">
+        [ACCT_STAT_CD] = #{acctStatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatDt != null">
+        [ACCT_STAT_DT] = #{acctStatDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="altAcctId != null">
+        [ALT_ACCT_ID] = #{altAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtMgrRetlRefrlFl != null">
+        [NVSMT_MGR_RETL_REFRL_FL] = #{nvsmtMgrRetlRefrlFl,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActvyDt != null">
+        [LAST_ACTVY_DT] = #{lastActvyDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srcSysCd != null">
+        [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      </if>
+      <if test="acctDsplyNm != null">
+        [ACCT_DSPLY_NM] = #{acctDsplyNm,jdbcType=VARCHAR},
+      </if>
+      <if test="acctBusRiskNb != null">
+        [ACCT_BUS_RISK_NB] = #{acctBusRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctCustRiskNb != null">
+        [ACCT_CUST_RISK_NB] = #{acctCustRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctGeoRiskNb != null">
+        [ACCT_GEO_RISK_NB] = #{acctGeoRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtCustQt != null">
+        [STMT_CUST_QT] = #{stmtCustQt,jdbcType=DECIMAL},
+      </if>
+      <if test="prmryPrdctTypeCd != null">
+        [PRMRY_PRDCT_TYPE_CD] = #{prmryPrdctTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lastStmtDt != null">
+        [LAST_STMT_DT] = #{lastStmtDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stmtSuprFl != null">
+        [STMT_SUPR_FL] = #{stmtSuprFl,jdbcType=VARCHAR},
+      </if>
+      <if test="notfyLtrSuprFl != null">
+        [NOTFY_LTR_SUPR_FL] = #{notfyLtrSuprFl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalNtityId != null">
+        [LEGAL_NTITY_ID] = #{legalNtityId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPrmBrkrCd != null">
+        [ACCT_PRM_BRKR_CD] = #{acctPrmBrkrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="instnCntryCd != null">
+        [INSTN_CNTRY_CD] = #{instnCntryCd,jdbcType=VARCHAR},
+      </if>
+      <if test="globlRlshpFl != null">
+        [GLOBL_RLSHP_FL] = #{globlRlshpFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctListSrcCd != null">
+        [ACCT_LIST_SRC_CD] = #{acctListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prmryCustIntrlId != null">
+        [PRMRY_CUST_INTRL_ID] = #{prmryCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctEfctvRiskNb != null">
+        [ACCT_EFCTV_RISK_NB] = #{acctEfctvRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctListRiskNb != null">
+        [ACCT_LIST_RISK_NB] = #{acctListRiskNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctMatchTx != null">
+        [ACCT_MATCH_TX] = #{acctMatchTx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctMatchTypeCd != null">
+        [ACCT_MATCH_TYPE_CD] = #{acctMatchTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cstmRisk1Nb != null">
+        [CSTM_RISK1_NB] = #{cstmRisk1Nb,jdbcType=DECIMAL},
+      </if>
+      <if test="cstmRisk2Nb != null">
+        [CSTM_RISK2_NB] = #{cstmRisk2Nb,jdbcType=DECIMAL},
+      </if>
+      <if test="taxPayrCustIntrlId != null">
+        [TAX_PAYR_CUST_INTRL_ID] = #{taxPayrCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm1Dt != null">
+        [CSTM_1_DT] = #{cstm1Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm2Dt != null">
+        [CSTM_2_DT] = #{cstm2Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm3Dt != null">
+        [CSTM_3_DT] = #{cstm3Dt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstm1Rl != null">
+        [CSTM_1_RL] = #{cstm1Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm2Rl != null">
+        [CSTM_2_RL] = #{cstm2Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm3Rl != null">
+        [CSTM_3_RL] = #{cstm3Rl,jdbcType=DECIMAL},
+      </if>
+      <if test="cstm1Tx != null">
+        [CSTM_1_TX] = #{cstm1Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm2Tx != null">
+        [CSTM_2_TX] = #{cstm2Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm3Tx != null">
+        [CSTM_3_TX] = #{cstm3Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm4Tx != null">
+        [CSTM_4_TX] = #{cstm4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="cstm5Tx != null">
+        [CSTM_5_TX] = #{cstm5Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="pttrnDayTrdFl != null">
+        [PTTRN_DAY_TRD_FL] = #{pttrnDayTrdFl,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlStatCd != null">
+        [DAY_TRD_APRVL_STAT_CD] = #{dayTrdAprvlStatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlUpdtDt != null">
+        [DAY_TRD_APRVL_UPDT_DT] = #{dayTrdAprvlUpdtDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dayTrdAprvlUpdtUIntrlId != null">
+        [DAY_TRD_APRVL_UPDT_U_INTRL_ID] = #{dayTrdAprvlUpdtUIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTrdAprvlReqDt != null">
+        [DAY_TRD_APRVL_REQ_DT] = #{dayTrdAprvlReqDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stbltySurvlLevelNb != null">
+        [STBLTY_SURVL_LEVEL_NB] = #{stbltySurvlLevelNb,jdbcType=DECIMAL},
+      </if>
+      <if test="acctRptngCrncyCd != null">
+        [ACCT_RPTNG_CRNCY_CD] = #{acctRptngCrncyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dmcldBrchCd != null">
+        [DMCLD_BRCH_CD] = #{dmcldBrchCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prcsngBatchNm != null">
+        [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      </if>
+      <if test="ultmtInstlCustIntrlId != null">
+        [ULTMT_INSTL_CUST_INTRL_ID] = #{ultmtInstlCustIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="dvpRvpFl != null">
+        [DVP_RVP_FL] = #{dvpRvpFl,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctHoldrTypeCd != null">
+        [MANTAS_ACCT_HOLDR_TYPE_CD] = #{mantasAcctHoldrTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctBusTypeCd != null">
+        [MANTAS_ACCT_BUS_TYPE_CD] = #{mantasAcctBusTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctOwnrshpTypeCd != null">
+        [MANTAS_ACCT_OWNRSHP_TYPE_CD] = #{mantasAcctOwnrshpTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mantasAcctPurpCd != null">
+        [MANTAS_ACCT_PURP_CD] = #{mantasAcctPurpCd,jdbcType=VARCHAR},
+      </if>
+      <if test="retrmtAcctFl != null">
+        [RETRMT_ACCT_FL] = #{retrmtAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="jrsdcnCd != null">
+        [JRSDCN_CD] = #{jrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="busDmnListTx != null">
+        [BUS_DMN_LIST_TX] = #{busDmnListTx,jdbcType=VARCHAR},
+      </if>
+      <if test="highActvyAcctFl != null">
+        [HIGH_ACTVY_ACCT_FL] = #{highActvyAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="firmAcctOrgIntrlId != null">
+        [FIRM_ACCT_ORG_INTRL_ID] = #{firmAcctOrgIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasisTypeCd != null">
+        [PAY_BASIS_TYPE_CD] = #{payBasisTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cashRptExmptFl != null">
+        [CASH_RPT_EXMPT_FL] = #{cashRptExmptFl,jdbcType=VARCHAR},
+      </if>
+      <if test="acctEfctvRiskFactrTx != null">
+        [ACCT_EFCTV_RISK_FACTR_TX] = #{acctEfctvRiskFactrTx,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCustListSrcCd != null">
+        [ACCT_CUST_LIST_SRC_CD] = #{acctCustListSrcCd,jdbcType=VARCHAR},
+      </if>
+      <if test="srvcTeamIntrlId != null">
+        [SRVC_TEAM_INTRL_ID] = #{srvcTeamIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="feeSchedCd != null">
+        [FEE_SCHED_CD] = #{feeSchedCd,jdbcType=VARCHAR},
+      </if>
+      <if test="payBasisStartDt != null">
+        [PAY_BASIS_START_DT] = #{payBasisStartDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="riskTlrncCd != null">
+        [RISK_TLRNC_CD] = #{riskTlrncCd,jdbcType=VARCHAR},
+      </if>
+      <if test="prmryCustPinNb != null">
+        [PRMRY_CUST_PIN_NB] = #{prmryCustPinNb,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPeerGrpIntrlId != null">
+        [ACCT_PEER_GRP_INTRL_ID] = #{acctPeerGrpIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="prtfloMgrIntrlId != null">
+        [PRTFLO_MGR_INTRL_ID] = #{prtfloMgrIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="highPrflFl != null">
+        [HIGH_PRFL_FL] = #{highPrflFl,jdbcType=VARCHAR},
+      </if>
+      <if test="prodIntrlId != null">
+        [PROD_INTRL_ID] = #{prodIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="srcInitFunds != null">
+        [SRC_INIT_FUNDS] = #{srcInitFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="mthdInitFunds != null">
+        [MTHD_INIT_FUNDS] = #{mthdInitFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="mthdAcctOpng != null">
+        [MTHD_ACCT_OPNG] = #{mthdAcctOpng,jdbcType=VARCHAR},
+      </if>
+      <if test="acctCloseDt != null">
+        [ACCT_CLOSE_DT] = #{acctCloseDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acctRptCatCd != null">
+        [ACCT_RPT_CAT_CD] = #{acctRptCatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminCd != null">
+        [ADMIN_CD] = #{adminCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bkupAdminCd != null">
+        [BKUP_ADMIN_CD] = #{bkupAdminCd,jdbcType=VARCHAR},
+      </if>
+      <if test="bkngCtrCd != null">
+        [BKNG_CTR_CD] = #{bkngCtrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cpctyCd != null">
+        [CPCTY_CD] = #{cpctyCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cntrlGrpCd != null">
+        [CNTRL_GRP_CD] = #{cntrlGrpCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cntrlId != null">
+        [CNTRL_ID] = #{cntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="hardHoldFl != null">
+        [HARD_HOLD_FL] = #{hardHoldFl,jdbcType=VARCHAR},
+      </if>
+      <if test="localAcctOffcr != null">
+        [LOCAL_ACCT_OFFCR] = #{localAcctOffcr,jdbcType=VARCHAR},
+      </if>
+      <if test="pledgeFl != null">
+        [PLEDGE_FL] = #{pledgeFl,jdbcType=VARCHAR},
+      </if>
+      <if test="realEstOffcrCd != null">
+        [REAL_EST_OFFCR_CD] = #{realEstOffcrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="rlshpId != null">
+        [RLSHP_ID] = #{rlshpId,jdbcType=VARCHAR},
+      </if>
+      <if test="stateCd != null">
+        [STATE_CD] = #{stateCd,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPaymtFl != null">
+        [STOP_PAYMT_FL] = #{stopPaymtFl,jdbcType=VARCHAR},
+      </if>
+      <if test="trstReviewDt != null">
+        [TRST_REVIEW_DT] = #{trstReviewDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="titlLine4Tx != null">
+        [TITL_LINE4_TX] = #{titlLine4Tx,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtObjCd != null">
+        [NVSMT_OBJ_CD] = #{nvsmtObjCd,jdbcType=VARCHAR},
+      </if>
+      <if test="nvsmtOffcrCd != null">
+        [NVSMT_OFFCR_CD] = #{nvsmtOffcrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="avpDt != null">
+        [AVP_DT] = #{avpDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bllngPrdctCd != null">
+        [BLLNG_PRDCT_CD] = #{bllngPrdctCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dscrnCd != null">
+        [DSCRN_CD] = #{dscrnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="holdAllMailCd != null">
+        [HOLD_ALL_MAIL_CD] = #{holdAllMailCd,jdbcType=VARCHAR},
+      </if>
+      <if test="incmRngCd != null">
+        [INCM_RNG_CD] = #{incmRngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrNm != null">
+        [MGR_NM] = #{mgrNm,jdbcType=VARCHAR},
+      </if>
+      <if test="mangdAcctFl != null">
+        [MANGD_ACCT_FL] = #{mangdAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="grwthNvsmtObjRnkngCd != null">
+        [GRWTH_NVSMT_OBJ_RNKNG_CD] = #{grwthNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="incmNvsmtObjRnkngCd != null">
+        [INCM_NVSMT_OBJ_RNKNG_CD] = #{incmNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="lqdtyNvsmtObjRnkngCd != null">
+        [LQDTY_NVSMT_OBJ_RNKNG_CD] = #{lqdtyNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="taxDffrdNvsmtObjRnkngCd != null">
+        [TAX_DFFRD_NVSMT_OBJ_RNKNG_CD] = #{taxDffrdNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      </if>
+      <if test="ownrshpCatCd != null">
+        [OWNRSHP_CAT_CD] = #{ownrshpCatCd,jdbcType=VARCHAR},
+      </if>
+      <if test="planNbTx != null">
+        [PLAN_NB_TX] = #{planNbTx,jdbcType=VARCHAR},
+      </if>
+      <if test="stockOptnPlanFl != null">
+        [STOCK_OPTN_PLAN_FL] = #{stockOptnPlanFl,jdbcType=VARCHAR},
+      </if>
+      <if test="spcltnFl != null">
+        [SPCLTN_FL] = #{spcltnFl,jdbcType=VARCHAR},
+      </if>
+      <if test="styleCd != null">
+        [STYLE_CD] = #{styleCd,jdbcType=VARCHAR},
+      </if>
+      <if test="srvcLevelTx != null">
+        [SRVC_LEVEL_TX] = #{srvcLevelTx,jdbcType=VARCHAR},
+      </if>
+      <if test="permAcctIntrlId != null">
+        [PERM_ACCT_INTRL_ID] = #{permAcctIntrlId,jdbcType=VARCHAR},
+      </if>
+      <if test="ofacReasnCd != null">
+        [OFAC_REASN_CD] = #{ofacReasnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="spcltnLvl != null">
+        [SPCLTN_LVL] = #{spcltnLvl,jdbcType=VARCHAR},
+      </if>
+      <if test="optnAprvlCd != null">
+        [OPTN_APRVL_CD] = #{optnAprvlCd,jdbcType=VARCHAR},
+      </if>
+      <if test="cnsldtnNbrCd != null">
+        [CNSLDTN_NBR_CD] = #{cnsldtnNbrCd,jdbcType=VARCHAR},
+      </if>
+      <if test="dscMangdCd != null">
+        [DSC_MANGD_CD] = #{dscMangdCd,jdbcType=VARCHAR},
+      </if>
+      <if test="leadAcctFl != null">
+        [LEAD_ACCT_FL] = #{leadAcctFl,jdbcType=CHAR},
+      </if>
+      <if test="leadTrackCd != null">
+        [LEAD_TRACK_CD] = #{leadTrackCd,jdbcType=VARCHAR},
+      </if>
+      <if test="qlfidPlanEmpNm != null">
+        [QLFID_PLAN_EMP_NM] = #{qlfidPlanEmpNm,jdbcType=VARCHAR},
+      </if>
+      <if test="rllvrFl != null">
+        [RLLVR_FL] = #{rllvrFl,jdbcType=CHAR},
+      </if>
+      <if test="prmryClntFl != null">
+        [PRMRY_CLNT_FL] = #{prmryClntFl,jdbcType=CHAR},
+      </if>
+      <if test="insdrAcctFl != null">
+        [INSDR_ACCT_FL] = #{insdrAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="smallHhFl != null">
+        [SMALL_HH_FL] = #{smallHhFl,jdbcType=VARCHAR},
+      </if>
+      <if test="cpiFl != null">
+        [CPI_FL] = #{cpiFl,jdbcType=VARCHAR},
+      </if>
+      <if test="stndgInstrUsAcctFl != null">
+        [STNDG_INSTR_US_ACCT_FL] = #{stndgInstrUsAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="usPoaSignFl != null">
+        [US_POA_SIGN_FL] = #{usPoaSignFl,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcitrantFl != null">
+        [RECALCITRANT_FL] = #{recalcitrantFl,jdbcType=VARCHAR},
+      </if>
+      <if test="priorPrdEndNetWrthAm != null">
+        [PRIOR_PRD_END_NET_WRTH_AM] = #{priorPrdEndNetWrthAm,jdbcType=DECIMAL},
+      </if>
+      <if test="netWrthAmPrdEndDt != null">
+        [NET_WRTH_AM_PRD_END_DT] = #{netWrthAmPrdEndDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="extrlNvsmtAcctFl != null">
+        [EXTRL_NVSMT_ACCT_FL] = #{extrlNvsmtAcctFl,jdbcType=VARCHAR},
+      </if>
+      <if test="geoJrsdcnCd != null">
+        [GEO_JRSDCN_CD] = #{geoJrsdcnCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaStatusCd != null">
+        [FATCA_STATUS_CD] = #{fatcaStatusCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaPooledRptTypeCd != null">
+        [FATCA_POOLED_RPT_TYPE_CD] = #{fatcaPooledRptTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="fatcaIndiciaFl != null">
+        [FATCA_INDICIA_FL] = #{fatcaIndiciaFl,jdbcType=VARCHAR},
+      </if>
+      <if test="fsdfStgSrc != null">
+        [FSDF_STG_SRC] = #{fsdfStgSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="intAm != null">
+        [INT_AM] = #{intAm,jdbcType=DECIMAL},
+      </if>
+      <if test="dividendAm != null">
+        [DIVIDEND_AM] = #{dividendAm,jdbcType=DECIMAL},
+      </if>
+      <if test="grossProceedsRdmptAm != null">
+        [GROSS_PROCEEDS_RDMPT_AM] = #{grossProceedsRdmptAm,jdbcType=DECIMAL},
+      </if>
+      <if test="otherIncmAm != null">
+        [OTHER_INCM_AM] = #{otherIncmAm,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.Acct">
+    update [mantas].[ACCT]
+    set [DATA_DUMP_DT] = #{dataDumpDt,jdbcType=TIMESTAMP},
+      [ACCT_SEQ_ID] = #{acctSeqId,jdbcType=DECIMAL},
+      [SGMNT_ID] = #{sgmntId,jdbcType=VARCHAR},
+      [OPTN_APRVL_LVL_CD] = #{optnAprvlLvlCd,jdbcType=VARCHAR},
+      [OPTN_APPVL_DT] = #{optnAppvlDt,jdbcType=TIMESTAMP},
+      [RGSTN_TYPE_CD] = #{rgstnTypeCd,jdbcType=VARCHAR},
+      [ACCT_TYPE1_CD] = #{acctType1Cd,jdbcType=VARCHAR},
+      [ACCT_TYPE2_CD] = #{acctType2Cd,jdbcType=VARCHAR},
+      [ACCT_OPEN_DT] = #{acctOpenDt,jdbcType=TIMESTAMP},
+      [MAINT_RQMT_PT] = #{maintRqmtPt,jdbcType=DECIMAL},
+      [ACCT_TAX_ID] = #{acctTaxId,jdbcType=VARCHAR},
+      [TAX_ID_FRMT_CD] = #{taxIdFrmtCd,jdbcType=VARCHAR},
+      [MRGN_APPVL_FL] = #{mrgnAppvlFl,jdbcType=VARCHAR},
+      [TAX_WTHLD_CD] = #{taxWthldCd,jdbcType=VARCHAR},
+      [TITL_LINE1_TX] = #{titlLine1Tx,jdbcType=VARCHAR},
+      [TITL_LINE2_TX] = #{titlLine2Tx,jdbcType=VARCHAR},
+      [TITL_LINE3_TX] = #{titlLine3Tx,jdbcType=VARCHAR},
+      [DSCRN_FL] = #{dscrnFl,jdbcType=VARCHAR},
+      [HH_ACCT_GRP_ID] = #{hhAcctGrpId,jdbcType=VARCHAR},
+      [MKTG_CAMP_CD] = #{mktgCampCd,jdbcType=VARCHAR},
+      [CMSN_SCHED_TBL_CD] = #{cmsnSchedTblCd,jdbcType=VARCHAR},
+      [EMP_ACCT_FL] = #{empAcctFl,jdbcType=VARCHAR},
+      [TEST_ACCT_FL] = #{testAcctFl,jdbcType=VARCHAR},
+      [ACCT_STAT_CD] = #{acctStatCd,jdbcType=VARCHAR},
+      [ACCT_STAT_DT] = #{acctStatDt,jdbcType=TIMESTAMP},
+      [ALT_ACCT_ID] = #{altAcctId,jdbcType=VARCHAR},
+      [NVSMT_MGR_RETL_REFRL_FL] = #{nvsmtMgrRetlRefrlFl,jdbcType=VARCHAR},
+      [LAST_ACTVY_DT] = #{lastActvyDt,jdbcType=TIMESTAMP},
+      [SRC_SYS_CD] = #{srcSysCd,jdbcType=VARCHAR},
+      [ACCT_DSPLY_NM] = #{acctDsplyNm,jdbcType=VARCHAR},
+      [ACCT_BUS_RISK_NB] = #{acctBusRiskNb,jdbcType=DECIMAL},
+      [ACCT_CUST_RISK_NB] = #{acctCustRiskNb,jdbcType=DECIMAL},
+      [ACCT_GEO_RISK_NB] = #{acctGeoRiskNb,jdbcType=DECIMAL},
+      [STMT_CUST_QT] = #{stmtCustQt,jdbcType=DECIMAL},
+      [PRMRY_PRDCT_TYPE_CD] = #{prmryPrdctTypeCd,jdbcType=VARCHAR},
+      [LAST_STMT_DT] = #{lastStmtDt,jdbcType=TIMESTAMP},
+      [STMT_SUPR_FL] = #{stmtSuprFl,jdbcType=VARCHAR},
+      [NOTFY_LTR_SUPR_FL] = #{notfyLtrSuprFl,jdbcType=VARCHAR},
+      [LEGAL_NTITY_ID] = #{legalNtityId,jdbcType=VARCHAR},
+      [ACCT_PRM_BRKR_CD] = #{acctPrmBrkrCd,jdbcType=VARCHAR},
+      [INSTN_CNTRY_CD] = #{instnCntryCd,jdbcType=VARCHAR},
+      [GLOBL_RLSHP_FL] = #{globlRlshpFl,jdbcType=VARCHAR},
+      [ACCT_LIST_SRC_CD] = #{acctListSrcCd,jdbcType=VARCHAR},
+      [PRMRY_CUST_INTRL_ID] = #{prmryCustIntrlId,jdbcType=VARCHAR},
+      [ACCT_EFCTV_RISK_NB] = #{acctEfctvRiskNb,jdbcType=DECIMAL},
+      [ACCT_LIST_RISK_NB] = #{acctListRiskNb,jdbcType=DECIMAL},
+      [ACCT_MATCH_TX] = #{acctMatchTx,jdbcType=VARCHAR},
+      [ACCT_MATCH_TYPE_CD] = #{acctMatchTypeCd,jdbcType=VARCHAR},
+      [CSTM_RISK1_NB] = #{cstmRisk1Nb,jdbcType=DECIMAL},
+      [CSTM_RISK2_NB] = #{cstmRisk2Nb,jdbcType=DECIMAL},
+      [TAX_PAYR_CUST_INTRL_ID] = #{taxPayrCustIntrlId,jdbcType=VARCHAR},
+      [CSTM_1_DT] = #{cstm1Dt,jdbcType=TIMESTAMP},
+      [CSTM_2_DT] = #{cstm2Dt,jdbcType=TIMESTAMP},
+      [CSTM_3_DT] = #{cstm3Dt,jdbcType=TIMESTAMP},
+      [CSTM_1_RL] = #{cstm1Rl,jdbcType=DECIMAL},
+      [CSTM_2_RL] = #{cstm2Rl,jdbcType=DECIMAL},
+      [CSTM_3_RL] = #{cstm3Rl,jdbcType=DECIMAL},
+      [CSTM_1_TX] = #{cstm1Tx,jdbcType=VARCHAR},
+      [CSTM_2_TX] = #{cstm2Tx,jdbcType=VARCHAR},
+      [CSTM_3_TX] = #{cstm3Tx,jdbcType=VARCHAR},
+      [CSTM_4_TX] = #{cstm4Tx,jdbcType=VARCHAR},
+      [CSTM_5_TX] = #{cstm5Tx,jdbcType=VARCHAR},
+      [PTTRN_DAY_TRD_FL] = #{pttrnDayTrdFl,jdbcType=VARCHAR},
+      [DAY_TRD_APRVL_STAT_CD] = #{dayTrdAprvlStatCd,jdbcType=VARCHAR},
+      [DAY_TRD_APRVL_UPDT_DT] = #{dayTrdAprvlUpdtDt,jdbcType=TIMESTAMP},
+      [DAY_TRD_APRVL_UPDT_U_INTRL_ID] = #{dayTrdAprvlUpdtUIntrlId,jdbcType=VARCHAR},
+      [DAY_TRD_APRVL_REQ_DT] = #{dayTrdAprvlReqDt,jdbcType=TIMESTAMP},
+      [STBLTY_SURVL_LEVEL_NB] = #{stbltySurvlLevelNb,jdbcType=DECIMAL},
+      [ACCT_RPTNG_CRNCY_CD] = #{acctRptngCrncyCd,jdbcType=VARCHAR},
+      [DMCLD_BRCH_CD] = #{dmcldBrchCd,jdbcType=VARCHAR},
+      [PRCSNG_BATCH_NM] = #{prcsngBatchNm,jdbcType=VARCHAR},
+      [ULTMT_INSTL_CUST_INTRL_ID] = #{ultmtInstlCustIntrlId,jdbcType=VARCHAR},
+      [DVP_RVP_FL] = #{dvpRvpFl,jdbcType=VARCHAR},
+      [MANTAS_ACCT_HOLDR_TYPE_CD] = #{mantasAcctHoldrTypeCd,jdbcType=VARCHAR},
+      [MANTAS_ACCT_BUS_TYPE_CD] = #{mantasAcctBusTypeCd,jdbcType=VARCHAR},
+      [MANTAS_ACCT_OWNRSHP_TYPE_CD] = #{mantasAcctOwnrshpTypeCd,jdbcType=VARCHAR},
+      [MANTAS_ACCT_PURP_CD] = #{mantasAcctPurpCd,jdbcType=VARCHAR},
+      [RETRMT_ACCT_FL] = #{retrmtAcctFl,jdbcType=VARCHAR},
+      [JRSDCN_CD] = #{jrsdcnCd,jdbcType=VARCHAR},
+      [BUS_DMN_LIST_TX] = #{busDmnListTx,jdbcType=VARCHAR},
+      [HIGH_ACTVY_ACCT_FL] = #{highActvyAcctFl,jdbcType=VARCHAR},
+      [FIRM_ACCT_ORG_INTRL_ID] = #{firmAcctOrgIntrlId,jdbcType=VARCHAR},
+      [PAY_BASIS_TYPE_CD] = #{payBasisTypeCd,jdbcType=VARCHAR},
+      [CASH_RPT_EXMPT_FL] = #{cashRptExmptFl,jdbcType=VARCHAR},
+      [ACCT_EFCTV_RISK_FACTR_TX] = #{acctEfctvRiskFactrTx,jdbcType=VARCHAR},
+      [ACCT_CUST_LIST_SRC_CD] = #{acctCustListSrcCd,jdbcType=VARCHAR},
+      [SRVC_TEAM_INTRL_ID] = #{srvcTeamIntrlId,jdbcType=VARCHAR},
+      [FEE_SCHED_CD] = #{feeSchedCd,jdbcType=VARCHAR},
+      [PAY_BASIS_START_DT] = #{payBasisStartDt,jdbcType=TIMESTAMP},
+      [RISK_TLRNC_CD] = #{riskTlrncCd,jdbcType=VARCHAR},
+      [PRMRY_CUST_PIN_NB] = #{prmryCustPinNb,jdbcType=VARCHAR},
+      [ACCT_PEER_GRP_INTRL_ID] = #{acctPeerGrpIntrlId,jdbcType=VARCHAR},
+      [PRTFLO_MGR_INTRL_ID] = #{prtfloMgrIntrlId,jdbcType=VARCHAR},
+      [HIGH_PRFL_FL] = #{highPrflFl,jdbcType=VARCHAR},
+      [PROD_INTRL_ID] = #{prodIntrlId,jdbcType=VARCHAR},
+      [SRC_INIT_FUNDS] = #{srcInitFunds,jdbcType=VARCHAR},
+      [MTHD_INIT_FUNDS] = #{mthdInitFunds,jdbcType=VARCHAR},
+      [MTHD_ACCT_OPNG] = #{mthdAcctOpng,jdbcType=VARCHAR},
+      [ACCT_CLOSE_DT] = #{acctCloseDt,jdbcType=TIMESTAMP},
+      [ACCT_RPT_CAT_CD] = #{acctRptCatCd,jdbcType=VARCHAR},
+      [ADMIN_CD] = #{adminCd,jdbcType=VARCHAR},
+      [BKUP_ADMIN_CD] = #{bkupAdminCd,jdbcType=VARCHAR},
+      [BKNG_CTR_CD] = #{bkngCtrCd,jdbcType=VARCHAR},
+      [CPCTY_CD] = #{cpctyCd,jdbcType=VARCHAR},
+      [CNTRL_GRP_CD] = #{cntrlGrpCd,jdbcType=VARCHAR},
+      [CNTRL_ID] = #{cntrlId,jdbcType=VARCHAR},
+      [HARD_HOLD_FL] = #{hardHoldFl,jdbcType=VARCHAR},
+      [LOCAL_ACCT_OFFCR] = #{localAcctOffcr,jdbcType=VARCHAR},
+      [PLEDGE_FL] = #{pledgeFl,jdbcType=VARCHAR},
+      [REAL_EST_OFFCR_CD] = #{realEstOffcrCd,jdbcType=VARCHAR},
+      [RLSHP_ID] = #{rlshpId,jdbcType=VARCHAR},
+      [STATE_CD] = #{stateCd,jdbcType=VARCHAR},
+      [STOP_PAYMT_FL] = #{stopPaymtFl,jdbcType=VARCHAR},
+      [TRST_REVIEW_DT] = #{trstReviewDt,jdbcType=TIMESTAMP},
+      [TITL_LINE4_TX] = #{titlLine4Tx,jdbcType=VARCHAR},
+      [NVSMT_OBJ_CD] = #{nvsmtObjCd,jdbcType=VARCHAR},
+      [NVSMT_OFFCR_CD] = #{nvsmtOffcrCd,jdbcType=VARCHAR},
+      [AVP_DT] = #{avpDt,jdbcType=TIMESTAMP},
+      [BLLNG_PRDCT_CD] = #{bllngPrdctCd,jdbcType=VARCHAR},
+      [DSCRN_CD] = #{dscrnCd,jdbcType=VARCHAR},
+      [HOLD_ALL_MAIL_CD] = #{holdAllMailCd,jdbcType=VARCHAR},
+      [INCM_RNG_CD] = #{incmRngCd,jdbcType=VARCHAR},
+      [MGR_NM] = #{mgrNm,jdbcType=VARCHAR},
+      [MANGD_ACCT_FL] = #{mangdAcctFl,jdbcType=VARCHAR},
+      [GRWTH_NVSMT_OBJ_RNKNG_CD] = #{grwthNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      [INCM_NVSMT_OBJ_RNKNG_CD] = #{incmNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      [LQDTY_NVSMT_OBJ_RNKNG_CD] = #{lqdtyNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      [TAX_DFFRD_NVSMT_OBJ_RNKNG_CD] = #{taxDffrdNvsmtObjRnkngCd,jdbcType=VARCHAR},
+      [OWNRSHP_CAT_CD] = #{ownrshpCatCd,jdbcType=VARCHAR},
+      [PLAN_NB_TX] = #{planNbTx,jdbcType=VARCHAR},
+      [STOCK_OPTN_PLAN_FL] = #{stockOptnPlanFl,jdbcType=VARCHAR},
+      [SPCLTN_FL] = #{spcltnFl,jdbcType=VARCHAR},
+      [STYLE_CD] = #{styleCd,jdbcType=VARCHAR},
+      [SRVC_LEVEL_TX] = #{srvcLevelTx,jdbcType=VARCHAR},
+      [PERM_ACCT_INTRL_ID] = #{permAcctIntrlId,jdbcType=VARCHAR},
+      [OFAC_REASN_CD] = #{ofacReasnCd,jdbcType=VARCHAR},
+      [SPCLTN_LVL] = #{spcltnLvl,jdbcType=VARCHAR},
+      [OPTN_APRVL_CD] = #{optnAprvlCd,jdbcType=VARCHAR},
+      [CNSLDTN_NBR_CD] = #{cnsldtnNbrCd,jdbcType=VARCHAR},
+      [DSC_MANGD_CD] = #{dscMangdCd,jdbcType=VARCHAR},
+      [LEAD_ACCT_FL] = #{leadAcctFl,jdbcType=CHAR},
+      [LEAD_TRACK_CD] = #{leadTrackCd,jdbcType=VARCHAR},
+      [QLFID_PLAN_EMP_NM] = #{qlfidPlanEmpNm,jdbcType=VARCHAR},
+      [RLLVR_FL] = #{rllvrFl,jdbcType=CHAR},
+      [PRMRY_CLNT_FL] = #{prmryClntFl,jdbcType=CHAR},
+      [INSDR_ACCT_FL] = #{insdrAcctFl,jdbcType=VARCHAR},
+      [SMALL_HH_FL] = #{smallHhFl,jdbcType=VARCHAR},
+      [CPI_FL] = #{cpiFl,jdbcType=VARCHAR},
+      [STNDG_INSTR_US_ACCT_FL] = #{stndgInstrUsAcctFl,jdbcType=VARCHAR},
+      [US_POA_SIGN_FL] = #{usPoaSignFl,jdbcType=VARCHAR},
+      [RECALCITRANT_FL] = #{recalcitrantFl,jdbcType=VARCHAR},
+      [PRIOR_PRD_END_NET_WRTH_AM] = #{priorPrdEndNetWrthAm,jdbcType=DECIMAL},
+      [NET_WRTH_AM_PRD_END_DT] = #{netWrthAmPrdEndDt,jdbcType=TIMESTAMP},
+      [EXTRL_NVSMT_ACCT_FL] = #{extrlNvsmtAcctFl,jdbcType=VARCHAR},
+      [GEO_JRSDCN_CD] = #{geoJrsdcnCd,jdbcType=VARCHAR},
+      [FATCA_STATUS_CD] = #{fatcaStatusCd,jdbcType=VARCHAR},
+      [FATCA_POOLED_RPT_TYPE_CD] = #{fatcaPooledRptTypeCd,jdbcType=VARCHAR},
+      [FATCA_INDICIA_FL] = #{fatcaIndiciaFl,jdbcType=VARCHAR},
+      [FSDF_STG_SRC] = #{fsdfStgSrc,jdbcType=VARCHAR},
+      [INT_AM] = #{intAm,jdbcType=DECIMAL},
+      [DIVIDEND_AM] = #{dividendAm,jdbcType=DECIMAL},
+      [GROSS_PROCEEDS_RDMPT_AM] = #{grossProceedsRdmptAm,jdbcType=DECIMAL},
+      [OTHER_INCM_AM] = #{otherIncmAm,jdbcType=DECIMAL}
+    where [ACCT_INTRL_ID] = #{acctIntrlId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 获取alert的所有账号id -->
+  <select id="queryAlertAcctId" resultType="String">
+  	SELECT
+  		(
+	  		CASE kr.CNTRY_ID 
+					WHEN '113000002' THEN kr.CNTRY_KEY_ID
+					WHEN '113000004' THEN aa.ACCT_INTRL_ID
+			END
+		) AS ACCT_INTRL_ID
+  	FROM [mantas].[KDD_REVIEW] kr
+  		LEFT JOIN [mantas].[CUST_ACCT] ca on (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		LEFT JOIN [mantas].[ACCT_ARC] aa on (ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID)
+	WHERE
+		CASE kr.CNTRY_ID WHEN '113000002' THEN kr.CNTRY_KEY_ID WHEN '113000004' THEN aa.ACCT_INTRL_ID END IS NOT NULL
+		AND kr.REVIEW_ID = #{originalId}
+  </select>
+
+  <select id="getAcctInfo" resultType="Map">
+  	select TOP 1
+  		<!-- Account -->
+  		acc.ACCT_INTRL_ID accountId,
+  		acc.ACCT_DSPLY_NM accountName,
+  		acc.ACCT_TYPE1_CD type1,
+  		acc.ACCT_TYPE2_CD type2,
+  		acc.ACCT_STAT_DT registration,
+  		acc.MANTAS_ACCT_BUS_TYPE_CD ownerType,
+  		acc.ACCT_TAX_ID taxId,
+  		acc.TAX_WTHLD_CD taxCode,
+  		acc.ACCT_PEER_GRP_INTRL_ID householdGroupID,
+  		acc.ACCT_OPEN_DT openDate,
+  		acc.DATA_DUMP_DT updatedOn,
+  		acc.ACCT_STAT_CD status,
+  		acc.ACCT_STAT_DT statusEffective,
+  		acc.LAST_ACTVY_DT lastActivity,
+  		acc.DMCLD_BRCH_CD branch,
+  		
+  		<!-- Account Contact Infomation  -->
+  		addr.ADDR_CNTRY_CD country,
+  		addr.ADDR_STATE_CD state,
+  		addr.ADDR_RGN_NM region,
+  		addr.ADDR_CITY_NM city,
+  		<!-- 字段description ? -->
+  		addr.ADDR_STRT_LINE1_TX description,
+
+		<!-- Account Risk information -->
+  		acc.ACCT_EFCTV_RISK_NB effectiveRisk,
+  		acc.ACCT_BUS_RISK_NB businessRisk,
+  		acc.ACCT_LIST_RISK_NB watchListRisk,
+  		acc.ACCT_GEO_RISK_NB geographyRisk,
+  		acc.ACCT_CUST_RISK_NB customerRisk,
+  		<!-- 字段KYC Risk？ -->
+  		
+  		<!-- Account Balance -->
+  		bal.NET_WRTH_AM accountNetworth,
+		<!--  Prior Networth? -->
+		<!--  %Change From Last Month? -->
+  		bal.UNCOL_BAL_AM uncollectedBalance,
+  		bal.LAST_OVR_DRFT_NEG_BAL_DT lastOverdraftDate,
+  		bal.OVR_DRFT_BAL_AM lastOverdraftBalance,
+  		bal.LNG_OPTN_6MO_EXPRN_CT lastOverdraftEpisodes,
+	<!-- Last Overdraft Duration? -->
+	<!-- Last Overdraft Episodes(6 months) ?-->
+	<!-- Last Activity Date? -->
+  		bal.LAST_OVR_DRFT_NEG_BAL_DT lastStatementDate,
+  		bal.ACCT_GROSS_ASSETS_BASE_AM accountGrossAssets,
+  		bal.MNY_MKT_FUND_BAL_AM moneyMarketFund,
+  		bal.TOT_DEBT_AM debt,
+  		bal.MRGN_EQTY_PT equity,
+  		bal.BOND_BAL_AM bond,
+  		bal.MFUND_BAL_AM mutualFund,
+  		<!-- Margin ? -->
+  		<!-- Margin% ? -->
+  		
+  		<!--  Equities -->
+  		bal.EQTY_MKTVAL_SHRT_AM equilyMarketValueShort,
+	<!--  Equily Market Value Short(excluding box)? -->
+  		bal.EQTY_MKTVAL_LNG_AM equilyMarketValueLong,
+  		
+  		<!-- High Concentration -->
+  		bal.HI_CNC_SCRTY_INTRL_ID security,
+  		bal.HI_CNC_SCRTY_VAL_AM marketValueLong
+		<!-- Concertration% -->
+  	from
+  		[mantas].[ACCT] acc
+  		left join [mantas].[ACCT_ADDR] addr on(acc.ACCT_INTRL_ID = addr.ACCT_INTRL_ID)
+  		left join [mantas].[ACCT_BAL_POSN_SMRY] bal on acc.ACCT_INTRL_ID = bal.ACCT_INTRL_ID 
+  	where
+  		acc.ACCT_INTRL_ID = #{accountId}
+  </select>
+ 
+  <select id="queryAcctSnapshotInfo" resultType="Map">
+	select TOP 1
+		cu.CUST_INTRL_ID customerID,
+		cu.ALIAS_NM customerName,
+  		aa.ACCT_INTRL_ID accountId,
+		aa.ACCT_DSPLY_NM accountName,
+		aa.ACCT_TYPE1_CD type1,
+		aa.ACCT_TYPE2_CD type2,
+		aa.ACCT_STAT_DT registration,
+  		aa.ACCT_TAX_ID taxId,
+		aa.ACCT_OPEN_DT openDate,
+		aa.LAST_ACTVY_DT lastActivity,
+		aa.DMCLD_BRCH_CD branch,
+<!-- 	 Restriction(s),restriction -->
+		aa.ACCT_STAT_CD effective,
+<!-- 	 Effective Match effectiveMatch  -->
+		aa.ACCT_CUST_LIST_SRC_CD list,
+		aa.ACCT_BUS_RISK_NB business,
+		aa.ACCT_GEO_RISK_NB grography,
+		aa.ACCT_CUST_RISK_NB customer,
+
+  		aba.DATA_DUMP_DT date,
+  		aba.NET_WRTH_AM accountNetWorth,
+  		aba.UNCOL_BAL_AM uncollectedBalance,
+  		aba.ACCT_GROSS_ASSETS_BASE_AM accountGrossAssets,
+<!--  aba.MNY_MKT_FUND_BAL_AM moneyMarketFund, -->
+  		aba.TOT_DEBT_AM debt,
+  		aba.MRGN_EQTY_PT equity,
+  		aba.BOND_BAL_AM bond,
+  		aba.MFUND_BAL_AM mutualFund,
+  		aba.MRGN_BAL_AM marginBalance,
+<!--  aba.MRGN_BAL_AM margin, -->
+  		aba.LAST_OVR_DRFT_NEG_BAL_DT lastOverdraftDate,
+		aba.OVR_DRFT_BAL_AM lastOverdraftBalance
+<!--  Last Overdraft Duration, lastOverdraftDuration-->
+
+  	from
+  		[mantas].[ACCT_ARC] aa
+		left join [mantas].[CUST_ACCT] ca on ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID
+		left join [mantas].[CUST_ARC] cu on cu.CUST_INTRL_ID = ca.CUST_INTRL_ID
+  		left join [mantas].[ACCT_BAL_POSN_SMRY_ARC] aba on aa.ACCT_INTRL_ID = aba.ACCT_INTRL_ID 
+  						and Datename(year,aba.DATA_DUMP_DT) =  Datename(year,DATEADD(MONTH,convert(int,isnull(#{month},0)),GETDATE()))
+  						and Datename(month,aba.DATA_DUMP_DT) = Datename(month,DATEADD(MONTH,convert(int,isnull(#{month},0)),GETDATE()))
+  	where
+  		aa.ACCT_INTRL_ID = #{accountId}
+  </select>
+  
+  <select id="queryAcctBalance" resultType="Map">
+  	select TOP 1
+  		<!-- Account Balance -->
+  		aa.ACCT_INTRL_ID accountId,
+  		aba.DATA_DUMP_DT date,
+  		aba.NET_WRTH_AM accountNetWorth,
+  		aba.UNCOL_BAL_AM uncollectedBalance,
+  		aba.ACCT_GROSS_ASSETS_BASE_AM accountGrossAssets,
+<!--  aba.MNY_MKT_FUND_BAL_AM moneyMarketFund, -->
+  		aba.TOT_DEBT_AM debt,
+  		aba.MRGN_EQTY_PT equity,
+  		aba.BOND_BAL_AM bond,
+  		aba.MFUND_BAL_AM mutualFund,
+  		aba.MRGN_BAL_AM marginBalance,
+<!--   aba.MRGN_BAL_AM margin, -->
+  		aba.LAST_OVR_DRFT_NEG_BAL_DT lastOverdraftDate,
+		aba.OVR_DRFT_BAL_AM lastOverdraftBalance
+<!-- 	Last Overdraft Duration, lastOverdraftDuration-->
+  	from
+  		[mantas].[ACCT_ARC] aa
+  		left join [mantas].[CUST_ACCT] ca on ca.ACCT_INTRL_ID = aa.ACCT_INTRL_ID
+		left join [mantas].[CUST_ARC] cu on cu.CUST_INTRL_ID = ca.CUST_INTRL_ID
+  		left join [mantas].[ACCT_BAL_POSN_SMRY_ARC] aba on aa.ACCT_INTRL_ID = aba.ACCT_INTRL_ID 
+  						and Datename(year,aba.DATA_DUMP_DT) =  Datename(year,DATEADD(MONTH,convert(int,isnull(#{month},0)*(-1)),GETDATE()))
+  						and Datename(month,aba.DATA_DUMP_DT) = Datename(month,DATEADD(MONTH,convert(int,isnull(#{month},0)*(-1)),GETDATE()))
+  	where
+  		aa.ACCT_INTRL_ID = #{accountId}
+  </select>
+  
+  <select id="queryAlertAcctInfo" resultType="map">
+  	SELECT
+  		aa.ACCT_INTRL_ID accountId,
+  		aa.ACCT_TYPE1_CD type,
+  		aa.ACCT_TYPE2_CD type2
+  	FROM [mantas].[KDD_REVIEW] kr
+  		LEFT JOIN [mantas].[CUST_ACCT] ca ON (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		LEFT JOIN [mantas].[ACCT] aa ON (aa.ACCT_INTRL_ID = (
+		  		CASE kr.CNTRY_ID 
+						WHEN '113000002' THEN kr.CNTRY_KEY_ID
+						WHEN '113000004' THEN ca.ACCT_INTRL_ID
+				END
+			))
+  	WHERE aa.ACCT_INTRL_ID IS NOT NULL
+				AND kr.REVIEW_ID = #{originalId}
+  </select>
+  
+   <select id="queryAcctSummaryInfo" resultType="map">
+	SELECT
+			sm.MNTH_SMRY_START_DT periodStartDate,
+			sm.TOT_DEPST_AM totalDeposits,
+			sm.CASH_TRXN_IN_AM incomingCash
+	FROM
+		[mantas].[ACCT_SMRY_MNTH] sm
+	WHERE
+		sm.ACCT_INTRL_ID = #{accountId}
+	ORDER BY sm.MNTH_SMRY_START_DT DESC
+  </select>
+  
+    <select id="queryAcctSummaryInfoSnapshot" resultType="map">
+	SELECT
+			sm.MNTH_SMRY_START_DT periodStartDate,
+			sm.TOT_DEPST_AM totalDeposits,
+			sm.CASH_TRXN_IN_AM incomingCash
+	FROM
+		[mantas].[ACCT_SMRY_MNTH_ARC] sm
+	WHERE
+		sm.ACCT_INTRL_ID = #{accountId}
+	ORDER BY sm.MNTH_SMRY_START_DT DESC
+  </select>
+  
+  <select id="queryAlertAcctInfoByAidOrCid" resultType="map">
+  	SELECT
+  		aa.ACCT_INTRL_ID accountId,
+  		aa.ACCT_TYPE1_CD type,
+  		aa.ACCT_TYPE2_CD type2
+  	FROM 
+  		<if test="accountId != null and customerId == null">
+  			[mantas].[ACCT] aa
+  		</if>
+  		<if test="customerId != null ">
+	  		[mantas].[CUST_ACCT] ca
+	  		LEFT JOIN [mantas].[ACCT] aa ON (aa.ACCT_INTRL_ID = ca.ACCT_INTRL_ID)
+  		</if>
+  	WHERE 
+  		<if test="accountId != null and customerId == null">
+  			aa.ACCT_INTRL_ID = #{accountId}
+		</if>
+  		<if test="customerId != null">
+  			ca.CUST_INTRL_ID = #{customerId}
+		</if>
+  </select>
+  
+  <select id="queryAlertAcctList" resultType="Map">
+  	SELECT
+		aa.ACCT_INTRL_ID accountId,
+		aa.ACCT_DSPLY_NM accountName,
+		aa.ACCT_TYPE1_CD type1,
+		aa.ACCT_TYPE2_CD type2,
+		aa.ACCT_STAT_DT registration,
+		aa.MANTAS_ACCT_BUS_TYPE_CD ownerType,
+		aa.ACCT_STAT_CD status,
+		aa.DMCLD_BRCH_CD branch,
+		<!-- 		Source? -->
+		aa.DATA_DUMP_DT updatedOn
+  	FROM
+  		[mantas].[KDD_REVIEW] kr
+  		LEFT JOIN [mantas].[CUST_ACCT] ca ON (kr.CNTRY_KEY_ID = ca.CUST_INTRL_ID AND kr.CNTRY_ID = '113000004')
+  		LEFT JOIN [mantas].[ACCT_ARC] aa ON (aa.ACCT_INTRL_ID = (
+		  		CASE kr.CNTRY_ID 
+						WHEN '113000002' THEN kr.CNTRY_KEY_ID
+						WHEN '113000004' THEN ca.ACCT_INTRL_ID
+				END
+			))
+	WHERE aa.ACCT_INTRL_ID IS NOT NULL
+				AND kr.REVIEW_ID = #{originalId}
+  </select>
+  
+  <!-- 获取所有Alert原始id -->
+  <select id="queryAlertOriginalIds" resultType="String">
+  	select
+  		a.original_id
+  	from
+  		alert_info a
+	where
+		a.alert_id = #{alertId} and
+		a.original_id is not null and
+		a.is_deleted = 0
+	order by a.alert_id
+  </select>
+  
+  <!-- 获取所有Case原始id -->
+  <select id="queryCaseOriginalIds" resultType="String">
+  	select
+  		c.original_id
+  	from
+  		case_info c
+	where
+		c.case_id = #{caseId} and
+		c.original_id is not null and
+		c.is_deleted = 0
+	order by c.case_id
+  </select>
+</mapper>

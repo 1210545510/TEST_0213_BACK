@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarSubjectIdentificationMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarSubjectIdentification">
+    <id column="identify_id" jdbcType="BIGINT" property="identifyId" />
+    <result column="sub_id" jdbcType="BIGINT" property="subId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="issuing_state" jdbcType="TINYINT" property="issuingState" />
+    <result column="country" jdbcType="TINYINT" property="country" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [identify_id], [sub_id], [type], [value], [number], [issuing_state], [country], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_subject_identification]
+    where [identify_id] = #{identifyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_subject_identification]
+    where [identify_id] = #{identifyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarSubjectIdentification">
+    <selectKey keyProperty="identifyId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_identification] ([sub_id], [type], [value], 
+      [number], [issuing_state], [country], 
+      [is_deleted])
+    values (#{subId,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{value,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{issuingState,jdbcType=TINYINT}, #{country,jdbcType=TINYINT}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarSubjectIdentification">
+    <selectKey keyProperty="identifyId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_identification]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        [sub_id],
+      </if>
+      <if test="type != null">
+        [type],
+      </if>
+      <if test="value != null">
+        [value],
+      </if>
+      <if test="number != null">
+        [number],
+      </if>
+      <if test="issuingState != null">
+        [issuing_state],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="issuingState != null">
+        #{issuingState,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarSubjectIdentification">
+    update [sar_subject_identification]
+    <set>
+      <if test="subId != null">
+        [sub_id] = #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        [type] = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="value != null">
+        [value] = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        [number] = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="issuingState != null">
+        [issuing_state] = #{issuingState,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [identify_id] = #{identifyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarSubjectIdentification">
+    update [sar_subject_identification]
+    set [sub_id] = #{subId,jdbcType=BIGINT},
+      [type] = #{type,jdbcType=TINYINT},
+      [value] = #{value,jdbcType=VARCHAR},
+      [number] = #{number,jdbcType=INTEGER},
+      [issuing_state] = #{issuingState,jdbcType=TINYINT},
+      [country] = #{country,jdbcType=TINYINT},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [identify_id] = #{identifyId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarSubjectIdentificationDto" keyProperty="identifyId" useGeneratedKeys="true">
+    insert into [sar_subject_identification]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        [sub_id],
+      </if>
+      <if test="type != null">
+        [type],
+      </if>
+      <if test="value != null">
+        [value],
+      </if>
+      <if test="number != null">
+        [number],
+      </if>
+      <if test="issuingState != null">
+        [issuing_state],
+      </if>
+      <if test="country != null">
+        [country],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="issuingState != null">
+        #{issuingState,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=TINYINT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarSubjectIdentificationDto">
+    update [sar_subject_identification]
+    <set>
+      <if test="subId != null">
+        [sub_id] = #{subId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        [type] = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="value != null">
+        [value] = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        [number] = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="issuingState != null">
+        [issuing_state] = #{issuingState,jdbcType=TINYINT},
+      </if>
+      <if test="country != null">
+        [country] = #{country,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [identify_id] = #{identifyId,jdbcType=BIGINT}
+  </update>
+</mapper>

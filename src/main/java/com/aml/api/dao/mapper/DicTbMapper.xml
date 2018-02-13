@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.DicTbMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.DicTb">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dic_sid" jdbcType="INTEGER" property="dicSid" />
+    <result column="sort_index" jdbcType="TINYINT" property="sortIndex" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="idDeleted" />
+    
+    <result column="dic_value" jdbcType="VARCHAR" property="dicValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dic_sid, sort_index, remark, create_user, create_time, update_user, update_time, 
+    is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config_dic_tb
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from config_dic_tb
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.DicTb">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into config_dic_tb (dic_sid, sort_index, 
+      remark, create_user, create_time, 
+      update_user, update_time, is_deleted
+      )
+    values (#{dicSid,jdbcType=INTEGER}, #{sortIndex,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{idDeleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.DicTb">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into config_dic_tb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dicSid != null">
+        dic_sid,
+      </if>
+      <if test="sortIndex != null">
+        sort_index,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="idDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dicSid != null">
+        #{dicSid,jdbcType=INTEGER},
+      </if>
+      <if test="sortIndex != null">
+        #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idDeleted != null">
+        #{idDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.DicTb">
+    update config_dic_tb
+    <set>
+      <if test="dicSid != null">
+        dic_sid = #{dicSid,jdbcType=INTEGER},
+      </if>
+      <if test="sortIndex != null">
+        sort_index = #{sortIndex,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idDeleted != null">
+        is_deleted = #{idDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.DicTb">
+    update config_dic_tb
+    set 
+      dic_sid = #{dicSid,jdbcType=INTEGER},
+      sort_index = #{sortIndex,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{idDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryDicTbsByDicId" resultMap="BaseResultMap">
+		SELECT
+			ds.dic_sid,
+			ds.dic_value,
+			dt.sort_index
+		FROM
+			common_dic_sub ds,
+			config_dic_tb dt
+		WHERE
+			ds.dic_sid = dt.dic_sid
+		AND dt.is_deleted = 0
+		AND ds.dic_id = #{dicId}
+		ORDER BY dt.sort_index ASC
+	</select>
+	
+	<update id="deleteByDicId" >
+		UPDATE config_dic_tb
+		SET 
+		 config_dic_tb.is_deleted = 1,
+		 config_dic_tb.update_user = #{userId},
+		 config_dic_tb.update_time = getdate()
+		FROM
+			common_dic_sub
+		WHERE
+			common_dic_sub.dic_sid = config_dic_tb.dic_sid
+		AND common_dic_sub.dic_id = #{dicId}
+	</update>
+	
+	<insert id="insertBatch">
+		INSERT INTO config_dic_tb (
+			dic_sid,
+			sort_index,
+			create_user
+		)
+		VALUES
+		<foreach item="item" index="index" collection="list"
+			separator=",">
+			(
+				#{item.dicSid},
+				#{item.sortIndex},
+				#{item.userId}
+			)
+		</foreach>
+	</insert>
+</mapper>

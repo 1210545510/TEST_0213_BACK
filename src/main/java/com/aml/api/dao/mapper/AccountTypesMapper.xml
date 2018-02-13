@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.AccountTypesMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.AccountTypes">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="risk_factor" jdbcType="VARCHAR" property="riskFactor" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate" />
+    <result column="last_modify_oper" jdbcType="VARCHAR" property="lastModifyOper" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [code], [name], [risk_factor], [created_by], [create_date], [last_modify_date], 
+    [last_modify_oper], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [account_types]
+    where [id] = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from [account_types]
+    where [id] = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.AccountTypes" keyProperty="id" useGeneratedKeys="true" >
+   <!--  <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey> -->
+    insert into [account_types] ([code], [name], [risk_factor], 
+      [created_by], [create_date], [last_modify_date], 
+      [last_modify_oper], [is_deleted])
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{riskFactor,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP}, 
+      #{lastModifyOper,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.AccountTypes" keyProperty="id" useGeneratedKeys="true">
+   <!--  <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT SCOPE_IDENTITY()
+    </selectKey> -->
+    insert into [account_types]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        [code],
+      </if>
+      <if test="name != null">
+        [name],
+      </if>
+      <if test="riskFactor != null">
+        [risk_factor],
+      </if>
+      <if test="createdBy != null">
+        [created_by],
+      </if>
+      <if test="createDate != null">
+        [create_date],
+      </if>
+      <if test="lastModifyDate != null">
+        [last_modify_date],
+      </if>
+      <if test="lastModifyOper != null">
+        [last_modify_oper],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactor != null">
+        #{riskFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyOper != null">
+        #{lastModifyOper,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.AccountTypes">
+    update [account_types]
+    <set>
+      <if test="code != null">
+        [code] = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        [name] = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactor != null">
+        [risk_factor] = #{riskFactor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        [created_by] = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        [create_date] = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null">
+        [last_modify_date] = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyOper != null">
+        [last_modify_oper] = #{lastModifyOper,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=INTEGER},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.AccountTypes">
+    update [account_types]
+    set [code] = #{code,jdbcType=VARCHAR},
+      [name] = #{name,jdbcType=VARCHAR},
+      [risk_factor] = #{riskFactor,jdbcType=VARCHAR},
+      [created_by] = #{createdBy,jdbcType=VARCHAR},
+      [create_date] = #{createDate,jdbcType=TIMESTAMP},
+      [last_modify_date] = #{lastModifyDate,jdbcType=TIMESTAMP},
+      [last_modify_oper] = #{lastModifyOper,jdbcType=VARCHAR},
+      [is_deleted] = #{isDeleted,jdbcType=INTEGER}
+    where [id] = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- Query all records -->
+  <select id="getAccountTypesList" resultMap="BaseResultMap" parameterType="com.aml.api.dto.AccountTypesDto">
+  	select 
+  		<include refid="Base_Column_List" />
+	from	
+		[account_types]
+	where [is_deleted] = 0
+	order by [id] ASC
+  </select>
+  <!-- export -->
+  <select id="downAccountTypesExcel" resultType="java.util.Map">
+  	select 
+  		[id], [code], [name], [risk_factor], [created_by],CONVERT(varchar(100), [create_date], 20) create_date,CONVERT(varchar(100), [last_modify_date], 20) last_modify_date, 
+    [last_modify_oper], [is_deleted]
+	from	
+		[account_types]
+	where [is_deleted] = 0
+    	<if test="param != null">
+        	and [id] in (#{param})
+      	</if>
+	order by [id] ASC
+  </select>
+  
+  <!-- 校验code 是否存在 -->
+  <select id="getAccountTypesCountByCode" resultType="int">
+  	select 
+  		count(0)
+	from	
+		[account_types]
+	where [is_deleted] = 0 and [code] = #{code}
+  </select>
+</mapper>

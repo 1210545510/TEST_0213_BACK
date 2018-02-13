@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SarSubjectInfoMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SarSubjectInfo">
+    <id column="sub_id" jdbcType="BIGINT" property="subId" />
+    <result column="rid" jdbcType="BIGINT" property="rid" />
+    <result column="check" jdbcType="INTEGER" property="check" />
+    <result column="last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="middle_name" jdbcType="VARCHAR" property="middleName" />
+    <result column="suffix" jdbcType="VARCHAR" property="suffix" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="alternate_name" jdbcType="VARCHAR" property="alternateName" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="naics_code" jdbcType="TINYINT" property="naicsCode" />
+    <result column="tin" jdbcType="INTEGER" property="tin" />
+    <result column="tin_type" jdbcType="TINYINT" property="tinType" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="is_filer" jdbcType="TINYINT" property="isFiler" />
+    <result column="subject_role" jdbcType="TINYINT" property="subjectRole" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    
+    <collection property="sarSubjectAddress" ofType="com.aml.api.pojo.SarSubjectAddress">
+    	<id column="ad_sub_addr_id" jdbcType="BIGINT" property="subAddrId" />
+	    <result column="ad_sub_id" jdbcType="BIGINT" property="subId" />
+	    <result column="ad_address" jdbcType="VARCHAR" property="address" />
+	    <result column="ad_city" jdbcType="VARCHAR" property="city" />
+	    <result column="ad_state" jdbcType="TINYINT" property="state" />
+	    <result column="ad_zip_code" jdbcType="TINYINT" property="zipCode" />
+	    <result column="ad_country" jdbcType="TINYINT" property="country" />
+	    <result column="ad_create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="ad_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	    <result column="ad_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+    <collection property="sarSubjectAffect" ofType="com.aml.api.pojo.SarSubjectAffect">
+	    <id column="af_affect_id" jdbcType="BIGINT" property="affectId" />
+	    <result column="af_sub_id" jdbcType="BIGINT" property="subId" />
+	    <result column="af_institution_tin" jdbcType="VARCHAR" property="institutionTin" />
+	    <result column="af_account_number" jdbcType="VARCHAR" property="accountNumber" />
+	    <result column="af_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+    <collection property="sarSubjectIdentification" ofType="com.aml.api.pojo.SarSubjectIdentification">
+    	<id column="f_identify_id" jdbcType="BIGINT" property="identifyId" />
+	    <result column="f_sub_id" jdbcType="BIGINT" property="subId" />
+	    <result column="f_type" jdbcType="TINYINT" property="type" />
+	    <result column="f_value" jdbcType="VARCHAR" property="value" />
+	    <result column="f_number" jdbcType="INTEGER" property="number" />
+	    <result column="f_issuing_state" jdbcType="TINYINT" property="issuingState" />
+	    <result column="f_country" jdbcType="TINYINT" property="country" />
+	    <result column="f_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+    <collection property="sarSubjectInfoPhone" ofType="com.aml.api.pojo.SarSubjectInfoPhone">
+    	<id column="p_id" jdbcType="BIGINT" property="id" />
+	    <result column="p_sub_id" jdbcType="BIGINT" property="subId" />
+	    <result column="p_phone" jdbcType="VARCHAR" property="phone" />
+	    <result column="p_phone_ext" jdbcType="VARCHAR" property="phoneExt" />
+	    <result column="p_phone_type" jdbcType="TINYINT" property="phoneType" />
+	    <result column="p_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+    <collection property="sarSubjectInstitution" ofType="com.aml.api.pojo.SarSubjectInstitution">
+    	<id column="i_relate_id" jdbcType="BIGINT" property="relateId" />
+	    <result column="i_sub_id" jdbcType="BIGINT" property="subId" />
+	    <result column="i_relationship_list" jdbcType="VARCHAR" property="relationshipList" />
+	    <result column="i_relationship_status" jdbcType="VARCHAR" property="relationshipStatus" />
+	    <result column="i_action_date" jdbcType="TIMESTAMP" property="actionDate" />
+	    <result column="i_is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </collection>
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    [sub_id], [rid], [check], [last_name], [first_name], [middle_name], [suffix], [gender], 
+    [birthdate], [alternate_name], [business_type], [naics_code], [tin], [tin_type], 
+    [email], [website], [is_filer], [subject_role], [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [sar_subject_info]
+    where [sub_id] = #{subId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [sar_subject_info]
+    where [sub_id] = #{subId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SarSubjectInfo">
+    <selectKey keyProperty="subId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_info] ([rid], [check], [last_name], 
+      [first_name], [middle_name], [suffix], 
+      [gender], [birthdate], [alternate_name], 
+      [business_type], [naics_code], [tin], 
+      [tin_type], [email], [website], 
+      [is_filer], [subject_role], [create_time], 
+      [update_time], [is_deleted])
+    values (#{rid,jdbcType=BIGINT}, #{check,jdbcType=INTEGER}, #{lastName,jdbcType=VARCHAR}, 
+      #{firstName,jdbcType=VARCHAR}, #{middleName,jdbcType=VARCHAR}, #{suffix,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=TINYINT}, #{birthdate,jdbcType=TIMESTAMP}, #{alternateName,jdbcType=VARCHAR}, 
+      #{businessType,jdbcType=VARCHAR}, #{naicsCode,jdbcType=TINYINT}, #{tin,jdbcType=INTEGER}, 
+      #{tinType,jdbcType=TINYINT}, #{email,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{isFiler,jdbcType=TINYINT}, #{subjectRole,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SarSubjectInfo">
+    <selectKey keyProperty="subId" order="AFTER" resultType="java.lang.Long">
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into [sar_subject_info]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="check != null">
+        [check],
+      </if>
+      <if test="lastName != null">
+        [last_name],
+      </if>
+      <if test="firstName != null">
+        [first_name],
+      </if>
+      <if test="middleName != null">
+        [middle_name],
+      </if>
+      <if test="suffix != null">
+        [suffix],
+      </if>
+      <if test="gender != null">
+        [gender],
+      </if>
+      <if test="birthdate != null">
+        [birthdate],
+      </if>
+      <if test="alternateName != null">
+        [alternate_name],
+      </if>
+      <if test="businessType != null">
+        [business_type],
+      </if>
+      <if test="naicsCode != null">
+        [naics_code],
+      </if>
+      <if test="tin != null">
+        [tin],
+      </if>
+      <if test="tinType != null">
+        [tin_type],
+      </if>
+      <if test="email != null">
+        [email],
+      </if>
+      <if test="website != null">
+        [website],
+      </if>
+      <if test="isFiler != null">
+        [is_filer],
+      </if>
+      <if test="subjectRole != null">
+        [subject_role],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="check != null">
+        #{check,jdbcType=INTEGER},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="middleName != null">
+        #{middleName,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null">
+        #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alternateName != null">
+        #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="naicsCode != null">
+        #{naicsCode,jdbcType=TINYINT},
+      </if>
+      <if test="tin != null">
+        #{tin,jdbcType=INTEGER},
+      </if>
+      <if test="tinType != null">
+        #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="isFiler != null">
+        #{isFiler,jdbcType=TINYINT},
+      </if>
+      <if test="subjectRole != null">
+        #{subjectRole,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SarSubjectInfo">
+    update [sar_subject_info]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="check != null">
+        [check] = #{check,jdbcType=INTEGER},
+      </if>
+      <if test="lastName != null">
+        [last_name] = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        [first_name] = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="middleName != null">
+        [middle_name] = #{middleName,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null">
+        [suffix] = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        [gender] = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alternateName != null">
+        [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        [business_type] = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="naicsCode != null">
+        [naics_code] = #{naicsCode,jdbcType=TINYINT},
+      </if>
+      <if test="tin != null">
+        [tin] = #{tin,jdbcType=INTEGER},
+      </if>
+      <if test="tinType != null">
+        [tin_type] = #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        [email] = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        [website] = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="isFiler != null">
+        [is_filer] = #{isFiler,jdbcType=TINYINT},
+      </if>
+      <if test="subjectRole != null">
+        [subject_role] = #{subjectRole,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [sub_id] = #{subId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SarSubjectInfo">
+    update [sar_subject_info]
+    set [rid] = #{rid,jdbcType=BIGINT},
+      [check] = #{check,jdbcType=INTEGER},
+      [last_name] = #{lastName,jdbcType=VARCHAR},
+      [first_name] = #{firstName,jdbcType=VARCHAR},
+      [middle_name] = #{middleName,jdbcType=VARCHAR},
+      [suffix] = #{suffix,jdbcType=VARCHAR},
+      [gender] = #{gender,jdbcType=TINYINT},
+      [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      [business_type] = #{businessType,jdbcType=VARCHAR},
+      [naics_code] = #{naicsCode,jdbcType=TINYINT},
+      [tin] = #{tin,jdbcType=INTEGER},
+      [tin_type] = #{tinType,jdbcType=TINYINT},
+      [email] = #{email,jdbcType=VARCHAR},
+      [website] = #{website,jdbcType=VARCHAR},
+      [is_filer] = #{isFiler,jdbcType=TINYINT},
+      [subject_role] = #{subjectRole,jdbcType=TINYINT},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [sub_id] = #{subId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- insert -->
+  <insert id="insertSelectiveDto" parameterType="com.aml.api.dto.SarSubjectInfoDto" keyProperty="subId" useGeneratedKeys="true">
+    insert into [sar_subject_info]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        [rid],
+      </if>
+      <if test="check != null">
+        [check],
+      </if>
+      <if test="lastName != null">
+        [last_name],
+      </if>
+      <if test="firstName != null">
+        [first_name],
+      </if>
+      <if test="middleName != null">
+        [middle_name],
+      </if>
+      <if test="suffix != null">
+        [suffix],
+      </if>
+      <if test="gender != null">
+        [gender],
+      </if>
+      <if test="birthdate != null">
+        [birthdate],
+      </if>
+      <if test="alternateName != null">
+        [alternate_name],
+      </if>
+      <if test="businessType != null">
+        [business_type],
+      </if>
+      <if test="naicsCode != null">
+        [naics_code],
+      </if>
+      <if test="tin != null">
+        [tin],
+      </if>
+      <if test="tinType != null">
+        [tin_type],
+      </if>
+      <if test="email != null">
+        [email],
+      </if>
+      <if test="website != null">
+        [website],
+      </if>
+      <if test="isFiler != null">
+        [is_filer],
+      </if>
+      <if test="subjectRole != null">
+        [subject_role],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="check != null">
+        #{check,jdbcType=INTEGER},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="middleName != null">
+        #{middleName,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null">
+        #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alternateName != null">
+        #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="naicsCode != null">
+        #{naicsCode,jdbcType=TINYINT},
+      </if>
+      <if test="tin != null">
+        #{tin,jdbcType=INTEGER},
+      </if>
+      <if test="tinType != null">
+        #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="isFiler != null">
+        #{isFiler,jdbcType=TINYINT},
+      </if>
+      <if test="subjectRole != null">
+        #{subjectRole,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- query -->
+  <select id="selectByPrimaryKeyDto" resultMap="BaseResultMap" >
+  	SELECT 
+  		info.[sub_id], info.[rid], info.[check], info.[last_name], info.[first_name], info.[middle_name], info.[suffix], info.[gender], 
+	    info.[birthdate], info.[alternate_name], info.[business_type], info.[naics_code], info.[tin], info.[tin_type], 
+	    info.[email], info.[website], info.[is_filer], info.[subject_role], info.[create_time],
+	    ad.[sub_addr_id] as ad_sub_addr_id, ad.[sub_id] as ad_sub_id, ad.[address] as ad_address, ad.[city] as ad_city, 
+	    ad.[state] as ad_state, ad.[zip_code] as ad_zip_code, ad.[country] as ad_country, ad.[create_time] as ad_create_time,
+	    af.[affect_id] as af_affect_id, af.[sub_id] as af_sub_id, af.[institution_tin] as af_institution_tin, af.[account_number] as af_account_number,
+	    f.[identify_id] as f_identify_id, f.[sub_id] as f_sub_id, f.[type] as f_type, f.[value] as f_value,
+	    f.[number] as f_number, f.[issuing_state] as f_issuing_state, f.[country] as f_country,
+	    p.[id] as p_id, p.[sub_id] as p_sub_id, p.[phone] as p_phone, p.[phone_ext] as p_phone_ext, p.[phone_type] as p_phone_type,
+	    i.[relate_id] as i_relate_id, i.[sub_id] as i_sub_id, i.[relationship_list] as i_relationship_list,
+	    i.[relationship_status] as i_relationship_status, i.[action_date] as i_action_date
+  	FROM sar_subject_info info 
+	LEFT JOIN sar_subject_address ad ON info.sub_id = ad.sub_id AND ad.is_deleted = 0
+	LEFT JOIN sar_subject_affect af ON info.sub_id = af.sub_id AND af.is_deleted = 0
+	LEFT JOIN sar_subject_identification f ON info.sub_id = f.sub_id AND f.is_deleted = 0
+	LEFT JOIN sar_subject_info_phone p ON info.sub_id = p.sub_id AND p.is_deleted = 0
+	LEFT JOIN sar_subject_institution i ON info.sub_id = i.sub_id AND i.is_deleted = 0
+	WHERE info.is_deleted = 0 
+	  <if test="rid != null">
+        AND info.[rid] = #{rid,jdbcType=BIGINT}
+      </if>
+<!--       <if test="subId != null"> -->
+<!--         AND info.sub_id = #{subId} -->
+<!--       </if> -->
+	
+  </select>
+  
+  <!-- getCount -->
+  <select id="getCount" resultType="int" >
+  	SELECT 
+  		count(1)
+  	FROM sar_subject_info 
+	WHERE is_deleted = 0 
+        AND [rid] = #{rid,jdbcType=BIGINT}
+  </select>
+  <!-- update -->
+  <update id="updateByPrimaryKeySelectiveDto" parameterType="com.aml.api.dto.SarSubjectInfoDto">
+    update [sar_subject_info]
+    <set>
+      <if test="rid != null">
+        [rid] = #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="check != null">
+        [check] = #{check,jdbcType=INTEGER},
+      </if>
+      <if test="lastName != null">
+        [last_name] = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        [first_name] = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="middleName != null">
+        [middle_name] = #{middleName,jdbcType=VARCHAR},
+      </if>
+      <if test="suffix != null">
+        [suffix] = #{suffix,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        [gender] = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        [birthdate] = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alternateName != null">
+        [alternate_name] = #{alternateName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        [business_type] = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="naicsCode != null">
+        [naics_code] = #{naicsCode,jdbcType=TINYINT},
+      </if>
+      <if test="tin != null">
+        [tin] = #{tin,jdbcType=INTEGER},
+      </if>
+      <if test="tinType != null">
+        [tin_type] = #{tinType,jdbcType=TINYINT},
+      </if>
+      <if test="email != null">
+        [email] = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        [website] = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="isFiler != null">
+        [is_filer] = #{isFiler,jdbcType=TINYINT},
+      </if>
+      <if test="subjectRole != null">
+        [subject_role] = #{subjectRole,jdbcType=TINYINT},
+      </if>
+        [update_time] = getdate(),
+    </set>
+    where [sub_id] = #{subId,jdbcType=BIGINT}
+  </update>
+</mapper>

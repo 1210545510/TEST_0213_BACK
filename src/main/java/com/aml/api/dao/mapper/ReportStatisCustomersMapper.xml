@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.ReportStatisCustomersMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.ReportStatisCustomers">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="statis_date" jdbcType="TIMESTAMP" property="statisDate" />
+    <result column="customers_sar_count1" jdbcType="INTEGER" property="customersSarCount1" />
+    <result column="customers_sar_count2" jdbcType="INTEGER" property="customersSarCount2" />
+    <result column="customers_sar_count3" jdbcType="INTEGER" property="customersSarCount3" />
+    <result column="customers_sar_count4" jdbcType="INTEGER" property="customersSarCount4" />
+    <result column="non_customers_sar_count1" jdbcType="INTEGER" property="nonCustomersSarCount1" />
+    <result column="non_customers_sar_count2" jdbcType="INTEGER" property="nonCustomersSarCount2" />
+    <result column="non_customers_sar_count3" jdbcType="INTEGER" property="nonCustomersSarCount3" />
+    <result column="non_customers_sar_count4" jdbcType="INTEGER" property="nonCustomersSarCount4" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [statis_date], [customers_sar_count1], [customers_sar_count2], [customers_sar_count3], 
+    [customers_sar_count4], [non_customers_sar_count1], [non_customers_sar_count2], [non_customers_sar_count3], 
+    [non_customers_sar_count4], [create_time], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [report_statis_customers]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [report_statis_customers]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.ReportStatisCustomers">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into [report_statis_customers] ([statis_date], [customers_sar_count1], 
+      [customers_sar_count2], [customers_sar_count3], 
+      [customers_sar_count4], [non_customers_sar_count1], 
+      [non_customers_sar_count2], [non_customers_sar_count3], 
+      [non_customers_sar_count4], [create_time], [update_time], 
+      [is_deleted])
+    values (#{statisDate,jdbcType=TIMESTAMP}, #{customersSarCount1,jdbcType=INTEGER}, 
+      #{customersSarCount2,jdbcType=INTEGER}, #{customersSarCount3,jdbcType=INTEGER}, 
+      #{customersSarCount4,jdbcType=INTEGER}, #{nonCustomersSarCount1,jdbcType=INTEGER}, 
+      #{nonCustomersSarCount2,jdbcType=INTEGER}, #{nonCustomersSarCount3,jdbcType=INTEGER}, 
+      #{nonCustomersSarCount4,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.ReportStatisCustomers">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into [report_statis_customers]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        [statis_date],
+      </if>
+      <if test="customersSarCount1 != null">
+        [customers_sar_count1],
+      </if>
+      <if test="customersSarCount2 != null">
+        [customers_sar_count2],
+      </if>
+      <if test="customersSarCount3 != null">
+        [customers_sar_count3],
+      </if>
+      <if test="customersSarCount4 != null">
+        [customers_sar_count4],
+      </if>
+      <if test="nonCustomersSarCount1 != null">
+        [non_customers_sar_count1],
+      </if>
+      <if test="nonCustomersSarCount2 != null">
+        [non_customers_sar_count2],
+      </if>
+      <if test="nonCustomersSarCount3 != null">
+        [non_customers_sar_count3],
+      </if>
+      <if test="nonCustomersSarCount4 != null">
+        [non_customers_sar_count4],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisDate != null">
+        #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customersSarCount1 != null">
+        #{customersSarCount1,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount2 != null">
+        #{customersSarCount2,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount3 != null">
+        #{customersSarCount3,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount4 != null">
+        #{customersSarCount4,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount1 != null">
+        #{nonCustomersSarCount1,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount2 != null">
+        #{nonCustomersSarCount2,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount3 != null">
+        #{nonCustomersSarCount3,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount4 != null">
+        #{nonCustomersSarCount4,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.ReportStatisCustomers">
+    update [report_statis_customers]
+    <set>
+      <if test="statisDate != null">
+        [statis_date] = #{statisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customersSarCount1 != null">
+        [customers_sar_count1] = #{customersSarCount1,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount2 != null">
+        [customers_sar_count2] = #{customersSarCount2,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount3 != null">
+        [customers_sar_count3] = #{customersSarCount3,jdbcType=INTEGER},
+      </if>
+      <if test="customersSarCount4 != null">
+        [customers_sar_count4] = #{customersSarCount4,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount1 != null">
+        [non_customers_sar_count1] = #{nonCustomersSarCount1,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount2 != null">
+        [non_customers_sar_count2] = #{nonCustomersSarCount2,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount3 != null">
+        [non_customers_sar_count3] = #{nonCustomersSarCount3,jdbcType=INTEGER},
+      </if>
+      <if test="nonCustomersSarCount4 != null">
+        [non_customers_sar_count4] = #{nonCustomersSarCount4,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.ReportStatisCustomers">
+    update [report_statis_customers]
+    set [statis_date] = #{statisDate,jdbcType=TIMESTAMP},
+      [customers_sar_count1] = #{customersSarCount1,jdbcType=INTEGER},
+      [customers_sar_count2] = #{customersSarCount2,jdbcType=INTEGER},
+      [customers_sar_count3] = #{customersSarCount3,jdbcType=INTEGER},
+      [customers_sar_count4] = #{customersSarCount4,jdbcType=INTEGER},
+      [non_customers_sar_count1] = #{nonCustomersSarCount1,jdbcType=INTEGER},
+      [non_customers_sar_count2] = #{nonCustomersSarCount2,jdbcType=INTEGER},
+      [non_customers_sar_count3] = #{nonCustomersSarCount3,jdbcType=INTEGER},
+      [non_customers_sar_count4] = #{nonCustomersSarCount4,jdbcType=INTEGER},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- Customers and non-customers on which multiple SARs have been filed -->
+  <select id="getStatisCust" resultType="map">
+   	SELECT
+   		<if test="str == 'cust' ">
+   			<if test="number == 1 ">
+				SUM (c.customers_sar_count1) AS [value],
+			</if>
+			<if test="number == 2 ">
+				SUM (c.customers_sar_count2) AS [value],
+			</if>
+			<if test="number == 3 ">
+				SUM (c.customers_sar_count3) AS [value],
+			</if>
+			<if test="number == 4 ">
+				SUM (c.customers_sar_count4) AS [value],
+			</if>
+			<if test="number == 0 || number == null ">
+				(SUM (c.customers_sar_count1)+SUM (c.customers_sar_count2)+SUM (c.customers_sar_count3)+SUM (c.customers_sar_count4)) AS [value],
+			</if>
+		</if>
+		<if test="str == 'non' ">
+			<if test="number == 1 ">
+				SUM (c.non_customers_sar_count1) AS [value],
+			</if>
+			<if test="number == 2 ">
+				SUM (c.non_customers_sar_count2) AS [value],
+			</if>
+			<if test="number == 3 ">
+				SUM (c.non_customers_sar_count3) AS [value],
+			</if>
+			<if test="number == 4 ">
+				SUM (c.non_customers_sar_count4) AS [value],
+			</if>
+			<if test="number == 0 || number == null">
+				(SUM (c.non_customers_sar_count1)+SUM (c.non_customers_sar_count2)+SUM (c.non_customers_sar_count3)+SUM (c.non_customers_sar_count4)) AS [value],
+			</if>
+		</if>
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,c.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,c.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,c.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,c.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,c.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,c.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_customers c
+	WHERE
+		c.is_deleted = 0
+		<if test="createStartDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), c.statis_date, 111)
+		]]>
+		</if>
+		<if test="createEndDate !=null">
+		<![CDATA[
+			AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), c.statis_date, 111)
+		]]>
+		</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,c.statis_date),
+			DATEPART(month,c.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,c.statis_date),
+		</if>
+		DATEPART(year,c.statis_date)
+	ORDER BY DATEPART(year,c.statis_date)
+  </select>
+  
+  <!-- Customers and non-customers on which multiple SARs have been filed -->
+  <select id="queryEachTotalOfSar" resultType="map">
+   	SELECT
+		SUM (c.customers_sar_count1) AS customersSarCount1,
+		SUM (c.customers_sar_count2) AS customersSarCount2,
+		SUM (c.customers_sar_count3) AS customersSarCount3,
+		SUM (c.customers_sar_count4) AS customersSarCount4,
+		SUM (c.non_customers_sar_count1) AS nonCustomersSarCount1,
+		SUM (c.non_customers_sar_count2) AS nonCustomersSarCount2,
+		SUM (c.non_customers_sar_count3) AS nonCustomersSarCount3,
+		SUM (c.non_customers_sar_count4) AS nonCustomersSarCount4,
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,c.statis_date) as [key],
+		</if>
+		<if test="type == 2 ">
+			DATEPART(MONTH,c.statis_date) as [key],
+		</if>
+		CONVERT(VARCHAR(10),DATEPART(YEAR,c.statis_date)) 
+		<if test="type == 2 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,c.statis_date)) 
+		</if>
+		<if test="type == 0 or type == 1 ">
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(MONTH,c.statis_date)) 
+			+'-'+ CONVERT(VARCHAR(10),DATEPART(DAY,c.statis_date)) 
+		</if>
+		as timeName
+	FROM
+		report_statis_customers c
+	WHERE
+		c.is_deleted = 0
+			<if test="createStartDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createStartDate}), 111) <= CONVERT(VARCHAR(100), c.statis_date, 111)
+			]]>
+			</if>
+			<if test="createEndDate !=null">
+			<![CDATA[
+				AND CONVERT(VARCHAR(100), CONVERT(DATETIME, #{createEndDate}), 111) >= CONVERT(VARCHAR(100), c.statis_date, 111)
+			]]>
+			</if>
+	GROUP BY
+		<if test="type == 0 or type == 1 ">
+			DATEPART(day,c.statis_date),
+			DATEPART(month,c.statis_date),
+		</if>
+		<if test="type == 2 ">
+			DATEPART(month,c.statis_date),
+		</if>
+		DATEPART(year,c.statis_date)
+	ORDER BY DATEPART(year,c.statis_date)
+  </select>
+</mapper>

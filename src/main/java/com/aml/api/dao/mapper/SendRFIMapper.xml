@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aml.api.dao.SendRFIMapper">
+  <resultMap id="BaseResultMap" type="com.aml.api.pojo.SendRFI">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="control_id" jdbcType="BIGINT" property="controlId" />
+    <result column="from" jdbcType="VARCHAR" property="from" />
+    <result column="to" jdbcType="VARCHAR" property="to" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="file_urls" jdbcType="VARCHAR" property="fileUrls" />
+    <result column="file_names" jdbcType="VARCHAR" property="fileNames" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="NVARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    [id], [control_id], [from], [to], [subject], [comment], [file_urls], [file_names], 
+    [remark], [create_user], [create_time], [update_user], [update_time], [is_deleted]
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from [send_rfi]
+    where [id] = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from [send_rfi]
+    where [id] = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aml.api.pojo.SendRFI">
+    insert into [send_rfi] ([id], [control_id], [from], 
+      [to], [subject], [comment], 
+      [file_urls], [file_names], [remark], 
+      [create_user], [create_time], [update_user], 
+      [update_time], [is_deleted])
+    values (#{id,jdbcType=BIGINT}, #{controlId,jdbcType=BIGINT}, #{from,jdbcType=VARCHAR}, 
+      #{to,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{fileUrls,jdbcType=VARCHAR}, #{fileNames,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=NVARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aml.api.pojo.SendRFI">
+    insert into [send_rfi]
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        [id],
+      </if>
+      <if test="controlId != null">
+        [control_id],
+      </if>
+      <if test="from != null">
+        [from],
+      </if>
+      <if test="to != null">
+        [to],
+      </if>
+      <if test="subject != null">
+        [subject],
+      </if>
+      <if test="comment != null">
+        [comment],
+      </if>
+      <if test="fileUrls != null">
+        [file_urls],
+      </if>
+      <if test="fileNames != null">
+        [file_names],
+      </if>
+      <if test="remark != null">
+        [remark],
+      </if>
+      <if test="createUser != null">
+        [create_user],
+      </if>
+      <if test="createTime != null">
+        [create_time],
+      </if>
+      <if test="updateUser != null">
+        [update_user],
+      </if>
+      <if test="updateTime != null">
+        [update_time],
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted],
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="controlId != null">
+        #{controlId,jdbcType=BIGINT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null">
+        #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrls != null">
+        #{fileUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="fileNames != null">
+        #{fileNames,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=NVARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aml.api.pojo.SendRFI">
+    update [send_rfi]
+    <set>
+      <if test="controlId != null">
+        [control_id] = #{controlId,jdbcType=BIGINT},
+      </if>
+      <if test="from != null">
+        [from] = #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null">
+        [to] = #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        [subject] = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        [comment] = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrls != null">
+        [file_urls] = #{fileUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="fileNames != null">
+        [file_names] = #{fileNames,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        [remark] = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        [create_user] = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        [update_user] = #{updateUser,jdbcType=NVARCHAR},
+      </if>
+      <if test="updateTime != null">
+        [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        [is_deleted] = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aml.api.pojo.SendRFI">
+    update [send_rfi]
+    set [control_id] = #{controlId,jdbcType=BIGINT},
+      [from] = #{from,jdbcType=VARCHAR},
+      [to] = #{to,jdbcType=VARCHAR},
+      [subject] = #{subject,jdbcType=VARCHAR},
+      [comment] = #{comment,jdbcType=VARCHAR},
+      [file_urls] = #{fileUrls,jdbcType=VARCHAR},
+      [file_names] = #{fileNames,jdbcType=VARCHAR},
+      [remark] = #{remark,jdbcType=VARCHAR},
+      [create_user] = #{createUser,jdbcType=VARCHAR},
+      [create_time] = #{createTime,jdbcType=TIMESTAMP},
+      [update_user] = #{updateUser,jdbcType=NVARCHAR},
+      [update_time] = #{updateTime,jdbcType=TIMESTAMP},
+      [is_deleted] = #{isDeleted,jdbcType=TINYINT}
+    where [id] = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryAllFile" resultMap="BaseResultMap">
+  	select
+  		sr.file_urls,sr.file_names
+  	from
+  		rfi r
+  		join send_rfi sr on (sr.control_id = r.control and sr.is_deleted = 0)
+  	where
+  		r.relate_id = #{relateId}
+  		and r.source = #{source}
+  		and r.is_deleted = 0
+  </select>
+</mapper>
